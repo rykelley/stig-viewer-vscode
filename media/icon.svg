@@ -1,0 +1,44 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .bg-shield { fill: #1a2332; }
+  .shield-body { fill: #2563eb; }
+  .shield-dark { fill: #1d4ed8; }
+  .shield-highlight { fill: #3b82f6; }
+  .check-stroke { fill: none; stroke: #ffffff; stroke-width: 28; stroke-linecap: round; stroke-linejoin: round; }
+  .line-row { fill: #94a3b8; opacity: 0.55; }
+  .line-row-alt { fill: #64748b; opacity: 0.4; }
+  .dot-pass { fill: #22c55e; }
+  .dot-warn { fill: #f59e0b; }
+  .dot-fail { fill: #ef4444; }
+  .corner-accent { fill: #0ea5e9; opacity: 0.12; }
+</style>
+
+<rect width="512" height="512" rx="80" class="bg-shield"/>
+
+<circle cx="90" cy="90" r="120" class="corner-accent"/>
+<circle cx="422" cy="422" r="100" class="corner-accent"/>
+
+<path d="M256 68 L406 138 L406 272 C406 360 340 428 256 452 C172 428 106 360 106 272 L106 138 Z" class="shield-body"/>
+<path d="M256 68 L406 138 L406 272 C406 360 340 428 256 452 L256 68Z" class="shield-dark"/>
+<path d="M256 68 L106 138 L106 272 C106 360 172 428 256 452 L256 68Z" class="shield-highlight"/>
+
+<path d="M256 68 L406 138 L406 272 C406 360 340 428 256 452 C172 428 106 360 106 272 L106 138 Z" fill="none" stroke="#60a5fa" stroke-width="3" opacity="0.5"/>
+
+<path d="M188 268 L236 316 L332 208" class="check-stroke"/>
+
+<rect x="158" y="358" width="68" height="5" rx="2.5" class="line-row"/>
+<rect x="158" y="372" width="52" height="5" rx="2.5" class="line-row-alt"/>
+<rect x="158" y="386" width="60" height="5" rx="2.5" class="line-row"/>
+
+<rect x="286" y="358" width="68" height="5" rx="2.5" class="line-row"/>
+<rect x="286" y="372" width="44" height="5" rx="2.5" class="line-row-alt"/>
+<rect x="286" y="386" width="56" height="5" rx="2.5" class="line-row"/>
+
+<circle cx="144" cy="360" r="5" class="dot-pass"/>
+<circle cx="144" cy="374" r="5" class="dot-pass"/>
+<circle cx="144" cy="388" r="5" class="dot-warn"/>
+
+<circle cx="272" cy="360" r="5" class="dot-pass"/>
+<circle cx="272" cy="374" r="5" class="dot-fail"/>
+<circle cx="272" cy="388" r="5" class="dot-pass"/>
+</svg>

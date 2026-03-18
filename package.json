@@ -1,0 +1,42 @@
+{
+  "name": "stig-viewer",
+  "displayName": "STIG Viewer",
+  "description": "View and manage DISA STIG Checklist (.cklb) files with a rich overview panel",
+  "version": "0.1.0",
+  "publisher": "torch-ai",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other", "Visualization"],
+  "icon": "media/icon.png",
+  "license": "MIT",
+  "keywords": ["STIG", "DISA", "security", "compliance", "checklist", "cklb", "RMF"],
+  "activationEvents": ["workspaceContains:**/*.cklb"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "stigViewer.openFile",
+        "title": "STIG Viewer: Open .cklb File"
+      }
+    ],
+    "customEditors": [
+      {
+        "viewType": "stigViewer.cklbEditor",
+        "displayName": "STIG Viewer",
+        "selector": [{ "filenamePattern": "*.cklb" }],
+        "priority": "default"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}
