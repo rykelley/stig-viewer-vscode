@@ -3,12 +3,16 @@
   "displayName": "STIG Viewer",
   "description": "View and manage DISA STIG Checklist (.cklb) files with a rich overview panel",
   "version": "0.1.0",
-  "publisher": "torch-ai",
+  "publisher": "rykelley",
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": ["Other", "Visualization"],
   "icon": "media/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rykelley/stig-viewer-vscode.git"
+  },
   "license": "MIT",
   "keywords": ["STIG", "DISA", "security", "compliance", "checklist", "cklb", "RMF"],
   "activationEvents": ["workspaceContains:**/*.cklb"],
