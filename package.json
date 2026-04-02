@@ -43,6 +43,22 @@
       {
         "command": "stigViewer.mergeFindings",
         "title": "STIG Viewer: Merge / Carry Forward Findings"
+      },
+      {
+        "command": "stigViewer.importCkl",
+        "title": "STIG Viewer: Import CKL Checklist"
+      },
+      {
+        "command": "stigViewer.dashboard",
+        "title": "STIG Viewer: Open Dashboard"
+      },
+      {
+        "command": "stigViewer.diffChecklists",
+        "title": "STIG Viewer: Diff Two Checklists"
+      },
+      {
+        "command": "stigViewer.importScapResults",
+        "title": "STIG Viewer: Import SCAP Scan Results"
       }
     ],
     "menus": {
@@ -50,6 +66,11 @@
         {
           "command": "stigViewer.importXccdf",
           "when": "resourceExtname == .xml",
+          "group": "navigation"
+        },
+        {
+          "command": "stigViewer.importCkl",
+          "when": "resourceExtname == .ckl",
           "group": "navigation"
         }
       ]

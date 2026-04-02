@@ -1,7 +1,11 @@
 import * as vscode from 'vscode';
 import { CklbEditorProvider } from './cklbEditorProvider';
 import { importXccdf } from './xccdfImporter';
+import { importCkl } from './importCkl';
 import { mergeFindings } from './mergeFindings';
+import { DashboardPanel } from './dashboardPanel';
+import { DiffPanel } from './diffPanel';
+import { importScapResults } from './importScapResults';
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(CklbEditorProvider.register(context));
@@ -39,11 +43,60 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.importCkl', async (uri?: vscode.Uri) => {
+      if (!uri) {
+        const uris = await vscode.window.showOpenDialog({
+          canSelectMany: false,
+          filters: { 'CKL Checklist': ['ckl'] },
+          title: 'Import CKL Checklist',
+        });
+        if (!uris?.[0]) { return; }
+        uri = uris[0];
+      }
+      try {
+        await importCkl(uri);
+      } catch (e) {
+        vscode.window.showErrorMessage(`CKL import failed: ${e}`);
+      }
+    })
+  );
+
+  context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.mergeFindings', async () => {
       try {
         await mergeFindings();
       } catch (e) {
         vscode.window.showErrorMessage(`Merge failed: ${e}`);
+      }
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.dashboard', async () => {
+      try {
+        await DashboardPanel.show(context);
+      } catch (e) {
+        vscode.window.showErrorMessage(`Dashboard failed: ${e}`);
+      }
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.diffChecklists', async () => {
+      try {
+        await DiffPanel.show();
+      } catch (e) {
+        vscode.window.showErrorMessage(`Diff failed: ${e}`);
+      }
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.importScapResults', async () => {
+      try {
+        await importScapResults();
+      } catch (e) {
+        vscode.window.showErrorMessage(`SCAP import failed: ${e}`);
       }
     })
   );

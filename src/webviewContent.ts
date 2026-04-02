@@ -62,6 +62,7 @@ export function buildWebviewHtml(data: CklbDocument): string {
     <div class="hdr-actions">
       <button class="btn-export" id="btnExportCsv">Export CSV</button>
       <button class="btn-export" id="btnExportCkl">Export CKL</button>
+      <button class="btn-export" id="btnExportPoam">Export POA&amp;M</button>
     </div>
   </div>
   ${targetHtml(data.target_data)}
@@ -242,7 +243,12 @@ function ruleRow(r: CklbRule, stigUuid: string): string {
   <td><code>${esc(r.group_id)}</code></td>
   <td><code>${esc(r.rule_version)}</code></td>
   <td class="td-title">${esc(r.rule_title)}</td>
-  <td><span class="pill st-${r.status}">${statusLabel(r.status)}</span></td>
+  <td><select class="inline-status st-${r.status}" data-uuid="${r.uuid}" data-stig="${stigUuid}">
+    <option value="not_reviewed" ${r.status === 'not_reviewed' ? 'selected' : ''}>Not Reviewed</option>
+    <option value="open" ${r.status === 'open' ? 'selected' : ''}>Open</option>
+    <option value="not_a_finding" ${r.status === 'not_a_finding' ? 'selected' : ''}>Not a Finding</option>
+    <option value="not_applicable" ${r.status === 'not_applicable' ? 'selected' : ''}>Not Applicable</option>
+  </select></td>
 </tr>`;
 }
 
@@ -357,7 +363,8 @@ function renderDetail(r, stigUuid) {
     }
   };
 
-  document.getElementById('dSave').onclick = () => {
+  // Auto-save helper for this rule
+  function doSave() {
     const ns = document.getElementById('dSt').value;
     const fd = document.getElementById('dFd').value;
     const cm = document.getElementById('dCm').value;
@@ -366,22 +373,71 @@ function renderDetail(r, stigUuid) {
     const row = document.querySelector('tr.row[data-uuid="'+r.uuid+'"]');
     if (row) {
       row.dataset.status = ns;
-      row.querySelector('.st-'+r.status)?.classList?.replace?.('st-'+r.status, 'st-'+ns);
-      const pill = row.querySelectorAll('.pill')[1];
-      if (pill) { pill.className = 'pill st-'+ns; pill.textContent = SL[ns]||ns; }
+      const sel = row.querySelector('.inline-status');
+      if (sel) { sel.value = ns; sel.className = 'inline-status st-'+ns; }
     }
     RULES[r.uuid].status = ns;
     RULES[r.uuid].finding_details = fd;
     RULES[r.uuid].comments = cm;
-  };
+    // Flash saved indicator
+    const btn = document.getElementById('dSave');
+    if (btn) { btn.textContent = 'Saved'; btn.classList.add('btn-saved'); setTimeout(() => { btn.textContent = 'Save Changes'; btn.classList.remove('btn-saved'); }, 1500); }
+  }
+
+  // Auto-save on status change
+  document.getElementById('dSt').onchange = doSave;
+  // Auto-save on blur from text fields
+  document.getElementById('dFd').onblur = doSave;
+  document.getElementById('dCm').onblur = doSave;
+  // Manual save button
+  document.getElementById('dSave').onclick = doSave;
 }
 
 function h(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 function fmt(s){if(!s)return'<span class="muted">None</span>';return h(s).replace(/\\\\r\\\\n|\\\\n|\\n/g,'<br>').replace(/(\\$[^<]{2,})/g,'<code>$1</code>');}
 
+// ── Inline status editing ──
+document.querySelectorAll('.inline-status').forEach(sel => {
+  sel.addEventListener('change', (e) => {
+    e.stopPropagation();
+    const uuid = sel.dataset.uuid;
+    const stigUuid = sel.dataset.stig;
+    const ns = sel.value;
+    const row = sel.closest('tr');
+    // Update DOM
+    row.dataset.status = ns;
+    sel.className = 'inline-status st-' + ns;
+    // Update local data
+    RULES[uuid].status = ns;
+    // Auto-save
+    vscode.postMessage({ type: 'saveRule', ruleUuid: uuid, stigUuid: stigUuid, status: ns, finding_details: RULES[uuid].finding_details || '', comments: RULES[uuid].comments || '' });
+  });
+  sel.addEventListener('click', (e) => e.stopPropagation());
+});
+
+// ── Undo/redo sync — update webview when document changes externally ──
+window.addEventListener('message', (event) => {
+  const msg = event.data;
+  if (msg.type === 'dataUpdate' && msg.rules) {
+    // Update local RULES map
+    for (const [uuid, rule] of Object.entries(msg.rules)) {
+      RULES[uuid] = rule;
+    }
+    // Update all table rows
+    document.querySelectorAll('tr.row').forEach(row => {
+      const r = msg.rules[row.dataset.uuid];
+      if (!r) return;
+      row.dataset.status = r.status;
+      const sel = row.querySelector('.inline-status');
+      if (sel) { sel.value = r.status; sel.className = 'inline-status st-' + r.status; }
+    });
+  }
+});
+
 // ── Export buttons ──
 document.getElementById('btnExportCsv').onclick = () => vscode.postMessage({ type: 'exportCsv' });
 document.getElementById('btnExportCkl').onclick = () => vscode.postMessage({ type: 'exportCkl' });
+document.getElementById('btnExportPoam').onclick = () => vscode.postMessage({ type: 'exportPoam' });
 
 // ── Target data editing ──
 const targetModal    = document.getElementById('targetModal');
@@ -523,6 +579,69 @@ document.querySelectorAll('.btn-bulk-clear').forEach(btn => {
     const sa = document.querySelector('.select-all[data-stig="'+stigId+'"]');
     if (sa) sa.checked = false;
     updateBulkBar(stigId);
+  });
+});
+
+// ── Keyboard navigation ──
+let focusedRow = null;
+
+document.addEventListener('keydown', (e) => {
+  // Escape closes detail panel
+  if (e.key === 'Escape') {
+    hide();
+    return;
+  }
+
+  // Don't capture keys when typing in inputs/textareas/selects
+  const tag = document.activeElement?.tagName;
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+  const rows = [...document.querySelectorAll('tr.row')].filter(r => r.style.display !== 'none');
+  if (!rows.length) return;
+
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'j' || e.key === 'k') {
+    e.preventDefault();
+    const idx = focusedRow ? rows.indexOf(focusedRow) : -1;
+    let next;
+    if (e.key === 'ArrowDown' || e.key === 'j') {
+      next = idx < rows.length - 1 ? rows[idx + 1] : rows[0];
+    } else {
+      next = idx > 0 ? rows[idx - 1] : rows[rows.length - 1];
+    }
+    if (focusedRow) focusedRow.classList.remove('row-focus');
+    next.classList.add('row-focus');
+    next.scrollIntoView({ block: 'nearest' });
+    focusedRow = next;
+  }
+
+  if (e.key === 'Enter' && focusedRow) {
+    e.preventDefault();
+    focusedRow.click();
+  }
+});
+
+// ── Column sorting ──
+document.querySelectorAll('.tbl th').forEach((th, i) => {
+  if (i === 0) return; // skip checkbox column
+  th.style.cursor = 'pointer';
+  th.style.userSelect = 'none';
+  th.addEventListener('click', () => {
+    const table = th.closest('.tbl');
+    const tbody = table.querySelector('tbody');
+    const rows = [...tbody.querySelectorAll('tr.row')];
+    const asc = th.dataset.sort !== 'asc';
+
+    // Reset all headers in this table
+    table.querySelectorAll('th').forEach(h => { h.dataset.sort = ''; h.classList.remove('sort-asc','sort-desc'); });
+    th.dataset.sort = asc ? 'asc' : 'desc';
+    th.classList.add(asc ? 'sort-asc' : 'sort-desc');
+
+    rows.sort((a, b) => {
+      const av = a.cells[i].textContent.trim();
+      const bv = b.cells[i].textContent.trim();
+      return (asc ? 1 : -1) * av.localeCompare(bv, undefined, { numeric: true });
+    });
+    rows.forEach(r => tbody.appendChild(r));
   });
 });
 `;
@@ -684,4 +803,22 @@ body{font-family:var(--vscode-font-family,system-ui,sans-serif);font-size:13px;c
 /* ── checkbox column ── */
 .td-cb{width:36px;text-align:center}
 .row-cb,.select-all{width:15px;height:15px;cursor:pointer;accent-color:var(--accent)}
+
+/* ── inline status select ── */
+.inline-status{padding:2px 6px;border-radius:4px;font-size:.78em;font-weight:600;border:1px solid transparent;cursor:pointer;outline:none;color:#fff;appearance:auto}
+.inline-status:hover{border-color:var(--accent)}
+.inline-status.st-not_reviewed{background:#34495e}
+.inline-status.st-open{background:#e74c3c}
+.inline-status.st-not_a_finding{background:#27ae60}
+.inline-status.st-not_applicable{background:#7f8c8d}
+
+/* ── saved flash ── */
+.btn-saved{background:var(--green)!important;transition:background .2s}
+
+/* ── keyboard focus ── */
+.row-focus{outline:2px solid var(--accent);outline-offset:-2px}
+
+/* ── sort indicators ── */
+.sort-asc::after{content:' \\25B2';font-size:.7em}
+.sort-desc::after{content:' \\25BC';font-size:.7em}
 `;

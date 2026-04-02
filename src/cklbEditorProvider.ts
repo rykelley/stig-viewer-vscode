@@ -5,6 +5,7 @@ import { CklbDocument } from './types';
 import { buildWebviewHtml } from './webviewContent';
 import { buildCsv } from './exportCsv';
 import { buildCkl } from './exportCkl';
+import { buildPoam } from './exportPoam';
 
 export class CklbEditorProvider implements vscode.CustomTextEditorProvider {
 
@@ -38,9 +39,20 @@ export class CklbEditorProvider implements vscode.CustomTextEditorProvider {
 
     updateWebview();
 
+    // Undo support — sync webview state when document changes (undo/redo/external)
+    let syncTimeout: ReturnType<typeof setTimeout> | undefined;
     const changeSub = vscode.workspace.onDidChangeTextDocument(e => {
       if (e.document.uri.toString() === document.uri.toString()) {
-        // External edits — could refresh, but we retain context to avoid flicker
+        clearTimeout(syncTimeout);
+        syncTimeout = setTimeout(() => {
+          try {
+            const data: CklbDocument = JSON.parse(document.getText());
+            const rules = Object.fromEntries(
+              data.stigs.flatMap(st => st.rules.map(r => [r.uuid, r]))
+            );
+            webviewPanel.webview.postMessage({ type: 'dataUpdate', rules });
+          } catch { /* ignore transient parse errors */ }
+        }, 150);
       }
     });
 
@@ -63,9 +75,7 @@ export class CklbEditorProvider implements vscode.CustomTextEditorProvider {
             );
             edit.replace(document.uri, fullRange, JSON.stringify(data, null, 2));
             await vscode.workspace.applyEdit(edit);
-            vscode.window.showInformationMessage(
-              `Updated ${rule.group_id} → ${status.replace(/_/g, ' ')}`
-            );
+            // Silent auto-save — no notification toast
           }
         } catch (e) {
           vscode.window.showErrorMessage(`Save failed: ${e}`);
@@ -86,6 +96,26 @@ export class CklbEditorProvider implements vscode.CustomTextEditorProvider {
           vscode.window.showInformationMessage('Target data updated');
         } catch (e) {
           vscode.window.showErrorMessage(`Save target data failed: ${e}`);
+        }
+      }
+
+      if (msg.type === 'exportPoam') {
+        try {
+          const data: CklbDocument = JSON.parse(document.getText());
+          const poam = buildPoam(data);
+          const openCount = data.stigs.reduce((n, s) => n + s.rules.filter(r => r.status === 'open').length, 0);
+          const defaultName = path.basename(document.uri.fsPath, '.cklb') + '_POAM.csv';
+          const saveUri = await vscode.window.showSaveDialog({
+            defaultUri: vscode.Uri.file(path.join(path.dirname(document.uri.fsPath), defaultName)),
+            filters: { 'CSV': ['csv'] },
+            title: `Export POA&M (${openCount} open findings)`,
+          });
+          if (saveUri) {
+            fs.writeFileSync(saveUri.fsPath, poam, 'utf-8');
+            vscode.window.showInformationMessage(`Exported POA&M (${openCount} findings) → ${path.basename(saveUri.fsPath)}`);
+          }
+        } catch (e) {
+          vscode.window.showErrorMessage(`POA&M export failed: ${e}`);
         }
       }
 
