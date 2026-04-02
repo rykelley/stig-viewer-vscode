@@ -6,6 +6,7 @@ import { buildWebviewHtml } from './webviewContent';
 import { buildCsv } from './exportCsv';
 import { buildCkl } from './exportCkl';
 import { buildPoam } from './exportPoam';
+import { requirePro } from './licenseManager';
 
 export class CklbEditorProvider implements vscode.CustomTextEditorProvider {
 
@@ -100,6 +101,7 @@ export class CklbEditorProvider implements vscode.CustomTextEditorProvider {
       }
 
       if (msg.type === 'exportPoam') {
+        if (!await requirePro()) return;
         try {
           const data: CklbDocument = JSON.parse(document.getText());
           const poam = buildPoam(data);
@@ -120,6 +122,7 @@ export class CklbEditorProvider implements vscode.CustomTextEditorProvider {
       }
 
       if (msg.type === 'exportCsv') {
+        if (!await requirePro()) return;
         try {
           const data: CklbDocument = JSON.parse(document.getText());
           const csv = buildCsv(data);

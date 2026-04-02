@@ -42,7 +42,7 @@
       },
       {
         "command": "stigViewer.mergeFindings",
-        "title": "STIG Workbench: Merge / Carry Forward Findings"
+        "title": "STIG Workbench: Merge / Carry Forward Findings (Pro)"
       },
       {
         "command": "stigViewer.importCkl",
@@ -50,31 +50,43 @@
       },
       {
         "command": "stigViewer.dashboard",
-        "title": "STIG Workbench: Open Dashboard"
+        "title": "STIG Workbench: Open Dashboard (Pro)"
       },
       {
         "command": "stigViewer.diffChecklists",
-        "title": "STIG Workbench: Diff Two Checklists"
+        "title": "STIG Workbench: Diff Two Checklists (Pro)"
       },
       {
         "command": "stigViewer.importScapResults",
-        "title": "STIG Workbench: Import SCAP Scan Results"
+        "title": "STIG Workbench: Import SCAP Scan Results (Pro)"
       },
       {
         "command": "stigViewer.scanRepo",
-        "title": "STIG Workbench: Scan Repo Against Checklist"
+        "title": "STIG Workbench: Scan Repo Against Checklist (Pro)"
       },
       {
         "command": "stigViewer.importSarif",
-        "title": "STIG Workbench: Import SARIF Results"
+        "title": "STIG Workbench: Import SARIF Results (Pro)"
       },
       {
         "command": "stigViewer.importAudit",
-        "title": "STIG Workbench: Import Dependency Audit"
+        "title": "STIG Workbench: Import Dependency Audit (Pro)"
       },
       {
         "command": "stigViewer.exportEvidence",
-        "title": "STIG Workbench: Export Evidence Package"
+        "title": "STIG Workbench: Export Evidence Package (Pro)"
+      },
+      {
+        "command": "stigViewer.enterLicense",
+        "title": "STIG Workbench: Enter License Key"
+      },
+      {
+        "command": "stigViewer.licenseStatus",
+        "title": "STIG Workbench: License Status"
+      },
+      {
+        "command": "stigViewer.removeLicense",
+        "title": "STIG Workbench: Remove License Key"
       }
     ],
     "menus": {

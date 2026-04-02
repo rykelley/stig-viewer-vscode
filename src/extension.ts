@@ -10,9 +10,21 @@ import { scanRepo } from './repoScanner';
 import { importSarif } from './importSarif';
 import { importAudit } from './importAudit';
 import { exportEvidence } from './evidencePackage';
+import {
+  initLicenseManager,
+  requirePro,
+  enterLicenseKey,
+  showLicenseStatus,
+  removeLicenseKey,
+} from './licenseManager';
 
 export function activate(context: vscode.ExtensionContext) {
+  // Initialize license manager with VS Code's encrypted secret storage
+  initLicenseManager(context.secrets);
+
   context.subscriptions.push(CklbEditorProvider.register(context));
+
+  // ─── Free commands ──────────────────────────────────────────────────
 
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.openFile', async () => {
@@ -65,8 +77,11 @@ export function activate(context: vscode.ExtensionContext) {
     })
   );
 
+  // ─── Pro commands (gated) ───────────────────────────────────────────
+
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.mergeFindings', async () => {
+      if (!await requirePro()) return;
       try {
         await mergeFindings();
       } catch (e) {
@@ -77,6 +92,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.dashboard', async () => {
+      if (!await requirePro()) return;
       try {
         await DashboardPanel.show(context);
       } catch (e) {
@@ -87,6 +103,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.diffChecklists', async () => {
+      if (!await requirePro()) return;
       try {
         await DiffPanel.show();
       } catch (e) {
@@ -97,6 +114,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.importScapResults', async () => {
+      if (!await requirePro()) return;
       try {
         await importScapResults();
       } catch (e) {
@@ -104,8 +122,10 @@ export function activate(context: vscode.ExtensionContext) {
       }
     })
   );
+
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.scanRepo', async () => {
+      if (!await requirePro()) return;
       try {
         await scanRepo();
       } catch (e) {
@@ -113,8 +133,10 @@ export function activate(context: vscode.ExtensionContext) {
       }
     })
   );
+
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.importSarif', async () => {
+      if (!await requirePro()) return;
       try {
         await importSarif();
       } catch (e) {
@@ -125,6 +147,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.importAudit', async () => {
+      if (!await requirePro()) return;
       try {
         await importAudit();
       } catch (e) {
@@ -135,12 +158,29 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.exportEvidence', async () => {
+      if (!await requirePro()) return;
       try {
         await exportEvidence();
       } catch (e) {
         vscode.window.showErrorMessage(`Evidence package failed: ${e}`);
       }
     })
+  );
+
+  // ─── Pro: export buttons in webview (CSV, POA&M handled in cklbEditorProvider) ──
+
+  // ─── License management commands ────────────────────────────────────
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.enterLicense', enterLicenseKey)
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.licenseStatus', showLicenseStatus)
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.removeLicense', removeLicenseKey)
   );
 }
 
