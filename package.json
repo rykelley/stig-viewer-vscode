@@ -59,6 +59,10 @@
       {
         "command": "stigViewer.importScapResults",
         "title": "STIG Viewer: Import SCAP Scan Results"
+      },
+      {
+        "command": "stigViewer.scanRepo",
+        "title": "STIG Viewer: Scan Repo Against Checklist"
       }
     ],
     "menus": {

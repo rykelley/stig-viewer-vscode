@@ -1,0 +1,260 @@
+{
+  "$comment": "STIG Viewer — Repo Scan Patterns. Customize or extend these patterns to match your environment. Each pattern maps to checklist rules via ruleKeywords matching against rule_title, discussion, and check_content.",
+  "version": "1.0",
+  "excludeGlobs": [
+    "**/node_modules/**",
+    "**/vendor/**",
+    "**/.git/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/out/**",
+    "**/*.min.js",
+    "**/*.min.css",
+    "**/package-lock.json",
+    "**/yarn.lock",
+    "**/*.cklb",
+    "**/*.ckl"
+  ],
+  "scanPatterns": [
+    {
+      "id": "hardcoded-secrets",
+      "name": "Hardcoded Secrets & Credentials",
+      "ruleKeywords": ["credential", "password", "embedded", "authentication data", "hard-coded", "hardcoded", "secret", "private key"],
+      "fileGlobs": ["**/*"],
+      "patterns": [
+        "(password|passwd|pwd|secret|api_?key|access_?key|token|auth_?token|client_?secret)\\s*[:=]\\s*[\"'][^\"'\\s]{4,}[\"']",
+        "-----BEGIN\\s+(RSA\\s+|DSA\\s+|EC\\s+|OPENSSH\\s+)?PRIVATE\\s+KEY-----",
+        "AKIA[0-9A-Z]{16}",
+        "(ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9_]{36,}",
+        "sk-[A-Za-z0-9]{32,}"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true
+    },
+    {
+      "id": "sql-injection",
+      "name": "SQL Injection",
+      "ruleKeywords": ["injection", "SQL", "query", "parameterized", "prepared statement", "input validation"],
+      "fileGlobs": ["**/*.{ts,js,py,java,rb,go,cs,php,jsx,tsx}"],
+      "patterns": [
+        "(execute|query|raw|exec)\\s*\\(\\s*[\"'`]\\s*(SELECT|INSERT|UPDATE|DELETE|DROP|ALTER|CREATE).*\\+",
+        "f[\"']\\s*(SELECT|INSERT|UPDATE|DELETE)\\s",
+        "format\\s*\\(\\s*[\"']\\s*(SELECT|INSERT|UPDATE|DELETE)",
+        "\\.format\\(.*\\).*(?:SELECT|INSERT|UPDATE|DELETE|WHERE)",
+        "\\$\\{.*\\}.*(?:SELECT|INSERT|UPDATE|DELETE|WHERE)"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true
+    },
+    {
+      "id": "xss",
+      "name": "Cross-Site Scripting (XSS)",
+      "ruleKeywords": ["cross-site scripting", "XSS", "script injection", "output encoding", "innerHTML", "sanitize"],
+      "fileGlobs": ["**/*.{ts,js,jsx,tsx,html,php,erb,ejs,hbs,vue,svelte}"],
+      "patterns": [
+        "\\.innerHTML\\s*=",
+        "dangerouslySetInnerHTML",
+        "document\\.write\\s*\\(",
+        "\\$\\(.*\\)\\.html\\s*\\(",
+        "\\|\\s*safe\\b",
+        "\\{\\{\\{.*\\}\\}\\}",
+        "v-html\\s*="
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true
+    },
+    {
+      "id": "command-injection",
+      "name": "Command Injection",
+      "ruleKeywords": ["command injection", "OS command", "system command", "eval", "exec", "execute arbitrary"],
+      "fileGlobs": ["**/*.{ts,js,py,java,rb,go,cs,php,sh,bash}"],
+      "patterns": [
+        "\\beval\\s*\\(",
+        "\\bexec\\s*\\(.*\\+",
+        "child_process.*exec\\s*\\(",
+        "subprocess\\.(call|run|Popen)\\s*\\(.*shell\\s*=\\s*True",
+        "os\\.system\\s*\\(",
+        "Runtime\\.getRuntime\\(\\)\\.exec\\s*\\(",
+        "\\bsystem\\s*\\(.*\\$"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true
+    },
+    {
+      "id": "insecure-crypto",
+      "name": "Insecure Cryptographic Algorithms",
+      "ruleKeywords": ["cryptograph", "encrypt", "hash", "cipher", "MD5", "SHA-1", "DES", "FIPS", "approved algorithm"],
+      "fileGlobs": ["**/*.{ts,js,py,java,rb,go,cs,php,yml,yaml,xml,conf,cfg}"],
+      "patterns": [
+        "\\bMD5\\b",
+        "\\bSHA-?1\\b",
+        "\\bDES\\b(?!C|K)",
+        "\\bRC4\\b",
+        "\\b3DES\\b",
+        "createHash\\s*\\(\\s*[\"']md5[\"']",
+        "createHash\\s*\\(\\s*[\"']sha1[\"']",
+        "hashlib\\.(md5|sha1)\\s*\\(",
+        "MessageDigest\\.getInstance\\s*\\(\\s*[\"'](MD5|SHA-?1)[\"']"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true
+    },
+    {
+      "id": "insecure-communication",
+      "name": "Insecure Communication Protocols",
+      "ruleKeywords": ["TLS", "SSL", "HTTPS", "encrypt", "transit", "transport", "cleartext", "plain text", "unencrypted"],
+      "fileGlobs": ["**/*.{ts,js,py,java,rb,go,cs,php,yml,yaml,xml,conf,cfg,properties,env,json}"],
+      "patterns": [
+        "http://(?!localhost|127\\.0\\.0\\.1|0\\.0\\.0\\.0|\\[::1\\])",
+        "verify\\s*[:=]\\s*(false|False|FALSE)",
+        "rejectUnauthorized\\s*[:=]\\s*false",
+        "InsecureRequestWarning",
+        "NODE_TLS_REJECT_UNAUTHORIZED\\s*=\\s*[\"']?0",
+        "ssl_verify\\s*[:=]\\s*(false|no|off)",
+        "CURLOPT_SSL_VERIFYPEER\\s*,\\s*false"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true
+    },
+    {
+      "id": "debug-error-handling",
+      "name": "Debug Mode & Verbose Error Handling",
+      "ruleKeywords": ["debug", "error handling", "stack trace", "verbose", "diagnostic", "detailed error", "error message"],
+      "fileGlobs": ["**/*.{ts,js,py,java,rb,go,cs,php,yml,yaml,xml,conf,cfg,json,env}"],
+      "patterns": [
+        "DEBUG\\s*[:=]\\s*(true|True|TRUE|1|[\"']true[\"'])",
+        "debug\\s*[:=]\\s*true",
+        "printStackTrace\\s*\\(",
+        "console\\.log\\s*\\(.*\\berr",
+        "traceback\\.print_exc\\s*\\(",
+        "FLASK_DEBUG\\s*=\\s*1",
+        "app\\.debug\\s*=\\s*True",
+        "display_errors\\s*=\\s*[Oo]n"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true
+    },
+    {
+      "id": "sensitive-logging",
+      "name": "Logging Sensitive Data",
+      "ruleKeywords": ["log", "audit", "sensitive", "password", "PII", "record sensitive", "display sensitive"],
+      "fileGlobs": ["**/*.{ts,js,py,java,rb,go,cs,php}"],
+      "patterns": [
+        "(console\\.log|logger?\\.(info|debug|warn|error|log)|logging\\.(info|debug|warn|error)|log\\.(info|debug|warn|error|Printf))\\s*\\(.*(?:password|passwd|secret|token|ssn|credit.?card|api.?key)",
+        "print\\s*\\(.*(?:password|secret|token|api.?key)"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true
+    },
+    {
+      "id": "cors-misconfiguration",
+      "name": "CORS Misconfiguration",
+      "ruleKeywords": ["CORS", "cross-origin", "access control", "origin", "same-origin"],
+      "fileGlobs": ["**/*.{ts,js,py,java,rb,go,cs,php,yml,yaml,xml,conf,json}"],
+      "patterns": [
+        "Access-Control-Allow-Origin\\s*[:=]\\s*[\"']\\*[\"']",
+        "cors\\s*\\(\\s*\\)",
+        "allow_origin\\s*[:=]\\s*[\"']\\*[\"']",
+        "allowedOrigins.*\\*"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true
+    },
+    {
+      "id": "insecure-cookie",
+      "name": "Insecure Cookie & Session Configuration",
+      "ruleKeywords": ["cookie", "session", "httpOnly", "secure flag", "session management", "session ID"],
+      "fileGlobs": ["**/*.{ts,js,py,java,rb,go,cs,php,yml,yaml,xml,conf,json}"],
+      "patterns": [
+        "httpOnly\\s*[:=]\\s*false",
+        "secure\\s*[:=]\\s*false",
+        "sameSite\\s*[:=]\\s*[\"']?none[\"']?(?!.*[Ss]ecure)",
+        "SESSION_COOKIE_SECURE\\s*=\\s*(False|false)",
+        "SESSION_COOKIE_HTTPONLY\\s*=\\s*(False|false)"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true
+    },
+    {
+      "id": "path-traversal",
+      "name": "Path Traversal",
+      "ruleKeywords": ["path traversal", "directory traversal", "file access", "file inclusion", "canonicalize"],
+      "fileGlobs": ["**/*.{ts,js,py,java,rb,go,cs,php}"],
+      "patterns": [
+        "(readFile|readFileSync|createReadStream|open)\\s*\\(.*\\+",
+        "\\.\\.[\\\\/]",
+        "(include|require|include_once|require_once)\\s*\\(\\s*\\$",
+        "os\\.path\\.join\\s*\\(.*request"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true
+    },
+    {
+      "id": "insecure-deserialization",
+      "name": "Insecure Deserialization",
+      "ruleKeywords": ["deserializ", "serializ", "untrusted data", "pickle", "marshal", "yaml.load"],
+      "fileGlobs": ["**/*.{ts,js,py,java,rb,go,cs,php}"],
+      "patterns": [
+        "pickle\\.loads?\\s*\\(",
+        "yaml\\.load\\s*\\((?!.*Loader\\s*=\\s*yaml\\.SafeLoader)",
+        "marshal\\.loads?\\s*\\(",
+        "ObjectInputStream",
+        "unserialize\\s*\\(",
+        "JSON\\.parse\\s*\\(.*\\beval\\b"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true
+    },
+    {
+      "id": "file-permissions",
+      "name": "Insecure File Permissions",
+      "ruleKeywords": ["permission", "file permission", "access control", "chmod", "world-readable", "world-writable"],
+      "fileGlobs": ["**/*.{ts,js,py,java,rb,go,cs,php,sh,bash,yml,yaml}"],
+      "patterns": [
+        "chmod\\s+777",
+        "chmod\\s+666",
+        "0o?777",
+        "0o?666",
+        "umask\\s*\\(\\s*0+\\s*\\)"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true
+    },
+    {
+      "id": "dependency-lockfile",
+      "name": "Dependency Management",
+      "ruleKeywords": ["dependency", "third-party", "library", "component", "package", "vulnerability", "software composition"],
+      "fileGlobs": ["**/package.json", "**/requirements.txt", "**/Gemfile", "**/go.mod", "**/pom.xml", "**/build.gradle", "**/Cargo.toml", "**/composer.json"],
+      "patterns": [
+        ".*"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": false,
+      "findingDetailOverride": "Dependency manifest found: {file}. Verify all dependencies are current and free of known vulnerabilities using tools like npm audit, pip-audit, or OWASP Dependency-Check."
+    },
+    {
+      "id": "hardcoded-ip",
+      "name": "Hardcoded IP Addresses & Hosts",
+      "ruleKeywords": ["configuration", "hardcoded", "environment", "configurable", "IP address"],
+      "fileGlobs": ["**/*.{ts,js,py,java,rb,go,cs,php}"],
+      "patterns": [
+        "\\b(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}\\b(?!.*(?:0\\.0\\.0\\.0|127\\.0\\.0\\.1|255\\.255))"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true
+    },
+    {
+      "id": "missing-auth-check",
+      "name": "Missing Authentication / Authorization Checks",
+      "ruleKeywords": ["authenticat", "authoriz", "access control", "login", "session valid", "identity"],
+      "fileGlobs": ["**/*.{ts,js,py,java,rb,go,cs,php}"],
+      "patterns": [
+        "@(app\\.route|router\\.(get|post|put|delete|patch)).*\\n(?!.*@(login_required|auth|requires_auth|protect|guard|middleware))",
+        "app\\.(get|post|put|delete|patch)\\s*\\([\"'](?!/health|/status|/ping|/public)"
+      ],
+      "caseSensitive": false,
+      "matchMeansOpen": true,
+      "findingDetailOverride": "Found {count} route/endpoint definition(s) that may lack explicit authentication middleware. Manual review required to confirm authorization is enforced:\n{matches}"
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import { mergeFindings } from './mergeFindings';
 import { DashboardPanel } from './dashboardPanel';
 import { DiffPanel } from './diffPanel';
 import { importScapResults } from './importScapResults';
+import { scanRepo } from './repoScanner';
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(CklbEditorProvider.register(context));
@@ -97,6 +98,15 @@ export function activate(context: vscode.ExtensionContext) {
         await importScapResults();
       } catch (e) {
         vscode.window.showErrorMessage(`SCAP import failed: ${e}`);
+      }
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.scanRepo', async () => {
+      try {
+        await scanRepo();
+      } catch (e) {
+        vscode.window.showErrorMessage(`Repo scan failed: ${e}`);
       }
     })
   );

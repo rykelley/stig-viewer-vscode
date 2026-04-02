@@ -36,8 +36,15 @@ function computeStats(rules: CklbRule[]): Stats {
 
 // ─── Main builder ───────────────────────────────────────────────────────────
 
+/** Escape a JSON string for safe embedding inside a <script> tag and JS template literal */
+function safeJson(obj: unknown): string {
+  return JSON.stringify(obj)
+    .replace(/<\//g, '<\\/')       // prevent </script> breaking out
+    .replace(/<!--/g, '<\\!--');   // prevent HTML comment injection
+}
+
 export function buildWebviewHtml(data: CklbDocument): string {
-  const rulesJson = JSON.stringify(
+  const rulesJson = safeJson(
     Object.fromEntries(
       data.stigs.flatMap(st => st.rules.map(r => [r.uuid, r]))
     )
@@ -115,7 +122,7 @@ ${data.stigs.map((st, i) => stigSection(st, i)).join('\n')}
 <script>
 const vscode = acquireVsCodeApi();
 const RULES = ${rulesJson};
-const TARGET = ${JSON.stringify(data.target_data)};
+const TARGET = ${safeJson(data.target_data)};
 ${SCRIPT}
 </script>
 </body>
