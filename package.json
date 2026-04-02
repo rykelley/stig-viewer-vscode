@@ -2,7 +2,7 @@
   "name": "stig-viewer",
   "displayName": "STIG Viewer",
   "description": "View and manage DISA STIG Checklist (.cklb) files with a rich overview panel",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "publisher": "rykelley",
   "engines": {
     "vscode": "^1.85.0"
@@ -57,7 +57,9 @@
     "languages": [
       {
         "id": "cklb",
-        "extensions": [".cklb"],
+        "extensions": [
+          ".cklb"
+        ],
         "icon": {
           "light": "./media/cklb-icon.svg",
           "dark": "./media/cklb-icon.svg"
