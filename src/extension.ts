@@ -7,6 +7,9 @@ import { DashboardPanel } from './dashboardPanel';
 import { DiffPanel } from './diffPanel';
 import { importScapResults } from './importScapResults';
 import { scanRepo } from './repoScanner';
+import { importSarif } from './importSarif';
+import { importAudit } from './importAudit';
+import { exportEvidence } from './evidencePackage';
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(CklbEditorProvider.register(context));
@@ -107,6 +110,35 @@ export function activate(context: vscode.ExtensionContext) {
         await scanRepo();
       } catch (e) {
         vscode.window.showErrorMessage(`Repo scan failed: ${e}`);
+      }
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.importSarif', async () => {
+      try {
+        await importSarif();
+      } catch (e) {
+        vscode.window.showErrorMessage(`SARIF import failed: ${e}`);
+      }
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.importAudit', async () => {
+      try {
+        await importAudit();
+      } catch (e) {
+        vscode.window.showErrorMessage(`Dependency audit import failed: ${e}`);
+      }
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.exportEvidence', async () => {
+      try {
+        await exportEvidence();
+      } catch (e) {
+        vscode.window.showErrorMessage(`Evidence package failed: ${e}`);
       }
     })
   );

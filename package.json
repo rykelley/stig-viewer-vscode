@@ -1,7 +1,7 @@
 {
-  "name": "stig-viewer",
-  "displayName": "STIG Viewer",
-  "description": "View and manage DISA STIG Checklist (.cklb) files with a rich overview panel",
+  "name": "stig-workbench",
+  "displayName": "STIG Workbench",
+  "description": "Complete DISA STIG assessment workbench — view, edit, import, scan, and export .cklb checklists with SARIF/SAST integration",
   "version": "4.1.0",
   "publisher": "rykelley",
   "engines": {
@@ -34,35 +34,47 @@
     "commands": [
       {
         "command": "stigViewer.openFile",
-        "title": "STIG Viewer: Open .cklb File"
+        "title": "STIG Workbench: Open .cklb File"
       },
       {
         "command": "stigViewer.importXccdf",
-        "title": "STIG Viewer: Import XCCDF Benchmark"
+        "title": "STIG Workbench: Import XCCDF Benchmark"
       },
       {
         "command": "stigViewer.mergeFindings",
-        "title": "STIG Viewer: Merge / Carry Forward Findings"
+        "title": "STIG Workbench: Merge / Carry Forward Findings"
       },
       {
         "command": "stigViewer.importCkl",
-        "title": "STIG Viewer: Import CKL Checklist"
+        "title": "STIG Workbench: Import CKL Checklist"
       },
       {
         "command": "stigViewer.dashboard",
-        "title": "STIG Viewer: Open Dashboard"
+        "title": "STIG Workbench: Open Dashboard"
       },
       {
         "command": "stigViewer.diffChecklists",
-        "title": "STIG Viewer: Diff Two Checklists"
+        "title": "STIG Workbench: Diff Two Checklists"
       },
       {
         "command": "stigViewer.importScapResults",
-        "title": "STIG Viewer: Import SCAP Scan Results"
+        "title": "STIG Workbench: Import SCAP Scan Results"
       },
       {
         "command": "stigViewer.scanRepo",
-        "title": "STIG Viewer: Scan Repo Against Checklist"
+        "title": "STIG Workbench: Scan Repo Against Checklist"
+      },
+      {
+        "command": "stigViewer.importSarif",
+        "title": "STIG Workbench: Import SARIF Results"
+      },
+      {
+        "command": "stigViewer.importAudit",
+        "title": "STIG Workbench: Import Dependency Audit"
+      },
+      {
+        "command": "stigViewer.exportEvidence",
+        "title": "STIG Workbench: Export Evidence Package"
       }
     ],
     "menus": {
@@ -94,7 +106,7 @@
     "customEditors": [
       {
         "viewType": "stigViewer.cklbEditor",
-        "displayName": "STIG Viewer",
+        "displayName": "STIG Workbench",
         "selector": [
           {
             "filenamePattern": "*.cklb"
