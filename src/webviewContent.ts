@@ -59,11 +59,50 @@ export function buildWebviewHtml(data: CklbDocument): string {
   <div class="hdr-row">
     <h1>${esc(data.title)}</h1>
     <span class="chip chip-accent">CKLB v${esc(data.cklb_version)}</span>
+    <div class="hdr-actions">
+      <button class="btn-export" id="btnExportCsv">Export CSV</button>
+      <button class="btn-export" id="btnExportCkl">Export CKL</button>
+    </div>
   </div>
   ${targetHtml(data.target_data)}
 </header>
 
 ${data.stigs.map((st, i) => stigSection(st, i)).join('\n')}
+
+<!-- ═══ TARGET EDIT MODAL ═══ -->
+<div id="targetBackdrop" class="backdrop hidden"></div>
+<div id="targetModal" class="modal hidden">
+  <h2 class="modal-title">Edit Target Data</h2>
+  <div class="modal-body">
+    <label>Host Name<input type="text" id="td_host_name" class="flt" /></label>
+    <label>IP Address<input type="text" id="td_ip_address" class="flt" /></label>
+    <label>FQDN<input type="text" id="td_fqdn" class="flt" /></label>
+    <label>MAC Address<input type="text" id="td_mac_address" class="flt" /></label>
+    <label>Target Type
+      <select id="td_target_type" class="flt">
+        <option value="Non-Computing">Non-Computing</option>
+        <option value="Computing">Computing</option>
+      </select>
+    </label>
+    <label>Role
+      <select id="td_role" class="flt">
+        <option value="None">None</option>
+        <option value="Workstation">Workstation</option>
+        <option value="Member Server">Member Server</option>
+        <option value="Domain Controller">Domain Controller</option>
+      </select>
+    </label>
+    <label>Technology Area<input type="text" id="td_technology_area" class="flt" /></label>
+    <label class="label-row"><input type="checkbox" id="td_is_web_database" /> Web / Database</label>
+    <label>Web / DB Site<input type="text" id="td_web_db_site" class="flt" /></label>
+    <label>Web / DB Instance<input type="text" id="td_web_db_instance" class="flt" /></label>
+    <label>Comments<textarea id="td_comments" class="d-ta" rows="3"></textarea></label>
+  </div>
+  <div class="modal-actions">
+    <button class="btn-save" id="targetSave">Save</button>
+    <button class="btn-cancel" id="targetCancel">Cancel</button>
+  </div>
+</div>
 
 <!-- ═══ DETAIL SLIDE-OVER ═══ -->
 <div id="detailBackdrop" class="backdrop hidden"></div>
@@ -75,6 +114,7 @@ ${data.stigs.map((st, i) => stigSection(st, i)).join('\n')}
 <script>
 const vscode = acquireVsCodeApi();
 const RULES = ${rulesJson};
+const TARGET = ${JSON.stringify(data.target_data)};
 ${SCRIPT}
 </script>
 </body>
@@ -93,8 +133,8 @@ function targetHtml(td: CklbDocument['target_data']): string {
     td.role && td.role !== 'None' && `Role: ${td.role}`,
   ].filter(Boolean) as string[];
 
-  if (!parts.length) return '<p class="muted">No target data configured</p>';
-  return `<div class="target-row">${parts.map(p => `<span class="chip">${esc(p)}</span>`).join('')}</div>`;
+  if (!parts.length) return '<p class="muted">No target data configured <button class="btn-edit-target" id="editTargetBtn">Edit Target</button></p>';
+  return `<div class="target-row">${parts.map(p => `<span class="chip">${esc(p)}</span>`).join('')}<button class="btn-edit-target" id="editTargetBtn">Edit Target</button></div>`;
 }
 
 // ─── Single STIG section ────────────────────────────────────────────────────
@@ -140,6 +180,20 @@ function stigSection(stig: CklbStig, idx: number): string {
     </div>
   </div>
 
+  <!-- bulk action bar -->
+  <div class="bulk-bar hidden" data-stig="${stig.uuid}">
+    <span class="bulk-count">0 selected</span>
+    <select class="bulk-status">
+      <option value="not_reviewed">Not Reviewed</option>
+      <option value="open">Open</option>
+      <option value="not_a_finding">Not a Finding</option>
+      <option value="not_applicable">Not Applicable</option>
+    </select>
+    <input type="text" class="bulk-comment" placeholder="Comment (optional)\u2026" />
+    <button class="btn-bulk-apply">Apply</button>
+    <button class="btn-bulk-clear">Clear</button>
+  </div>
+
   <!-- filters -->
   <div class="filters" data-stig="${stig.uuid}">
     <select class="flt" data-kind="status">
@@ -162,6 +216,7 @@ function stigSection(stig: CklbStig, idx: number): string {
   <div class="tbl-wrap">
     <table class="tbl">
       <thead><tr>
+        <th style="width:36px"><input type="checkbox" class="select-all" data-stig="${stig.uuid}" title="Select all" /></th>
         <th style="width:72px">CAT</th>
         <th style="width:90px">Vuln ID</th>
         <th style="width:130px">Rule Ver</th>
@@ -182,6 +237,7 @@ function ruleRow(r: CklbRule, stigUuid: string): string {
   const search = `${r.group_id} ${r.rule_version} ${r.rule_title} ${r.group_title}`.toLowerCase();
   return `<tr class="row" data-uuid="${r.uuid}" data-stig="${stigUuid}"
     data-sev="${r.severity}" data-status="${r.status}" data-search="${esc(search)}">
+  <td class="td-cb"><input type="checkbox" class="row-cb" data-uuid="${r.uuid}" data-stig="${stigUuid}" /></td>
   <td><span class="pill sev-${r.severity}">CAT ${sevCat(r.severity)}</span></td>
   <td><code>${esc(r.group_id)}</code></td>
   <td><code>${esc(r.rule_version)}</code></td>
@@ -270,7 +326,18 @@ function renderDetail(r, stigUuid) {
 
     <details class="d-sec" open>
       <summary>Finding Details</summary>
-      <textarea id="dFd" class="d-ta" rows="4" placeholder="Enter finding details…">\${h(r.finding_details||'')}</textarea>
+      <div class="d-tpl-row">
+        <select id="dTpl" class="flt d-tpl-select">
+          <option value="">Insert template\u2026</option>
+          <option value="Verified via [method]. [setting/service] is configured per STIG requirements.">Compliant (verified)</option>
+          <option value="N/A \u2014 This system does not [use/have condition]. [Justification].">Not Applicable</option>
+          <option value="Open \u2014 [setting] is not configured as required.\\nCurrent value: [value]\\nExpected: [expected value]">Open (with values)</option>
+          <option value="Verified via screenshot. Evidence attached.">Screenshot evidence</option>
+          <option value="Confirmed by [role] on [date]. [Details].">Confirmed by personnel</option>
+          <option value="Inherited control \u2014 managed at [platform/provider] level. See [reference].">Inherited control</option>
+        </select>
+      </div>
+      <textarea id="dFd" class="d-ta" rows="4" placeholder="Enter finding details\u2026">\${h(r.finding_details||'')}</textarea>
     </details>
     <details class="d-sec">
       <summary>Comments</summary>
@@ -279,6 +346,16 @@ function renderDetail(r, stigUuid) {
 
     <button class="btn-save" id="dSave">Save Changes</button>
   \`;
+
+  document.getElementById('dTpl').onchange = function() {
+    if (this.value) {
+      const ta = document.getElementById('dFd');
+      const pos = ta.selectionStart || ta.value.length;
+      ta.value = ta.value.substring(0, pos) + this.value + ta.value.substring(pos);
+      ta.focus();
+      this.selectedIndex = 0;
+    }
+  };
 
   document.getElementById('dSave').onclick = () => {
     const ns = document.getElementById('dSt').value;
@@ -301,6 +378,153 @@ function renderDetail(r, stigUuid) {
 
 function h(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 function fmt(s){if(!s)return'<span class="muted">None</span>';return h(s).replace(/\\\\r\\\\n|\\\\n|\\n/g,'<br>').replace(/(\\$[^<]{2,})/g,'<code>$1</code>');}
+
+// ── Export buttons ──
+document.getElementById('btnExportCsv').onclick = () => vscode.postMessage({ type: 'exportCsv' });
+document.getElementById('btnExportCkl').onclick = () => vscode.postMessage({ type: 'exportCkl' });
+
+// ── Target data editing ──
+const targetModal    = document.getElementById('targetModal');
+const targetBackdrop = document.getElementById('targetBackdrop');
+const targetSaveBtn  = document.getElementById('targetSave');
+const targetCancelBtn = document.getElementById('targetCancel');
+const editTargetBtn  = document.getElementById('editTargetBtn');
+
+function openTargetModal() {
+  document.getElementById('td_host_name').value      = TARGET.host_name || '';
+  document.getElementById('td_ip_address').value      = TARGET.ip_address || '';
+  document.getElementById('td_fqdn').value            = TARGET.fqdn || '';
+  document.getElementById('td_mac_address').value     = TARGET.mac_address || '';
+  document.getElementById('td_target_type').value     = TARGET.target_type || 'Non-Computing';
+  document.getElementById('td_role').value            = TARGET.role || 'None';
+  document.getElementById('td_technology_area').value = TARGET.technology_area || '';
+  document.getElementById('td_is_web_database').checked = !!TARGET.is_web_database;
+  document.getElementById('td_web_db_site').value     = TARGET.web_db_site || '';
+  document.getElementById('td_web_db_instance').value = TARGET.web_db_instance || '';
+  document.getElementById('td_comments').value        = TARGET.comments || '';
+  targetModal.classList.remove('hidden');
+  targetBackdrop.classList.remove('hidden');
+}
+
+function closeTargetModal() {
+  targetModal.classList.add('hidden');
+  targetBackdrop.classList.add('hidden');
+}
+
+if (editTargetBtn) editTargetBtn.onclick = openTargetModal;
+targetBackdrop.onclick = closeTargetModal;
+targetCancelBtn.onclick = closeTargetModal;
+targetSaveBtn.onclick = () => {
+  const td = {
+    host_name:      document.getElementById('td_host_name').value,
+    ip_address:     document.getElementById('td_ip_address').value,
+    fqdn:           document.getElementById('td_fqdn').value,
+    mac_address:    document.getElementById('td_mac_address').value,
+    target_type:    document.getElementById('td_target_type').value,
+    role:           document.getElementById('td_role').value,
+    technology_area:document.getElementById('td_technology_area').value,
+    is_web_database:document.getElementById('td_is_web_database').checked,
+    web_db_site:    document.getElementById('td_web_db_site').value,
+    web_db_instance:document.getElementById('td_web_db_instance').value,
+    comments:       document.getElementById('td_comments').value,
+  };
+  Object.assign(TARGET, td);
+  vscode.postMessage({ type: 'saveTargetData', targetData: td });
+  closeTargetModal();
+};
+
+// ── Checkbox / bulk selection ──
+function updateBulkBar(stigId) {
+  const cbs = document.querySelectorAll('.row-cb[data-stig="'+stigId+'"]');
+  const checked = [...cbs].filter(c => c.checked);
+  const bar = document.querySelector('.bulk-bar[data-stig="'+stigId+'"]');
+  if (!bar) return;
+  if (checked.length > 0) {
+    bar.classList.remove('hidden');
+    bar.querySelector('.bulk-count').textContent = checked.length + ' selected';
+  } else {
+    bar.classList.add('hidden');
+  }
+}
+
+// Row checkbox change
+document.querySelectorAll('.row-cb').forEach(cb => {
+  cb.addEventListener('change', (e) => {
+    e.stopPropagation();
+    updateBulkBar(cb.dataset.stig);
+    // Sync select-all state
+    const stigId = cb.dataset.stig;
+    const all = document.querySelectorAll('.row-cb[data-stig="'+stigId+'"]');
+    const allChecked = [...all].every(c => c.checked);
+    const sa = document.querySelector('.select-all[data-stig="'+stigId+'"]');
+    if (sa) sa.checked = allChecked;
+  });
+  cb.addEventListener('click', (e) => e.stopPropagation());
+});
+
+// Select-all checkbox
+document.querySelectorAll('.select-all').forEach(sa => {
+  sa.addEventListener('change', () => {
+    const stigId = sa.dataset.stig;
+    const val = sa.checked;
+    // Only toggle visible (non-filtered) rows
+    document.querySelectorAll('tr.row[data-stig="'+stigId+'"]').forEach(row => {
+      if (row.style.display !== 'none') {
+        row.querySelector('.row-cb').checked = val;
+      }
+    });
+    updateBulkBar(stigId);
+  });
+});
+
+// Bulk apply
+document.querySelectorAll('.btn-bulk-apply').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const bar = btn.closest('.bulk-bar');
+    const stigId = bar.dataset.stig;
+    const status = bar.querySelector('.bulk-status').value;
+    const comments = bar.querySelector('.bulk-comment').value;
+    const cbs = document.querySelectorAll('.row-cb[data-stig="'+stigId+'"]:checked');
+    const uuids = [...cbs].map(c => c.dataset.uuid);
+    if (!uuids.length) return;
+
+    vscode.postMessage({ type: 'bulkSaveRules', ruleUuids: uuids, stigUuid: stigId, status, comments });
+
+    // Update table rows and local data
+    uuids.forEach(uuid => {
+      const row = document.querySelector('tr.row[data-uuid="'+uuid+'"]');
+      if (row) {
+        const old = row.dataset.status;
+        row.dataset.status = status;
+        const pill = row.querySelectorAll('.pill')[1];
+        if (pill) { pill.className = 'pill st-'+status; pill.textContent = SL[status]||status; }
+      }
+      if (RULES[uuid]) {
+        RULES[uuid].status = status;
+        if (comments) RULES[uuid].comments = comments;
+      }
+    });
+
+    // Clear selection
+    cbs.forEach(c => { c.checked = false; });
+    const sa = document.querySelector('.select-all[data-stig="'+stigId+'"]');
+    if (sa) sa.checked = false;
+    bar.querySelector('.bulk-comment').value = '';
+    updateBulkBar(stigId);
+  });
+});
+
+// Bulk clear
+document.querySelectorAll('.btn-bulk-clear').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const bar = btn.closest('.bulk-bar');
+    const stigId = bar.dataset.stig;
+    document.querySelectorAll('.row-cb[data-stig="'+stigId+'"]').forEach(c => { c.checked = false; });
+    const sa = document.querySelector('.select-all[data-stig="'+stigId+'"]');
+    if (sa) sa.checked = false;
+    updateBulkBar(stigId);
+  });
+});
 `;
 
 // ─── CSS ────────────────────────────────────────────────────────────────────
@@ -418,4 +642,46 @@ body{font-family:var(--vscode-font-family,system-ui,sans-serif);font-size:13px;c
 
 .btn-save{display:block;width:100%;margin-top:14px;padding:10px;background:var(--btn-bg);color:var(--btn-fg);border:none;border-radius:6px;font-size:.92em;font-weight:600;cursor:pointer}
 .btn-save:hover{opacity:.9}
+
+/* ── header actions ── */
+.hdr-actions{display:flex;gap:6px;margin-left:auto}
+.btn-export{background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:4px;padding:4px 12px;font-size:.8em;cursor:pointer;font-weight:600}
+.btn-export:hover{background:var(--hover);border-color:var(--accent)}
+
+/* ── template dropdown ── */
+.d-tpl-row{padding:6px 12px 0}
+.d-tpl-select{width:100%;font-size:.82em}
+
+/* ── edit target button ── */
+.btn-edit-target{background:var(--btn-bg);color:var(--btn-fg);border:none;border-radius:4px;padding:3px 10px;font-size:.8em;cursor:pointer;margin-left:8px;vertical-align:middle}
+.btn-edit-target:hover{opacity:.9}
+
+/* ── modal ── */
+.modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(480px,90vw);max-height:80vh;overflow-y:auto;background:var(--bg);border:1px solid var(--border);border-radius:8px;z-index:110;padding:24px}
+.modal.hidden{display:none}
+.modal-title{font-size:1.1em;font-weight:600;margin-bottom:16px}
+.modal-body{display:flex;flex-direction:column;gap:10px}
+.modal-body label{display:flex;flex-direction:column;gap:3px;font-size:.85em;font-weight:600;color:var(--gray)}
+.modal-body label input,.modal-body label select,.modal-body label textarea{font-weight:400;color:var(--inp-fg)}
+.label-row{flex-direction:row!important;align-items:center;gap:8px!important}
+.label-row input[type="checkbox"]{width:16px;height:16px}
+.modal-actions{display:flex;gap:8px;margin-top:16px}
+.modal-actions .btn-save{flex:1}
+.btn-cancel{flex:1;padding:10px;background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:6px;font-size:.92em;font-weight:600;cursor:pointer}
+.btn-cancel:hover{background:var(--hover)}
+
+/* ── bulk action bar ── */
+.bulk-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 12px;background:var(--card);border:1px solid var(--accent);border-radius:6px;margin-bottom:12px}
+.bulk-bar.hidden{display:none}
+.bulk-count{font-size:.85em;font-weight:600;min-width:80px}
+.bulk-status,.bulk-comment{background:var(--inp-bg);color:var(--inp-fg);border:1px solid var(--inp-bd);border-radius:4px;padding:5px 8px;font-size:.85em}
+.bulk-comment{flex:1;min-width:120px}
+.btn-bulk-apply{background:var(--btn-bg);color:var(--btn-fg);border:none;border-radius:4px;padding:5px 12px;font-size:.85em;font-weight:600;cursor:pointer}
+.btn-bulk-apply:hover{opacity:.9}
+.btn-bulk-clear{background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:4px;padding:5px 12px;font-size:.85em;cursor:pointer}
+.btn-bulk-clear:hover{background:var(--hover)}
+
+/* ── checkbox column ── */
+.td-cb{width:36px;text-align:center}
+.row-cb,.select-all{width:15px;height:15px;cursor:pointer;accent-color:var(--accent)}
 `;

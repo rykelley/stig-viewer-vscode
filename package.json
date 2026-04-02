@@ -7,28 +7,62 @@
   "engines": {
     "vscode": "^1.85.0"
   },
-  "categories": ["Other", "Visualization"],
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
   "icon": "media/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/rykelley/stig-viewer-vscode.git"
   },
   "license": "MIT",
-  "keywords": ["STIG", "DISA", "security", "compliance", "checklist", "cklb", "RMF"],
-  "activationEvents": ["workspaceContains:**/*.cklb"],
+  "keywords": [
+    "STIG",
+    "DISA",
+    "security",
+    "compliance",
+    "checklist",
+    "cklb",
+    "RMF"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/*.cklb"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "stigViewer.openFile",
         "title": "STIG Viewer: Open .cklb File"
+      },
+      {
+        "command": "stigViewer.importXccdf",
+        "title": "STIG Viewer: Import XCCDF Benchmark"
+      },
+      {
+        "command": "stigViewer.mergeFindings",
+        "title": "STIG Viewer: Merge / Carry Forward Findings"
       }
     ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "stigViewer.importXccdf",
+          "when": "resourceExtname == .xml",
+          "group": "navigation"
+        }
+      ]
+    },
     "customEditors": [
       {
         "viewType": "stigViewer.cklbEditor",
         "displayName": "STIG Viewer",
-        "selector": [{ "filenamePattern": "*.cklb" }],
+        "selector": [
+          {
+            "filenamePattern": "*.cklb"
+          }
+        ],
         "priority": "default"
       }
     ]
@@ -40,7 +74,13 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "@types/uuid": "^10.0.0",
     "@types/vscode": "^1.85.0",
+    "@types/xml2js": "^0.4.14",
     "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "uuid": "^13.0.0",
+    "xml2js": "^0.6.2"
   }
 }
