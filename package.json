@@ -54,6 +54,16 @@
         }
       ]
     },
+    "languages": [
+      {
+        "id": "cklb",
+        "extensions": [".cklb"],
+        "icon": {
+          "light": "./media/cklb-icon.svg",
+          "dark": "./media/cklb-icon.svg"
+        }
+      }
+    ],
     "customEditors": [
       {
         "viewType": "stigViewer.cklbEditor",
