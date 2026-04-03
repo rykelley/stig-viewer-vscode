@@ -139,20 +139,100 @@ Press **F5** to launch an Extension Development Host. Open the included `samples
 3. Select your `.cklb` checklist, then the results XML
 4. Automated results are applied — review and supplement with manual checks
 
-### Automated ASD STIG assessment with SAST tools
+### Example: ASD STIG assessment of a Python repo with Bandit
 
-1. Import the ASD STIG XCCDF benchmark to create a blank `.cklb`
-2. Run your SAST tool and export results as SARIF:
-   - CodeQL: `codeql database analyze --format=sarif-latest`
-   - Semgrep: `semgrep --sarif -o results.sarif`
-   - Bandit: `bandit -r . -f sarif -o results.sarif`
-   - ESLint: `eslint --format @microsoft/eslint-formatter-sarif -o results.sarif`
-3. Run `STIG Workbench: Import SARIF Results` — select your checklist and SARIF file(s)
-4. Findings are auto-mapped to STIG rules via CWE IDs with file/line evidence
-5. Run `npm audit --json > audit.json` and import with `STIG Workbench: Import Dependency Audit`
-6. Use the repo scanner for additional pattern checks: `STIG Workbench: Scan Repo Against Checklist`
-7. Review remaining `Not Reviewed` rules manually
-8. Export the evidence package: `STIG Workbench: Export Evidence Package`
+This walkthrough creates a complete ASD STIG checklist for a Python codebase using automated scanning and manual review.
+
+#### Prerequisites
+
+- STIG Workbench installed in VS Code
+- Bandit installed (`pip install bandit`)
+- The ASD STIG XCCDF benchmark from [public.cyber.mil](https://public.cyber.mil/stigs/) — search "Application Security and Development" and download the zip. Inside you'll find a file like `U_ASD_STIG_V5R3-xccdf.xml`
+
+#### Step 1: Create a blank ASD STIG checklist
+
+```text
+Cmd+Shift+P → STIG Workbench: Import XCCDF Benchmark
+```
+
+Select `U_ASD_STIG_V5R3-xccdf.xml`. This generates `U_ASD_STIG_V5R3.cklb` and opens it. You now have ~280 rules, all set to `Not Reviewed`.
+
+#### Step 2: Fill in target data
+
+Click **Edit Target** in the header. Set the host name to the repo/application name, target type to `Computing`, and add a comment like "Python web application, assessed against ASD STIG V5R3". Save.
+
+#### Step 3: Run Bandit and export SARIF
+
+```bash
+cd /path/to/your-code-repo
+bandit -r . -f sarif -o bandit-results.sarif
+```
+
+This scans all Python files and outputs SARIF format with CWE IDs attached to each finding.
+
+#### Step 4: Import SARIF results into the checklist
+
+```text
+Cmd+Shift+P → STIG Workbench: Import SARIF Results (Pro)
+```
+
+Or right-click `bandit-results.sarif` → **STIG Workbench: Import SARIF Results (Pro)**
+
+Select your `.cklb` checklist, then `bandit-results.sarif`. The extension reads each finding's CWE ID, maps it to matching ASD STIG rules via the built-in CWE table, and marks those rules as **Open** with file paths and line numbers as evidence.
+
+#### Step 5: Run the repo scanner for patterns Bandit doesn't cover
+
+```text
+Cmd+Shift+P → STIG Workbench: Scan Repo Against Checklist (Pro)
+```
+
+Select the checklist, then the repo folder, then "Use default scan patterns." This catches hardcoded secrets, HTTP URLs, debug flags, insecure cookies, CORS wildcards, file permissions, and more. Rules with no findings get marked **Not a Finding** with evidence.
+
+#### Step 6: Import dependency audit
+
+```bash
+pip-audit --format json -o pip-audit.json
+```
+
+```text
+Cmd+Shift+P → STIG Workbench: Import Dependency Audit (Pro)
+```
+
+Select the checklist, then `pip-audit.json`. This populates the third-party component/dependency STIG rules.
+
+#### Step 7: Manual review
+
+Filter by **Status → Not Reviewed** to see what's left. These are rules that can't be automated — architecture documentation, SDLC process, security training, etc. Work through them using the detail panel. Use **finding templates** for common answers.
+
+#### Step 8: Export deliverables
+
+- **For eMASS:** Click **Export CKL** in the header
+- **For your ISSM:** Click **Export POA&M** for a CSV of all Open findings
+- **For the ATO package:**
+
+  ```text
+  Cmd+Shift+P → STIG Workbench: Export Evidence Package (Pro)
+  ```
+
+  Attach `bandit-results.sarif` and `pip-audit.json` as additional evidence. This produces a zip with: checklist.cklb, checklist.ckl, summary.csv, poam.csv, report.txt, and your attached evidence.
+
+#### What gets automated vs. what needs manual review
+
+| Method | Rules covered | Examples |
+| ------ | ------------- | -------- |
+| Bandit SARIF import | Injection, XSS, eval, hardcoded passwords, weak crypto, error handling | V-69513, V-70391 |
+| Repo scanner | Secrets, debug mode, HTTP URLs, CORS, cookies, file permissions | Various ASD rules |
+| pip-audit import | Known vulnerable dependencies | V-70261 and similar |
+| Manual review | Architecture, SDLC process, documentation, training | ~40-50% of ASD rules |
+
+For a typical Python web app, expect to auto-evaluate about 50-60% of ASD STIG rules.
+
+**Other SAST tools that export SARIF:**
+
+- CodeQL: `codeql database analyze --format=sarif-latest`
+- Semgrep: `semgrep --sarif -o results.sarif`
+- ESLint: `eslint --format @microsoft/eslint-formatter-sarif -o results.sarif`
+- SpotBugs: `spotbugs -sarif -output results.sarif`
 
 ### Generating deliverables
 
