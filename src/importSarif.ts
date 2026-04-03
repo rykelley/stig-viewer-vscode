@@ -81,15 +81,7 @@ function parseCweId(s: string): number | null {
 // ─── Main ───────────────────────────────────────────────────────────────────
 
 export async function importSarif(sarifUri?: vscode.Uri): Promise<void> {
-  // 1. Select .cklb checklist
-  const cklbUris = await vscode.window.showOpenDialog({
-    canSelectMany: false,
-    filters: { 'STIG Checklist': ['cklb'] },
-    title: 'Select checklist to populate with SARIF findings',
-  });
-  if (!cklbUris?.[0]) return;
-
-  // 2. Select SARIF file(s) — use context menu URI if provided
+  // 1. Select SARIF file(s) — use context menu URI if provided
   let sarifUris: vscode.Uri[];
   if (sarifUri) {
     sarifUris = [sarifUri];
@@ -103,7 +95,50 @@ export async function importSarif(sarifUri?: vscode.Uri): Promise<void> {
     sarifUris = picked;
   }
 
-  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUris[0].fsPath, 'utf-8'));
+  // 2. Select .cklb checklist — try to find one already open first
+  let cklbPath: string | undefined;
+
+  // Check if there's a .cklb tab already open
+  for (const group of vscode.window.tabGroups.all) {
+    for (const tab of group.tabs) {
+      const input = tab.input as { uri?: vscode.Uri } | undefined;
+      if (input?.uri?.fsPath?.endsWith('.cklb')) {
+        cklbPath = input.uri.fsPath;
+        break;
+      }
+    }
+    if (cklbPath) break;
+  }
+
+  // If no open .cklb found, prompt the user
+  if (!cklbPath) {
+    const cklbUris = await vscode.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { 'STIG Checklist': ['cklb'] },
+      title: 'Select checklist to populate with SARIF findings',
+    });
+    if (!cklbUris?.[0]) return;
+    cklbPath = cklbUris[0].fsPath;
+  } else {
+    // Confirm the auto-detected checklist
+    const basename = cklbPath.split('/').pop();
+    const choice = await vscode.window.showQuickPick(
+      [`Use open checklist: ${basename}`, 'Select a different checklist'],
+      { title: 'Which checklist should receive SARIF findings?' }
+    );
+    if (!choice) return;
+    if (choice.startsWith('Select')) {
+      const cklbUris = await vscode.window.showOpenDialog({
+        canSelectMany: false,
+        filters: { 'STIG Checklist': ['cklb'] },
+        title: 'Select checklist to populate with SARIF findings',
+      });
+      if (!cklbUris?.[0]) return;
+      cklbPath = cklbUris[0].fsPath;
+    }
+  }
+
+  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbPath, 'utf-8'));
   const now = new Date().toISOString();
 
   // Flatten all rules for matching
@@ -213,8 +248,9 @@ export async function importSarif(sarifUri?: vscode.Uri): Promise<void> {
   }
 
   // Save
-  fs.writeFileSync(cklbUris[0].fsPath, JSON.stringify(doc, null, 2));
-  await vscode.commands.executeCommand('vscode.openWith', cklbUris[0], 'stigViewer.cklbEditor');
+  fs.writeFileSync(cklbPath, JSON.stringify(doc, null, 2));
+  const cklbUri = vscode.Uri.file(cklbPath);
+  await vscode.commands.executeCommand('vscode.openWith', cklbUri, 'stigViewer.cklbEditor');
 
   let msg = `SARIF import: ${totalResults} findings processed, ${mappedResults} mapped to ${openCount} rules`;
   if (unmappedCwes.size > 0) {
