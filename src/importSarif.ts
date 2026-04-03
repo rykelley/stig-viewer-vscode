@@ -80,7 +80,7 @@ function parseCweId(s: string): number | null {
 
 // ─── Main ───────────────────────────────────────────────────────────────────
 
-export async function importSarif(): Promise<void> {
+export async function importSarif(sarifUri?: vscode.Uri): Promise<void> {
   // 1. Select .cklb checklist
   const cklbUris = await vscode.window.showOpenDialog({
     canSelectMany: false,
@@ -89,13 +89,19 @@ export async function importSarif(): Promise<void> {
   });
   if (!cklbUris?.[0]) return;
 
-  // 2. Select SARIF file(s)
-  const sarifUris = await vscode.window.showOpenDialog({
-    canSelectMany: true,
-    filters: { 'SARIF': ['sarif', 'json'] },
-    title: 'Select SARIF results file(s)',
-  });
-  if (!sarifUris?.length) return;
+  // 2. Select SARIF file(s) — use context menu URI if provided
+  let sarifUris: vscode.Uri[];
+  if (sarifUri) {
+    sarifUris = [sarifUri];
+  } else {
+    const picked = await vscode.window.showOpenDialog({
+      canSelectMany: true,
+      filters: { 'SARIF': ['sarif', 'json'] },
+      title: 'Select SARIF results file(s)',
+    });
+    if (!picked?.length) return;
+    sarifUris = picked;
+  }
 
   const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUris[0].fsPath, 'utf-8'));
   const now = new Date().toISOString();

@@ -135,10 +135,10 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(
-    vscode.commands.registerCommand('stigViewer.importSarif', async () => {
+    vscode.commands.registerCommand('stigViewer.importSarif', async (uri?: vscode.Uri) => {
       if (!await requirePro()) return;
       try {
-        await importSarif();
+        await importSarif(uri);
       } catch (e) {
         vscode.window.showErrorMessage(`SARIF import failed: ${e}`);
       }
