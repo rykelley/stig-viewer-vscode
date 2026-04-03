@@ -1,8 +1,8 @@
-# STIG Viewer — VSCode Extension
+# STIG Workbench — VSCode Extension
 
 A Visual Studio Code extension for viewing, editing, importing, and exporting DISA STIG Checklist files (`.cklb` format) with a rich, interactive overview panel. Built for security assessors, ISSMs, and compliance teams working with STIGs daily.
 
-![STIG Viewer Screenshot](media/screenshot.png)
+![STIG Workbench Screenshot](media/screenshot.png)
 
 ## Features
 
@@ -33,7 +33,7 @@ A Visual Studio Code extension for viewing, editing, importing, and exporting DI
 - **Import XCCDF Benchmark** — generate a blank `.cklb` checklist from a DISA STIG XCCDF XML file (`*-xccdf.xml`). Right-click in the explorer or use the command palette
 - **Import CKL (legacy)** — convert older `.ckl` XML checklists to `.cklb` format, preserving all statuses, findings, and comments
 - **Import SCAP scan results** — parse XCCDF results files from automated SCAP scans and auto-populate rule statuses (pass/fail/error mapped to the correct checklist statuses)
-- **Export to CKL** — generate a DISA STIG Viewer 2.x compatible `.ckl` XML file for eMASS submission
+- **Export to CKL** — generate a DISA STIG Workbench 2.x compatible `.ckl` XML file for eMASS submission
 - **Export summary CSV** — full checklist data with Vuln ID, severity, status, finding details, comments, CCIs
 - **Export POA&M** — auto-generate a Plan of Action & Milestones CSV from all Open findings with standard DOD columns (weakness, POC, scheduled completion, milestones, status)
 
@@ -50,24 +50,42 @@ A Visual Studio Code extension for viewing, editing, importing, and exporting DI
 - **Carry forward findings** — when a new STIG version drops, merge your completed findings from the old checklist into the new one. Matches rules by `rule_version` (the most stable identifier across STIG releases). Reports how many carried forward, how many are new, how many were removed
 - **Diff two checklists** — side-by-side comparison showing status regressions, improvements, new rules, and removed rules. Color-coded with regressions sorted first. Toggle to show/hide unchanged rules
 
+### SAST & Security Tool Integration
+
+- **SARIF import with CWE-to-STIG mapping** — import SARIF output from any SAST tool (CodeQL, Semgrep, ESLint security, Bandit, SpotBugs) and auto-map findings to ASD STIG rules via a built-in CWE mapping table covering 50+ CWEs across OWASP Top 10, buffer overflows (V-70277), race conditions (V-70185), and error handling (V-70391). Findings include file paths, line numbers, and CWE descriptions
+- **Dependency audit import** — import `npm audit --json`, `pip-audit --format json`, or `bundler-audit` output to auto-populate dependency/third-party component STIG rules. Auto-detects the audit format
+- **Repo scanner** — built-in regex-based scanner with 15+ configurable patterns for hardcoded secrets, SQL injection, XSS, command injection, insecure crypto, debug mode, and more. Bring your own `scan-patterns.json` to customize
+- **SCAP results import** — parse XCCDF results files from automated SCAP scans and auto-populate rule statuses
+
+### Evidence & Deliverables
+
+- **Evidence package builder** — export a complete ATO evidence zip containing: the `.cklb` checklist, `.ckl` XML export, summary CSV, POA&M CSV, a text summary report, and optionally attached screenshots or scan reports
+- **Export to CKL** — DISA STIG Viewer 2.x compatible `.ckl` XML for eMASS submission
+- **Export summary CSV** — full checklist data with all rule fields
+- **Export POA&M** — auto-generated Plan of Action & Milestones from all Open findings with standard DOD columns
+
 ## Commands
 
 All commands are available from the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`):
 
 | Command | Description |
 | ------- | ----------- |
-| `STIG Viewer: Open .cklb File` | Open a `.cklb` file via file picker |
-| `STIG Viewer: Import XCCDF Benchmark` | Generate a blank `.cklb` from an XCCDF XML |
-| `STIG Viewer: Import CKL Checklist` | Convert a legacy `.ckl` to `.cklb` |
-| `STIG Viewer: Import SCAP Scan Results` | Apply SCAP scan results to a checklist |
-| `STIG Viewer: Merge / Carry Forward Findings` | Copy findings from an old checklist to a new one |
-| `STIG Viewer: Diff Two Checklists` | Compare two checklists side-by-side |
-| `STIG Viewer: Open Dashboard` | Aggregate stats across all workspace checklists |
+| `STIG Workbench: Open .cklb File` | Open a `.cklb` file via file picker |
+| `STIG Workbench: Import XCCDF Benchmark` | Generate a blank `.cklb` from an XCCDF XML |
+| `STIG Workbench: Import CKL Checklist` | Convert a legacy `.ckl` to `.cklb` |
+| `STIG Workbench: Import SCAP Scan Results` | Apply SCAP scan results to a checklist |
+| `STIG Workbench: Merge / Carry Forward Findings` | Copy findings from an old checklist to a new one |
+| `STIG Workbench: Diff Two Checklists` | Compare two checklists side-by-side |
+| `STIG Workbench: Open Dashboard` | Aggregate stats across all workspace checklists |
+| `STIG Workbench: Import SARIF Results` | Map SAST findings to STIG rules via CWE |
+| `STIG Workbench: Import Dependency Audit` | Import npm audit / pip-audit JSON |
+| `STIG Workbench: Scan Repo Against Checklist` | Run built-in regex scanner on a codebase |
+| `STIG Workbench: Export Evidence Package` | Bundle checklist + exports + evidence into a zip |
 
 **Context menus:**
 
-- Right-click any `.xml` file → **STIG Viewer: Import XCCDF Benchmark**
-- Right-click any `.ckl` file → **STIG Viewer: Import CKL Checklist**
+- Right-click any `.xml` file → **STIG Workbench: Import XCCDF Benchmark**
+- Right-click any `.ckl` file → **STIG Workbench: Import CKL Checklist**
 
 ## Installation
 
@@ -97,7 +115,7 @@ Press **F5** to launch an Extension Development Host. Open the included `samples
 ### Starting a new assessment
 
 1. Download the STIG benchmark from [public.cyber.mil](https://public.cyber.mil/stigs/)
-2. Run `STIG Viewer: Import XCCDF Benchmark` and select the `*-xccdf.xml` file
+2. Run `STIG Workbench: Import XCCDF Benchmark` and select the `*-xccdf.xml` file
 3. A blank `.cklb` is generated and opens automatically
 4. Click "Edit Target" to fill in host name, IP, FQDN, and other asset info
 5. Work through rules — use inline status dropdowns for quick triage, detail panel for findings
@@ -105,21 +123,36 @@ Press **F5** to launch an Extension Development Host. Open the included `samples
 ### Updating to a new STIG version
 
 1. Import the new XCCDF benchmark to generate a blank `.cklb`
-2. Run `STIG Viewer: Merge / Carry Forward Findings`
+2. Run `STIG Workbench: Merge / Carry Forward Findings`
 3. Select your old completed checklist, then the new blank one
 4. Review the merge report — carry-forward count, new rules, removed rules
 
 ### Importing legacy checklists
 
-1. Right-click a `.ckl` file → `STIG Viewer: Import CKL Checklist`
+1. Right-click a `.ckl` file → `STIG Workbench: Import CKL Checklist`
 2. The converted `.cklb` opens with all statuses and findings preserved
 
 ### Applying SCAP scan results
 
 1. Run your SCAP scan and save the XCCDF results file
-2. Run `STIG Viewer: Import SCAP Scan Results`
+2. Run `STIG Workbench: Import SCAP Scan Results`
 3. Select your `.cklb` checklist, then the results XML
 4. Automated results are applied — review and supplement with manual checks
+
+### Automated ASD STIG assessment with SAST tools
+
+1. Import the ASD STIG XCCDF benchmark to create a blank `.cklb`
+2. Run your SAST tool and export results as SARIF:
+   - CodeQL: `codeql database analyze --format=sarif-latest`
+   - Semgrep: `semgrep --sarif -o results.sarif`
+   - Bandit: `bandit -r . -f sarif -o results.sarif`
+   - ESLint: `eslint --format @microsoft/eslint-formatter-sarif -o results.sarif`
+3. Run `STIG Workbench: Import SARIF Results` — select your checklist and SARIF file(s)
+4. Findings are auto-mapped to STIG rules via CWE IDs with file/line evidence
+5. Run `npm audit --json > audit.json` and import with `STIG Workbench: Import Dependency Audit`
+6. Use the repo scanner for additional pattern checks: `STIG Workbench: Scan Repo Against Checklist`
+7. Review remaining `Not Reviewed` rules manually
+8. Export the evidence package: `STIG Workbench: Export Evidence Package`
 
 ### Generating deliverables
 
@@ -191,6 +224,11 @@ src/
   exportCkl.ts            # .cklb → .ckl XML export
   exportCsv.ts            # .cklb → summary CSV export
   exportPoam.ts           # .cklb → POA&M CSV export
+  importSarif.ts          # SARIF → .cklb with CWE-to-STIG mapping
+  importAudit.ts          # npm audit / pip-audit → .cklb
+  cweStigMap.ts           # CWE ID → STIG rule keyword mapping table
+  repoScanner.ts          # Regex-based repo scanner
+  evidencePackage.ts      # Evidence zip builder
 ```
 
 The extension uses VS Code's **Custom Text Editor API**. The `.cklb` file stays a text document — status changes write back via `WorkspaceEdit`, so Cmd+S / Ctrl+S and undo/redo work naturally.
