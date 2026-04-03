@@ -75,9 +75,22 @@ async function validateKey(key: string): Promise<{ valid: boolean; message?: str
 }
 
 async function isProLicensed(): Promise<boolean> {
-  // DEV MODE: bypass license check during development
-  // TODO: Remove this line before publishing to marketplace
-  return true;
+  const now = Date.now();
+  if (cachedValid !== null && now < cacheExpiry) {
+    return cachedValid;
+  }
+
+  const key = await getStoredKey();
+  if (!key) {
+    cachedValid = false;
+    cacheExpiry = now + CACHE_TTL_MS;
+    return false;
+  }
+
+  const result = await validateKey(key);
+  cachedValid = result.valid;
+  cacheExpiry = now + CACHE_TTL_MS;
+  return result.valid;
 }
 
 // ─── Public API ─────────────────────────────────────────────────────────────
