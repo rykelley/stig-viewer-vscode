@@ -49,6 +49,30 @@ function normalizeSeverity(sev: string | undefined): 'high' | 'medium' | 'low' {
   return 'low';
 }
 
+/**
+ * Standalone DISA benchmarks use the root element <Benchmark>.
+ * SCAP 1.2/1.3 content ships as <data-stream-collection> with the XCCDF embedded
+ * inside a <component> (e.g. *-xccdf.xml component).
+ */
+function extractBenchmark(parsed: Record<string, unknown>): Record<string, unknown> | null {
+  const root = parsed as { Benchmark?: Record<string, unknown> };
+  if (root.Benchmark) {
+    return root.Benchmark;
+  }
+  const dsc = parsed['data-stream-collection'] as
+    | { component?: Record<string, unknown> | Record<string, unknown>[] }
+    | undefined;
+  if (dsc?.component != null) {
+    for (const comp of toArray(dsc.component)) {
+      const b = comp.Benchmark as Record<string, unknown> | undefined;
+      if (b) {
+        return b;
+      }
+    }
+  }
+  return null;
+}
+
 // ─── Main import ────────────────────────────────────────────────────────────
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -62,9 +86,11 @@ export async function importXccdf(uri: vscode.Uri): Promise<void> {
     tagNameProcessors: [processors.stripPrefix],
   });
 
-  const benchmark = parsed.Benchmark;
+  const benchmark = extractBenchmark(parsed);
   if (!benchmark) {
-    throw new Error('No <Benchmark> element found in the XCCDF file.');
+    throw new Error(
+      'No XCCDF <Benchmark> found. Use a standalone *-xccdf.xml benchmark, or an SCAP 1.2/1.3 data stream (e.g. *Benchmark*.xml) that embeds the checklist.'
+    );
   }
 
   const attrs: any = benchmark.$ || {};

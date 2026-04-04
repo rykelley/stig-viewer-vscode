@@ -6,14 +6,14 @@ A Visual Studio Code extension for viewing, editing, importing, and exporting DI
 
 ## Free vs Pro
 
-The extension is **free** for the core checklist workflow: open and edit `.cklb` files, import benchmarks from **XCCDF** or legacy **CKL**, and **export to CKL** for eMASS.
+The extension is **free** for the core checklist workflow: open and edit `.cklb` files, import benchmarks from standalone **XCCDF**, **SCAP 1.2/1.3** benchmark data streams, or legacy **CKL**, and **export to CKL** for eMASS.
 
 **Pro** unlocks integrations, automation, advanced reporting exports, and bundled deliverables. Use **STIG Workbench: Enter License Key** to activate ([www.stigworkbench.com](https://www.stigworkbench.com)).
 
 | Capability | Free | Pro |
 | --- | :---: | :---: |
 | `.cklb` viewer & editor (stats, filters, detail panel, inline edit, bulk status, target data, undo/redo) | ✓ | |
-| Import **XCCDF** benchmark → `.cklb` | ✓ | |
+| Import benchmark (standalone **XCCDF** or **SCAP 1.2/1.3** data stream) → `.cklb` | ✓ | |
 | Import legacy **CKL** → `.cklb` | ✓ | |
 | **Export CKL** (eMASS / STIG Viewer–compatible XML) | ✓ | |
 | Import **SCAP** XCCDF results | | ✓ |
@@ -55,7 +55,9 @@ Commands **STIG Workbench: Enter License Key**, **License Status**, and **Remove
 
 ### Import & Export
 
-- **(Free) Import XCCDF Benchmark** — generate a blank `.cklb` checklist from a DISA STIG XCCDF XML file (`*-xccdf.xml`). Right-click in the explorer or use the command palette
+- **(Free) Import XCCDF Benchmark** — generate a blank `.cklb` checklist from DISA STIG benchmark XML. Right-click any supported `.xml` in the explorer or run the command from the palette. Supported inputs:
+  - **Standalone XCCDF** — files named like `*-xccdf.xml` with a root `<Benchmark>` element (classic DISA layout).
+  - **SCAP data stream** — SCAP **1.2** or **1.3** bundles (often `*Benchmark*.xml` or `*SCAP*Benchmark*.xml`) whose root is `<data-stream-collection>`; the extension finds the embedded XCCDF `<Benchmark>` inside the checklist component.
 - **(Free) Import CKL (legacy)** — convert older `.ckl` XML checklists to `.cklb` format, preserving all statuses, findings, and comments
 - **(Pro) Import SCAP scan results** — parse XCCDF results files from automated SCAP scans and auto-populate rule statuses (pass/fail/error mapped to the correct checklist statuses)
 - **(Free) Export to CKL** — generate a DISA STIG Workbench 2.x compatible `.ckl` XML file for eMASS submission
@@ -95,7 +97,7 @@ All commands are available from the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift
 | Command | Tier | Description |
 | ------- | ---- | ----------- |
 | `STIG Workbench: Open .cklb File` | Free | Open a `.cklb` file via file picker |
-| `STIG Workbench: Import XCCDF Benchmark` | Free | Generate a blank `.cklb` from an XCCDF XML |
+| `STIG Workbench: Import XCCDF Benchmark` | Free | Generate a blank `.cklb` from standalone XCCDF or an SCAP 1.2/1.3 benchmark data stream |
 | `STIG Workbench: Import CKL Checklist` | Free | Convert a legacy `.ckl` to `.cklb` |
 | `STIG Workbench: Import SCAP Scan Results` | Pro | Apply SCAP scan results to a checklist |
 | `STIG Workbench: Merge / Carry Forward Findings` | Pro | Copy findings from an old checklist to a new one |
@@ -111,7 +113,7 @@ All commands are available from the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift
 
 **Context menus:**
 
-- Right-click any `.xml` file → **STIG Workbench: Import XCCDF Benchmark**
+- Right-click any `.xml` file (including SCAP benchmark bundles) → **STIG Workbench: Import XCCDF Benchmark**
 - Right-click any `.ckl` file → **STIG Workbench: Import CKL Checklist**
 
 ## Installation
@@ -142,8 +144,8 @@ Press **F5** to launch an Extension Development Host. Open the included `samples
 ### Starting a new assessment
 
 1. Download the STIG benchmark from [public.cyber.mil](https://public.cyber.mil/stigs/)
-2. Run `STIG Workbench: Import XCCDF Benchmark` and select the `*-xccdf.xml` file
-3. A blank `.cklb` is generated and opens automatically
+2. Run `STIG Workbench: Import XCCDF Benchmark` and select the benchmark XML — either a standalone `*-xccdf.xml` file or an **SCAP 1.2/1.3** package such as `U_*_STIG_SCAP_1-3_Benchmark.xml` (data stream with embedded XCCDF).
+3. A blank `.cklb` is written next to the source file and opens automatically
 4. Click "Edit Target" to fill in host name, IP, FQDN, and other asset info
 5. Work through rules — use inline status dropdowns for quick triage, detail panel for findings
 
@@ -244,7 +246,7 @@ src/
   webviewContent.ts       # HTML/CSS/JS builder for the checklist webview
   dashboardPanel.ts       # Multi-checklist dashboard webview
   diffPanel.ts            # Checklist diff comparison webview
-  xccdfImporter.ts        # XCCDF benchmark → .cklb import
+  xccdfImporter.ts        # Standalone XCCDF + SCAP data-stream benchmark → .cklb import
   importCkl.ts            # Legacy .ckl → .cklb import
   importScapResults.ts    # SCAP XCCDF results → .cklb import
   mergeFindings.ts        # Carry forward findings between checklist versions
