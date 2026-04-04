@@ -2,7 +2,7 @@
 
 A Visual Studio Code extension for viewing, editing, importing, and exporting DISA STIG Checklist files (`.cklb` format) with a rich, interactive overview panel. Built for security assessors, ISSMs, and compliance teams working with STIGs daily.
 
-![STIG Workbench Screenshot](media/screenshot.png)
+![STIG Workbench Screenshot](media/Screenshot.png)
 
 ## Free vs Pro
 
