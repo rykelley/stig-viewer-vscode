@@ -116,7 +116,7 @@ export async function requirePro(): Promise<boolean> {
   }
 
   if (choice === 'Get a License') {
-    vscode.env.openExternal(vscode.Uri.parse('https://stigworkbench.com/pro'));
+    vscode.env.openExternal(vscode.Uri.parse('https://www.stigworkbench.com'));
     return false;
   }
 
@@ -167,7 +167,7 @@ export async function showLicenseStatus(): Promise<void> {
       'Get a License'
     );
     if (choice === 'Enter License Key') await enterLicenseKey();
-    if (choice === 'Get a License') vscode.env.openExternal(vscode.Uri.parse('https://stigworkbench.com/pro'));
+    if (choice === 'Get a License') vscode.env.openExternal(vscode.Uri.parse('https://www.stigworkbench.com'));
     return;
   }
 

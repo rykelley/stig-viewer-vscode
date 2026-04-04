@@ -16,6 +16,10 @@
     "type": "git",
     "url": "https://github.com/rykelley/stig-viewer-vscode.git"
   },
+  "homepage": "https://www.stigworkbench.com",
+  "bugs": {
+    "url": "https://www.stigworkbench.com"
+  },
   "license": "MIT",
   "keywords": [
     "STIG",
