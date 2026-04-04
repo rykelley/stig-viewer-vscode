@@ -6,9 +6,9 @@ A Visual Studio Code extension for viewing, editing, importing, and exporting DI
 
 ## Free vs Pro
 
-The extension is **free** for the core checklist workflow: open and edit `.cklb` files, import benchmarks from standalone **XCCDF**, **SCAP 1.2/1.3** benchmark data streams, or legacy **CKL**, and **export to CKL** for eMASS.
+The extension is **free** for the core checklist workflow: open and edit `.cklb` files; import benchmarks from standalone **XCCDF**, **SCAP 1.2/1.3** benchmark data streams, or legacy **CKL**; apply **SCAP XCCDF scan results** to a checklist; and **export to CKL** or **summary CSV** for eMASS and reporting.
 
-**Pro** unlocks integrations, automation, advanced reporting exports, and bundled deliverables. Use **STIG Workbench: Enter License Key** to activate ([www.stigworkbench.com](https://www.stigworkbench.com)).
+**Pro** unlocks integrations, automation, the POA&M export, bundled evidence packages, and more. Use **STIG Workbench: Enter License Key** to activate ([www.stigworkbench.com](https://www.stigworkbench.com)).
 
 | Capability | Free | Pro |
 | --- | :---: | :---: |
@@ -16,8 +16,8 @@ The extension is **free** for the core checklist workflow: open and edit `.cklb`
 | Import benchmark (standalone **XCCDF** or **SCAP 1.2/1.3** data stream) → `.cklb` | ✓ | |
 | Import legacy **CKL** → `.cklb` | ✓ | |
 | **Export CKL** (eMASS / STIG Viewer–compatible XML) | ✓ | |
-| Import **SCAP** XCCDF results | | ✓ |
-| **Export summary CSV** | | ✓ |
+| Import **SCAP** XCCDF results → checklist | ✓ | |
+| **Export summary CSV** | ✓ | |
 | **Export POA&M** CSV | | ✓ |
 | Multi-checklist **dashboard** | | ✓ |
 | **Merge / carry forward** findings between STIG versions | | ✓ |
@@ -59,9 +59,9 @@ Commands **STIG Workbench: Enter License Key**, **License Status**, and **Remove
   - **Standalone XCCDF** — files named like `*-xccdf.xml` with a root `<Benchmark>` element (classic DISA layout).
   - **SCAP data stream** — SCAP **1.2** or **1.3** bundles (often `*Benchmark*.xml` or `*SCAP*Benchmark*.xml`) whose root is `<data-stream-collection>`; the extension finds the embedded XCCDF `<Benchmark>` inside the checklist component.
 - **(Free) Import CKL (legacy)** — convert older `.ckl` XML checklists to `.cklb` format, preserving all statuses, findings, and comments
-- **(Pro) Import SCAP scan results** — parse XCCDF results files from automated SCAP scans and auto-populate rule statuses (pass/fail/error mapped to the correct checklist statuses)
+- **(Free) Import SCAP scan results** — parse XCCDF results files from automated SCAP scans and auto-populate rule statuses (pass/fail/error mapped to the correct checklist statuses)
 - **(Free) Export to CKL** — generate a DISA STIG Workbench 2.x compatible `.ckl` XML file for eMASS submission
-- **(Pro) Export summary CSV** — full checklist data with Vuln ID, severity, status, finding details, comments, CCIs
+- **(Free) Export summary CSV** — full checklist data with Vuln ID, severity, status, finding details, comments, CCIs
 - **(Pro) Export POA&M** — auto-generate a Plan of Action & Milestones CSV from all Open findings with standard DOD columns (weakness, POC, scheduled completion, milestones, status)
 
 ### Multi-Checklist Dashboard (Pro)
@@ -82,13 +82,12 @@ Commands **STIG Workbench: Enter License Key**, **License Status**, and **Remove
 - **SARIF import with CWE-to-STIG mapping** — import SARIF output from any SAST tool (CodeQL, Semgrep, ESLint security, Bandit, SpotBugs) and auto-map findings to ASD STIG rules via a built-in CWE mapping table covering 50+ CWEs across OWASP Top 10, buffer overflows (V-70277), race conditions (V-70185), and error handling (V-70391). Findings include file paths, line numbers, and CWE descriptions
 - **Dependency audit import** — import `npm audit --json`, `pip-audit --format json`, or `bundler-audit` output to auto-populate dependency/third-party component STIG rules. Auto-detects the audit format
 - **Repo scanner** — built-in regex-based scanner with 15+ configurable patterns for hardcoded secrets, SQL injection, XSS, command injection, insecure crypto, debug mode, and more. Bring your own `scan-patterns.json` to customize
-- **SCAP results import** — parse XCCDF results files from automated SCAP scans and auto-populate rule statuses
 
 ### Evidence & Deliverables (Pro)
 
 - **Evidence package builder** — export a complete ATO evidence zip containing: the `.cklb` checklist, `.ckl` XML export, summary CSV, POA&M CSV, a text summary report, and optionally attached screenshots or scan reports
 
-**From the checklist toolbar:** **Export CKL** is free; **Export CSV** and **Export POA&M** require Pro.
+**From the checklist toolbar:** **Export CKL** and **Export CSV** are free; **Export POA&M** requires Pro.
 
 ## Commands
 
@@ -99,7 +98,7 @@ All commands are available from the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift
 | `STIG Workbench: Open .cklb File` | Free | Open a `.cklb` file via file picker |
 | `STIG Workbench: Import XCCDF Benchmark` | Free | Generate a blank `.cklb` from standalone XCCDF or an SCAP 1.2/1.3 benchmark data stream |
 | `STIG Workbench: Import CKL Checklist` | Free | Convert a legacy `.ckl` to `.cklb` |
-| `STIG Workbench: Import SCAP Scan Results` | Pro | Apply SCAP scan results to a checklist |
+| `STIG Workbench: Import SCAP Scan Results` | Free | Apply SCAP XCCDF scan results to a checklist |
 | `STIG Workbench: Merge / Carry Forward Findings` | Pro | Copy findings from an old checklist to a new one |
 | `STIG Workbench: Diff Two Checklists` | Pro | Compare two checklists side-by-side |
 | `STIG Workbench: Open Dashboard` | Pro | Aggregate stats across all workspace checklists |
@@ -161,7 +160,7 @@ Press **F5** to launch an Extension Development Host. Open the included `samples
 1. Right-click a `.ckl` file → `STIG Workbench: Import CKL Checklist`
 2. The converted `.cklb` opens with all statuses and findings preserved
 
-### Applying SCAP scan results (Pro)
+### Applying SCAP scan results
 
 1. Run your SCAP scan and save the XCCDF results file
 2. Run `STIG Workbench: Import SCAP Scan Results`
@@ -186,7 +185,7 @@ Press **F5** to launch an Extension Development Host. Open the included `samples
 ### Generating deliverables
 
 - **For eMASS (Free)**: click **Export CKL** to generate a `.ckl` XML file
-- **For briefings (Pro)**: click **Export CSV** for a full summary spreadsheet
+- **For briefings (Free)**: click **Export CSV** for a full summary spreadsheet
 - **For POA&Ms (Pro)**: click **Export POA&M** to generate a CSV of all Open findings with standard DOD columns
 
 ## How the .cklb Format Works

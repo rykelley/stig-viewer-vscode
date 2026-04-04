@@ -62,7 +62,7 @@
       },
       {
         "command": "stigViewer.importScapResults",
-        "title": "STIG Workbench: Import SCAP Scan Results (Pro)"
+        "title": "STIG Workbench: Import SCAP Scan Results"
       },
       {
         "command": "stigViewer.scanRepo",

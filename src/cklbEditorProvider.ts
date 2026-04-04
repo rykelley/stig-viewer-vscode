@@ -122,7 +122,6 @@ export class CklbEditorProvider implements vscode.CustomTextEditorProvider {
       }
 
       if (msg.type === 'exportCsv') {
-        if (!await requirePro()) return;
         try {
           const data: CklbDocument = JSON.parse(document.getText());
           const csv = buildCsv(data);

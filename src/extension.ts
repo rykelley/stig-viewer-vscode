@@ -77,6 +77,16 @@ export function activate(context: vscode.ExtensionContext) {
     })
   );
 
+  context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.importScapResults', async () => {
+      try {
+        await importScapResults();
+      } catch (e) {
+        vscode.window.showErrorMessage(`SCAP import failed: ${e}`);
+      }
+    })
+  );
+
   // ─── Pro commands (gated) ───────────────────────────────────────────
 
   context.subscriptions.push(
@@ -108,17 +118,6 @@ export function activate(context: vscode.ExtensionContext) {
         await DiffPanel.show();
       } catch (e) {
         vscode.window.showErrorMessage(`Diff failed: ${e}`);
-      }
-    })
-  );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand('stigViewer.importScapResults', async () => {
-      if (!await requirePro()) return;
-      try {
-        await importScapResults();
-      } catch (e) {
-        vscode.window.showErrorMessage(`SCAP import failed: ${e}`);
       }
     })
   );
@@ -167,7 +166,7 @@ export function activate(context: vscode.ExtensionContext) {
     })
   );
 
-  // ─── Pro: export buttons in webview (CSV, POA&M handled in cklbEditorProvider) ──
+  // ─── Pro: POA&M export in webview (CSV is free; see cklbEditorProvider) ──
 
   // ─── License management commands ────────────────────────────────────
 
