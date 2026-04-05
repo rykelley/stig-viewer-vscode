@@ -115,7 +115,13 @@ ${data.stigs.map((st, i) => stigSection(st, i)).join('\n')}
 <!-- ═══ DETAIL SLIDE-OVER ═══ -->
 <div id="detailBackdrop" class="backdrop hidden"></div>
 <aside id="detailPanel" class="detail hidden">
-  <button id="detailClose" class="detail-close" title="Close">&times;</button>
+  <div class="detail-hdr">
+    <div class="detail-nav-btns">
+      <button id="detailPrev" class="btn-nav" title="Previous rule ([ key)">&#8592;</button>
+      <button id="detailNext" class="btn-nav" title="Next rule (] key)">&#8594;</button>
+    </div>
+    <button id="detailClose" class="detail-close" title="Close">&times;</button>
+  </div>
   <div id="detailBody"></div>
 </aside>
 
@@ -327,14 +333,56 @@ function filter(stigId) {
 }
 
 // ── Detail panel ──
-const panel   = document.getElementById('detailPanel');
-const body    = document.getElementById('detailBody');
-const close   = document.getElementById('detailClose');
-const drop    = document.getElementById('detailBackdrop');
+const panel = document.getElementById('detailPanel');
+const body  = document.getElementById('detailBody');
+const drop  = document.getElementById('detailBackdrop');
+
+let currentDetailUuid   = null;
+let currentDetailStigId = null;
 
 function hide() { panel.classList.add('hidden'); drop.classList.add('hidden'); }
-close.onclick = hide;
-drop.onclick  = hide;
+document.getElementById('detailClose').onclick = hide;
+drop.onclick = hide;
+document.getElementById('detailPrev').onclick = () => navigateDetail(-1);
+document.getElementById('detailNext').onclick = () => navigateDetail(1);
+
+function updatePanelBorder(status) {
+  const colors = { open:'#e74c3c', not_a_finding:'#27ae60', not_applicable:'#7f8c8d', not_reviewed:'#34495e' };
+  panel.style.borderLeftColor = colors[status] || '#3c3c3c';
+}
+
+function autoGrow(el) {
+  if (!el) return;
+  el.style.height = 'auto';
+  el.style.height = el.scrollHeight + 'px';
+}
+
+function getVisibleRows(stigId) {
+  return [...document.querySelectorAll('tr.row[data-stig="'+stigId+'"]')]
+    .filter(r => r.style.display !== 'none');
+}
+
+function navigateDetail(dir) {
+  if (!currentDetailUuid || !currentDetailStigId) return;
+  const saveBtn = document.getElementById('dSave');
+  if (saveBtn) saveBtn.click();
+  const rows = getVisibleRows(currentDetailStigId);
+  if (!rows.length) return;
+  const idx = rows.findIndex(r => r.dataset.uuid === currentDetailUuid);
+  const next = dir === 1
+    ? (idx < rows.length - 1 ? rows[idx + 1] : rows[0])
+    : (idx > 0 ? rows[idx - 1] : rows[rows.length - 1]);
+  if (next) {
+    const r = RULES[next.dataset.uuid];
+    if (r) {
+      if (focusedRow) focusedRow.classList.remove('row-focus');
+      next.classList.add('row-focus');
+      next.scrollIntoView({ block: 'nearest' });
+      focusedRow = next;
+      renderDetail(r, next.dataset.stig);
+    }
+  }
+}
 
 document.querySelectorAll('tr.row').forEach(tr => {
   tr.addEventListener('click', () => {
@@ -349,6 +397,9 @@ document.querySelectorAll('tr.row').forEach(tr => {
 const SL = { not_reviewed:'Not Reviewed', open:'Open', not_a_finding:'Not a Finding', not_applicable:'Not Applicable' };
 
 function renderDetail(r, stigUuid) {
+  currentDetailUuid   = r.uuid;
+  currentDetailStigId = stigUuid;
+  updatePanelBorder(r.status);
   const cat = r.severity==='high'?'I':r.severity==='medium'?'II':'III';
   body.innerHTML = \`
     <div class="d-top">
@@ -375,12 +426,21 @@ function renderDetail(r, stigUuid) {
       \${r.ccis?.length ? '<span><b>CCIs:</b> '+r.ccis.map(c=>'<code>'+h(c)+'</code>').join(' ')+'</span>' : ''}
     </div>
 
-    <details class="d-sec" open><summary>Discussion</summary><div class="d-text">\${fmt(r.discussion)}</div></details>
-    <details class="d-sec" open><summary>Check Content</summary><div class="d-text">\${fmt(r.check_content)}</div></details>
-    <details class="d-sec"><summary>Fix Text</summary><div class="d-text">\${fmt(r.fix_text)}</div></details>
+    <details class="d-sec" open>
+      <summary class="d-sum">Discussion <button class="btn-copy" data-copy="dDisc" title="Copy to clipboard">Copy</button></summary>
+      <div class="d-text" id="dDisc">\${fmt(r.discussion)}</div>
+    </details>
+    <details class="d-sec" open>
+      <summary class="d-sum">Check Content <button class="btn-copy" data-copy="dCheck" title="Copy to clipboard">Copy</button></summary>
+      <div class="d-text" id="dCheck">\${fmt(r.check_content)}</div>
+    </details>
+    <details class="d-sec">
+      <summary class="d-sum">Fix Text <button class="btn-copy" data-copy="dFix" title="Copy to clipboard">Copy</button></summary>
+      <div class="d-text" id="dFix">\${fmt(r.fix_text)}</div>
+    </details>
 
     <details class="d-sec" open>
-      <summary>Finding Details</summary>
+      <summary class="d-sum">Finding Details</summary>
       <div class="d-tpl-row">
         <select id="dTpl" class="flt d-tpl-select">
           <option value="">Insert template\u2026</option>
@@ -392,16 +452,37 @@ function renderDetail(r, stigUuid) {
           <option value="Inherited control \u2014 managed at [platform/provider] level. See [reference].">Inherited control</option>
         </select>
       </div>
-      <textarea id="dFd" class="d-ta" rows="4" placeholder="Enter finding details\u2026">\${h(r.finding_details||'')}</textarea>
+      <textarea id="dFd" class="d-ta d-ta-grow" placeholder="Enter finding details\u2026">\${h(r.finding_details||'')}</textarea>
+      <div class="d-char-count" id="dFdCount">\${(r.finding_details||'').length} characters</div>
     </details>
     <details class="d-sec">
-      <summary>Comments</summary>
-      <textarea id="dCm" class="d-ta" rows="3" placeholder="Enter comments…">\${h(r.comments||'')}</textarea>
+      <summary class="d-sum">Comments</summary>
+      <textarea id="dCm" class="d-ta d-ta-grow" placeholder="Enter comments\u2026">\${h(r.comments||'')}</textarea>
     </details>
 
-    <button class="btn-save" id="dSave">Save Changes</button>
+    <div class="d-save-row">
+      <button class="btn-save" id="dSave">Save Changes</button>
+      <span class="d-save-hint">Ctrl+S</span>
+    </div>
   \`;
 
+  // Copy buttons
+  document.querySelectorAll('.btn-copy').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      e.preventDefault();
+      const el = document.getElementById(btn.dataset.copy);
+      if (el && navigator.clipboard) {
+        navigator.clipboard.writeText(el.innerText).then(() => {
+          const orig = btn.textContent;
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = orig; }, 1500);
+        }).catch(() => {});
+      }
+    });
+  });
+
+  // Template insert
   document.getElementById('dTpl').onchange = function() {
     if (this.value) {
       const ta = document.getElementById('dFd');
@@ -409,8 +490,18 @@ function renderDetail(r, stigUuid) {
       ta.value = ta.value.substring(0, pos) + this.value + ta.value.substring(pos);
       ta.focus();
       this.selectedIndex = 0;
+      autoGrow(ta);
+      document.getElementById('dFdCount').textContent = ta.value.length + ' characters';
     }
   };
+
+  // Auto-grow + character counter
+  const taFd    = document.getElementById('dFd');
+  const taCm    = document.getElementById('dCm');
+  const fdCount = document.getElementById('dFdCount');
+  taFd.addEventListener('input', () => { autoGrow(taFd); fdCount.textContent = taFd.value.length + ' characters'; });
+  taCm.addEventListener('input', () => autoGrow(taCm));
+  setTimeout(() => { autoGrow(taFd); autoGrow(taCm); }, 0);
 
   // Auto-save helper for this rule
   function doSave() {
@@ -418,7 +509,6 @@ function renderDetail(r, stigUuid) {
     const fd = document.getElementById('dFd').value;
     const cm = document.getElementById('dCm').value;
     vscode.postMessage({ type:'saveRule', ruleUuid:r.uuid, stigUuid, status:ns, finding_details:fd, comments:cm });
-    // Update table row live
     const row = document.querySelector('tr.row[data-uuid="'+r.uuid+'"]');
     if (row) {
       row.dataset.status = ns;
@@ -429,22 +519,58 @@ function renderDetail(r, stigUuid) {
     RULES[r.uuid].finding_details = fd;
     RULES[r.uuid].comments = cm;
     refreshStats(stigUuid);
-    // Flash saved indicator
+    updatePanelBorder(ns);
     const btn = document.getElementById('dSave');
     if (btn) { btn.textContent = 'Saved'; btn.classList.add('btn-saved'); setTimeout(() => { btn.textContent = 'Save Changes'; btn.classList.remove('btn-saved'); }, 1500); }
   }
 
-  // Auto-save on status change
   document.getElementById('dSt').onchange = doSave;
-  // Auto-save on blur from text fields
   document.getElementById('dFd').onblur = doSave;
   document.getElementById('dCm').onblur = doSave;
-  // Manual save button
   document.getElementById('dSave').onclick = doSave;
 }
 
 function h(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
-function fmt(s){if(!s)return'<span class="muted">None</span>';return h(s).replace(/\\\\r\\\\n|\\\\n|\\n/g,'<br>').replace(/(\\$[^<]{2,})/g,'<code>$1</code>');}
+
+function linkify(s) {
+  return s.replace(/(https?:\\/\\/[^\\s<>"']+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer" class="d-link">$1</a>');
+}
+
+function fmt(s) {
+  if (!s) return '<span class="muted">None</span>';
+  // Automated import blocks get a distinct callout style
+  const impMatch = s.match(/^\\[(AUTO-SCAN|SARIF IMPORT|AUDIT IMPORT)\\]/);
+  if (impMatch) {
+    const rest = s.substring(impMatch[0].length).replace(/^[\\r\\n]+/, '');
+    return '<div class="d-imported"><span class="d-imported-badge">'+h(impMatch[0])+'</span>'
+      +'<pre class="d-imported-pre">'+linkify(h(rest))+'</pre></div>';
+  }
+  const lines = s.split(/\\r?\\n|\\\\n/);
+  let html = '';
+  let inOl  = false;
+  for (const line of lines) {
+    if (!line.trim()) {
+      if (inOl) { html += '</ol>'; inOl = false; }
+      html += '<div class="d-blank"></div>';
+      continue;
+    }
+    // Numbered list: "1. " or "1) "
+    if (/^\\d+[.)]+\\s/.test(line)) {
+      if (!inOl) { html += '<ol class="d-ol">'; inOl = true; }
+      html += '<li>'+linkify(h(line.replace(/^\\d+[.)]+\\s+/, '')))+'</li>';
+      continue;
+    }
+    if (inOl) { html += '</ol>'; inOl = false; }
+    // Command / code-like lines: start with $, #, > or 4-space indent
+    if (/^[$#>]/.test(line.trim()) || /^    /.test(line)) {
+      html += '<code class="d-cmd">'+h(line)+'</code>';
+      continue;
+    }
+    html += '<p class="d-p">'+linkify(h(line))+'</p>';
+  }
+  if (inOl) html += '</ol>';
+  return html || '<span class="muted">None</span>';
+}
 
 // ── Inline status editing ──
 document.querySelectorAll('.inline-status').forEach(sel => {
@@ -648,9 +774,30 @@ document.addEventListener('keydown', (e) => {
     return;
   }
 
-  // Don't capture keys when typing in inputs/textareas/selects
   const tag = document.activeElement?.tagName;
-  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+  const inInput = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
+
+  // Ctrl/Cmd+S — save from inside the panel even while typing
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+    const saveBtn = document.getElementById('dSave');
+    if (saveBtn && !panel.classList.contains('hidden')) {
+      e.preventDefault();
+      saveBtn.click();
+    }
+    return;
+  }
+
+  // Don't capture remaining keys when typing in inputs/textareas/selects
+  if (inInput) return;
+
+  // [ / ] navigate between rules in the detail panel
+  if (e.key === '[' || e.key === ']') {
+    if (!panel.classList.contains('hidden')) {
+      e.preventDefault();
+      navigateDetail(e.key === ']' ? 1 : -1);
+    }
+    return;
+  }
 
   const rows = [...document.querySelectorAll('tr.row')].filter(r => r.style.display !== 'none');
   if (!rows.length) return;
@@ -790,10 +937,15 @@ body{font-family:var(--vscode-font-family,system-ui,sans-serif);font-size:13px;c
 
 /* ── detail slide-over ── */
 .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:90}
-.detail{position:fixed;top:0;right:0;bottom:0;width:min(580px,92vw);background:var(--bg);border-left:1px solid var(--border);z-index:100;overflow-y:auto;padding:24px 22px 40px;transform:translateX(0);transition:transform .2s}
+.detail{position:fixed;top:0;right:0;bottom:0;width:min(680px,96vw);background:var(--bg);border-left:4px solid #3c3c3c;z-index:100;overflow-y:auto;padding:0 0 40px;transform:translateX(0);transition:transform .2s,border-left-color .25s}
 .detail.hidden{transform:translateX(110%)}
 .backdrop.hidden{display:none}
-.detail-close{position:sticky;top:0;float:right;background:none;border:none;color:var(--fg);font-size:1.6em;cursor:pointer;line-height:1;padding:0 4px;z-index:2}
+.detail-hdr{position:sticky;top:0;z-index:10;background:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--border)}
+.detail-nav-btns{display:flex;gap:6px}
+.btn-nav{background:var(--card);border:1px solid var(--border);color:var(--fg);border-radius:4px;padding:3px 10px;font-size:1em;cursor:pointer;line-height:1.4}
+.btn-nav:hover{background:var(--hover);border-color:var(--accent)}
+.detail-close{background:none;border:none;color:var(--fg);font-size:1.6em;cursor:pointer;line-height:1;padding:0 4px}
+#detailBody{padding:18px 20px 20px}
 
 .d-top{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:.9em}
 .d-title{font-size:1.05em;font-weight:600;margin-bottom:14px;line-height:1.4}
@@ -807,15 +959,30 @@ body{font-family:var(--vscode-font-family,system-ui,sans-serif);font-size:13px;c
 .d-meta code{background:var(--card);padding:1px 5px;border-radius:3px;font-size:.9em}
 
 .d-sec{margin-bottom:10px;border:1px solid var(--border);border-radius:6px;overflow:hidden}
-.d-sec summary{padding:8px 12px;background:var(--card);cursor:pointer;font-weight:600;font-size:.88em;user-select:none}
-.d-sec summary:hover{background:var(--hover)}
-.d-text{padding:10px 12px;font-size:.85em;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+.d-sum{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--card);cursor:pointer;font-weight:600;font-size:.88em;user-select:none;list-style:none}
+.d-sum:hover{background:var(--hover)}
+.d-sum::-webkit-details-marker{display:none}
+.btn-copy{background:var(--card);border:1px solid var(--border);color:var(--gray);border-radius:3px;padding:2px 8px;font-size:.76em;cursor:pointer;margin-left:8px;font-weight:400}
+.btn-copy:hover{border-color:var(--accent);color:var(--fg)}
+.d-text{padding:10px 12px;font-size:.85em;line-height:1.6;word-break:break-word}
 .d-text code{background:var(--card);padding:1px 5px;border-radius:3px;font-size:.88em}
+.d-p{margin:0 0 6px}
+.d-blank{height:6px}
+.d-ol{margin:4px 0 8px 20px;padding:0;font-size:.88em;line-height:1.7}
+.d-cmd{display:block;background:var(--card);border-left:3px solid var(--accent);padding:4px 10px;border-radius:3px;margin:3px 0;font-family:monospace;font-size:.84em;white-space:pre-wrap;word-break:break-all}
+.d-link{color:var(--accent);text-decoration:underline;word-break:break-all}
+.d-imported{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:6px;padding:8px 12px;margin:4px 0}
+.d-imported-badge{display:inline-block;background:var(--accent);color:#fff;font-size:.74em;font-weight:700;border-radius:3px;padding:1px 7px;margin-bottom:6px;letter-spacing:.5px}
+.d-imported-pre{margin:0;font-size:.82em;white-space:pre-wrap;word-break:break-word;line-height:1.5}
 
-.d-ta{width:100%;background:var(--inp-bg);color:var(--inp-fg);border:none;padding:10px 12px;font-family:inherit;font-size:.85em;resize:vertical;outline:none}
+.d-ta{width:100%;box-sizing:border-box;background:var(--inp-bg);color:var(--inp-fg);border:none;padding:10px 12px;font-family:inherit;font-size:.85em;resize:none;overflow:hidden;outline:none;min-height:60px}
 .d-ta:focus{box-shadow:inset 0 0 0 1px var(--accent)}
+.d-ta-grow{resize:none}
+.d-char-count{font-size:.75em;color:var(--gray);text-align:right;padding:2px 12px 6px}
 
-.btn-save{display:block;width:100%;margin-top:14px;padding:10px;background:var(--btn-bg);color:var(--btn-fg);border:none;border-radius:6px;font-size:.92em;font-weight:600;cursor:pointer}
+.d-save-row{display:flex;align-items:center;gap:10px;margin-top:14px}
+.d-save-hint{font-size:.75em;color:var(--gray)}
+.btn-save{flex:1;padding:10px;background:var(--btn-bg);color:var(--btn-fg);border:none;border-radius:6px;font-size:.92em;font-weight:600;cursor:pointer}
 .btn-save:hover{opacity:.9}
 
 /* ── header actions ── */
