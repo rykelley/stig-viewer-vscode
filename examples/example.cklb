@@ -39,17 +39,28 @@
           "responsibility": "",
           "security_override_guidance": "",
           "ia_controls": "",
-          "check_content_ref": { "href": "U_RHEL_9_STIG_V1R2_Manual-xccdf.xml", "name": "M" },
+          "check_content_ref": {
+            "href": "U_RHEL_9_STIG_V1R2_Manual-xccdf.xml",
+            "name": "M"
+          },
           "legacy_ids": [],
-          "ccis": ["CCI-000366"],
-          "group_tree": [{ "id": "V-257777", "title": "SRG-OS-000480-GPOS-00227", "description": "" }],
+          "ccis": [
+            "CCI-000366"
+          ],
+          "group_tree": [
+            {
+              "id": "V-257777",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": ""
+            }
+          ],
           "createdAt": "2025-01-01T00:00:00.000Z",
-          "updatedAt": "2025-01-01T00:00:00.000Z",
+          "updatedAt": "2026-04-05T14:10:55.722Z",
           "STIGUuid": "s1s1s1s1-0000-0000-0000-000000000001",
-          "status": "open",
+          "status": "not_reviewed",
           "overrides": {},
           "comments": "McAfee TP not found on this host.",
-          "finding_details": "Ran rpm -qa | grep -i mcafeetp — no output returned.",
+          "finding_details": "Dependency manifest found: node_modules/@types/node/package.json. Verify all dependencies are current and free of known vulnerabilities using tools like npm audit, pip-audit, or OWASP Dependency-Check.",
           "srg_id": "SRG-OS-000480-GPOS-00227"
         },
         {
@@ -79,10 +90,21 @@
           "responsibility": "",
           "security_override_guidance": "",
           "ia_controls": "",
-          "check_content_ref": { "href": "U_RHEL_9_STIG_V1R2_Manual-xccdf.xml", "name": "M" },
+          "check_content_ref": {
+            "href": "U_RHEL_9_STIG_V1R2_Manual-xccdf.xml",
+            "name": "M"
+          },
           "legacy_ids": [],
-          "ccis": ["CCI-000366"],
-          "group_tree": [{ "id": "V-257778", "title": "SRG-OS-000480-GPOS-00227", "description": "" }],
+          "ccis": [
+            "CCI-000366"
+          ],
+          "group_tree": [
+            {
+              "id": "V-257778",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": ""
+            }
+          ],
           "createdAt": "2025-01-01T00:00:00.000Z",
           "updatedAt": "2025-01-01T00:00:00.000Z",
           "STIGUuid": "s1s1s1s1-0000-0000-0000-000000000001",
@@ -119,17 +141,31 @@
           "responsibility": "",
           "security_override_guidance": "",
           "ia_controls": "",
-          "check_content_ref": { "href": "U_RHEL_9_STIG_V1R2_Manual-xccdf.xml", "name": "M" },
-          "legacy_ids": ["V-71861", "SV-86485"],
-          "ccis": ["CCI-000048"],
-          "group_tree": [{ "id": "V-257779", "title": "SRG-OS-000023-GPOS-00006", "description": "" }],
+          "check_content_ref": {
+            "href": "U_RHEL_9_STIG_V1R2_Manual-xccdf.xml",
+            "name": "M"
+          },
+          "legacy_ids": [
+            "V-71861",
+            "SV-86485"
+          ],
+          "ccis": [
+            "CCI-000048"
+          ],
+          "group_tree": [
+            {
+              "id": "V-257779",
+              "title": "SRG-OS-000023-GPOS-00006",
+              "description": ""
+            }
+          ],
           "createdAt": "2025-01-01T00:00:00.000Z",
-          "updatedAt": "2025-01-01T00:00:00.000Z",
+          "updatedAt": "2026-04-05T14:10:55.722Z",
           "STIGUuid": "s1s1s1s1-0000-0000-0000-000000000001",
-          "status": "not_reviewed",
+          "status": "open",
           "overrides": {},
           "comments": "",
-          "finding_details": "",
+          "finding_details": "[AUTO-SCAN] Found 3 potential issue(s) matching: Logging Sensitive Data\n\n  node_modules/@types/node/crypto.d.ts:1831 — * console.log(aliceSecret === bobSecret);\n  node_modules/@types/node/fs.d.ts:3409 — *   console.log(e ? 'it exists' : 'no passwd!');\n  node_modules/@types/node/url.d.ts:552 — * console.log(myURL.password);",
           "srg_id": "SRG-OS-000023-GPOS-00006"
         },
         {
@@ -159,17 +195,29 @@
           "responsibility": "",
           "security_override_guidance": "",
           "ia_controls": "",
-          "check_content_ref": { "href": "U_RHEL_9_STIG_V1R2_Manual-xccdf.xml", "name": "M" },
+          "check_content_ref": {
+            "href": "U_RHEL_9_STIG_V1R2_Manual-xccdf.xml",
+            "name": "M"
+          },
           "legacy_ids": [],
-          "ccis": ["CCI-000048", "CCI-002421"],
-          "group_tree": [{ "id": "V-257780", "title": "SRG-OS-000023-GPOS-00006", "description": "" }],
+          "ccis": [
+            "CCI-000048",
+            "CCI-002421"
+          ],
+          "group_tree": [
+            {
+              "id": "V-257780",
+              "title": "SRG-OS-000023-GPOS-00006",
+              "description": ""
+            }
+          ],
           "createdAt": "2025-01-01T00:00:00.000Z",
-          "updatedAt": "2025-01-01T00:00:00.000Z",
+          "updatedAt": "2026-04-05T14:10:55.722Z",
           "STIGUuid": "s1s1s1s1-0000-0000-0000-000000000001",
-          "status": "not_applicable",
+          "status": "open",
           "overrides": {},
           "comments": "System uses hardware encryption module instead.",
-          "finding_details": "N/A — System uses a dedicated HSM for cryptographic operations. OpenSSL not used for TLS.",
+          "finding_details": "Dependency manifest found: node_modules/@types/node/crypto.d.ts. Verify all dependencies are current and free of known vulnerabilities using tools like npm audit, pip-audit, or OWASP Dependency-Check.",
           "srg_id": "SRG-OS-000023-GPOS-00006"
         },
         {
@@ -199,17 +247,31 @@
           "responsibility": "",
           "security_override_guidance": "",
           "ia_controls": "",
-          "check_content_ref": { "href": "U_RHEL_9_STIG_V1R2_Manual-xccdf.xml", "name": "M" },
-          "legacy_ids": ["V-72049", "SV-86673"],
-          "ccis": ["CCI-000052"],
-          "group_tree": [{ "id": "V-257781", "title": "SRG-OS-000024-GPOS-00007", "description": "" }],
+          "check_content_ref": {
+            "href": "U_RHEL_9_STIG_V1R2_Manual-xccdf.xml",
+            "name": "M"
+          },
+          "legacy_ids": [
+            "V-72049",
+            "SV-86673"
+          ],
+          "ccis": [
+            "CCI-000052"
+          ],
+          "group_tree": [
+            {
+              "id": "V-257781",
+              "title": "SRG-OS-000024-GPOS-00007",
+              "description": ""
+            }
+          ],
           "createdAt": "2025-01-01T00:00:00.000Z",
-          "updatedAt": "2025-01-01T00:00:00.000Z",
+          "updatedAt": "2026-04-05T14:10:55.722Z",
           "STIGUuid": "s1s1s1s1-0000-0000-0000-000000000001",
-          "status": "not_reviewed",
+          "status": "open",
           "overrides": {},
           "comments": "",
-          "finding_details": "",
+          "finding_details": "[AUTO-SCAN] Found 3 potential issue(s) matching: Logging Sensitive Data\n\n  node_modules/@types/node/crypto.d.ts:1831 — * console.log(aliceSecret === bobSecret);\n  node_modules/@types/node/fs.d.ts:3409 — *   console.log(e ? 'it exists' : 'no passwd!');\n  node_modules/@types/node/url.d.ts:552 — * console.log(myURL.password);",
           "srg_id": "SRG-OS-000024-GPOS-00007"
         }
       ]

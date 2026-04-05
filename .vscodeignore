@@ -1,9 +1,12 @@
 .vscode/**
 .vscode-test/**
 src/**
-node_modules/.package-lock.json
-node_modules/@types/**
-.gitignore
+out/**
+node_modules/**
 tsconfig.json
+esbuild.js
+examples/**
+.gitignore
 **/*.ts
+!dist/**
 **/*.map
