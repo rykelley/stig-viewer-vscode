@@ -262,6 +262,48 @@ function ruleRow(r: CklbRule, stigUuid: string): string {
 // ─── JavaScript for the webview ─────────────────────────────────────────────
 
 const SCRIPT = `
+// ── Stats refresh ──
+function refreshStats(stigId) {
+  const section = document.querySelector('tr.row[data-stig="'+stigId+'"]')?.closest('.stig');
+  if (!section) return;
+  const rows = section.querySelectorAll('tr.row[data-stig="'+stigId+'"]');
+  const total = rows.length;
+  let open=0, naf=0, nr=0, na=0;
+  rows.forEach(r => {
+    const s = r.dataset.status;
+    if (s==='open') open++;
+    else if (s==='not_a_finding') naf++;
+    else if (s==='not_reviewed') nr++;
+    else if (s==='not_applicable') na++;
+  });
+  const pct = (n) => total ? Math.round((n/total)*100) : 0;
+
+  const cards = section.querySelectorAll('.card');
+  cards.forEach(c => {
+    const n = c.querySelector('.card-n');
+    if (!n) return;
+    if (c.classList.contains('card-open')) n.textContent = open;
+    else if (c.classList.contains('card-naf')) n.textContent = naf;
+    else if (c.classList.contains('card-nr')) n.textContent = nr;
+    else if (c.classList.contains('card-na')) n.textContent = na;
+  });
+
+  const compLabel = section.querySelector('.completion-label');
+  const compNaf = section.querySelector('.completion-naf');
+  const compNa = section.querySelector('.completion-na');
+  if (compLabel) compLabel.textContent = 'Completion: '+pct(naf+na)+'%';
+  if (compNaf) compNaf.style.width = pct(naf)+'%';
+  if (compNa) compNa.style.width = pct(na)+'%';
+
+  const statusFlt = section.querySelector('[data-kind="status"]');
+  if (statusFlt) {
+    statusFlt.options[1].textContent = 'Not Reviewed ('+nr+')';
+    statusFlt.options[2].textContent = 'Open ('+open+')';
+    statusFlt.options[3].textContent = 'Not a Finding ('+naf+')';
+    statusFlt.options[4].textContent = 'Not Applicable ('+na+')';
+  }
+}
+
 // ── Filtering ──
 document.querySelectorAll('.filters').forEach(bar => {
   const stigId = bar.dataset.stig;
@@ -386,6 +428,7 @@ function renderDetail(r, stigUuid) {
     RULES[r.uuid].status = ns;
     RULES[r.uuid].finding_details = fd;
     RULES[r.uuid].comments = cm;
+    refreshStats(stigUuid);
     // Flash saved indicator
     const btn = document.getElementById('dSave');
     if (btn) { btn.textContent = 'Saved'; btn.classList.add('btn-saved'); setTimeout(() => { btn.textContent = 'Save Changes'; btn.classList.remove('btn-saved'); }, 1500); }
@@ -418,6 +461,7 @@ document.querySelectorAll('.inline-status').forEach(sel => {
     RULES[uuid].status = ns;
     // Auto-save
     vscode.postMessage({ type: 'saveRule', ruleUuid: uuid, stigUuid: stigUuid, status: ns, finding_details: RULES[uuid].finding_details || '', comments: RULES[uuid].comments || '' });
+    refreshStats(stigUuid);
   });
   sel.addEventListener('click', (e) => e.stopPropagation());
 });
@@ -431,13 +475,16 @@ window.addEventListener('message', (event) => {
       RULES[uuid] = rule;
     }
     // Update all table rows
+    const updatedStigs = new Set();
     document.querySelectorAll('tr.row').forEach(row => {
       const r = msg.rules[row.dataset.uuid];
       if (!r) return;
       row.dataset.status = r.status;
       const sel = row.querySelector('.inline-status');
       if (sel) { sel.value = r.status; sel.className = 'inline-status st-' + r.status; }
+      updatedStigs.add(row.dataset.stig);
     });
+    updatedStigs.forEach(id => refreshStats(id));
   }
 });
 
@@ -567,6 +614,8 @@ document.querySelectorAll('.btn-bulk-apply').forEach(btn => {
         if (comments) RULES[uuid].comments = comments;
       }
     });
+
+    refreshStats(stigId);
 
     // Clear selection
     cbs.forEach(c => { c.checked = false; });

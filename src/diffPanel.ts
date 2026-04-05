@@ -31,13 +31,17 @@ function sevCat(s: string): string {
 }
 
 export class DiffPanel {
-  public static async show(): Promise<void> {
-    const uriA = await vscode.window.showOpenDialog({
-      canSelectMany: false,
-      filters: { 'STIG Checklist': ['cklb'] },
-      title: 'Select FIRST checklist (baseline / old)',
-    });
-    if (!uriA?.[0]) return;
+  public static async show(activeCklbUri?: vscode.Uri): Promise<void> {
+    let uriAResolved = activeCklbUri;
+    if (!uriAResolved) {
+      const uriA = await vscode.window.showOpenDialog({
+        canSelectMany: false,
+        filters: { 'STIG Checklist': ['cklb'] },
+        title: 'Select FIRST checklist (baseline / old)',
+      });
+      if (!uriA?.[0]) return;
+      uriAResolved = uriA[0];
+    }
 
     const uriB = await vscode.window.showOpenDialog({
       canSelectMany: false,
@@ -46,7 +50,7 @@ export class DiffPanel {
     });
     if (!uriB?.[0]) return;
 
-    const docA: CklbDocument = JSON.parse(fs.readFileSync(uriA[0].fsPath, 'utf-8'));
+    const docA: CklbDocument = JSON.parse(fs.readFileSync(uriAResolved.fsPath, 'utf-8'));
     const docB: CklbDocument = JSON.parse(fs.readFileSync(uriB[0].fsPath, 'utf-8'));
 
     // Build rule maps keyed by rule_version
@@ -120,7 +124,7 @@ export class DiffPanel {
     );
 
     panel.webview.html = buildDiffHtml(
-      uriA[0].fsPath, uriB[0].fsPath,
+      uriAResolved.fsPath, uriB[0].fsPath,
       changedEntries, entries,
       { regressions, improvements, newRules, removed, unchanged }
     );

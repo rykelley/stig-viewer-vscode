@@ -175,14 +175,18 @@ function scanFile(
 
 // ─── Main export ────────────────────────────────────────────────────────────
 
-export async function scanRepo(): Promise<void> {
-  // 1. Select the .cklb checklist to populate
-  const cklbUris = await vscode.window.showOpenDialog({
-    canSelectMany: false,
-    filters: { 'STIG Checklist': ['cklb'] },
-    title: 'Select checklist to populate with scan results',
-  });
-  if (!cklbUris?.[0]) return;
+export async function scanRepo(activeCklbUri?: vscode.Uri): Promise<void> {
+  // 1. Use active checklist or ask user to pick one
+  let cklbUri = activeCklbUri;
+  if (!cklbUri) {
+    const uris = await vscode.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { 'STIG Checklist': ['cklb'] },
+      title: 'Select checklist to populate with scan results',
+    });
+    if (!uris?.[0]) return;
+    cklbUri = uris[0];
+  }
 
   // 2. Select the repo folder to scan
   const repoUris = await vscode.window.showOpenDialog({
@@ -213,7 +217,7 @@ export async function scanRepo(): Promise<void> {
 
   // Load config and checklist
   const config = loadScanConfig(configPath);
-  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUris[0].fsPath, 'utf-8'));
+  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUri.fsPath, 'utf-8'));
   const repoDir = repoUris[0].fsPath;
 
   await vscode.window.withProgress(
@@ -353,9 +357,9 @@ export async function scanRepo(): Promise<void> {
       }
 
       // Save results
-      fs.writeFileSync(cklbUris[0].fsPath, JSON.stringify(doc, null, 2));
+      fs.writeFileSync(cklbUri.fsPath, JSON.stringify(doc, null, 2));
 
-      await vscode.commands.executeCommand('vscode.openWith', cklbUris[0], 'stigViewer.cklbEditor');
+      await vscode.commands.executeCommand('vscode.openWith', cklbUri, 'stigViewer.cklbEditor');
 
       const skipped = totalRules - rulesUpdated;
       vscode.window.showInformationMessage(

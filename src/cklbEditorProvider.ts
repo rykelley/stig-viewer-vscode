@@ -10,6 +10,12 @@ import { requirePro } from './licenseManager';
 
 export class CklbEditorProvider implements vscode.CustomTextEditorProvider {
 
+  private static _activeDocumentUri: vscode.Uri | undefined;
+
+  public static get activeDocumentUri(): vscode.Uri | undefined {
+    return CklbEditorProvider._activeDocumentUri;
+  }
+
   public static register(context: vscode.ExtensionContext): vscode.Disposable {
     return vscode.window.registerCustomEditorProvider(
       'stigViewer.cklbEditor',
@@ -39,6 +45,13 @@ export class CklbEditorProvider implements vscode.CustomTextEditorProvider {
     };
 
     updateWebview();
+
+    CklbEditorProvider._activeDocumentUri = document.uri;
+    webviewPanel.onDidChangeViewState(() => {
+      if (webviewPanel.active) {
+        CklbEditorProvider._activeDocumentUri = document.uri;
+      }
+    });
 
     // Undo support — sync webview state when document changes (undo/redo/external)
     let syncTimeout: ReturnType<typeof setTimeout> | undefined;

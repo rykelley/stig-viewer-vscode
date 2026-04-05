@@ -37,14 +37,18 @@ function extractRuleId(idref: string): string {
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-export async function importScapResults(): Promise<void> {
-  // 1. Select the .cklb to update
-  const cklbUris = await vscode.window.showOpenDialog({
-    canSelectMany: false,
-    filters: { 'STIG Checklist': ['cklb'] },
-    title: 'Select checklist to update with SCAP results',
-  });
-  if (!cklbUris?.[0]) return;
+export async function importScapResults(activeCklbUri?: vscode.Uri): Promise<void> {
+  // 1. Use active checklist or ask user to pick one
+  let cklbUri = activeCklbUri;
+  if (!cklbUri) {
+    const uris = await vscode.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { 'STIG Checklist': ['cklb'] },
+      title: 'Select checklist to update with SCAP results',
+    });
+    if (!uris?.[0]) return;
+    cklbUri = uris[0];
+  }
 
   // 2. Select the XCCDF results file
   const xmlUris = await vscode.window.showOpenDialog({
@@ -54,7 +58,7 @@ export async function importScapResults(): Promise<void> {
   });
   if (!xmlUris?.[0]) return;
 
-  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUris[0].fsPath, 'utf-8'));
+  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUri.fsPath, 'utf-8'));
   const xmlContent = fs.readFileSync(xmlUris[0].fsPath, 'utf-8');
 
   const parsed = await parseStringPromise(xmlContent, {
@@ -120,9 +124,9 @@ export async function importScapResults(): Promise<void> {
     }
   }
 
-  fs.writeFileSync(cklbUris[0].fsPath, JSON.stringify(doc, null, 2));
+  fs.writeFileSync(cklbUri.fsPath, JSON.stringify(doc, null, 2));
 
-  await vscode.commands.executeCommand('vscode.openWith', cklbUris[0], 'stigViewer.cklbEditor');
+  await vscode.commands.executeCommand('vscode.openWith', cklbUri, 'stigViewer.cklbEditor');
 
   vscode.window.showInformationMessage(
     `SCAP import: ${updated} rules updated, ${skipped} unmatched`

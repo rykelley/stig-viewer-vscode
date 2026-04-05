@@ -80,14 +80,18 @@ function parseCweId(s: string): number | null {
 
 // ─── Main ───────────────────────────────────────────────────────────────────
 
-export async function importSarif(): Promise<void> {
-  // 1. Select .cklb checklist
-  const cklbUris = await vscode.window.showOpenDialog({
-    canSelectMany: false,
-    filters: { 'STIG Checklist': ['cklb'] },
-    title: 'Select checklist to populate with SARIF findings',
-  });
-  if (!cklbUris?.[0]) return;
+export async function importSarif(activeCklbUri?: vscode.Uri): Promise<void> {
+  // 1. Use active checklist or ask user to pick one
+  let cklbUri = activeCklbUri;
+  if (!cklbUri) {
+    const uris = await vscode.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { 'STIG Checklist': ['cklb'] },
+      title: 'Select checklist to populate with SARIF findings',
+    });
+    if (!uris?.[0]) return;
+    cklbUri = uris[0];
+  }
 
   // 2. Select SARIF file(s)
   const sarifUris = await vscode.window.showOpenDialog({
@@ -97,7 +101,7 @@ export async function importSarif(): Promise<void> {
   });
   if (!sarifUris?.length) return;
 
-  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUris[0].fsPath, 'utf-8'));
+  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUri.fsPath, 'utf-8'));
   const now = new Date().toISOString();
 
   // Flatten all rules for matching
@@ -207,8 +211,8 @@ export async function importSarif(): Promise<void> {
   }
 
   // Save
-  fs.writeFileSync(cklbUris[0].fsPath, JSON.stringify(doc, null, 2));
-  await vscode.commands.executeCommand('vscode.openWith', cklbUris[0], 'stigViewer.cklbEditor');
+  fs.writeFileSync(cklbUri.fsPath, JSON.stringify(doc, null, 2));
+  await vscode.commands.executeCommand('vscode.openWith', cklbUri, 'stigViewer.cklbEditor');
 
   let msg = `SARIF import: ${totalResults} findings processed, ${mappedResults} mapped to ${openCount} rules`;
   if (unmappedCwes.size > 0) {

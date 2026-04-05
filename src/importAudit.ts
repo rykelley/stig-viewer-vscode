@@ -111,14 +111,18 @@ function detectAndParse(data: any): { entries: GenericAuditEntry[]; source: stri
 
 // ─── Main ───────────────────────────────────────────────────────────────────
 
-export async function importAudit(): Promise<void> {
-  // 1. Select .cklb checklist
-  const cklbUris = await vscode.window.showOpenDialog({
-    canSelectMany: false,
-    filters: { 'STIG Checklist': ['cklb'] },
-    title: 'Select checklist to populate with audit findings',
-  });
-  if (!cklbUris?.[0]) return;
+export async function importAudit(activeCklbUri?: vscode.Uri): Promise<void> {
+  // 1. Use active checklist or ask user to pick one
+  let cklbUri = activeCklbUri;
+  if (!cklbUri) {
+    const uris = await vscode.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { 'STIG Checklist': ['cklb'] },
+      title: 'Select checklist to populate with audit findings',
+    });
+    if (!uris?.[0]) return;
+    cklbUri = uris[0];
+  }
 
   // 2. Select audit JSON file
   const auditUris = await vscode.window.showOpenDialog({
@@ -128,7 +132,7 @@ export async function importAudit(): Promise<void> {
   });
   if (!auditUris?.[0]) return;
 
-  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUris[0].fsPath, 'utf-8'));
+  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUri.fsPath, 'utf-8'));
   const auditData = JSON.parse(fs.readFileSync(auditUris[0].fsPath, 'utf-8'));
 
   const { entries, source } = detectAndParse(auditData);
@@ -188,8 +192,8 @@ export async function importAudit(): Promise<void> {
     }
   }
 
-  fs.writeFileSync(cklbUris[0].fsPath, JSON.stringify(doc, null, 2));
-  await vscode.commands.executeCommand('vscode.openWith', cklbUris[0], 'stigViewer.cklbEditor');
+  fs.writeFileSync(cklbUri.fsPath, JSON.stringify(doc, null, 2));
+  await vscode.commands.executeCommand('vscode.openWith', cklbUri, 'stigViewer.cklbEditor');
 
   if (matched > 0) {
     vscode.window.showInformationMessage(

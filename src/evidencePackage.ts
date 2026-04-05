@@ -160,17 +160,21 @@ function buildSummaryReport(data: CklbDocument): string {
 
 // ─── Main ───────────────────────────────────────────────────────────────────
 
-export async function exportEvidence(): Promise<void> {
-  // 1. Select .cklb checklist
-  const cklbUris = await vscode.window.showOpenDialog({
-    canSelectMany: false,
-    filters: { 'STIG Checklist': ['cklb'] },
-    title: 'Select checklist to package as evidence',
-  });
-  if (!cklbUris?.[0]) return;
+export async function exportEvidence(activeCklbUri?: vscode.Uri): Promise<void> {
+  // 1. Use active checklist or ask user to pick one
+  let cklbUri = activeCklbUri;
+  if (!cklbUri) {
+    const uris = await vscode.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { 'STIG Checklist': ['cklb'] },
+      title: 'Select checklist to package as evidence',
+    });
+    if (!uris?.[0]) return;
+    cklbUri = uris[0];
+  }
 
-  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUris[0].fsPath, 'utf-8'));
-  const baseName = path.basename(cklbUris[0].fsPath, '.cklb');
+  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUri.fsPath, 'utf-8'));
+  const baseName = path.basename(cklbUri.fsPath, '.cklb');
 
   // Build zip
   const zip = new ZipBuilder();
@@ -202,7 +206,7 @@ export async function exportEvidence(): Promise<void> {
   // Save the zip
   const defaultName = `${baseName}_evidence_${new Date().toISOString().slice(0, 10)}.zip`;
   const saveUri = await vscode.window.showSaveDialog({
-    defaultUri: vscode.Uri.file(path.join(path.dirname(cklbUris[0].fsPath), defaultName)),
+    defaultUri: vscode.Uri.file(path.join(path.dirname(cklbUri.fsPath), defaultName)),
     filters: { 'ZIP Archive': ['zip'] },
     title: 'Save Evidence Package',
   });

@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import { CklbDocument } from './types';
 
-export async function mergeFindings(): Promise<void> {
+export async function mergeFindings(activeCklbUri?: vscode.Uri): Promise<void> {
   // 1. Pick the OLD (completed) checklist
   const oldUris = await vscode.window.showOpenDialog({
     canSelectMany: false,
@@ -11,16 +11,20 @@ export async function mergeFindings(): Promise<void> {
   });
   if (!oldUris?.[0]) { return; }
 
-  // 2. Pick the NEW (blank) checklist
-  const newUris = await vscode.window.showOpenDialog({
-    canSelectMany: false,
-    filters: { 'STIG Checklist': ['cklb'] },
-    title: 'Select NEW checklist to carry findings INTO',
-  });
-  if (!newUris?.[0]) { return; }
+  // 2. Use active checklist as the NEW target, or ask user to pick one
+  let newUri = activeCklbUri;
+  if (!newUri) {
+    const uris = await vscode.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { 'STIG Checklist': ['cklb'] },
+      title: 'Select NEW checklist to carry findings INTO',
+    });
+    if (!uris?.[0]) { return; }
+    newUri = uris[0];
+  }
 
   const oldDoc: CklbDocument = JSON.parse(fs.readFileSync(oldUris[0].fsPath, 'utf-8'));
-  const newDoc: CklbDocument = JSON.parse(fs.readFileSync(newUris[0].fsPath, 'utf-8'));
+  const newDoc: CklbDocument = JSON.parse(fs.readFileSync(newUri.fsPath, 'utf-8'));
 
   // Build lookup from old rules keyed by rule_version (most stable across STIG releases)
   const oldRuleMap = new Map<string, typeof oldDoc.stigs[0]['rules'][0]>();
@@ -62,9 +66,9 @@ export async function mergeFindings(): Promise<void> {
     if (!newRuleVersions.has(rv)) { removed++; }
   }
 
-  fs.writeFileSync(newUris[0].fsPath, JSON.stringify(newDoc, null, 2));
+  fs.writeFileSync(newUri.fsPath, JSON.stringify(newDoc, null, 2));
 
-  await vscode.commands.executeCommand('vscode.openWith', newUris[0], 'stigViewer.cklbEditor');
+  await vscode.commands.executeCommand('vscode.openWith', newUri, 'stigViewer.cklbEditor');
 
   vscode.window.showInformationMessage(
     `Merge complete: ${carried} carried forward, ${newRules} new rules, ${removed} removed from old STIG`

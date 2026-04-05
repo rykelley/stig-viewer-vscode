@@ -80,7 +80,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.importScapResults', async () => {
       try {
-        await importScapResults();
+        await importScapResults(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
         vscode.window.showErrorMessage(`SCAP import failed: ${e}`);
       }
@@ -93,7 +93,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('stigViewer.mergeFindings', async () => {
       if (!await requirePro()) return;
       try {
-        await mergeFindings();
+        await mergeFindings(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
         vscode.window.showErrorMessage(`Merge failed: ${e}`);
       }
@@ -115,7 +115,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('stigViewer.diffChecklists', async () => {
       if (!await requirePro()) return;
       try {
-        await DiffPanel.show();
+        await DiffPanel.show(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
         vscode.window.showErrorMessage(`Diff failed: ${e}`);
       }
@@ -126,7 +126,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('stigViewer.scanRepo', async () => {
       if (!await requirePro()) return;
       try {
-        await scanRepo();
+        await scanRepo(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
         vscode.window.showErrorMessage(`Repo scan failed: ${e}`);
       }
@@ -137,7 +137,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('stigViewer.importSarif', async () => {
       if (!await requirePro()) return;
       try {
-        await importSarif();
+        await importSarif(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
         vscode.window.showErrorMessage(`SARIF import failed: ${e}`);
       }
@@ -148,7 +148,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('stigViewer.importAudit', async () => {
       if (!await requirePro()) return;
       try {
-        await importAudit();
+        await importAudit(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
         vscode.window.showErrorMessage(`Dependency audit import failed: ${e}`);
       }
@@ -159,7 +159,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('stigViewer.exportEvidence', async () => {
       if (!await requirePro()) return;
       try {
-        await exportEvidence();
+        await exportEvidence(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
         vscode.window.showErrorMessage(`Evidence package failed: ${e}`);
       }
