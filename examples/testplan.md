@@ -1,10 +1,9 @@
-# STIG Workbench Pro — Test Plan
+# STIG Workbench — Test Plan
 
-A step-by-step guide to thoroughly test every Pro feature as a real user would.
+A step-by-step guide to exercise the main extension workflows as a real user would.
 
-> **Prerequisites:** Install the extension, activate your Pro license key via  
-> `STIG Workbench: Enter License Key` in the command palette, and have at least one `.cklb` checklist in your workspace.  
-> The **ASD STIG** (Application Security and Development) is the best single STIG for testing since its rules cover code security, dependencies, crypto, auth, etc.
+> **Prerequisites:** Install the extension and have at least one `.cklb` checklist in your workspace.  
+> The **ASD STIG** (Application Security and Development) is a good single STIG for testing since its rules cover code security, dependencies, crypto, auth, etc.
 
 ---
 

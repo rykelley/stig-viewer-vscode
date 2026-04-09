@@ -10,21 +10,9 @@ import { scanRepo } from './repoScanner';
 import { importSarif } from './importSarif';
 import { importAudit } from './importAudit';
 import { exportEvidence } from './evidencePackage';
-import {
-  initLicenseManager,
-  requirePro,
-  enterLicenseKey,
-  showLicenseStatus,
-  removeLicenseKey,
-} from './licenseManager';
 
 export function activate(context: vscode.ExtensionContext) {
-  // Initialize license manager with VS Code's encrypted secret storage
-  initLicenseManager(context.secrets);
-
   context.subscriptions.push(CklbEditorProvider.register(context));
-
-  // ─── Free commands ──────────────────────────────────────────────────
 
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.openFile', async () => {
@@ -87,11 +75,8 @@ export function activate(context: vscode.ExtensionContext) {
     })
   );
 
-  // ─── Pro commands (gated) ───────────────────────────────────────────
-
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.mergeFindings', async () => {
-      if (!await requirePro()) return;
       try {
         await mergeFindings(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
@@ -102,7 +87,6 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.dashboard', async () => {
-      if (!await requirePro()) return;
       try {
         await DashboardPanel.show(context);
       } catch (e) {
@@ -113,7 +97,6 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.diffChecklists', async () => {
-      if (!await requirePro()) return;
       try {
         await DiffPanel.show(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
@@ -124,7 +107,6 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.scanRepo', async () => {
-      if (!await requirePro()) return;
       try {
         await scanRepo(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
@@ -135,7 +117,6 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.importSarif', async () => {
-      if (!await requirePro()) return;
       try {
         await importSarif(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
@@ -146,7 +127,6 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.importAudit', async () => {
-      if (!await requirePro()) return;
       try {
         await importAudit(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
@@ -157,29 +137,12 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('stigViewer.exportEvidence', async () => {
-      if (!await requirePro()) return;
       try {
         await exportEvidence(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
         vscode.window.showErrorMessage(`Evidence package failed: ${e}`);
       }
     })
-  );
-
-  // ─── Pro: POA&M export in webview (CSV is free; see cklbEditorProvider) ──
-
-  // ─── License management commands ────────────────────────────────────
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand('stigViewer.enterLicense', enterLicenseKey)
-  );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand('stigViewer.licenseStatus', showLicenseStatus)
-  );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand('stigViewer.removeLicense', removeLicenseKey)
   );
 }
 
