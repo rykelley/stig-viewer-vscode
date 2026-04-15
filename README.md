@@ -62,6 +62,14 @@ STIG Workbench helps you open and edit `.cklb` checklists; import benchmarks fro
 - **Dependency audit import** — import `npm audit --json`, `pip-audit --format json`, or `bundler-audit` output to auto-populate dependency/third-party component STIG rules. Auto-detects the audit format
 - **Repo scanner** — built-in regex-based scanner with 15+ configurable patterns for hardcoded secrets, SQL injection, XSS, command injection, insecure crypto, debug mode, and more. Bring your own `scan-patterns.json` to customize
 
+### NIST 800-53 Control Crosswalk
+
+- **Crosswalk analysis** — import a CSV of your organization's NIST 800-53 control baseline, and the extension maps those controls against the STIG rules in your checklist via the CCI (Control Correlation Identifier) chain. See which controls are fully satisfied, partially satisfied, at risk, or have no STIG coverage (gaps).
+- **Bundled CCI mapping** — includes 150+ of the most common CCI → NIST 800-53 mappings out of the box. For complete coverage, optionally import DISA's full `U_CCI_List.xml` (available from [cyber.mil](https://public.cyber.mil/stigs/cci/)).
+- **Flexible CSV parsing** — auto-detects the control ID column regardless of header names; handles base controls (`CM-7`) and enhancements (`CM-7 (1)`); works with eMASS exports, NIST spreadsheets, or simple hand-typed CSVs.
+- **Interactive panel** — summary cards, status/family/text filters, sortable columns, expandable rows with per-rule detail and CCI linkage.
+- **Crosswalk CSV export** — one-click export of the full crosswalk report with control status, rule counts, and mapped rule details.
+
 ### Evidence & Deliverables
 
 - **Evidence package builder** — export a complete ATO evidence zip containing: the `.cklb` checklist, `.ckl` XML export, summary CSV, POA&M CSV, a text summary report, and optionally attached screenshots or scan reports
@@ -85,6 +93,7 @@ All commands are available from the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift
 | `STIG Workbench: Import Dependency Audit` | Import npm audit / pip-audit JSON |
 | `STIG Workbench: Scan Repo Against Checklist` | Run built-in regex scanner on a codebase |
 | `STIG Workbench: Export Evidence Package` | Bundle checklist + exports + evidence into a zip |
+| `STIG Workbench: NIST 800-53 Crosswalk` | Map NIST controls to STIG rules via CCI and show coverage |
 
 **Context menus:**
 
@@ -157,6 +166,46 @@ Press **F5** to launch an Extension Development Host. Open the included `samples
 6. Use the repo scanner for additional pattern checks: `STIG Workbench: Scan Repo Against Checklist`
 7. Review remaining `Not Reviewed` rules manually
 8. Export the evidence package: `STIG Workbench: Export Evidence Package`
+
+### Running a NIST 800-53 control crosswalk
+
+The crosswalk maps your organization's NIST 800-53 control baseline against the STIG rules in a checklist using DISA's CCI (Control Correlation Identifier) chain:  
+`STIG Rule → CCI → NIST 800-53 Control`.
+
+1. Open a `.cklb` checklist (or have one active in the editor)
+2. Run **`STIG Workbench: NIST 800-53 Crosswalk`** from the Command Palette
+3. If no checklist is active, you'll be prompted to select one
+4. Select your **NIST 800-53 controls CSV** — this is your organization's applicable control baseline. The CSV just needs a column with control IDs (e.g. `AC-2`, `CM-7`, `SI-10 (1)`). The parser auto-detects the right column, so exports from eMASS, NIST spreadsheets, or a simple hand-typed file all work:
+
+   ```csv
+   Control ID,Title,Family
+   AC-2,Account Management,Access Control
+   CM-7,Least Functionality,Configuration Management
+   SI-10,Information Input Validation,System and Information Integrity
+   ```
+
+5. Choose whether to **use the bundled CCI mapping** (covers the most common CCIs out of the box) or **import the full `U_CCI_List.xml`** from [public.cyber.mil/stigs/cci/](https://public.cyber.mil/stigs/cci/) for complete coverage
+6. The crosswalk panel opens with:
+   - **Summary cards** — total controls, covered, gaps, fully satisfied, at risk, and coverage percentage
+   - **Crosswalk table** — each NIST control shows its status, mapped STIG rule count, and pass/open/NR breakdown
+   - **Expandable detail** — click any row to see the individual STIG rules, their severity and status, and the CCIs that created the mapping
+7. Use the **filter bar** to narrow by status (Gaps, At Risk, Partially Satisfied, Fully Satisfied), NIST family, or free-text search
+8. Click **Export Crosswalk CSV** to save the full report for inclusion in your security authorization package
+
+**How control statuses are determined:**
+
+| Status | Meaning |
+| ------ | ------- |
+| **Fully Satisfied** | All mapped STIG rules are Not a Finding or Not Applicable |
+| **Partially Satisfied** | At least one mapped rule is passing, but others are Open or Not Reviewed |
+| **At Risk** | All mapped rules are Open or Not Reviewed |
+| **Not Covered (Gap)** | No STIG rules in this checklist map to this control — it may be addressed by other STIGs or non-STIG evidence |
+
+**Tips:**
+
+- If you import only base controls (e.g. `CM-7`), the crosswalk rolls up coverage from enhancement CCIs too (e.g. rules mapped to `CM-7 (1)` count under `CM-7`)
+- If you import specific enhancements (e.g. `CM-7 (1)`), only exact matches are shown
+- An info message tells you how many CCIs couldn't be mapped — importing the full XML eliminates these gaps
 
 ### Generating deliverables
 
@@ -233,6 +282,9 @@ src/
   cweStigMap.ts           # CWE ID → STIG rule keyword mapping table
   repoScanner.ts          # Regex-based repo scanner
   evidencePackage.ts      # Evidence zip builder
+  cciNistMap.ts           # CCI → NIST 800-53 bundled mapping + XML parser
+  nistCrosswalk.ts        # NIST 800-53 crosswalk analysis engine + CSV parser
+  crosswalkPanel.ts       # NIST crosswalk WebviewPanel UI
 ```
 
 The extension uses VS Code's **Custom Text Editor API**. The `.cklb` file stays a text document — status changes write back via `WorkspaceEdit`, so Cmd+S / Ctrl+S and undo/redo work naturally.

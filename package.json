@@ -79,6 +79,10 @@
       {
         "command": "stigViewer.exportEvidence",
         "title": "STIG Workbench: Export Evidence Package"
+      },
+      {
+        "command": "stigViewer.nistCrosswalk",
+        "title": "STIG Workbench: NIST 800-53 Crosswalk"
       }
     ],
     "menus": {

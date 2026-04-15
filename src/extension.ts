@@ -10,6 +10,7 @@ import { scanRepo } from './repoScanner';
 import { importSarif } from './importSarif';
 import { importAudit } from './importAudit';
 import { exportEvidence } from './evidencePackage';
+import { CrosswalkPanel } from './crosswalkPanel';
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(CklbEditorProvider.register(context));
@@ -141,6 +142,16 @@ export function activate(context: vscode.ExtensionContext) {
         await exportEvidence(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
         vscode.window.showErrorMessage(`Evidence package failed: ${e}`);
+      }
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.nistCrosswalk', async () => {
+      try {
+        await CrosswalkPanel.show(CklbEditorProvider.activeDocumentUri);
+      } catch (e) {
+        vscode.window.showErrorMessage(`NIST crosswalk failed: ${e}`);
       }
     })
   );

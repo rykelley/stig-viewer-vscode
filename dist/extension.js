@@ -1,41 +1,6133 @@
-"use strict";var Gn=Object.create;var Yt=Object.defineProperty;var zn=Object.getOwnPropertyDescriptor;var Wn=Object.getOwnPropertyNames;var Hn=Object.getPrototypeOf,Kn=Object.prototype.hasOwnProperty;var B=(e,t)=>()=>(t||e((t={exports:{}}).exports,t),t.exports),Yn=(e,t)=>{for(var a in t)Yt(e,a,{get:t[a],enumerable:!0})},Qe=(e,t,a,b)=>{if(t&&typeof t=="object"||typeof t=="function")for(let o of Wn(t))!Kn.call(e,o)&&o!==a&&Yt(e,o,{get:()=>t[o],enumerable:!(b=zn(t,o))||b.enumerable});return e};var j=(e,t,a)=>(a=e!=null?Gn(Hn(e)):{},Qe(t||!e||!e.__esModule?Yt(a,"default",{value:e,enumerable:!0}):a,e)),Jn=e=>Qe(Yt({},"__esModule",{value:!0}),e);var ee=B(Le=>{(function(){Le.defaults={"0.1":{explicitCharkey:!1,trim:!0,normalize:!0,normalizeTags:!1,attrkey:"@",charkey:"#",explicitArray:!1,ignoreAttrs:!1,mergeAttrs:!1,explicitRoot:!1,validator:null,xmlns:!1,explicitChildren:!1,childkey:"@@",charsAsChildren:!1,includeWhiteChars:!1,async:!1,strict:!0,attrNameProcessors:null,attrValueProcessors:null,tagNameProcessors:null,valueProcessors:null,emptyTag:""},"0.2":{explicitCharkey:!1,trim:!1,normalize:!1,normalizeTags:!1,attrkey:"$",charkey:"_",explicitArray:!0,ignoreAttrs:!1,mergeAttrs:!1,explicitRoot:!0,validator:null,xmlns:!1,explicitChildren:!1,preserveChildrenOrder:!1,childkey:"$$",charsAsChildren:!1,includeWhiteChars:!1,async:!1,strict:!0,attrNameProcessors:null,attrValueProcessors:null,tagNameProcessors:null,valueProcessors:null,rootName:"root",xmldec:{version:"1.0",encoding:"UTF-8",standalone:!0},doctype:null,renderOpts:{pretty:!0,indent:"  ",newline:`
-`},headless:!1,chunkSize:1e4,emptyTag:"",cdata:!1}}}).call(Le)});var ht=B((nr,vt)=>{(function(){var e,t,a,b,o,p,c,l=[].slice,d={}.hasOwnProperty;e=function(){var m,T,_,w,h,v;if(v=arguments[0],h=2<=arguments.length?l.call(arguments,1):[],o(Object.assign))Object.assign.apply(null,arguments);else for(m=0,_=h.length;m<_;m++)if(w=h[m],w!=null)for(T in w)d.call(w,T)&&(v[T]=w[T]);return v},o=function(m){return!!m&&Object.prototype.toString.call(m)==="[object Function]"},p=function(m){var T;return!!m&&((T=typeof m)=="function"||T==="object")},a=function(m){return o(Array.isArray)?Array.isArray(m):Object.prototype.toString.call(m)==="[object Array]"},b=function(m){var T;if(a(m))return!m.length;for(T in m)if(d.call(m,T))return!1;return!0},c=function(m){var T,_;return p(m)&&(_=Object.getPrototypeOf(m))&&(T=_.constructor)&&typeof T=="function"&&T instanceof T&&Function.prototype.toString.call(T)===Function.prototype.toString.call(Object)},t=function(m){return o(m.valueOf)?m.valueOf():m},vt.exports.assign=e,vt.exports.isFunction=o,vt.exports.isObject=p,vt.exports.isArray=a,vt.exports.isEmpty=b,vt.exports.isPlainObject=c,vt.exports.getValue=t}).call(nr)});var Pe=B((ir,or)=>{(function(){var e;or.exports=e=(function(){function t(){}return t.prototype.hasFeature=function(a,b){return!0},t.prototype.createDocumentType=function(a,b,o){throw new Error("This DOM method is not implemented.")},t.prototype.createDocument=function(a,b,o){throw new Error("This DOM method is not implemented.")},t.prototype.createHTMLDocument=function(a){throw new Error("This DOM method is not implemented.")},t.prototype.getFeature=function(a,b){throw new Error("This DOM method is not implemented.")},t})()}).call(ir)});var cr=B((sr,ar)=>{(function(){var e;ar.exports=e=(function(){function t(){}return t.prototype.handleError=function(a){throw new Error(a)},t})()}).call(sr)});var dr=B((lr,ur)=>{(function(){var e;ur.exports=e=(function(){function t(a){this.arr=a||[]}return Object.defineProperty(t.prototype,"length",{get:function(){return this.arr.length}}),t.prototype.item=function(a){return this.arr[a]||null},t.prototype.contains=function(a){return this.arr.indexOf(a)!==-1},t})()}).call(lr)});var hr=B((pr,fr)=>{(function(){var e,t,a;t=cr(),a=dr(),fr.exports=e=(function(){function b(){var o;this.defaultParams={"canonical-form":!1,"cdata-sections":!1,comments:!1,"datatype-normalization":!1,"element-content-whitespace":!0,entities:!0,"error-handler":new t,infoset:!0,"validate-if-schema":!1,namespaces:!0,"namespace-declarations":!0,"normalize-characters":!1,"schema-location":"","schema-type":"","split-cdata-sections":!0,validate:!1,"well-formed":!0},this.params=o=Object.create(this.defaultParams)}return Object.defineProperty(b.prototype,"parameterNames",{get:function(){return new a(Object.keys(this.defaultParams))}}),b.prototype.getParameter=function(o){return this.params.hasOwnProperty(o)?this.params[o]:null},b.prototype.canSetParameter=function(o,p){return!0},b.prototype.setParameter=function(o,p){return p!=null?this.params[o]=p:delete this.params[o]},b})()}).call(pr)});var K=B((gr,mr)=>{(function(){mr.exports={Element:1,Attribute:2,Text:3,CData:4,EntityReference:5,EntityDeclaration:6,ProcessingInstruction:7,Comment:8,Document:9,DocType:10,DocumentFragment:11,NotationDeclaration:12,Declaration:201,Raw:202,AttributeDeclaration:203,ElementDeclaration:204,Dummy:205}}).call(gr)});var Me=B((yr,br)=>{(function(){var e,t,a;e=K(),a=st(),br.exports=t=(function(){function b(o,p,c){if(this.parent=o,this.parent&&(this.options=this.parent.options,this.stringify=this.parent.stringify),p==null)throw new Error("Missing attribute name. "+this.debugInfo(p));this.name=this.stringify.name(p),this.value=this.stringify.attValue(c),this.type=e.Attribute,this.isId=!1,this.schemaTypeInfo=null}return Object.defineProperty(b.prototype,"nodeType",{get:function(){return this.type}}),Object.defineProperty(b.prototype,"ownerElement",{get:function(){return this.parent}}),Object.defineProperty(b.prototype,"textContent",{get:function(){return this.value},set:function(o){return this.value=o||""}}),Object.defineProperty(b.prototype,"namespaceURI",{get:function(){return""}}),Object.defineProperty(b.prototype,"prefix",{get:function(){return""}}),Object.defineProperty(b.prototype,"localName",{get:function(){return this.name}}),Object.defineProperty(b.prototype,"specified",{get:function(){return!0}}),b.prototype.clone=function(){return Object.create(this)},b.prototype.toString=function(o){return this.options.writer.attribute(this,this.options.writer.filterOptions(o))},b.prototype.debugInfo=function(o){return o=o||this.name,o==null?"parent: <"+this.parent.name+">":"attribute: {"+o+"}, parent: <"+this.parent.name+">"},b.prototype.isEqualNode=function(o){return!(o.namespaceURI!==this.namespaceURI||o.prefix!==this.prefix||o.localName!==this.localName||o.value!==this.value)},b})()}).call(yr)});var re=B((wr,vr)=>{(function(){var e;vr.exports=e=(function(){function t(a){this.nodes=a}return Object.defineProperty(t.prototype,"length",{get:function(){return Object.keys(this.nodes).length||0}}),t.prototype.clone=function(){return this.nodes=null},t.prototype.getNamedItem=function(a){return this.nodes[a]},t.prototype.setNamedItem=function(a){var b;return b=this.nodes[a.nodeName],this.nodes[a.nodeName]=a,b||null},t.prototype.removeNamedItem=function(a){var b;return b=this.nodes[a],delete this.nodes[a],b||null},t.prototype.item=function(a){return this.nodes[Object.keys(this.nodes)[a]]||null},t.prototype.getNamedItemNS=function(a,b){throw new Error("This DOM method is not implemented.")},t.prototype.setNamedItemNS=function(a){throw new Error("This DOM method is not implemented.")},t.prototype.removeNamedItemNS=function(a,b){throw new Error("This DOM method is not implemented.")},t})()}).call(wr)});var ne=B((_r,Tr)=>{(function(){var e,t,a,b,o,p,c,l,d,m=function(_,w){for(var h in w)T.call(w,h)&&(_[h]=w[h]);function v(){this.constructor=_}return v.prototype=w.prototype,_.prototype=new v,_.__super__=w.prototype,_},T={}.hasOwnProperty;d=ht(),l=d.isObject,c=d.isFunction,p=d.getValue,o=st(),e=K(),t=Me(),b=re(),Tr.exports=a=(function(_){m(w,_);function w(h,v,E){var k,N,I,f;if(w.__super__.constructor.call(this,h),v==null)throw new Error("Missing element name. "+this.debugInfo());if(this.name=this.stringify.name(v),this.type=e.Element,this.attribs={},this.schemaTypeInfo=null,E!=null&&this.attribute(E),h.type===e.Document&&(this.isRoot=!0,this.documentObject=h,h.rootObject=this,h.children)){for(f=h.children,N=0,I=f.length;N<I;N++)if(k=f[N],k.type===e.DocType){k.name=this.name;break}}}return Object.defineProperty(w.prototype,"tagName",{get:function(){return this.name}}),Object.defineProperty(w.prototype,"namespaceURI",{get:function(){return""}}),Object.defineProperty(w.prototype,"prefix",{get:function(){return""}}),Object.defineProperty(w.prototype,"localName",{get:function(){return this.name}}),Object.defineProperty(w.prototype,"id",{get:function(){throw new Error("This DOM method is not implemented."+this.debugInfo())}}),Object.defineProperty(w.prototype,"className",{get:function(){throw new Error("This DOM method is not implemented."+this.debugInfo())}}),Object.defineProperty(w.prototype,"classList",{get:function(){throw new Error("This DOM method is not implemented."+this.debugInfo())}}),Object.defineProperty(w.prototype,"attributes",{get:function(){return(!this.attributeMap||!this.attributeMap.nodes)&&(this.attributeMap=new b(this.attribs)),this.attributeMap}}),w.prototype.clone=function(){var h,v,E,k;E=Object.create(this),E.isRoot&&(E.documentObject=null),E.attribs={},k=this.attribs;for(v in k)T.call(k,v)&&(h=k[v],E.attribs[v]=h.clone());return E.children=[],this.children.forEach(function(N){var I;return I=N.clone(),I.parent=E,E.children.push(I)}),E},w.prototype.attribute=function(h,v){var E,k;if(h!=null&&(h=p(h)),l(h))for(E in h)T.call(h,E)&&(k=h[E],this.attribute(E,k));else c(v)&&(v=v.apply()),this.options.keepNullAttributes&&v==null?this.attribs[h]=new t(this,h,""):v!=null&&(this.attribs[h]=new t(this,h,v));return this},w.prototype.removeAttribute=function(h){var v,E,k;if(h==null)throw new Error("Missing attribute name. "+this.debugInfo());if(h=p(h),Array.isArray(h))for(E=0,k=h.length;E<k;E++)v=h[E],delete this.attribs[v];else delete this.attribs[h];return this},w.prototype.toString=function(h){return this.options.writer.element(this,this.options.writer.filterOptions(h))},w.prototype.att=function(h,v){return this.attribute(h,v)},w.prototype.a=function(h,v){return this.attribute(h,v)},w.prototype.getAttribute=function(h){return this.attribs.hasOwnProperty(h)?this.attribs[h].value:null},w.prototype.setAttribute=function(h,v){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.getAttributeNode=function(h){return this.attribs.hasOwnProperty(h)?this.attribs[h]:null},w.prototype.setAttributeNode=function(h){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.removeAttributeNode=function(h){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.getElementsByTagName=function(h){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.getAttributeNS=function(h,v){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.setAttributeNS=function(h,v,E){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.removeAttributeNS=function(h,v){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.getAttributeNodeNS=function(h,v){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.setAttributeNodeNS=function(h){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.getElementsByTagNameNS=function(h,v){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.hasAttribute=function(h){return this.attribs.hasOwnProperty(h)},w.prototype.hasAttributeNS=function(h,v){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.setIdAttribute=function(h,v){return this.attribs.hasOwnProperty(h)?this.attribs[h].isId:v},w.prototype.setIdAttributeNS=function(h,v,E){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.setIdAttributeNode=function(h,v){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.getElementsByTagName=function(h){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.getElementsByTagNameNS=function(h,v){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.getElementsByClassName=function(h){throw new Error("This DOM method is not implemented."+this.debugInfo())},w.prototype.isEqualNode=function(h){var v,E,k;if(!w.__super__.isEqualNode.apply(this,arguments).isEqualNode(h)||h.namespaceURI!==this.namespaceURI||h.prefix!==this.prefix||h.localName!==this.localName||h.attribs.length!==this.attribs.length)return!1;for(v=E=0,k=this.attribs.length-1;0<=k?E<=k:E>=k;v=0<=k?++E:--E)if(!this.attribs[v].isEqualNode(h.attribs[v]))return!1;return!0},w})(o)}).call(_r)});var Ut=B((Ir,Er)=>{(function(){var e,t,a=function(o,p){for(var c in p)b.call(p,c)&&(o[c]=p[c]);function l(){this.constructor=o}return l.prototype=p.prototype,o.prototype=new l,o.__super__=p.prototype,o},b={}.hasOwnProperty;t=st(),Er.exports=e=(function(o){a(p,o);function p(c){p.__super__.constructor.call(this,c),this.value=""}return Object.defineProperty(p.prototype,"data",{get:function(){return this.value},set:function(c){return this.value=c||""}}),Object.defineProperty(p.prototype,"length",{get:function(){return this.value.length}}),Object.defineProperty(p.prototype,"textContent",{get:function(){return this.value},set:function(c){return this.value=c||""}}),p.prototype.clone=function(){return Object.create(this)},p.prototype.substringData=function(c,l){throw new Error("This DOM method is not implemented."+this.debugInfo())},p.prototype.appendData=function(c){throw new Error("This DOM method is not implemented."+this.debugInfo())},p.prototype.insertData=function(c,l){throw new Error("This DOM method is not implemented."+this.debugInfo())},p.prototype.deleteData=function(c,l){throw new Error("This DOM method is not implemented."+this.debugInfo())},p.prototype.replaceData=function(c,l,d){throw new Error("This DOM method is not implemented."+this.debugInfo())},p.prototype.isEqualNode=function(c){return!(!p.__super__.isEqualNode.apply(this,arguments).isEqualNode(c)||c.data!==this.data)},p})(t)}).call(Ir)});var ie=B((xr,Cr)=>{(function(){var e,t,a,b=function(p,c){for(var l in c)o.call(c,l)&&(p[l]=c[l]);function d(){this.constructor=p}return d.prototype=c.prototype,p.prototype=new d,p.__super__=c.prototype,p},o={}.hasOwnProperty;e=K(),a=Ut(),Cr.exports=t=(function(p){b(c,p);function c(l,d){if(c.__super__.constructor.call(this,l),d==null)throw new Error("Missing CDATA text. "+this.debugInfo());this.name="#cdata-section",this.type=e.CData,this.value=this.stringify.cdata(d)}return c.prototype.clone=function(){return Object.create(this)},c.prototype.toString=function(l){return this.options.writer.cdata(this,this.options.writer.filterOptions(l))},c})(a)}).call(xr)});var oe=B((Dr,Sr)=>{(function(){var e,t,a,b=function(p,c){for(var l in c)o.call(c,l)&&(p[l]=c[l]);function d(){this.constructor=p}return d.prototype=c.prototype,p.prototype=new d,p.__super__=c.prototype,p},o={}.hasOwnProperty;e=K(),t=Ut(),Sr.exports=a=(function(p){b(c,p);function c(l,d){if(c.__super__.constructor.call(this,l),d==null)throw new Error("Missing comment text. "+this.debugInfo());this.name="#comment",this.type=e.Comment,this.value=this.stringify.comment(d)}return c.prototype.clone=function(){return Object.create(this)},c.prototype.toString=function(l){return this.options.writer.comment(this,this.options.writer.filterOptions(l))},c})(t)}).call(Dr)});var se=B((Nr,Ar)=>{(function(){var e,t,a,b,o=function(c,l){for(var d in l)p.call(l,d)&&(c[d]=l[d]);function m(){this.constructor=c}return m.prototype=l.prototype,c.prototype=new m,c.__super__=l.prototype,c},p={}.hasOwnProperty;b=ht().isObject,a=st(),e=K(),Ar.exports=t=(function(c){o(l,c);function l(d,m,T,_){var w;l.__super__.constructor.call(this,d),b(m)&&(w=m,m=w.version,T=w.encoding,_=w.standalone),m||(m="1.0"),this.type=e.Declaration,this.version=this.stringify.xmlVersion(m),T!=null&&(this.encoding=this.stringify.xmlEncoding(T)),_!=null&&(this.standalone=this.stringify.xmlStandalone(_))}return l.prototype.toString=function(d){return this.options.writer.declaration(this,this.options.writer.filterOptions(d))},l})(a)}).call(Nr)});var ae=B((kr,Or)=>{(function(){var e,t,a,b=function(p,c){for(var l in c)o.call(c,l)&&(p[l]=c[l]);function d(){this.constructor=p}return d.prototype=c.prototype,p.prototype=new d,p.__super__=c.prototype,p},o={}.hasOwnProperty;a=st(),e=K(),Or.exports=t=(function(p){b(c,p);function c(l,d,m,T,_,w){if(c.__super__.constructor.call(this,l),d==null)throw new Error("Missing DTD element name. "+this.debugInfo());if(m==null)throw new Error("Missing DTD attribute name. "+this.debugInfo(d));if(!T)throw new Error("Missing DTD attribute type. "+this.debugInfo(d));if(!_)throw new Error("Missing DTD attribute default. "+this.debugInfo(d));if(_.indexOf("#")!==0&&(_="#"+_),!_.match(/^(#REQUIRED|#IMPLIED|#FIXED|#DEFAULT)$/))throw new Error("Invalid default value type; expected: #REQUIRED, #IMPLIED, #FIXED or #DEFAULT. "+this.debugInfo(d));if(w&&!_.match(/^(#FIXED|#DEFAULT)$/))throw new Error("Default value only applies to #FIXED or #DEFAULT. "+this.debugInfo(d));this.elementName=this.stringify.name(d),this.type=e.AttributeDeclaration,this.attributeName=this.stringify.name(m),this.attributeType=this.stringify.dtdAttType(T),w&&(this.defaultValue=this.stringify.dtdAttDefault(w)),this.defaultValueType=_}return c.prototype.toString=function(l){return this.options.writer.dtdAttList(this,this.options.writer.filterOptions(l))},c})(a)}).call(kr)});var ce=B((Lr,Pr)=>{(function(){var e,t,a,b,o=function(c,l){for(var d in l)p.call(l,d)&&(c[d]=l[d]);function m(){this.constructor=c}return m.prototype=l.prototype,c.prototype=new m,c.__super__=l.prototype,c},p={}.hasOwnProperty;b=ht().isObject,a=st(),e=K(),Pr.exports=t=(function(c){o(l,c);function l(d,m,T,_){if(l.__super__.constructor.call(this,d),T==null)throw new Error("Missing DTD entity name. "+this.debugInfo(T));if(_==null)throw new Error("Missing DTD entity value. "+this.debugInfo(T));if(this.pe=!!m,this.name=this.stringify.name(T),this.type=e.EntityDeclaration,!b(_))this.value=this.stringify.dtdEntityValue(_),this.internal=!0;else{if(!_.pubID&&!_.sysID)throw new Error("Public and/or system identifiers are required for an external entity. "+this.debugInfo(T));if(_.pubID&&!_.sysID)throw new Error("System identifier is required for a public external entity. "+this.debugInfo(T));if(this.internal=!1,_.pubID!=null&&(this.pubID=this.stringify.dtdPubID(_.pubID)),_.sysID!=null&&(this.sysID=this.stringify.dtdSysID(_.sysID)),_.nData!=null&&(this.nData=this.stringify.dtdNData(_.nData)),this.pe&&this.nData)throw new Error("Notation declaration is not allowed in a parameter entity. "+this.debugInfo(T))}}return Object.defineProperty(l.prototype,"publicId",{get:function(){return this.pubID}}),Object.defineProperty(l.prototype,"systemId",{get:function(){return this.sysID}}),Object.defineProperty(l.prototype,"notationName",{get:function(){return this.nData||null}}),Object.defineProperty(l.prototype,"inputEncoding",{get:function(){return null}}),Object.defineProperty(l.prototype,"xmlEncoding",{get:function(){return null}}),Object.defineProperty(l.prototype,"xmlVersion",{get:function(){return null}}),l.prototype.toString=function(d){return this.options.writer.dtdEntity(this,this.options.writer.filterOptions(d))},l})(a)}).call(Lr)});var le=B((Mr,Rr)=>{(function(){var e,t,a,b=function(p,c){for(var l in c)o.call(c,l)&&(p[l]=c[l]);function d(){this.constructor=p}return d.prototype=c.prototype,p.prototype=new d,p.__super__=c.prototype,p},o={}.hasOwnProperty;a=st(),e=K(),Rr.exports=t=(function(p){b(c,p);function c(l,d,m){if(c.__super__.constructor.call(this,l),d==null)throw new Error("Missing DTD element name. "+this.debugInfo());m||(m="(#PCDATA)"),Array.isArray(m)&&(m="("+m.join(",")+")"),this.name=this.stringify.name(d),this.type=e.ElementDeclaration,this.value=this.stringify.dtdElementValue(m)}return c.prototype.toString=function(l){return this.options.writer.dtdElement(this,this.options.writer.filterOptions(l))},c})(a)}).call(Mr)});var ue=B((Fr,Br)=>{(function(){var e,t,a,b=function(p,c){for(var l in c)o.call(c,l)&&(p[l]=c[l]);function d(){this.constructor=p}return d.prototype=c.prototype,p.prototype=new d,p.__super__=c.prototype,p},o={}.hasOwnProperty;a=st(),e=K(),Br.exports=t=(function(p){b(c,p);function c(l,d,m){if(c.__super__.constructor.call(this,l),d==null)throw new Error("Missing DTD notation name. "+this.debugInfo(d));if(!m.pubID&&!m.sysID)throw new Error("Public or system identifiers are required for an external entity. "+this.debugInfo(d));this.name=this.stringify.name(d),this.type=e.NotationDeclaration,m.pubID!=null&&(this.pubID=this.stringify.dtdPubID(m.pubID)),m.sysID!=null&&(this.sysID=this.stringify.dtdSysID(m.sysID))}return Object.defineProperty(c.prototype,"publicId",{get:function(){return this.pubID}}),Object.defineProperty(c.prototype,"systemId",{get:function(){return this.sysID}}),c.prototype.toString=function(l){return this.options.writer.dtdNotation(this,this.options.writer.filterOptions(l))},c})(a)}).call(Fr)});var de=B(($r,Ur)=>{(function(){var e,t,a,b,o,p,c,l,d,m=function(_,w){for(var h in w)T.call(w,h)&&(_[h]=w[h]);function v(){this.constructor=_}return v.prototype=w.prototype,_.prototype=new v,_.__super__=w.prototype,_},T={}.hasOwnProperty;d=ht().isObject,l=st(),e=K(),t=ae(),b=ce(),a=le(),o=ue(),c=re(),Ur.exports=p=(function(_){m(w,_);function w(h,v,E){var k,N,I,f,i,n;if(w.__super__.constructor.call(this,h),this.type=e.DocType,h.children){for(f=h.children,N=0,I=f.length;N<I;N++)if(k=f[N],k.type===e.Element){this.name=k.name;break}}this.documentObject=h,d(v)&&(i=v,v=i.pubID,E=i.sysID),E==null&&(n=[v,E],E=n[0],v=n[1]),v!=null&&(this.pubID=this.stringify.dtdPubID(v)),E!=null&&(this.sysID=this.stringify.dtdSysID(E))}return Object.defineProperty(w.prototype,"entities",{get:function(){var h,v,E,k,N;for(k={},N=this.children,v=0,E=N.length;v<E;v++)h=N[v],h.type===e.EntityDeclaration&&!h.pe&&(k[h.name]=h);return new c(k)}}),Object.defineProperty(w.prototype,"notations",{get:function(){var h,v,E,k,N;for(k={},N=this.children,v=0,E=N.length;v<E;v++)h=N[v],h.type===e.NotationDeclaration&&(k[h.name]=h);return new c(k)}}),Object.defineProperty(w.prototype,"publicId",{get:function(){return this.pubID}}),Object.defineProperty(w.prototype,"systemId",{get:function(){return this.sysID}}),Object.defineProperty(w.prototype,"internalSubset",{get:function(){throw new Error("This DOM method is not implemented."+this.debugInfo())}}),w.prototype.element=function(h,v){var E;return E=new a(this,h,v),this.children.push(E),this},w.prototype.attList=function(h,v,E,k,N){var I;return I=new t(this,h,v,E,k,N),this.children.push(I),this},w.prototype.entity=function(h,v){var E;return E=new b(this,!1,h,v),this.children.push(E),this},w.prototype.pEntity=function(h,v){var E;return E=new b(this,!0,h,v),this.children.push(E),this},w.prototype.notation=function(h,v){var E;return E=new o(this,h,v),this.children.push(E),this},w.prototype.toString=function(h){return this.options.writer.docType(this,this.options.writer.filterOptions(h))},w.prototype.ele=function(h,v){return this.element(h,v)},w.prototype.att=function(h,v,E,k,N){return this.attList(h,v,E,k,N)},w.prototype.ent=function(h,v){return this.entity(h,v)},w.prototype.pent=function(h,v){return this.pEntity(h,v)},w.prototype.not=function(h,v){return this.notation(h,v)},w.prototype.up=function(){return this.root()||this.documentObject},w.prototype.isEqualNode=function(h){return!(!w.__super__.isEqualNode.apply(this,arguments).isEqualNode(h)||h.name!==this.name||h.publicId!==this.publicId||h.systemId!==this.systemId)},w})(l)}).call($r)});var pe=B((qr,jr)=>{(function(){var e,t,a,b=function(p,c){for(var l in c)o.call(c,l)&&(p[l]=c[l]);function d(){this.constructor=p}return d.prototype=c.prototype,p.prototype=new d,p.__super__=c.prototype,p},o={}.hasOwnProperty;e=K(),t=st(),jr.exports=a=(function(p){b(c,p);function c(l,d){if(c.__super__.constructor.call(this,l),d==null)throw new Error("Missing raw text. "+this.debugInfo());this.type=e.Raw,this.value=this.stringify.raw(d)}return c.prototype.clone=function(){return Object.create(this)},c.prototype.toString=function(l){return this.options.writer.raw(this,this.options.writer.filterOptions(l))},c})(t)}).call(qr)});var fe=B((Vr,Xr)=>{(function(){var e,t,a,b=function(p,c){for(var l in c)o.call(c,l)&&(p[l]=c[l]);function d(){this.constructor=p}return d.prototype=c.prototype,p.prototype=new d,p.__super__=c.prototype,p},o={}.hasOwnProperty;e=K(),t=Ut(),Xr.exports=a=(function(p){b(c,p);function c(l,d){if(c.__super__.constructor.call(this,l),d==null)throw new Error("Missing element text. "+this.debugInfo());this.name="#text",this.type=e.Text,this.value=this.stringify.text(d)}return Object.defineProperty(c.prototype,"isElementContentWhitespace",{get:function(){throw new Error("This DOM method is not implemented."+this.debugInfo())}}),Object.defineProperty(c.prototype,"wholeText",{get:function(){var l,d,m;for(m="",d=this.previousSibling;d;)m=d.data+m,d=d.previousSibling;for(m+=this.data,l=this.nextSibling;l;)m=m+l.data,l=l.nextSibling;return m}}),c.prototype.clone=function(){return Object.create(this)},c.prototype.toString=function(l){return this.options.writer.text(this,this.options.writer.filterOptions(l))},c.prototype.splitText=function(l){throw new Error("This DOM method is not implemented."+this.debugInfo())},c.prototype.replaceWholeText=function(l){throw new Error("This DOM method is not implemented."+this.debugInfo())},c})(t)}).call(Vr)});var he=B((Gr,zr)=>{(function(){var e,t,a,b=function(p,c){for(var l in c)o.call(c,l)&&(p[l]=c[l]);function d(){this.constructor=p}return d.prototype=c.prototype,p.prototype=new d,p.__super__=c.prototype,p},o={}.hasOwnProperty;e=K(),t=Ut(),zr.exports=a=(function(p){b(c,p);function c(l,d,m){if(c.__super__.constructor.call(this,l),d==null)throw new Error("Missing instruction target. "+this.debugInfo());this.type=e.ProcessingInstruction,this.target=this.stringify.insTarget(d),this.name=this.target,m&&(this.value=this.stringify.insValue(m))}return c.prototype.clone=function(){return Object.create(this)},c.prototype.toString=function(l){return this.options.writer.processingInstruction(this,this.options.writer.filterOptions(l))},c.prototype.isEqualNode=function(l){return!(!c.__super__.isEqualNode.apply(this,arguments).isEqualNode(l)||l.target!==this.target)},c})(t)}).call(Gr)});var Re=B((Wr,Hr)=>{(function(){var e,t,a,b=function(p,c){for(var l in c)o.call(c,l)&&(p[l]=c[l]);function d(){this.constructor=p}return d.prototype=c.prototype,p.prototype=new d,p.__super__=c.prototype,p},o={}.hasOwnProperty;a=st(),e=K(),Hr.exports=t=(function(p){b(c,p);function c(l){c.__super__.constructor.call(this,l),this.type=e.Dummy}return c.prototype.clone=function(){return Object.create(this)},c.prototype.toString=function(l){return""},c})(a)}).call(Wr)});var Jr=B((Kr,Yr)=>{(function(){var e;Yr.exports=e=(function(){function t(a){this.nodes=a}return Object.defineProperty(t.prototype,"length",{get:function(){return this.nodes.length||0}}),t.prototype.clone=function(){return this.nodes=null},t.prototype.item=function(a){return this.nodes[a]||null},t})()}).call(Kr)});var tn=B((Qr,Zr)=>{(function(){Zr.exports={Disconnected:1,Preceding:2,Following:4,Contains:8,ContainedBy:16,ImplementationSpecific:32}}).call(Qr)});var st=B((en,rn)=>{(function(){var e,t,a,b,o,p,c,l,d,m,T,_,w,h,v,E,k,N,I,f={}.hasOwnProperty;I=ht(),N=I.isObject,k=I.isFunction,E=I.isEmpty,v=I.getValue,l=null,a=null,b=null,o=null,p=null,w=null,h=null,_=null,c=null,t=null,T=null,d=null,e=null,rn.exports=m=(function(){function i(n){this.parent=n,this.parent&&(this.options=this.parent.options,this.stringify=this.parent.stringify),this.value=null,this.children=[],this.baseURI=null,l||(l=ne(),a=ie(),b=oe(),o=se(),p=de(),w=pe(),h=fe(),_=he(),c=Re(),t=K(),T=Jr(),d=re(),e=tn())}return Object.defineProperty(i.prototype,"nodeName",{get:function(){return this.name}}),Object.defineProperty(i.prototype,"nodeType",{get:function(){return this.type}}),Object.defineProperty(i.prototype,"nodeValue",{get:function(){return this.value}}),Object.defineProperty(i.prototype,"parentNode",{get:function(){return this.parent}}),Object.defineProperty(i.prototype,"childNodes",{get:function(){return(!this.childNodeList||!this.childNodeList.nodes)&&(this.childNodeList=new T(this.children)),this.childNodeList}}),Object.defineProperty(i.prototype,"firstChild",{get:function(){return this.children[0]||null}}),Object.defineProperty(i.prototype,"lastChild",{get:function(){return this.children[this.children.length-1]||null}}),Object.defineProperty(i.prototype,"previousSibling",{get:function(){var n;return n=this.parent.children.indexOf(this),this.parent.children[n-1]||null}}),Object.defineProperty(i.prototype,"nextSibling",{get:function(){var n;return n=this.parent.children.indexOf(this),this.parent.children[n+1]||null}}),Object.defineProperty(i.prototype,"ownerDocument",{get:function(){return this.document()||null}}),Object.defineProperty(i.prototype,"textContent",{get:function(){var n,y,S,C,u;if(this.nodeType===t.Element||this.nodeType===t.DocumentFragment){for(u="",C=this.children,y=0,S=C.length;y<S;y++)n=C[y],n.textContent&&(u+=n.textContent);return u}else return null},set:function(n){throw new Error("This DOM method is not implemented."+this.debugInfo())}}),i.prototype.setParent=function(n){var y,S,C,u,g;for(this.parent=n,n&&(this.options=n.options,this.stringify=n.stringify),u=this.children,g=[],S=0,C=u.length;S<C;S++)y=u[S],g.push(y.setParent(this));return g},i.prototype.element=function(n,y,S){var C,u,g,D,O,L,R,M,P,F,$;if(L=null,y===null&&S==null&&(P=[{},null],y=P[0],S=P[1]),y==null&&(y={}),y=v(y),N(y)||(F=[y,S],S=F[0],y=F[1]),n!=null&&(n=v(n)),Array.isArray(n))for(g=0,R=n.length;g<R;g++)u=n[g],L=this.element(u);else if(k(n))L=this.element(n.apply());else if(N(n)){for(O in n)if(f.call(n,O))if($=n[O],k($)&&($=$.apply()),!this.options.ignoreDecorators&&this.stringify.convertAttKey&&O.indexOf(this.stringify.convertAttKey)===0)L=this.attribute(O.substr(this.stringify.convertAttKey.length),$);else if(!this.options.separateArrayItems&&Array.isArray($)&&E($))L=this.dummy();else if(N($)&&E($))L=this.element(O);else if(!this.options.keepNullNodes&&$==null)L=this.dummy();else if(!this.options.separateArrayItems&&Array.isArray($))for(D=0,M=$.length;D<M;D++)u=$[D],C={},C[O]=u,L=this.element(C);else N($)?!this.options.ignoreDecorators&&this.stringify.convertTextKey&&O.indexOf(this.stringify.convertTextKey)===0?L=this.element($):(L=this.element(O),L.element($)):L=this.element(O,$)}else!this.options.keepNullNodes&&S===null?L=this.dummy():!this.options.ignoreDecorators&&this.stringify.convertTextKey&&n.indexOf(this.stringify.convertTextKey)===0?L=this.text(S):!this.options.ignoreDecorators&&this.stringify.convertCDataKey&&n.indexOf(this.stringify.convertCDataKey)===0?L=this.cdata(S):!this.options.ignoreDecorators&&this.stringify.convertCommentKey&&n.indexOf(this.stringify.convertCommentKey)===0?L=this.comment(S):!this.options.ignoreDecorators&&this.stringify.convertRawKey&&n.indexOf(this.stringify.convertRawKey)===0?L=this.raw(S):!this.options.ignoreDecorators&&this.stringify.convertPIKey&&n.indexOf(this.stringify.convertPIKey)===0?L=this.instruction(n.substr(this.stringify.convertPIKey.length),S):L=this.node(n,y,S);if(L==null)throw new Error("Could not create any elements with: "+n+". "+this.debugInfo());return L},i.prototype.insertBefore=function(n,y,S){var C,u,g,D,O;if(n?.type)return g=n,D=y,g.setParent(this),D?(u=children.indexOf(D),O=children.splice(u),children.push(g),Array.prototype.push.apply(children,O)):children.push(g),g;if(this.isRoot)throw new Error("Cannot insert elements at root level. "+this.debugInfo(n));return u=this.parent.children.indexOf(this),O=this.parent.children.splice(u),C=this.parent.element(n,y,S),Array.prototype.push.apply(this.parent.children,O),C},i.prototype.insertAfter=function(n,y,S){var C,u,g;if(this.isRoot)throw new Error("Cannot insert elements at root level. "+this.debugInfo(n));return u=this.parent.children.indexOf(this),g=this.parent.children.splice(u+1),C=this.parent.element(n,y,S),Array.prototype.push.apply(this.parent.children,g),C},i.prototype.remove=function(){var n,y;if(this.isRoot)throw new Error("Cannot remove the root element. "+this.debugInfo());return n=this.parent.children.indexOf(this),[].splice.apply(this.parent.children,[n,n-n+1].concat(y=[])),this.parent},i.prototype.node=function(n,y,S){var C,u;return n!=null&&(n=v(n)),y||(y={}),y=v(y),N(y)||(u=[y,S],S=u[0],y=u[1]),C=new l(this,n,y),S!=null&&C.text(S),this.children.push(C),C},i.prototype.text=function(n){var y;return N(n)&&this.element(n),y=new h(this,n),this.children.push(y),this},i.prototype.cdata=function(n){var y;return y=new a(this,n),this.children.push(y),this},i.prototype.comment=function(n){var y;return y=new b(this,n),this.children.push(y),this},i.prototype.commentBefore=function(n){var y,S,C;return S=this.parent.children.indexOf(this),C=this.parent.children.splice(S),y=this.parent.comment(n),Array.prototype.push.apply(this.parent.children,C),this},i.prototype.commentAfter=function(n){var y,S,C;return S=this.parent.children.indexOf(this),C=this.parent.children.splice(S+1),y=this.parent.comment(n),Array.prototype.push.apply(this.parent.children,C),this},i.prototype.raw=function(n){var y;return y=new w(this,n),this.children.push(y),this},i.prototype.dummy=function(){var n;return n=new c(this),n},i.prototype.instruction=function(n,y){var S,C,u,g,D;if(n!=null&&(n=v(n)),y!=null&&(y=v(y)),Array.isArray(n))for(g=0,D=n.length;g<D;g++)S=n[g],this.instruction(S);else if(N(n))for(S in n)f.call(n,S)&&(C=n[S],this.instruction(S,C));else k(y)&&(y=y.apply()),u=new _(this,n,y),this.children.push(u);return this},i.prototype.instructionBefore=function(n,y){var S,C,u;return C=this.parent.children.indexOf(this),u=this.parent.children.splice(C),S=this.parent.instruction(n,y),Array.prototype.push.apply(this.parent.children,u),this},i.prototype.instructionAfter=function(n,y){var S,C,u;return C=this.parent.children.indexOf(this),u=this.parent.children.splice(C+1),S=this.parent.instruction(n,y),Array.prototype.push.apply(this.parent.children,u),this},i.prototype.declaration=function(n,y,S){var C,u;return C=this.document(),u=new o(C,n,y,S),C.children.length===0?C.children.unshift(u):C.children[0].type===t.Declaration?C.children[0]=u:C.children.unshift(u),C.root()||C},i.prototype.dtd=function(n,y){var S,C,u,g,D,O,L,R,M,P;for(C=this.document(),u=new p(C,n,y),M=C.children,g=D=0,L=M.length;D<L;g=++D)if(S=M[g],S.type===t.DocType)return C.children[g]=u,u;for(P=C.children,g=O=0,R=P.length;O<R;g=++O)if(S=P[g],S.isRoot)return C.children.splice(g,0,u),u;return C.children.push(u),u},i.prototype.up=function(){if(this.isRoot)throw new Error("The root node has no parent. Use doc() if you need to get the document object.");return this.parent},i.prototype.root=function(){var n;for(n=this;n;){if(n.type===t.Document)return n.rootObject;if(n.isRoot)return n;n=n.parent}},i.prototype.document=function(){var n;for(n=this;n;){if(n.type===t.Document)return n;n=n.parent}},i.prototype.end=function(n){return this.document().end(n)},i.prototype.prev=function(){var n;if(n=this.parent.children.indexOf(this),n<1)throw new Error("Already at the first node. "+this.debugInfo());return this.parent.children[n-1]},i.prototype.next=function(){var n;if(n=this.parent.children.indexOf(this),n===-1||n===this.parent.children.length-1)throw new Error("Already at the last node. "+this.debugInfo());return this.parent.children[n+1]},i.prototype.importDocument=function(n){var y;return y=n.root().clone(),y.parent=this,y.isRoot=!1,this.children.push(y),this},i.prototype.debugInfo=function(n){var y,S;return n=n||this.name,n==null&&!((y=this.parent)!=null&&y.name)?"":n==null?"parent: <"+this.parent.name+">":(S=this.parent)!=null&&S.name?"node: <"+n+">, parent: <"+this.parent.name+">":"node: <"+n+">"},i.prototype.ele=function(n,y,S){return this.element(n,y,S)},i.prototype.nod=function(n,y,S){return this.node(n,y,S)},i.prototype.txt=function(n){return this.text(n)},i.prototype.dat=function(n){return this.cdata(n)},i.prototype.com=function(n){return this.comment(n)},i.prototype.ins=function(n,y){return this.instruction(n,y)},i.prototype.doc=function(){return this.document()},i.prototype.dec=function(n,y,S){return this.declaration(n,y,S)},i.prototype.e=function(n,y,S){return this.element(n,y,S)},i.prototype.n=function(n,y,S){return this.node(n,y,S)},i.prototype.t=function(n){return this.text(n)},i.prototype.d=function(n){return this.cdata(n)},i.prototype.c=function(n){return this.comment(n)},i.prototype.r=function(n){return this.raw(n)},i.prototype.i=function(n,y){return this.instruction(n,y)},i.prototype.u=function(){return this.up()},i.prototype.importXMLBuilder=function(n){return this.importDocument(n)},i.prototype.replaceChild=function(n,y){throw new Error("This DOM method is not implemented."+this.debugInfo())},i.prototype.removeChild=function(n){throw new Error("This DOM method is not implemented."+this.debugInfo())},i.prototype.appendChild=function(n){throw new Error("This DOM method is not implemented."+this.debugInfo())},i.prototype.hasChildNodes=function(){return this.children.length!==0},i.prototype.cloneNode=function(n){throw new Error("This DOM method is not implemented."+this.debugInfo())},i.prototype.normalize=function(){throw new Error("This DOM method is not implemented."+this.debugInfo())},i.prototype.isSupported=function(n,y){return!0},i.prototype.hasAttributes=function(){return this.attribs.length!==0},i.prototype.compareDocumentPosition=function(n){var y,S;return y=this,y===n?0:this.document()!==n.document()?(S=e.Disconnected|e.ImplementationSpecific,Math.random()<.5?S|=e.Preceding:S|=e.Following,S):y.isAncestor(n)?e.Contains|e.Preceding:y.isDescendant(n)?e.Contains|e.Following:y.isPreceding(n)?e.Preceding:e.Following},i.prototype.isSameNode=function(n){throw new Error("This DOM method is not implemented."+this.debugInfo())},i.prototype.lookupPrefix=function(n){throw new Error("This DOM method is not implemented."+this.debugInfo())},i.prototype.isDefaultNamespace=function(n){throw new Error("This DOM method is not implemented."+this.debugInfo())},i.prototype.lookupNamespaceURI=function(n){throw new Error("This DOM method is not implemented."+this.debugInfo())},i.prototype.isEqualNode=function(n){var y,S,C;if(n.nodeType!==this.nodeType||n.children.length!==this.children.length)return!1;for(y=S=0,C=this.children.length-1;0<=C?S<=C:S>=C;y=0<=C?++S:--S)if(!this.children[y].isEqualNode(n.children[y]))return!1;return!0},i.prototype.getFeature=function(n,y){throw new Error("This DOM method is not implemented."+this.debugInfo())},i.prototype.setUserData=function(n,y,S){throw new Error("This DOM method is not implemented."+this.debugInfo())},i.prototype.getUserData=function(n){throw new Error("This DOM method is not implemented."+this.debugInfo())},i.prototype.contains=function(n){return n?n===this||this.isDescendant(n):!1},i.prototype.isDescendant=function(n){var y,S,C,u,g;for(g=this.children,C=0,u=g.length;C<u;C++)if(y=g[C],n===y||(S=y.isDescendant(n),S))return!0;return!1},i.prototype.isAncestor=function(n){return n.isDescendant(this)},i.prototype.isPreceding=function(n){var y,S;return y=this.treePosition(n),S=this.treePosition(this),y===-1||S===-1?!1:y<S},i.prototype.isFollowing=function(n){var y,S;return y=this.treePosition(n),S=this.treePosition(this),y===-1||S===-1?!1:y>S},i.prototype.treePosition=function(n){var y,S;return S=0,y=!1,this.foreachTreeNode(this.document(),function(C){if(S++,!y&&C===n)return y=!0}),y?S:-1},i.prototype.foreachTreeNode=function(n,y){var S,C,u,g,D;for(n||(n=this.document()),g=n.children,C=0,u=g.length;C<u;C++){if(S=g[C],D=y(S))return D;if(D=this.foreachTreeNode(S,y),D)return D}},i})()}).call(en)});var Fe=B((nn,on)=>{(function(){var e,t=function(b,o){return function(){return b.apply(o,arguments)}},a={}.hasOwnProperty;on.exports=e=(function(){function b(o){this.assertLegalName=t(this.assertLegalName,this),this.assertLegalChar=t(this.assertLegalChar,this);var p,c,l;o||(o={}),this.options=o,this.options.version||(this.options.version="1.0"),c=o.stringify||{};for(p in c)a.call(c,p)&&(l=c[p],this[p]=l)}return b.prototype.name=function(o){return this.options.noValidation?o:this.assertLegalName(""+o||"")},b.prototype.text=function(o){return this.options.noValidation?o:this.assertLegalChar(this.textEscape(""+o||""))},b.prototype.cdata=function(o){return this.options.noValidation?o:(o=""+o||"",o=o.replace("]]>","]]]]><![CDATA[>"),this.assertLegalChar(o))},b.prototype.comment=function(o){if(this.options.noValidation)return o;if(o=""+o||"",o.match(/--/))throw new Error("Comment text cannot contain double-hypen: "+o);return this.assertLegalChar(o)},b.prototype.raw=function(o){return this.options.noValidation?o:""+o||""},b.prototype.attValue=function(o){return this.options.noValidation?o:this.assertLegalChar(this.attEscape(o=""+o||""))},b.prototype.insTarget=function(o){return this.options.noValidation?o:this.assertLegalChar(""+o||"")},b.prototype.insValue=function(o){if(this.options.noValidation)return o;if(o=""+o||"",o.match(/\?>/))throw new Error("Invalid processing instruction value: "+o);return this.assertLegalChar(o)},b.prototype.xmlVersion=function(o){if(this.options.noValidation)return o;if(o=""+o||"",!o.match(/1\.[0-9]+/))throw new Error("Invalid version number: "+o);return o},b.prototype.xmlEncoding=function(o){if(this.options.noValidation)return o;if(o=""+o||"",!o.match(/^[A-Za-z](?:[A-Za-z0-9._-])*$/))throw new Error("Invalid encoding: "+o);return this.assertLegalChar(o)},b.prototype.xmlStandalone=function(o){return this.options.noValidation?o:o?"yes":"no"},b.prototype.dtdPubID=function(o){return this.options.noValidation?o:this.assertLegalChar(""+o||"")},b.prototype.dtdSysID=function(o){return this.options.noValidation?o:this.assertLegalChar(""+o||"")},b.prototype.dtdElementValue=function(o){return this.options.noValidation?o:this.assertLegalChar(""+o||"")},b.prototype.dtdAttType=function(o){return this.options.noValidation?o:this.assertLegalChar(""+o||"")},b.prototype.dtdAttDefault=function(o){return this.options.noValidation?o:this.assertLegalChar(""+o||"")},b.prototype.dtdEntityValue=function(o){return this.options.noValidation?o:this.assertLegalChar(""+o||"")},b.prototype.dtdNData=function(o){return this.options.noValidation?o:this.assertLegalChar(""+o||"")},b.prototype.convertAttKey="@",b.prototype.convertPIKey="?",b.prototype.convertTextKey="#text",b.prototype.convertCDataKey="#cdata",b.prototype.convertCommentKey="#comment",b.prototype.convertRawKey="#raw",b.prototype.assertLegalChar=function(o){var p,c;if(this.options.noValidation)return o;if(p="",this.options.version==="1.0"){if(p=/[\0-\x08\x0B\f\x0E-\x1F\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/,c=o.match(p))throw new Error("Invalid character in string: "+o+" at index "+c.index)}else if(this.options.version==="1.1"&&(p=/[\0\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/,c=o.match(p)))throw new Error("Invalid character in string: "+o+" at index "+c.index);return o},b.prototype.assertLegalName=function(o){var p;if(this.options.noValidation)return o;if(this.assertLegalChar(o),p=/^([:A-Z_a-z\xC0-\xD6\xD8-\xF6\xF8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]|[\uD800-\uDB7F][\uDC00-\uDFFF])([\x2D\.0-:A-Z_a-z\xB7\xC0-\xD6\xD8-\xF6\xF8-\u037D\u037F-\u1FFF\u200C\u200D\u203F\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]|[\uD800-\uDB7F][\uDC00-\uDFFF])*$/,!o.match(p))throw new Error("Invalid character in name");return o},b.prototype.textEscape=function(o){var p;return this.options.noValidation?o:(p=this.options.noDoubleEncoding?/(?!&\S+;)&/g:/&/g,o.replace(p,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\r/g,"&#xD;"))},b.prototype.attEscape=function(o){var p;return this.options.noValidation?o:(p=this.options.noDoubleEncoding?/(?!&\S+;)&/g:/&/g,o.replace(p,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;").replace(/\t/g,"&#x9;").replace(/\n/g,"&#xA;").replace(/\r/g,"&#xD;"))},b})()}).call(nn)});var qt=B((sn,an)=>{(function(){an.exports={None:0,OpenTag:1,InsideTag:2,CloseTag:3}}).call(sn)});var Be=B((cn,ln)=>{(function(){var e,t,a,b,o,p,c,l,d,m,T,_,w,h,v,E,k,N={}.hasOwnProperty;k=ht().assign,e=K(),d=se(),m=de(),a=ie(),b=oe(),_=ne(),h=pe(),v=fe(),w=he(),T=Re(),o=ae(),p=le(),c=ce(),l=ue(),t=qt(),ln.exports=E=(function(){function I(f){var i,n,y;f||(f={}),this.options=f,n=f.writer||{};for(i in n)N.call(n,i)&&(y=n[i],this["_"+i]=this[i],this[i]=y)}return I.prototype.filterOptions=function(f){var i,n,y,S,C,u,g,D;return f||(f={}),f=k({},this.options,f),i={writer:this},i.pretty=f.pretty||!1,i.allowEmpty=f.allowEmpty||!1,i.indent=(n=f.indent)!=null?n:"  ",i.newline=(y=f.newline)!=null?y:`
-`,i.offset=(S=f.offset)!=null?S:0,i.dontPrettyTextNodes=(C=(u=f.dontPrettyTextNodes)!=null?u:f.dontprettytextnodes)!=null?C:0,i.spaceBeforeSlash=(g=(D=f.spaceBeforeSlash)!=null?D:f.spacebeforeslash)!=null?g:"",i.spaceBeforeSlash===!0&&(i.spaceBeforeSlash=" "),i.suppressPrettyCount=0,i.user={},i.state=t.None,i},I.prototype.indent=function(f,i,n){var y;return!i.pretty||i.suppressPrettyCount?"":i.pretty&&(y=(n||0)+i.offset+1,y>0)?new Array(y).join(i.indent):""},I.prototype.endline=function(f,i,n){return!i.pretty||i.suppressPrettyCount?"":i.newline},I.prototype.attribute=function(f,i,n){var y;return this.openAttribute(f,i,n),y=" "+f.name+'="'+f.value+'"',this.closeAttribute(f,i,n),y},I.prototype.cdata=function(f,i,n){var y;return this.openNode(f,i,n),i.state=t.OpenTag,y=this.indent(f,i,n)+"<![CDATA[",i.state=t.InsideTag,y+=f.value,i.state=t.CloseTag,y+="]]>"+this.endline(f,i,n),i.state=t.None,this.closeNode(f,i,n),y},I.prototype.comment=function(f,i,n){var y;return this.openNode(f,i,n),i.state=t.OpenTag,y=this.indent(f,i,n)+"<!-- ",i.state=t.InsideTag,y+=f.value,i.state=t.CloseTag,y+=" -->"+this.endline(f,i,n),i.state=t.None,this.closeNode(f,i,n),y},I.prototype.declaration=function(f,i,n){var y;return this.openNode(f,i,n),i.state=t.OpenTag,y=this.indent(f,i,n)+"<?xml",i.state=t.InsideTag,y+=' version="'+f.version+'"',f.encoding!=null&&(y+=' encoding="'+f.encoding+'"'),f.standalone!=null&&(y+=' standalone="'+f.standalone+'"'),i.state=t.CloseTag,y+=i.spaceBeforeSlash+"?>",y+=this.endline(f,i,n),i.state=t.None,this.closeNode(f,i,n),y},I.prototype.docType=function(f,i,n){var y,S,C,u,g;if(n||(n=0),this.openNode(f,i,n),i.state=t.OpenTag,u=this.indent(f,i,n),u+="<!DOCTYPE "+f.root().name,f.pubID&&f.sysID?u+=' PUBLIC "'+f.pubID+'" "'+f.sysID+'"':f.sysID&&(u+=' SYSTEM "'+f.sysID+'"'),f.children.length>0){for(u+=" [",u+=this.endline(f,i,n),i.state=t.InsideTag,g=f.children,S=0,C=g.length;S<C;S++)y=g[S],u+=this.writeChildNode(y,i,n+1);i.state=t.CloseTag,u+="]"}return i.state=t.CloseTag,u+=i.spaceBeforeSlash+">",u+=this.endline(f,i,n),i.state=t.None,this.closeNode(f,i,n),u},I.prototype.element=function(f,i,n){var y,S,C,u,g,D,O,L,R,M,P,F,$,Y;n||(n=0),M=!1,P="",this.openNode(f,i,n),i.state=t.OpenTag,P+=this.indent(f,i,n)+"<"+f.name,F=f.attribs;for(R in F)N.call(F,R)&&(y=F[R],P+=this.attribute(y,i,n));if(C=f.children.length,u=C===0?null:f.children[0],C===0||f.children.every(function(ot){return(ot.type===e.Text||ot.type===e.Raw)&&ot.value===""}))i.allowEmpty?(P+=">",i.state=t.CloseTag,P+="</"+f.name+">"+this.endline(f,i,n)):(i.state=t.CloseTag,P+=i.spaceBeforeSlash+"/>"+this.endline(f,i,n));else if(i.pretty&&C===1&&(u.type===e.Text||u.type===e.Raw)&&u.value!=null)P+=">",i.state=t.InsideTag,i.suppressPrettyCount++,M=!0,P+=this.writeChildNode(u,i,n+1),i.suppressPrettyCount--,M=!1,i.state=t.CloseTag,P+="</"+f.name+">"+this.endline(f,i,n);else{if(i.dontPrettyTextNodes){for($=f.children,g=0,O=$.length;g<O;g++)if(S=$[g],(S.type===e.Text||S.type===e.Raw)&&S.value!=null){i.suppressPrettyCount++,M=!0;break}}for(P+=">"+this.endline(f,i,n),i.state=t.InsideTag,Y=f.children,D=0,L=Y.length;D<L;D++)S=Y[D],P+=this.writeChildNode(S,i,n+1);i.state=t.CloseTag,P+=this.indent(f,i,n)+"</"+f.name+">",M&&i.suppressPrettyCount--,P+=this.endline(f,i,n),i.state=t.None}return this.closeNode(f,i,n),P},I.prototype.writeChildNode=function(f,i,n){switch(f.type){case e.CData:return this.cdata(f,i,n);case e.Comment:return this.comment(f,i,n);case e.Element:return this.element(f,i,n);case e.Raw:return this.raw(f,i,n);case e.Text:return this.text(f,i,n);case e.ProcessingInstruction:return this.processingInstruction(f,i,n);case e.Dummy:return"";case e.Declaration:return this.declaration(f,i,n);case e.DocType:return this.docType(f,i,n);case e.AttributeDeclaration:return this.dtdAttList(f,i,n);case e.ElementDeclaration:return this.dtdElement(f,i,n);case e.EntityDeclaration:return this.dtdEntity(f,i,n);case e.NotationDeclaration:return this.dtdNotation(f,i,n);default:throw new Error("Unknown XML node type: "+f.constructor.name)}},I.prototype.processingInstruction=function(f,i,n){var y;return this.openNode(f,i,n),i.state=t.OpenTag,y=this.indent(f,i,n)+"<?",i.state=t.InsideTag,y+=f.target,f.value&&(y+=" "+f.value),i.state=t.CloseTag,y+=i.spaceBeforeSlash+"?>",y+=this.endline(f,i,n),i.state=t.None,this.closeNode(f,i,n),y},I.prototype.raw=function(f,i,n){var y;return this.openNode(f,i,n),i.state=t.OpenTag,y=this.indent(f,i,n),i.state=t.InsideTag,y+=f.value,i.state=t.CloseTag,y+=this.endline(f,i,n),i.state=t.None,this.closeNode(f,i,n),y},I.prototype.text=function(f,i,n){var y;return this.openNode(f,i,n),i.state=t.OpenTag,y=this.indent(f,i,n),i.state=t.InsideTag,y+=f.value,i.state=t.CloseTag,y+=this.endline(f,i,n),i.state=t.None,this.closeNode(f,i,n),y},I.prototype.dtdAttList=function(f,i,n){var y;return this.openNode(f,i,n),i.state=t.OpenTag,y=this.indent(f,i,n)+"<!ATTLIST",i.state=t.InsideTag,y+=" "+f.elementName+" "+f.attributeName+" "+f.attributeType,f.defaultValueType!=="#DEFAULT"&&(y+=" "+f.defaultValueType),f.defaultValue&&(y+=' "'+f.defaultValue+'"'),i.state=t.CloseTag,y+=i.spaceBeforeSlash+">"+this.endline(f,i,n),i.state=t.None,this.closeNode(f,i,n),y},I.prototype.dtdElement=function(f,i,n){var y;return this.openNode(f,i,n),i.state=t.OpenTag,y=this.indent(f,i,n)+"<!ELEMENT",i.state=t.InsideTag,y+=" "+f.name+" "+f.value,i.state=t.CloseTag,y+=i.spaceBeforeSlash+">"+this.endline(f,i,n),i.state=t.None,this.closeNode(f,i,n),y},I.prototype.dtdEntity=function(f,i,n){var y;return this.openNode(f,i,n),i.state=t.OpenTag,y=this.indent(f,i,n)+"<!ENTITY",i.state=t.InsideTag,f.pe&&(y+=" %"),y+=" "+f.name,f.value?y+=' "'+f.value+'"':(f.pubID&&f.sysID?y+=' PUBLIC "'+f.pubID+'" "'+f.sysID+'"':f.sysID&&(y+=' SYSTEM "'+f.sysID+'"'),f.nData&&(y+=" NDATA "+f.nData)),i.state=t.CloseTag,y+=i.spaceBeforeSlash+">"+this.endline(f,i,n),i.state=t.None,this.closeNode(f,i,n),y},I.prototype.dtdNotation=function(f,i,n){var y;return this.openNode(f,i,n),i.state=t.OpenTag,y=this.indent(f,i,n)+"<!NOTATION",i.state=t.InsideTag,y+=" "+f.name,f.pubID&&f.sysID?y+=' PUBLIC "'+f.pubID+'" "'+f.sysID+'"':f.pubID?y+=' PUBLIC "'+f.pubID+'"':f.sysID&&(y+=' SYSTEM "'+f.sysID+'"'),i.state=t.CloseTag,y+=i.spaceBeforeSlash+">"+this.endline(f,i,n),i.state=t.None,this.closeNode(f,i,n),y},I.prototype.openNode=function(f,i,n){},I.prototype.closeNode=function(f,i,n){},I.prototype.openAttribute=function(f,i,n){},I.prototype.closeAttribute=function(f,i,n){},I})()}).call(cn)});var ge=B((un,dn)=>{(function(){var e,t,a=function(o,p){for(var c in p)b.call(p,c)&&(o[c]=p[c]);function l(){this.constructor=o}return l.prototype=p.prototype,o.prototype=new l,o.__super__=p.prototype,o},b={}.hasOwnProperty;t=Be(),dn.exports=e=(function(o){a(p,o);function p(c){p.__super__.constructor.call(this,c)}return p.prototype.document=function(c,l){var d,m,T,_,w;for(l=this.filterOptions(l),_="",w=c.children,m=0,T=w.length;m<T;m++)d=w[m],_+=this.writeChildNode(d,l,0);return l.pretty&&_.slice(-l.newline.length)===l.newline&&(_=_.slice(0,-l.newline.length)),_},p})(t)}).call(un)});var $e=B((pn,fn)=>{(function(){var e,t,a,b,o,p,c,l,d=function(T,_){for(var w in _)m.call(_,w)&&(T[w]=_[w]);function h(){this.constructor=T}return h.prototype=_.prototype,T.prototype=new h,T.__super__=_.prototype,T},m={}.hasOwnProperty;l=ht().isPlainObject,a=Pe(),t=hr(),o=st(),e=K(),c=Fe(),p=ge(),fn.exports=b=(function(T){d(_,T);function _(w){_.__super__.constructor.call(this,null),this.name="#document",this.type=e.Document,this.documentURI=null,this.domConfig=new t,w||(w={}),w.writer||(w.writer=new p),this.options=w,this.stringify=new c(w)}return Object.defineProperty(_.prototype,"implementation",{value:new a}),Object.defineProperty(_.prototype,"doctype",{get:function(){var w,h,v,E;for(E=this.children,h=0,v=E.length;h<v;h++)if(w=E[h],w.type===e.DocType)return w;return null}}),Object.defineProperty(_.prototype,"documentElement",{get:function(){return this.rootObject||null}}),Object.defineProperty(_.prototype,"inputEncoding",{get:function(){return null}}),Object.defineProperty(_.prototype,"strictErrorChecking",{get:function(){return!1}}),Object.defineProperty(_.prototype,"xmlEncoding",{get:function(){return this.children.length!==0&&this.children[0].type===e.Declaration?this.children[0].encoding:null}}),Object.defineProperty(_.prototype,"xmlStandalone",{get:function(){return this.children.length!==0&&this.children[0].type===e.Declaration?this.children[0].standalone==="yes":!1}}),Object.defineProperty(_.prototype,"xmlVersion",{get:function(){return this.children.length!==0&&this.children[0].type===e.Declaration?this.children[0].version:"1.0"}}),Object.defineProperty(_.prototype,"URL",{get:function(){return this.documentURI}}),Object.defineProperty(_.prototype,"origin",{get:function(){return null}}),Object.defineProperty(_.prototype,"compatMode",{get:function(){return null}}),Object.defineProperty(_.prototype,"characterSet",{get:function(){return null}}),Object.defineProperty(_.prototype,"contentType",{get:function(){return null}}),_.prototype.end=function(w){var h;return h={},w?l(w)&&(h=w,w=this.options.writer):w=this.options.writer,w.document(this,w.filterOptions(h))},_.prototype.toString=function(w){return this.options.writer.document(this,this.options.writer.filterOptions(w))},_.prototype.createElement=function(w){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.createDocumentFragment=function(){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.createTextNode=function(w){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.createComment=function(w){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.createCDATASection=function(w){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.createProcessingInstruction=function(w,h){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.createAttribute=function(w){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.createEntityReference=function(w){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.getElementsByTagName=function(w){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.importNode=function(w,h){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.createElementNS=function(w,h){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.createAttributeNS=function(w,h){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.getElementsByTagNameNS=function(w,h){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.getElementById=function(w){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.adoptNode=function(w){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.normalizeDocument=function(){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.renameNode=function(w,h,v){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.getElementsByClassName=function(w){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.createEvent=function(w){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.createRange=function(){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.createNodeIterator=function(w,h,v){throw new Error("This DOM method is not implemented."+this.debugInfo())},_.prototype.createTreeWalker=function(w,h,v){throw new Error("This DOM method is not implemented."+this.debugInfo())},_})(o)}).call(pn)});var mn=B((hn,gn)=>{(function(){var e,t,a,b,o,p,c,l,d,m,T,_,w,h,v,E,k,N,I,f,i,n,y,S,C={}.hasOwnProperty;S=ht(),n=S.isObject,i=S.isFunction,y=S.isPlainObject,f=S.getValue,e=K(),_=$e(),h=ne(),b=ie(),o=oe(),E=pe(),I=fe(),v=he(),m=se(),T=de(),p=ae(),l=ce(),c=le(),d=ue(),a=Me(),N=Fe(),k=ge(),t=qt(),gn.exports=w=(function(){function u(g,D,O){var L;this.name="?xml",this.type=e.Document,g||(g={}),L={},g.writer?y(g.writer)&&(L=g.writer,g.writer=new k):g.writer=new k,this.options=g,this.writer=g.writer,this.writerOptions=this.writer.filterOptions(L),this.stringify=new N(g),this.onDataCallback=D||function(){},this.onEndCallback=O||function(){},this.currentNode=null,this.currentLevel=-1,this.openTags={},this.documentStarted=!1,this.documentCompleted=!1,this.root=null}return u.prototype.createChildNode=function(g){var D,O,L,R,M,P,F,$;switch(g.type){case e.CData:this.cdata(g.value);break;case e.Comment:this.comment(g.value);break;case e.Element:L={},F=g.attribs;for(O in F)C.call(F,O)&&(D=F[O],L[O]=D.value);this.node(g.name,L);break;case e.Dummy:this.dummy();break;case e.Raw:this.raw(g.value);break;case e.Text:this.text(g.value);break;case e.ProcessingInstruction:this.instruction(g.target,g.value);break;default:throw new Error("This XML node type is not supported in a JS object: "+g.constructor.name)}for($=g.children,M=0,P=$.length;M<P;M++)R=$[M],this.createChildNode(R),R.type===e.Element&&this.up();return this},u.prototype.dummy=function(){return this},u.prototype.node=function(g,D,O){var L;if(g==null)throw new Error("Missing node name.");if(this.root&&this.currentLevel===-1)throw new Error("Document can only have one root node. "+this.debugInfo(g));return this.openCurrent(),g=f(g),D==null&&(D={}),D=f(D),n(D)||(L=[D,O],O=L[0],D=L[1]),this.currentNode=new h(this,g,D),this.currentNode.children=!1,this.currentLevel++,this.openTags[this.currentLevel]=this.currentNode,O!=null&&this.text(O),this},u.prototype.element=function(g,D,O){var L,R,M,P,F,$;if(this.currentNode&&this.currentNode.type===e.DocType)this.dtdElement.apply(this,arguments);else if(Array.isArray(g)||n(g)||i(g))for(P=this.options.noValidation,this.options.noValidation=!0,$=new _(this.options).element("TEMP_ROOT"),$.element(g),this.options.noValidation=P,F=$.children,R=0,M=F.length;R<M;R++)L=F[R],this.createChildNode(L),L.type===e.Element&&this.up();else this.node(g,D,O);return this},u.prototype.attribute=function(g,D){var O,L;if(!this.currentNode||this.currentNode.children)throw new Error("att() can only be used immediately after an ele() call in callback mode. "+this.debugInfo(g));if(g!=null&&(g=f(g)),n(g))for(O in g)C.call(g,O)&&(L=g[O],this.attribute(O,L));else i(D)&&(D=D.apply()),this.options.keepNullAttributes&&D==null?this.currentNode.attribs[g]=new a(this,g,""):D!=null&&(this.currentNode.attribs[g]=new a(this,g,D));return this},u.prototype.text=function(g){var D;return this.openCurrent(),D=new I(this,g),this.onData(this.writer.text(D,this.writerOptions,this.currentLevel+1),this.currentLevel+1),this},u.prototype.cdata=function(g){var D;return this.openCurrent(),D=new b(this,g),this.onData(this.writer.cdata(D,this.writerOptions,this.currentLevel+1),this.currentLevel+1),this},u.prototype.comment=function(g){var D;return this.openCurrent(),D=new o(this,g),this.onData(this.writer.comment(D,this.writerOptions,this.currentLevel+1),this.currentLevel+1),this},u.prototype.raw=function(g){var D;return this.openCurrent(),D=new E(this,g),this.onData(this.writer.raw(D,this.writerOptions,this.currentLevel+1),this.currentLevel+1),this},u.prototype.instruction=function(g,D){var O,L,R,M,P;if(this.openCurrent(),g!=null&&(g=f(g)),D!=null&&(D=f(D)),Array.isArray(g))for(O=0,M=g.length;O<M;O++)L=g[O],this.instruction(L);else if(n(g))for(L in g)C.call(g,L)&&(R=g[L],this.instruction(L,R));else i(D)&&(D=D.apply()),P=new v(this,g,D),this.onData(this.writer.processingInstruction(P,this.writerOptions,this.currentLevel+1),this.currentLevel+1);return this},u.prototype.declaration=function(g,D,O){var L;if(this.openCurrent(),this.documentStarted)throw new Error("declaration() must be the first node.");return L=new m(this,g,D,O),this.onData(this.writer.declaration(L,this.writerOptions,this.currentLevel+1),this.currentLevel+1),this},u.prototype.doctype=function(g,D,O){if(this.openCurrent(),g==null)throw new Error("Missing root node name.");if(this.root)throw new Error("dtd() must come before the root node.");return this.currentNode=new T(this,D,O),this.currentNode.rootNodeName=g,this.currentNode.children=!1,this.currentLevel++,this.openTags[this.currentLevel]=this.currentNode,this},u.prototype.dtdElement=function(g,D){var O;return this.openCurrent(),O=new c(this,g,D),this.onData(this.writer.dtdElement(O,this.writerOptions,this.currentLevel+1),this.currentLevel+1),this},u.prototype.attList=function(g,D,O,L,R){var M;return this.openCurrent(),M=new p(this,g,D,O,L,R),this.onData(this.writer.dtdAttList(M,this.writerOptions,this.currentLevel+1),this.currentLevel+1),this},u.prototype.entity=function(g,D){var O;return this.openCurrent(),O=new l(this,!1,g,D),this.onData(this.writer.dtdEntity(O,this.writerOptions,this.currentLevel+1),this.currentLevel+1),this},u.prototype.pEntity=function(g,D){var O;return this.openCurrent(),O=new l(this,!0,g,D),this.onData(this.writer.dtdEntity(O,this.writerOptions,this.currentLevel+1),this.currentLevel+1),this},u.prototype.notation=function(g,D){var O;return this.openCurrent(),O=new d(this,g,D),this.onData(this.writer.dtdNotation(O,this.writerOptions,this.currentLevel+1),this.currentLevel+1),this},u.prototype.up=function(){if(this.currentLevel<0)throw new Error("The document node has no parent.");return this.currentNode?(this.currentNode.children?this.closeNode(this.currentNode):this.openNode(this.currentNode),this.currentNode=null):this.closeNode(this.openTags[this.currentLevel]),delete this.openTags[this.currentLevel],this.currentLevel--,this},u.prototype.end=function(){for(;this.currentLevel>=0;)this.up();return this.onEnd()},u.prototype.openCurrent=function(){if(this.currentNode)return this.currentNode.children=!0,this.openNode(this.currentNode)},u.prototype.openNode=function(g){var D,O,L,R;if(!g.isOpen){if(!this.root&&this.currentLevel===0&&g.type===e.Element&&(this.root=g),O="",g.type===e.Element){this.writerOptions.state=t.OpenTag,O=this.writer.indent(g,this.writerOptions,this.currentLevel)+"<"+g.name,R=g.attribs;for(L in R)C.call(R,L)&&(D=R[L],O+=this.writer.attribute(D,this.writerOptions,this.currentLevel));O+=(g.children?">":"/>")+this.writer.endline(g,this.writerOptions,this.currentLevel),this.writerOptions.state=t.InsideTag}else this.writerOptions.state=t.OpenTag,O=this.writer.indent(g,this.writerOptions,this.currentLevel)+"<!DOCTYPE "+g.rootNodeName,g.pubID&&g.sysID?O+=' PUBLIC "'+g.pubID+'" "'+g.sysID+'"':g.sysID&&(O+=' SYSTEM "'+g.sysID+'"'),g.children?(O+=" [",this.writerOptions.state=t.InsideTag):(this.writerOptions.state=t.CloseTag,O+=">"),O+=this.writer.endline(g,this.writerOptions,this.currentLevel);return this.onData(O,this.currentLevel),g.isOpen=!0}},u.prototype.closeNode=function(g){var D;if(!g.isClosed)return D="",this.writerOptions.state=t.CloseTag,g.type===e.Element?D=this.writer.indent(g,this.writerOptions,this.currentLevel)+"</"+g.name+">"+this.writer.endline(g,this.writerOptions,this.currentLevel):D=this.writer.indent(g,this.writerOptions,this.currentLevel)+"]>"+this.writer.endline(g,this.writerOptions,this.currentLevel),this.writerOptions.state=t.None,this.onData(D,this.currentLevel),g.isClosed=!0},u.prototype.onData=function(g,D){return this.documentStarted=!0,this.onDataCallback(g,D+1)},u.prototype.onEnd=function(){return this.documentCompleted=!0,this.onEndCallback()},u.prototype.debugInfo=function(g){return g==null?"":"node: <"+g+">"},u.prototype.ele=function(){return this.element.apply(this,arguments)},u.prototype.nod=function(g,D,O){return this.node(g,D,O)},u.prototype.txt=function(g){return this.text(g)},u.prototype.dat=function(g){return this.cdata(g)},u.prototype.com=function(g){return this.comment(g)},u.prototype.ins=function(g,D){return this.instruction(g,D)},u.prototype.dec=function(g,D,O){return this.declaration(g,D,O)},u.prototype.dtd=function(g,D,O){return this.doctype(g,D,O)},u.prototype.e=function(g,D,O){return this.element(g,D,O)},u.prototype.n=function(g,D,O){return this.node(g,D,O)},u.prototype.t=function(g){return this.text(g)},u.prototype.d=function(g){return this.cdata(g)},u.prototype.c=function(g){return this.comment(g)},u.prototype.r=function(g){return this.raw(g)},u.prototype.i=function(g,D){return this.instruction(g,D)},u.prototype.att=function(){return this.currentNode&&this.currentNode.type===e.DocType?this.attList.apply(this,arguments):this.attribute.apply(this,arguments)},u.prototype.a=function(){return this.currentNode&&this.currentNode.type===e.DocType?this.attList.apply(this,arguments):this.attribute.apply(this,arguments)},u.prototype.ent=function(g,D){return this.entity(g,D)},u.prototype.pent=function(g,D){return this.pEntity(g,D)},u.prototype.not=function(g,D){return this.notation(g,D)},u})()}).call(hn)});var wn=B((yn,bn)=>{(function(){var e,t,a,b,o=function(c,l){for(var d in l)p.call(l,d)&&(c[d]=l[d]);function m(){this.constructor=c}return m.prototype=l.prototype,c.prototype=new m,c.__super__=l.prototype,c},p={}.hasOwnProperty;e=K(),b=Be(),t=qt(),bn.exports=a=(function(c){o(l,c);function l(d,m){this.stream=d,l.__super__.constructor.call(this,m)}return l.prototype.endline=function(d,m,T){return d.isLastRootNode&&m.state===t.CloseTag?"":l.__super__.endline.call(this,d,m,T)},l.prototype.document=function(d,m){var T,_,w,h,v,E,k,N,I;for(k=d.children,_=w=0,v=k.length;w<v;_=++w)T=k[_],T.isLastRootNode=_===d.children.length-1;for(m=this.filterOptions(m),N=d.children,I=[],h=0,E=N.length;h<E;h++)T=N[h],I.push(this.writeChildNode(T,m,0));return I},l.prototype.attribute=function(d,m,T){return this.stream.write(l.__super__.attribute.call(this,d,m,T))},l.prototype.cdata=function(d,m,T){return this.stream.write(l.__super__.cdata.call(this,d,m,T))},l.prototype.comment=function(d,m,T){return this.stream.write(l.__super__.comment.call(this,d,m,T))},l.prototype.declaration=function(d,m,T){return this.stream.write(l.__super__.declaration.call(this,d,m,T))},l.prototype.docType=function(d,m,T){var _,w,h,v;if(T||(T=0),this.openNode(d,m,T),m.state=t.OpenTag,this.stream.write(this.indent(d,m,T)),this.stream.write("<!DOCTYPE "+d.root().name),d.pubID&&d.sysID?this.stream.write(' PUBLIC "'+d.pubID+'" "'+d.sysID+'"'):d.sysID&&this.stream.write(' SYSTEM "'+d.sysID+'"'),d.children.length>0){for(this.stream.write(" ["),this.stream.write(this.endline(d,m,T)),m.state=t.InsideTag,v=d.children,w=0,h=v.length;w<h;w++)_=v[w],this.writeChildNode(_,m,T+1);m.state=t.CloseTag,this.stream.write("]")}return m.state=t.CloseTag,this.stream.write(m.spaceBeforeSlash+">"),this.stream.write(this.endline(d,m,T)),m.state=t.None,this.closeNode(d,m,T)},l.prototype.element=function(d,m,T){var _,w,h,v,E,k,N,I,f,i;T||(T=0),this.openNode(d,m,T),m.state=t.OpenTag,this.stream.write(this.indent(d,m,T)+"<"+d.name),f=d.attribs;for(N in f)p.call(f,N)&&(_=f[N],this.attribute(_,m,T));if(h=d.children.length,v=h===0?null:d.children[0],h===0||d.children.every(function(n){return(n.type===e.Text||n.type===e.Raw)&&n.value===""}))m.allowEmpty?(this.stream.write(">"),m.state=t.CloseTag,this.stream.write("</"+d.name+">")):(m.state=t.CloseTag,this.stream.write(m.spaceBeforeSlash+"/>"));else if(m.pretty&&h===1&&(v.type===e.Text||v.type===e.Raw)&&v.value!=null)this.stream.write(">"),m.state=t.InsideTag,m.suppressPrettyCount++,I=!0,this.writeChildNode(v,m,T+1),m.suppressPrettyCount--,I=!1,m.state=t.CloseTag,this.stream.write("</"+d.name+">");else{for(this.stream.write(">"+this.endline(d,m,T)),m.state=t.InsideTag,i=d.children,E=0,k=i.length;E<k;E++)w=i[E],this.writeChildNode(w,m,T+1);m.state=t.CloseTag,this.stream.write(this.indent(d,m,T)+"</"+d.name+">")}return this.stream.write(this.endline(d,m,T)),m.state=t.None,this.closeNode(d,m,T)},l.prototype.processingInstruction=function(d,m,T){return this.stream.write(l.__super__.processingInstruction.call(this,d,m,T))},l.prototype.raw=function(d,m,T){return this.stream.write(l.__super__.raw.call(this,d,m,T))},l.prototype.text=function(d,m,T){return this.stream.write(l.__super__.text.call(this,d,m,T))},l.prototype.dtdAttList=function(d,m,T){return this.stream.write(l.__super__.dtdAttList.call(this,d,m,T))},l.prototype.dtdElement=function(d,m,T){return this.stream.write(l.__super__.dtdElement.call(this,d,m,T))},l.prototype.dtdEntity=function(d,m,T){return this.stream.write(l.__super__.dtdEntity.call(this,d,m,T))},l.prototype.dtdNotation=function(d,m,T){return this.stream.write(l.__super__.dtdNotation.call(this,d,m,T))},l})(b)}).call(yn)});var _n=B((vn,_t)=>{(function(){var e,t,a,b,o,p,c,l,d,m;m=ht(),l=m.assign,d=m.isFunction,a=Pe(),b=$e(),o=mn(),c=ge(),p=wn(),e=K(),t=qt(),_t.exports.create=function(T,_,w,h){var v,E;if(T==null)throw new Error("Root element needs a name.");return h=l({},_,w,h),v=new b(h),E=v.element(T),h.headless||(v.declaration(h),(h.pubID!=null||h.sysID!=null)&&v.dtd(h)),E},_t.exports.begin=function(T,_,w){var h;return d(T)&&(h=[T,_],_=h[0],w=h[1],T={}),_?new o(T,_,w):new b(T)},_t.exports.stringWriter=function(T){return new c(T)},_t.exports.streamWriter=function(T,_){return new p(T,_)},_t.exports.implementation=new a,_t.exports.nodeType=e,_t.exports.writerState=t}).call(vn)});var Tn=B(Ue=>{(function(){"use strict";var e,t,a,b,o,p={}.hasOwnProperty;e=_n(),t=ee().defaults,b=function(c){return typeof c=="string"&&(c.indexOf("&")>=0||c.indexOf(">")>=0||c.indexOf("<")>=0)},o=function(c){return"<![CDATA["+a(c)+"]]>"},a=function(c){return c.replace("]]>","]]]]><![CDATA[>")},Ue.Builder=(function(){function c(l){var d,m,T;this.options={},m=t["0.2"];for(d in m)p.call(m,d)&&(T=m[d],this.options[d]=T);for(d in l)p.call(l,d)&&(T=l[d],this.options[d]=T)}return c.prototype.buildObject=function(l){var d,m,T,_,w;return d=this.options.attrkey,m=this.options.charkey,Object.keys(l).length===1&&this.options.rootName===t["0.2"].rootName?(w=Object.keys(l)[0],l=l[w]):w=this.options.rootName,T=(function(h){return function(v,E){var k,N,I,f,i,n;if(typeof E!="object")h.options.cdata&&b(E)?v.raw(o(E)):v.txt(E);else if(Array.isArray(E)){for(f in E)if(p.call(E,f)){N=E[f];for(i in N)I=N[i],v=T(v.ele(i),I).up()}}else for(i in E)if(p.call(E,i))if(N=E[i],i===d){if(typeof N=="object")for(k in N)n=N[k],v=v.att(k,n)}else if(i===m)h.options.cdata&&b(N)?v=v.raw(o(N)):v=v.txt(N);else if(Array.isArray(N))for(f in N)p.call(N,f)&&(I=N[f],typeof I=="string"?h.options.cdata&&b(I)?v=v.ele(i).raw(o(I)).up():v=v.ele(i,I).up():v=T(v.ele(i),I).up());else typeof N=="object"?v=T(v.ele(i),N).up():typeof N=="string"&&h.options.cdata&&b(N)?v=v.ele(i).raw(o(N)).up():(N==null&&(N=""),v=v.ele(i,N.toString()).up());return v}})(this),_=e.create(w,this.options.xmldec,this.options.doctype,{headless:this.options.headless,allowSurrogateChars:this.options.allowSurrogateChars}),T(_,l).end(this.options.renderOpts)},c})()}).call(Ue)});var In=B(me=>{(function(e){e.parser=function(s,r){return new a(s,r)},e.SAXParser=a,e.SAXStream=T,e.createStream=d,e.MAX_BUFFER_LENGTH=64*1024;var t=["comment","sgmlDecl","textNode","tagName","doctype","procInstName","procInstBody","entity","attribName","attribValue","cdata","script"];e.EVENTS=["text","processinginstruction","sgmldeclaration","doctype","comment","opentagstart","attribute","opentag","closetag","opencdata","cdata","closecdata","error","end","ready","script","opennamespace","closenamespace"];function a(s,r){if(!(this instanceof a))return new a(s,r);var A=this;o(A),A.q=A.c="",A.bufferCheckPosition=e.MAX_BUFFER_LENGTH,A.encoding=null,A.opt=r||{},A.opt.lowercase=A.opt.lowercase||A.opt.lowercasetags,A.looseCase=A.opt.lowercase?"toLowerCase":"toUpperCase",A.opt.maxEntityCount=A.opt.maxEntityCount||512,A.opt.maxEntityDepth=A.opt.maxEntityDepth||4,A.entityCount=A.entityDepth=0,A.tags=[],A.closed=A.closedRoot=A.sawRoot=!1,A.tag=A.error=null,A.strict=!!s,A.noscript=!!(s||A.opt.noscript),A.state=u.BEGIN,A.strictEntities=A.opt.strictEntities,A.ENTITIES=A.strictEntities?Object.create(e.XML_ENTITIES):Object.create(e.ENTITIES),A.attribList=[],A.opt.xmlns&&(A.ns=Object.create(E)),A.opt.unquotedAttributeValues===void 0&&(A.opt.unquotedAttributeValues=!s),A.trackPosition=A.opt.position!==!1,A.trackPosition&&(A.position=A.line=A.column=0),D(A,"onready")}Object.create||(Object.create=function(s){function r(){}r.prototype=s;var A=new r;return A}),Object.keys||(Object.keys=function(s){var r=[];for(var A in s)s.hasOwnProperty(A)&&r.push(A);return r});function b(s){for(var r=Math.max(e.MAX_BUFFER_LENGTH,10),A=0,x=0,q=t.length;x<q;x++){var z=s[t[x]].length;if(z>r)switch(t[x]){case"textNode":F(s);break;case"cdata":P(s,"oncdata",s.cdata),s.cdata="";break;case"script":P(s,"onscript",s.script),s.script="";break;default:Y(s,"Max buffer length exceeded: "+t[x])}A=Math.max(A,z)}var H=e.MAX_BUFFER_LENGTH-A;s.bufferCheckPosition=H+s.position}function o(s){for(var r=0,A=t.length;r<A;r++)s[t[r]]=""}function p(s){F(s),s.cdata!==""&&(P(s,"oncdata",s.cdata),s.cdata=""),s.script!==""&&(P(s,"onscript",s.script),s.script="")}a.prototype={end:function(){ot(this)},write:Kt,resume:function(){return this.error=null,this},close:function(){return this.write(null)},flush:function(){p(this)}};var c;try{c=require("stream").Stream}catch{c=function(){}}c||(c=function(){});var l=e.EVENTS.filter(function(s){return s!=="error"&&s!=="end"});function d(s,r){return new T(s,r)}function m(s,r){if(s.length>=2){if(s[0]===255&&s[1]===254)return"utf-16le";if(s[0]===254&&s[1]===255)return"utf-16be"}return s.length>=3&&s[0]===239&&s[1]===187&&s[2]===191?"utf8":s.length>=4?s[0]===60&&s[1]===0&&s[2]===63&&s[3]===0?"utf-16le":s[0]===0&&s[1]===60&&s[2]===0&&s[3]===63?"utf-16be":"utf8":r?"utf8":null}function T(s,r){if(!(this instanceof T))return new T(s,r);c.apply(this),this._parser=new a(s,r),this.writable=!0,this.readable=!0;var A=this;this._parser.onend=function(){A.emit("end")},this._parser.onerror=function(x){A.emit("error",x),A._parser.error=null},this._decoder=null,this._decoderBuffer=null,l.forEach(function(x){Object.defineProperty(A,"on"+x,{get:function(){return A._parser["on"+x]},set:function(q){if(!q)return A.removeAllListeners(x),A._parser["on"+x]=q,q;A.on(x,q)},enumerable:!0,configurable:!1})})}T.prototype=Object.create(c.prototype,{constructor:{value:T}}),T.prototype._decodeBuffer=function(s,r){if(this._decoderBuffer&&(s=Buffer.concat([this._decoderBuffer,s]),this._decoderBuffer=null),!this._decoder){var A=m(s,r);if(!A)return this._decoderBuffer=s,"";this._parser.encoding=A,this._decoder=new TextDecoder(A)}return this._decoder.decode(s,{stream:!r})},T.prototype.write=function(s){if(typeof Buffer=="function"&&typeof Buffer.isBuffer=="function"&&Buffer.isBuffer(s))s=this._decodeBuffer(s,!1);else if(this._decoderBuffer){var r=this._decodeBuffer(Buffer.alloc(0),!0);r&&(this._parser.write(r),this.emit("data",r))}return this._parser.write(s.toString()),this.emit("data",s),!0},T.prototype.end=function(s){if(s&&s.length&&this.write(s),this._decoderBuffer){var r=this._decodeBuffer(Buffer.alloc(0),!0);r&&(this._parser.write(r),this.emit("data",r))}else if(this._decoder){var A=this._decoder.decode();A&&(this._parser.write(A),this.emit("data",A))}return this._parser.end(),!0},T.prototype.on=function(s,r){var A=this;return!A._parser["on"+s]&&l.indexOf(s)!==-1&&(A._parser["on"+s]=function(){var x=arguments.length===1?[arguments[0]]:Array.apply(null,arguments);x.splice(0,0,s),A.emit.apply(A,x)}),c.prototype.on.call(A,s,r)};var _="[CDATA[",w="DOCTYPE",h="http://www.w3.org/XML/1998/namespace",v="http://www.w3.org/2000/xmlns/",E={xml:h,xmlns:v},k=/[:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]/,N=/[:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u00B7\u0300-\u036F\u203F-\u2040.\d-]/,I=/[#:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]/,f=/[#:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u00B7\u0300-\u036F\u203F-\u2040.\d-]/;function i(s){return s===" "||s===`
-`||s==="\r"||s==="	"}function n(s){return s==='"'||s==="'"}function y(s){return s===">"||i(s)}function S(s,r){return s.test(r)}function C(s,r){return!S(s,r)}var u=0;e.STATE={BEGIN:u++,BEGIN_WHITESPACE:u++,TEXT:u++,TEXT_ENTITY:u++,OPEN_WAKA:u++,SGML_DECL:u++,SGML_DECL_QUOTED:u++,DOCTYPE:u++,DOCTYPE_QUOTED:u++,DOCTYPE_DTD:u++,DOCTYPE_DTD_QUOTED:u++,COMMENT_STARTING:u++,COMMENT:u++,COMMENT_ENDING:u++,COMMENT_ENDED:u++,CDATA:u++,CDATA_ENDING:u++,CDATA_ENDING_2:u++,PROC_INST:u++,PROC_INST_BODY:u++,PROC_INST_ENDING:u++,OPEN_TAG:u++,OPEN_TAG_SLASH:u++,ATTRIB:u++,ATTRIB_NAME:u++,ATTRIB_NAME_SAW_WHITE:u++,ATTRIB_VALUE:u++,ATTRIB_VALUE_QUOTED:u++,ATTRIB_VALUE_CLOSED:u++,ATTRIB_VALUE_UNQUOTED:u++,ATTRIB_VALUE_ENTITY_Q:u++,ATTRIB_VALUE_ENTITY_U:u++,CLOSE_TAG:u++,CLOSE_TAG_SAW_WHITE:u++,SCRIPT:u++,SCRIPT_ENDING:u++},e.XML_ENTITIES={amp:"&",gt:">",lt:"<",quot:'"',apos:"'"},e.ENTITIES={amp:"&",gt:">",lt:"<",quot:'"',apos:"'",AElig:198,Aacute:193,Acirc:194,Agrave:192,Aring:197,Atilde:195,Auml:196,Ccedil:199,ETH:208,Eacute:201,Ecirc:202,Egrave:200,Euml:203,Iacute:205,Icirc:206,Igrave:204,Iuml:207,Ntilde:209,Oacute:211,Ocirc:212,Ograve:210,Oslash:216,Otilde:213,Ouml:214,THORN:222,Uacute:218,Ucirc:219,Ugrave:217,Uuml:220,Yacute:221,aacute:225,acirc:226,aelig:230,agrave:224,aring:229,atilde:227,auml:228,ccedil:231,eacute:233,ecirc:234,egrave:232,eth:240,euml:235,iacute:237,icirc:238,igrave:236,iuml:239,ntilde:241,oacute:243,ocirc:244,ograve:242,oslash:248,otilde:245,ouml:246,szlig:223,thorn:254,uacute:250,ucirc:251,ugrave:249,uuml:252,yacute:253,yuml:255,copy:169,reg:174,nbsp:160,iexcl:161,cent:162,pound:163,curren:164,yen:165,brvbar:166,sect:167,uml:168,ordf:170,laquo:171,not:172,shy:173,macr:175,deg:176,plusmn:177,sup1:185,sup2:178,sup3:179,acute:180,micro:181,para:182,middot:183,cedil:184,ordm:186,raquo:187,frac14:188,frac12:189,frac34:190,iquest:191,times:215,divide:247,OElig:338,oelig:339,Scaron:352,scaron:353,Yuml:376,fnof:402,circ:710,tilde:732,Alpha:913,Beta:914,Gamma:915,Delta:916,Epsilon:917,Zeta:918,Eta:919,Theta:920,Iota:921,Kappa:922,Lambda:923,Mu:924,Nu:925,Xi:926,Omicron:927,Pi:928,Rho:929,Sigma:931,Tau:932,Upsilon:933,Phi:934,Chi:935,Psi:936,Omega:937,alpha:945,beta:946,gamma:947,delta:948,epsilon:949,zeta:950,eta:951,theta:952,iota:953,kappa:954,lambda:955,mu:956,nu:957,xi:958,omicron:959,pi:960,rho:961,sigmaf:962,sigma:963,tau:964,upsilon:965,phi:966,chi:967,psi:968,omega:969,thetasym:977,upsih:978,piv:982,ensp:8194,emsp:8195,thinsp:8201,zwnj:8204,zwj:8205,lrm:8206,rlm:8207,ndash:8211,mdash:8212,lsquo:8216,rsquo:8217,sbquo:8218,ldquo:8220,rdquo:8221,bdquo:8222,dagger:8224,Dagger:8225,bull:8226,hellip:8230,permil:8240,prime:8242,Prime:8243,lsaquo:8249,rsaquo:8250,oline:8254,frasl:8260,euro:8364,image:8465,weierp:8472,real:8476,trade:8482,alefsym:8501,larr:8592,uarr:8593,rarr:8594,darr:8595,harr:8596,crarr:8629,lArr:8656,uArr:8657,rArr:8658,dArr:8659,hArr:8660,forall:8704,part:8706,exist:8707,empty:8709,nabla:8711,isin:8712,notin:8713,ni:8715,prod:8719,sum:8721,minus:8722,lowast:8727,radic:8730,prop:8733,infin:8734,ang:8736,and:8743,or:8744,cap:8745,cup:8746,int:8747,there4:8756,sim:8764,cong:8773,asymp:8776,ne:8800,equiv:8801,le:8804,ge:8805,sub:8834,sup:8835,nsub:8836,sube:8838,supe:8839,oplus:8853,otimes:8855,perp:8869,sdot:8901,lceil:8968,rceil:8969,lfloor:8970,rfloor:8971,lang:9001,rang:9002,loz:9674,spades:9824,clubs:9827,hearts:9829,diams:9830},Object.keys(e.ENTITIES).forEach(function(s){var r=e.ENTITIES[s],A=typeof r=="number"?String.fromCharCode(r):r;e.ENTITIES[s]=A});for(var g in e.STATE)e.STATE[e.STATE[g]]=g;u=e.STATE;function D(s,r,A){s[r]&&s[r](A)}function O(s){var r=s&&s.match(/(?:^|\s)encoding\s*=\s*(['"])([^'"]+)\1/i);return r?r[2]:null}function L(s){return s?s.toLowerCase().replace(/[^a-z0-9]/g,""):null}function R(s,r){let A=L(s),x=L(r);return!A||!x?!0:x==="utf16"?A==="utf16le"||A==="utf16be":A===x}function M(s,r){if(!(!s.strict||!s.encoding||!r||r.name!=="xml")){var A=O(r.body);A&&!R(s.encoding,A)&&V(s,"XML declaration encoding "+A+" does not match detected stream encoding "+s.encoding.toUpperCase())}}function P(s,r,A){s.textNode&&F(s),D(s,r,A)}function F(s){s.textNode=$(s.opt,s.textNode),s.textNode&&D(s,"ontext",s.textNode),s.textNode=""}function $(s,r){return s.trim&&(r=r.trim()),s.normalize&&(r=r.replace(/\s+/g," ")),r}function Y(s,r){return F(s),s.trackPosition&&(r+=`
-Line: `+s.line+`
-Column: `+s.column+`
-Char: `+s.c),r=new Error(r),s.error=r,D(s,"onerror",r),s}function ot(s){return s.sawRoot&&!s.closedRoot&&V(s,"Unclosed root tag"),s.state!==u.BEGIN&&s.state!==u.BEGIN_WHITESPACE&&s.state!==u.TEXT&&Y(s,"Unexpected end"),F(s),s.c="",s.closed=!0,D(s,"onend"),a.call(s,s.strict,s.opt),s}function V(s,r){if(typeof s!="object"||!(s instanceof a))throw new Error("bad call to strictFail");s.strict&&Y(s,r)}function Ae(s){s.strict||(s.tagName=s.tagName[s.looseCase]());var r=s.tags[s.tags.length-1]||s,A=s.tag={name:s.tagName,attributes:{}};s.opt.xmlns&&(A.ns=r.ns),s.attribList.length=0,P(s,"onopentagstart",A)}function Rt(s,r){var A=s.indexOf(":"),x=A<0?["",s]:s.split(":"),q=x[0],z=x[1];return r&&s==="xmlns"&&(q="xmlns",z=""),{prefix:q,local:z}}function Ft(s){if(s.strict||(s.attribName=s.attribName[s.looseCase]()),s.attribList.indexOf(s.attribName)!==-1||s.tag.attributes.hasOwnProperty(s.attribName)){s.attribName=s.attribValue="";return}if(s.opt.xmlns){var r=Rt(s.attribName,!0),A=r.prefix,x=r.local;if(A==="xmlns")if(x==="xml"&&s.attribValue!==h)V(s,"xml: prefix must be bound to "+h+`
-Actual: `+s.attribValue);else if(x==="xmlns"&&s.attribValue!==v)V(s,"xmlns: prefix must be bound to "+v+`
-Actual: `+s.attribValue);else{var q=s.tag,z=s.tags[s.tags.length-1]||s;q.ns===z.ns&&(q.ns=Object.create(z.ns)),q.ns[x]=s.attribValue}s.attribList.push([s.attribName,s.attribValue])}else s.tag.attributes[s.attribName]=s.attribValue,P(s,"onattribute",{name:s.attribName,value:s.attribValue});s.attribName=s.attribValue=""}function mt(s,r){if(s.opt.xmlns){var A=s.tag,x=Rt(s.tagName);A.prefix=x.prefix,A.local=x.local,A.uri=A.ns[x.prefix]||"",A.prefix&&!A.uri&&(V(s,"Unbound namespace prefix: "+JSON.stringify(s.tagName)),A.uri=x.prefix);var q=s.tags[s.tags.length-1]||s;A.ns&&q.ns!==A.ns&&Object.keys(A.ns).forEach(function(Je){P(s,"onopennamespace",{prefix:Je,uri:A.ns[Je]})});for(var z=0,H=s.attribList.length;z<H;z++){var Z=s.attribList[z],rt=Z[0],W=Z[1],J=Rt(rt,!0),at=J.prefix,Xn=J.local,Ye=at===""?"":A.ns[at]||"",Oe={name:rt,value:W,prefix:at,local:Xn,uri:Ye};at&&at!=="xmlns"&&!Ye&&(V(s,"Unbound namespace prefix: "+JSON.stringify(at)),Oe.uri=at),s.tag.attributes[rt]=Oe,P(s,"onattribute",Oe)}s.attribList.length=0}s.tag.isSelfClosing=!!r,s.sawRoot=!0,s.tags.push(s.tag),P(s,"onopentag",s.tag),r||(!s.noscript&&s.tagName.toLowerCase()==="script"?s.state=u.SCRIPT:s.state=u.TEXT,s.tag=null,s.tagName=""),s.attribName=s.attribValue="",s.attribList.length=0}function Bt(s){if(!s.tagName){V(s,"Weird empty close tag."),s.textNode+="</>",s.state=u.TEXT;return}if(s.script){if(s.tagName!=="script"){s.script+="</"+s.tagName+">",s.tagName="",s.state=u.SCRIPT;return}P(s,"onscript",s.script),s.script=""}var r=s.tags.length,A=s.tagName;s.strict||(A=A[s.looseCase]());for(var x=A;r--;){var q=s.tags[r];if(q.name!==x)V(s,"Unexpected close tag");else break}if(r<0){V(s,"Unmatched closing tag: "+s.tagName),s.textNode+="</"+s.tagName+">",s.state=u.TEXT;return}s.tagName=A;for(var z=s.tags.length;z-- >r;){var H=s.tag=s.tags.pop();s.tagName=s.tag.name,P(s,"onclosetag",s.tagName);var Z={};for(var rt in H.ns)Z[rt]=H.ns[rt];var W=s.tags[s.tags.length-1]||s;s.opt.xmlns&&H.ns!==W.ns&&Object.keys(H.ns).forEach(function(J){var at=H.ns[J];P(s,"onclosenamespace",{prefix:J,uri:at})})}r===0&&(s.closedRoot=!0),s.tagName=s.attribValue=s.attribName="",s.attribList.length=0,s.state=u.TEXT}function ke(s){var r=s.entity,A=r.toLowerCase(),x,q="";return s.ENTITIES[r]?s.ENTITIES[r]:s.ENTITIES[A]?s.ENTITIES[A]:(r=A,r.charAt(0)==="#"&&(r.charAt(1)==="x"?(r=r.slice(2),x=parseInt(r,16),q=x.toString(16)):(r=r.slice(1),x=parseInt(r,10),q=x.toString(10))),r=r.replace(/^0+/,""),isNaN(x)||q.toLowerCase()!==r||x<0||x>1114111?(V(s,"Invalid character entity"),"&"+s.entity+";"):String.fromCodePoint(x))}function Ht(s,r){r==="<"?(s.state=u.OPEN_WAKA,s.startTagPosition=s.position):i(r)||(V(s,"Non-whitespace before first tag."),s.textNode=r,s.state=u.TEXT)}function $t(s,r){var A="";return r<s.length&&(A=s.charAt(r)),A}function Kt(s){var r=this;if(this.error)throw this.error;if(r.closed)return Y(r,"Cannot write after close. Assign an onready handler.");if(s===null)return ot(r);typeof s=="object"&&(s=s.toString());for(var A=0,x="";x=$t(s,A++),r.c=x,!!x;)switch(r.trackPosition&&(r.position++,x===`
-`?(r.line++,r.column=0):r.column++),r.state){case u.BEGIN:if(r.state=u.BEGIN_WHITESPACE,x==="\uFEFF")continue;Ht(r,x);continue;case u.BEGIN_WHITESPACE:Ht(r,x);continue;case u.TEXT:if(r.sawRoot&&!r.closedRoot){for(var z=A-1;x&&x!=="<"&&x!=="&";)x=$t(s,A++),x&&r.trackPosition&&(r.position++,x===`
-`?(r.line++,r.column=0):r.column++);r.textNode+=s.substring(z,A-1)}x==="<"&&!(r.sawRoot&&r.closedRoot&&!r.strict)?(r.state=u.OPEN_WAKA,r.startTagPosition=r.position):(!i(x)&&(!r.sawRoot||r.closedRoot)&&V(r,"Text data outside of root node."),x==="&"?r.state=u.TEXT_ENTITY:r.textNode+=x);continue;case u.SCRIPT:x==="<"?r.state=u.SCRIPT_ENDING:r.script+=x;continue;case u.SCRIPT_ENDING:x==="/"?r.state=u.CLOSE_TAG:(r.script+="<"+x,r.state=u.SCRIPT);continue;case u.OPEN_WAKA:if(x==="!")r.state=u.SGML_DECL,r.sgmlDecl="";else if(!i(x))if(S(k,x))r.state=u.OPEN_TAG,r.tagName=x;else if(x==="/")r.state=u.CLOSE_TAG,r.tagName="";else if(x==="?")r.state=u.PROC_INST,r.procInstName=r.procInstBody="";else{if(V(r,"Unencoded <"),r.startTagPosition+1<r.position){var q=r.position-r.startTagPosition;x=new Array(q).join(" ")+x}r.textNode+="<"+x,r.state=u.TEXT}continue;case u.SGML_DECL:if(r.sgmlDecl+x==="--"){r.state=u.COMMENT,r.comment="",r.sgmlDecl="";continue}r.doctype&&r.doctype!==!0&&r.sgmlDecl?(r.state=u.DOCTYPE_DTD,r.doctype+="<!"+r.sgmlDecl+x,r.sgmlDecl=""):(r.sgmlDecl+x).toUpperCase()===_?(P(r,"onopencdata"),r.state=u.CDATA,r.sgmlDecl="",r.cdata=""):(r.sgmlDecl+x).toUpperCase()===w?(r.state=u.DOCTYPE,(r.doctype||r.sawRoot)&&V(r,"Inappropriately located doctype declaration"),r.doctype="",r.sgmlDecl=""):x===">"?(P(r,"onsgmldeclaration",r.sgmlDecl),r.sgmlDecl="",r.state=u.TEXT):(n(x)&&(r.state=u.SGML_DECL_QUOTED),r.sgmlDecl+=x);continue;case u.SGML_DECL_QUOTED:x===r.q&&(r.state=u.SGML_DECL,r.q=""),r.sgmlDecl+=x;continue;case u.DOCTYPE:x===">"?(r.state=u.TEXT,P(r,"ondoctype",r.doctype),r.doctype=!0):(r.doctype+=x,x==="["?r.state=u.DOCTYPE_DTD:n(x)&&(r.state=u.DOCTYPE_QUOTED,r.q=x));continue;case u.DOCTYPE_QUOTED:r.doctype+=x,x===r.q&&(r.q="",r.state=u.DOCTYPE);continue;case u.DOCTYPE_DTD:x==="]"?(r.doctype+=x,r.state=u.DOCTYPE):x==="<"?(r.state=u.OPEN_WAKA,r.startTagPosition=r.position):n(x)?(r.doctype+=x,r.state=u.DOCTYPE_DTD_QUOTED,r.q=x):r.doctype+=x;continue;case u.DOCTYPE_DTD_QUOTED:r.doctype+=x,x===r.q&&(r.state=u.DOCTYPE_DTD,r.q="");continue;case u.COMMENT:x==="-"?r.state=u.COMMENT_ENDING:r.comment+=x;continue;case u.COMMENT_ENDING:x==="-"?(r.state=u.COMMENT_ENDED,r.comment=$(r.opt,r.comment),r.comment&&P(r,"oncomment",r.comment),r.comment=""):(r.comment+="-"+x,r.state=u.COMMENT);continue;case u.COMMENT_ENDED:x!==">"?(V(r,"Malformed comment"),r.comment+="--"+x,r.state=u.COMMENT):r.doctype&&r.doctype!==!0?r.state=u.DOCTYPE_DTD:r.state=u.TEXT;continue;case u.CDATA:for(var z=A-1;x&&x!=="]";)x=$t(s,A++),x&&r.trackPosition&&(r.position++,x===`
-`?(r.line++,r.column=0):r.column++);r.cdata+=s.substring(z,A-1),x==="]"&&(r.state=u.CDATA_ENDING);continue;case u.CDATA_ENDING:x==="]"?r.state=u.CDATA_ENDING_2:(r.cdata+="]"+x,r.state=u.CDATA);continue;case u.CDATA_ENDING_2:x===">"?(r.cdata&&P(r,"oncdata",r.cdata),P(r,"onclosecdata"),r.cdata="",r.state=u.TEXT):x==="]"?r.cdata+="]":(r.cdata+="]]"+x,r.state=u.CDATA);continue;case u.PROC_INST:x==="?"?r.state=u.PROC_INST_ENDING:i(x)?r.state=u.PROC_INST_BODY:r.procInstName+=x;continue;case u.PROC_INST_BODY:if(!r.procInstBody&&i(x))continue;x==="?"?r.state=u.PROC_INST_ENDING:r.procInstBody+=x;continue;case u.PROC_INST_ENDING:if(x===">"){let W={name:r.procInstName,body:r.procInstBody};M(r,W),P(r,"onprocessinginstruction",W),r.procInstName=r.procInstBody="",r.state=u.TEXT}else r.procInstBody+="?"+x,r.state=u.PROC_INST_BODY;continue;case u.OPEN_TAG:S(N,x)?r.tagName+=x:(Ae(r),x===">"?mt(r):x==="/"?r.state=u.OPEN_TAG_SLASH:(i(x)||V(r,"Invalid character in tag name"),r.state=u.ATTRIB));continue;case u.OPEN_TAG_SLASH:x===">"?(mt(r,!0),Bt(r)):(V(r,"Forward-slash in opening tag not followed by >"),r.state=u.ATTRIB);continue;case u.ATTRIB:if(i(x))continue;x===">"?mt(r):x==="/"?r.state=u.OPEN_TAG_SLASH:S(k,x)?(r.attribName=x,r.attribValue="",r.state=u.ATTRIB_NAME):V(r,"Invalid attribute name");continue;case u.ATTRIB_NAME:x==="="?r.state=u.ATTRIB_VALUE:x===">"?(V(r,"Attribute without value"),r.attribValue=r.attribName,Ft(r),mt(r)):i(x)?r.state=u.ATTRIB_NAME_SAW_WHITE:S(N,x)?r.attribName+=x:V(r,"Invalid attribute name");continue;case u.ATTRIB_NAME_SAW_WHITE:if(x==="=")r.state=u.ATTRIB_VALUE;else{if(i(x))continue;V(r,"Attribute without value"),r.tag.attributes[r.attribName]="",r.attribValue="",P(r,"onattribute",{name:r.attribName,value:""}),r.attribName="",x===">"?mt(r):S(k,x)?(r.attribName=x,r.state=u.ATTRIB_NAME):(V(r,"Invalid attribute name"),r.state=u.ATTRIB)}continue;case u.ATTRIB_VALUE:if(i(x))continue;n(x)?(r.q=x,r.state=u.ATTRIB_VALUE_QUOTED):(r.opt.unquotedAttributeValues||Y(r,"Unquoted attribute value"),r.state=u.ATTRIB_VALUE_UNQUOTED,r.attribValue=x);continue;case u.ATTRIB_VALUE_QUOTED:if(x!==r.q){x==="&"?r.state=u.ATTRIB_VALUE_ENTITY_Q:r.attribValue+=x;continue}Ft(r),r.q="",r.state=u.ATTRIB_VALUE_CLOSED;continue;case u.ATTRIB_VALUE_CLOSED:i(x)?r.state=u.ATTRIB:x===">"?mt(r):x==="/"?r.state=u.OPEN_TAG_SLASH:S(k,x)?(V(r,"No whitespace between attributes"),r.attribName=x,r.attribValue="",r.state=u.ATTRIB_NAME):V(r,"Invalid attribute name");continue;case u.ATTRIB_VALUE_UNQUOTED:if(!y(x)){x==="&"?r.state=u.ATTRIB_VALUE_ENTITY_U:r.attribValue+=x;continue}Ft(r),x===">"?mt(r):r.state=u.ATTRIB;continue;case u.CLOSE_TAG:if(r.tagName)x===">"?Bt(r):S(N,x)?r.tagName+=x:r.script?(r.script+="</"+r.tagName+x,r.tagName="",r.state=u.SCRIPT):(i(x)||V(r,"Invalid tagname in closing tag"),r.state=u.CLOSE_TAG_SAW_WHITE);else{if(i(x))continue;C(k,x)?r.script?(r.script+="</"+x,r.state=u.SCRIPT):V(r,"Invalid tagname in closing tag."):r.tagName=x}continue;case u.CLOSE_TAG_SAW_WHITE:if(i(x))continue;x===">"?Bt(r):V(r,"Invalid characters in closing tag");continue;case u.TEXT_ENTITY:case u.ATTRIB_VALUE_ENTITY_Q:case u.ATTRIB_VALUE_ENTITY_U:var H,Z;switch(r.state){case u.TEXT_ENTITY:H=u.TEXT,Z="textNode";break;case u.ATTRIB_VALUE_ENTITY_Q:H=u.ATTRIB_VALUE_QUOTED,Z="attribValue";break;case u.ATTRIB_VALUE_ENTITY_U:H=u.ATTRIB_VALUE_UNQUOTED,Z="attribValue";break}if(x===";"){var rt=ke(r);r.opt.unparsedEntities&&!Object.values(e.XML_ENTITIES).includes(rt)?((r.entityCount+=1)>r.opt.maxEntityCount&&Y(r,"Parsed entity count exceeds max entity count"),(r.entityDepth+=1)>r.opt.maxEntityDepth&&Y(r,"Parsed entity depth exceeds max entity depth"),r.entity="",r.state=H,r.write(rt),r.entityDepth-=1):(r[Z]+=rt,r.entity="",r.state=H)}else S(r.entity.length?f:I,x)?r.entity+=x:(V(r,"Invalid character in entity name"),r[Z]+="&"+r.entity+x,r.entity="",r.state=H);continue;default:throw new Error(r,"Unknown state: "+r.state)}return r.position>=r.bufferCheckPosition&&b(r),r}String.fromCodePoint||(function(){var s=String.fromCharCode,r=Math.floor,A=function(){var x=16384,q=[],z,H,Z=-1,rt=arguments.length;if(!rt)return"";for(var W="";++Z<rt;){var J=Number(arguments[Z]);if(!isFinite(J)||J<0||J>1114111||r(J)!==J)throw RangeError("Invalid code point: "+J);J<=65535?q.push(J):(J-=65536,z=(J>>10)+55296,H=J%1024+56320,q.push(z,H)),(Z+1===rt||q.length>x)&&(W+=s.apply(null,q),q.length=0)}return W};Object.defineProperty?Object.defineProperty(String,"fromCodePoint",{value:A,configurable:!0,writable:!0}):String.fromCodePoint=A})()})(typeof me>"u"?me.sax={}:me)});var En=B(qe=>{(function(){"use strict";qe.stripBOM=function(e){return e[0]==="\uFEFF"?e.substring(1):e}}).call(qe)});var je=B(Ct=>{(function(){"use strict";var e;e=new RegExp(/(?!xmlns)^.*:/),Ct.normalize=function(t){return t.toLowerCase()},Ct.firstCharLowerCase=function(t){return t.charAt(0).toLowerCase()+t.slice(1)},Ct.stripPrefix=function(t){return t.replace(e,"")},Ct.parseNumbers=function(t){return isNaN(t)||(t=t%1===0?parseInt(t,10):parseFloat(t)),t},Ct.parseBooleans=function(t){return/^(?:true|false)$/i.test(t)&&(t=t.toLowerCase()==="true"),t}}).call(Ct)});var xn=B(yt=>{(function(){"use strict";var e,t,a,b,o,p,c,l,d,m=function(w,h){return function(){return w.apply(h,arguments)}},T=function(w,h){for(var v in h)_.call(h,v)&&(w[v]=h[v]);function E(){this.constructor=w}return E.prototype=h.prototype,w.prototype=new E,w.__super__=h.prototype,w},_={}.hasOwnProperty;l=In(),b=require("events"),e=En(),c=je(),d=require("timers").setImmediate,t=ee().defaults,o=function(w){return typeof w=="object"&&w!=null&&Object.keys(w).length===0},p=function(w,h,v){var E,k,N;for(E=0,k=w.length;E<k;E++)N=w[E],h=N(h,v);return h},a=function(w,h,v){var E;return E=Object.create(null),E.value=v,E.writable=!0,E.enumerable=!0,E.configurable=!0,Object.defineProperty(w,h,E)},yt.Parser=(function(w){T(h,w);function h(v){this.parseStringPromise=m(this.parseStringPromise,this),this.parseString=m(this.parseString,this),this.reset=m(this.reset,this),this.assignOrPush=m(this.assignOrPush,this),this.processAsync=m(this.processAsync,this);var E,k,N;if(!(this instanceof yt.Parser))return new yt.Parser(v);this.options={},k=t["0.2"];for(E in k)_.call(k,E)&&(N=k[E],this.options[E]=N);for(E in v)_.call(v,E)&&(N=v[E],this.options[E]=N);this.options.xmlns&&(this.options.xmlnskey=this.options.attrkey+"ns"),this.options.normalizeTags&&(this.options.tagNameProcessors||(this.options.tagNameProcessors=[]),this.options.tagNameProcessors.unshift(c.normalize)),this.reset()}return h.prototype.processAsync=function(){var v,E;try{return this.remaining.length<=this.options.chunkSize?(v=this.remaining,this.remaining="",this.saxParser=this.saxParser.write(v),this.saxParser.close()):(v=this.remaining.substr(0,this.options.chunkSize),this.remaining=this.remaining.substr(this.options.chunkSize,this.remaining.length),this.saxParser=this.saxParser.write(v),d(this.processAsync))}catch(k){if(E=k,!this.saxParser.errThrown)return this.saxParser.errThrown=!0,this.emit(E)}},h.prototype.assignOrPush=function(v,E,k){return E in v?(v[E]instanceof Array||a(v,E,[v[E]]),v[E].push(k)):this.options.explicitArray?a(v,E,[k]):a(v,E,k)},h.prototype.reset=function(){var v,E,k,N;return this.removeAllListeners(),this.saxParser=l.parser(this.options.strict,{trim:!1,normalize:!1,xmlns:this.options.xmlns}),this.saxParser.errThrown=!1,this.saxParser.onerror=(function(I){return function(f){if(I.saxParser.resume(),!I.saxParser.errThrown)return I.saxParser.errThrown=!0,I.emit("error",f)}})(this),this.saxParser.onend=(function(I){return function(){if(!I.saxParser.ended)return I.saxParser.ended=!0,I.emit("end",I.resultObject)}})(this),this.saxParser.ended=!1,this.EXPLICIT_CHARKEY=this.options.explicitCharkey,this.resultObject=null,N=[],v=this.options.attrkey,E=this.options.charkey,this.saxParser.onopentag=(function(I){return function(f){var i,n,y,S,C;if(y={},y[E]="",!I.options.ignoreAttrs){C=f.attributes;for(i in C)_.call(C,i)&&(!(v in y)&&!I.options.mergeAttrs&&(y[v]={}),n=I.options.attrValueProcessors?p(I.options.attrValueProcessors,f.attributes[i],i):f.attributes[i],S=I.options.attrNameProcessors?p(I.options.attrNameProcessors,i):i,I.options.mergeAttrs?I.assignOrPush(y,S,n):a(y[v],S,n))}return y["#name"]=I.options.tagNameProcessors?p(I.options.tagNameProcessors,f.name):f.name,I.options.xmlns&&(y[I.options.xmlnskey]={uri:f.uri,local:f.local}),N.push(y)}})(this),this.saxParser.onclosetag=(function(I){return function(){var f,i,n,y,S,C,u,g,D,O;if(C=N.pop(),S=C["#name"],(!I.options.explicitChildren||!I.options.preserveChildrenOrder)&&delete C["#name"],C.cdata===!0&&(f=C.cdata,delete C.cdata),D=N[N.length-1],C[E].match(/^\s*$/)&&!f?(i=C[E],delete C[E]):(I.options.trim&&(C[E]=C[E].trim()),I.options.normalize&&(C[E]=C[E].replace(/\s{2,}/g," ").trim()),C[E]=I.options.valueProcessors?p(I.options.valueProcessors,C[E],S):C[E],Object.keys(C).length===1&&E in C&&!I.EXPLICIT_CHARKEY&&(C=C[E])),o(C)&&(typeof I.options.emptyTag=="function"?C=I.options.emptyTag():C=I.options.emptyTag!==""?I.options.emptyTag:i),I.options.validator!=null&&(O="/"+(function(){var L,R,M;for(M=[],L=0,R=N.length;L<R;L++)y=N[L],M.push(y["#name"]);return M})().concat(S).join("/"),(function(){var L;try{return C=I.options.validator(O,D&&D[S],C)}catch(R){return L=R,I.emit("error",L)}})()),I.options.explicitChildren&&!I.options.mergeAttrs&&typeof C=="object"){if(!I.options.preserveChildrenOrder)y={},I.options.attrkey in C&&(y[I.options.attrkey]=C[I.options.attrkey],delete C[I.options.attrkey]),!I.options.charsAsChildren&&I.options.charkey in C&&(y[I.options.charkey]=C[I.options.charkey],delete C[I.options.charkey]),Object.getOwnPropertyNames(C).length>0&&(y[I.options.childkey]=C),C=y;else if(D){D[I.options.childkey]=D[I.options.childkey]||[],u={};for(n in C)_.call(C,n)&&a(u,n,C[n]);D[I.options.childkey].push(u),delete C["#name"],Object.keys(C).length===1&&E in C&&!I.EXPLICIT_CHARKEY&&(C=C[E])}}return N.length>0?I.assignOrPush(D,S,C):(I.options.explicitRoot&&(g=C,C={},a(C,S,g)),I.resultObject=C,I.saxParser.ended=!0,I.emit("end",I.resultObject))}})(this),k=(function(I){return function(f){var i,n;if(n=N[N.length-1],n)return n[E]+=f,I.options.explicitChildren&&I.options.preserveChildrenOrder&&I.options.charsAsChildren&&(I.options.includeWhiteChars||f.replace(/\\n/g,"").trim()!=="")&&(n[I.options.childkey]=n[I.options.childkey]||[],i={"#name":"__text__"},i[E]=f,I.options.normalize&&(i[E]=i[E].replace(/\s{2,}/g," ").trim()),n[I.options.childkey].push(i)),n}})(this),this.saxParser.ontext=k,this.saxParser.oncdata=(function(I){return function(f){var i;if(i=k(f),i)return i.cdata=!0}})(this)},h.prototype.parseString=function(v,E){var k;E!=null&&typeof E=="function"&&(this.on("end",function(N){return this.reset(),E(null,N)}),this.on("error",function(N){return this.reset(),E(N)}));try{return v=v.toString(),v.trim()===""?(this.emit("end",null),!0):(v=e.stripBOM(v),this.options.async?(this.remaining=v,d(this.processAsync),this.saxParser):this.saxParser.write(v).close())}catch(N){if(k=N,this.saxParser.errThrown||this.saxParser.ended){if(this.saxParser.ended)throw k}else return this.emit("error",k),this.saxParser.errThrown=!0}},h.prototype.parseStringPromise=function(v){return new Promise((function(E){return function(k,N){return E.parseString(v,function(I,f){return I?N(I):k(f)})}})(this))},h})(b),yt.parseString=function(w,h,v){var E,k,N;return v!=null?(typeof v=="function"&&(E=v),typeof h=="object"&&(k=h)):(typeof h=="function"&&(E=h),k={}),N=new yt.Parser(k),N.parseString(w,E)},yt.parseStringPromise=function(w,h){var v,E;return typeof h=="object"&&(v=h),E=new yt.Parser(v),E.parseStringPromise(w)}}).call(yt)});var ye=B(bt=>{(function(){"use strict";var e,t,a,b,o=function(c,l){for(var d in l)p.call(l,d)&&(c[d]=l[d]);function m(){this.constructor=c}return m.prototype=l.prototype,c.prototype=new m,c.__super__=l.prototype,c},p={}.hasOwnProperty;t=ee(),e=Tn(),a=xn(),b=je(),bt.defaults=t.defaults,bt.processors=b,bt.ValidationError=(function(c){o(l,c);function l(d){this.message=d}return l})(Error),bt.Builder=e.Builder,bt.Parser=a.Parser,bt.parseString=a.parseString,bt.parseStringPromise=a.parseStringPromise}).call(bt)});var Ri={};Yn(Ri,{activate:()=>Pi,deactivate:()=>Mi});module.exports=Jn(Ri);var X=j(require("vscode"));var U=j(require("vscode")),te=j(require("fs")),nt=j(require("path"));function ct(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}function Qn(e){return e==="high"?"I":e==="medium"?"II":"III"}function Zn(e){let t={total:e.length,not_reviewed:0,open:0,not_a_finding:0,not_applicable:0,high:0,medium:0,low:0};for(let a of e)t[a.status]++,t[a.severity]++;return t}function Ze(e){return JSON.stringify(e).replace(/<\//g,"<\\/").replace(/<!--/g,"<\\!--")}function tr(e){let t=Ze(Object.fromEntries(e.stigs.flatMap(a=>a.rules.map(b=>[b.uuid,b]))));return`<!DOCTYPE html>
+"use strict";
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __commonJS = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// node_modules/xml2js/lib/defaults.js
+var require_defaults = __commonJS({
+  "node_modules/xml2js/lib/defaults.js"(exports2) {
+    (function() {
+      exports2.defaults = {
+        "0.1": {
+          explicitCharkey: false,
+          trim: true,
+          normalize: true,
+          normalizeTags: false,
+          attrkey: "@",
+          charkey: "#",
+          explicitArray: false,
+          ignoreAttrs: false,
+          mergeAttrs: false,
+          explicitRoot: false,
+          validator: null,
+          xmlns: false,
+          explicitChildren: false,
+          childkey: "@@",
+          charsAsChildren: false,
+          includeWhiteChars: false,
+          async: false,
+          strict: true,
+          attrNameProcessors: null,
+          attrValueProcessors: null,
+          tagNameProcessors: null,
+          valueProcessors: null,
+          emptyTag: ""
+        },
+        "0.2": {
+          explicitCharkey: false,
+          trim: false,
+          normalize: false,
+          normalizeTags: false,
+          attrkey: "$",
+          charkey: "_",
+          explicitArray: true,
+          ignoreAttrs: false,
+          mergeAttrs: false,
+          explicitRoot: true,
+          validator: null,
+          xmlns: false,
+          explicitChildren: false,
+          preserveChildrenOrder: false,
+          childkey: "$$",
+          charsAsChildren: false,
+          includeWhiteChars: false,
+          async: false,
+          strict: true,
+          attrNameProcessors: null,
+          attrValueProcessors: null,
+          tagNameProcessors: null,
+          valueProcessors: null,
+          rootName: "root",
+          xmldec: {
+            "version": "1.0",
+            "encoding": "UTF-8",
+            "standalone": true
+          },
+          doctype: null,
+          renderOpts: {
+            "pretty": true,
+            "indent": "  ",
+            "newline": "\n"
+          },
+          headless: false,
+          chunkSize: 1e4,
+          emptyTag: "",
+          cdata: false
+        }
+      };
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/Utility.js
+var require_Utility = __commonJS({
+  "node_modules/xmlbuilder/lib/Utility.js"(exports2, module2) {
+    (function() {
+      var assign, getValue, isArray, isEmpty, isFunction, isObject, isPlainObject, slice = [].slice, hasProp = {}.hasOwnProperty;
+      assign = function() {
+        var i, key, len, source, sources, target;
+        target = arguments[0], sources = 2 <= arguments.length ? slice.call(arguments, 1) : [];
+        if (isFunction(Object.assign)) {
+          Object.assign.apply(null, arguments);
+        } else {
+          for (i = 0, len = sources.length; i < len; i++) {
+            source = sources[i];
+            if (source != null) {
+              for (key in source) {
+                if (!hasProp.call(source, key)) continue;
+                target[key] = source[key];
+              }
+            }
+          }
+        }
+        return target;
+      };
+      isFunction = function(val) {
+        return !!val && Object.prototype.toString.call(val) === "[object Function]";
+      };
+      isObject = function(val) {
+        var ref;
+        return !!val && ((ref = typeof val) === "function" || ref === "object");
+      };
+      isArray = function(val) {
+        if (isFunction(Array.isArray)) {
+          return Array.isArray(val);
+        } else {
+          return Object.prototype.toString.call(val) === "[object Array]";
+        }
+      };
+      isEmpty = function(val) {
+        var key;
+        if (isArray(val)) {
+          return !val.length;
+        } else {
+          for (key in val) {
+            if (!hasProp.call(val, key)) continue;
+            return false;
+          }
+          return true;
+        }
+      };
+      isPlainObject = function(val) {
+        var ctor, proto;
+        return isObject(val) && (proto = Object.getPrototypeOf(val)) && (ctor = proto.constructor) && typeof ctor === "function" && ctor instanceof ctor && Function.prototype.toString.call(ctor) === Function.prototype.toString.call(Object);
+      };
+      getValue = function(obj) {
+        if (isFunction(obj.valueOf)) {
+          return obj.valueOf();
+        } else {
+          return obj;
+        }
+      };
+      module2.exports.assign = assign;
+      module2.exports.isFunction = isFunction;
+      module2.exports.isObject = isObject;
+      module2.exports.isArray = isArray;
+      module2.exports.isEmpty = isEmpty;
+      module2.exports.isPlainObject = isPlainObject;
+      module2.exports.getValue = getValue;
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLDOMImplementation.js
+var require_XMLDOMImplementation = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLDOMImplementation.js"(exports2, module2) {
+    (function() {
+      var XMLDOMImplementation;
+      module2.exports = XMLDOMImplementation = (function() {
+        function XMLDOMImplementation2() {
+        }
+        XMLDOMImplementation2.prototype.hasFeature = function(feature, version) {
+          return true;
+        };
+        XMLDOMImplementation2.prototype.createDocumentType = function(qualifiedName, publicId, systemId) {
+          throw new Error("This DOM method is not implemented.");
+        };
+        XMLDOMImplementation2.prototype.createDocument = function(namespaceURI, qualifiedName, doctype) {
+          throw new Error("This DOM method is not implemented.");
+        };
+        XMLDOMImplementation2.prototype.createHTMLDocument = function(title) {
+          throw new Error("This DOM method is not implemented.");
+        };
+        XMLDOMImplementation2.prototype.getFeature = function(feature, version) {
+          throw new Error("This DOM method is not implemented.");
+        };
+        return XMLDOMImplementation2;
+      })();
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLDOMErrorHandler.js
+var require_XMLDOMErrorHandler = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLDOMErrorHandler.js"(exports2, module2) {
+    (function() {
+      var XMLDOMErrorHandler;
+      module2.exports = XMLDOMErrorHandler = (function() {
+        function XMLDOMErrorHandler2() {
+        }
+        XMLDOMErrorHandler2.prototype.handleError = function(error) {
+          throw new Error(error);
+        };
+        return XMLDOMErrorHandler2;
+      })();
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLDOMStringList.js
+var require_XMLDOMStringList = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLDOMStringList.js"(exports2, module2) {
+    (function() {
+      var XMLDOMStringList;
+      module2.exports = XMLDOMStringList = (function() {
+        function XMLDOMStringList2(arr) {
+          this.arr = arr || [];
+        }
+        Object.defineProperty(XMLDOMStringList2.prototype, "length", {
+          get: function() {
+            return this.arr.length;
+          }
+        });
+        XMLDOMStringList2.prototype.item = function(index) {
+          return this.arr[index] || null;
+        };
+        XMLDOMStringList2.prototype.contains = function(str) {
+          return this.arr.indexOf(str) !== -1;
+        };
+        return XMLDOMStringList2;
+      })();
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLDOMConfiguration.js
+var require_XMLDOMConfiguration = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLDOMConfiguration.js"(exports2, module2) {
+    (function() {
+      var XMLDOMConfiguration, XMLDOMErrorHandler, XMLDOMStringList;
+      XMLDOMErrorHandler = require_XMLDOMErrorHandler();
+      XMLDOMStringList = require_XMLDOMStringList();
+      module2.exports = XMLDOMConfiguration = (function() {
+        function XMLDOMConfiguration2() {
+          var clonedSelf;
+          this.defaultParams = {
+            "canonical-form": false,
+            "cdata-sections": false,
+            "comments": false,
+            "datatype-normalization": false,
+            "element-content-whitespace": true,
+            "entities": true,
+            "error-handler": new XMLDOMErrorHandler(),
+            "infoset": true,
+            "validate-if-schema": false,
+            "namespaces": true,
+            "namespace-declarations": true,
+            "normalize-characters": false,
+            "schema-location": "",
+            "schema-type": "",
+            "split-cdata-sections": true,
+            "validate": false,
+            "well-formed": true
+          };
+          this.params = clonedSelf = Object.create(this.defaultParams);
+        }
+        Object.defineProperty(XMLDOMConfiguration2.prototype, "parameterNames", {
+          get: function() {
+            return new XMLDOMStringList(Object.keys(this.defaultParams));
+          }
+        });
+        XMLDOMConfiguration2.prototype.getParameter = function(name) {
+          if (this.params.hasOwnProperty(name)) {
+            return this.params[name];
+          } else {
+            return null;
+          }
+        };
+        XMLDOMConfiguration2.prototype.canSetParameter = function(name, value) {
+          return true;
+        };
+        XMLDOMConfiguration2.prototype.setParameter = function(name, value) {
+          if (value != null) {
+            return this.params[name] = value;
+          } else {
+            return delete this.params[name];
+          }
+        };
+        return XMLDOMConfiguration2;
+      })();
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/NodeType.js
+var require_NodeType = __commonJS({
+  "node_modules/xmlbuilder/lib/NodeType.js"(exports2, module2) {
+    (function() {
+      module2.exports = {
+        Element: 1,
+        Attribute: 2,
+        Text: 3,
+        CData: 4,
+        EntityReference: 5,
+        EntityDeclaration: 6,
+        ProcessingInstruction: 7,
+        Comment: 8,
+        Document: 9,
+        DocType: 10,
+        DocumentFragment: 11,
+        NotationDeclaration: 12,
+        Declaration: 201,
+        Raw: 202,
+        AttributeDeclaration: 203,
+        ElementDeclaration: 204,
+        Dummy: 205
+      };
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLAttribute.js
+var require_XMLAttribute = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLAttribute.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLAttribute, XMLNode;
+      NodeType = require_NodeType();
+      XMLNode = require_XMLNode();
+      module2.exports = XMLAttribute = (function() {
+        function XMLAttribute2(parent, name, value) {
+          this.parent = parent;
+          if (this.parent) {
+            this.options = this.parent.options;
+            this.stringify = this.parent.stringify;
+          }
+          if (name == null) {
+            throw new Error("Missing attribute name. " + this.debugInfo(name));
+          }
+          this.name = this.stringify.name(name);
+          this.value = this.stringify.attValue(value);
+          this.type = NodeType.Attribute;
+          this.isId = false;
+          this.schemaTypeInfo = null;
+        }
+        Object.defineProperty(XMLAttribute2.prototype, "nodeType", {
+          get: function() {
+            return this.type;
+          }
+        });
+        Object.defineProperty(XMLAttribute2.prototype, "ownerElement", {
+          get: function() {
+            return this.parent;
+          }
+        });
+        Object.defineProperty(XMLAttribute2.prototype, "textContent", {
+          get: function() {
+            return this.value;
+          },
+          set: function(value) {
+            return this.value = value || "";
+          }
+        });
+        Object.defineProperty(XMLAttribute2.prototype, "namespaceURI", {
+          get: function() {
+            return "";
+          }
+        });
+        Object.defineProperty(XMLAttribute2.prototype, "prefix", {
+          get: function() {
+            return "";
+          }
+        });
+        Object.defineProperty(XMLAttribute2.prototype, "localName", {
+          get: function() {
+            return this.name;
+          }
+        });
+        Object.defineProperty(XMLAttribute2.prototype, "specified", {
+          get: function() {
+            return true;
+          }
+        });
+        XMLAttribute2.prototype.clone = function() {
+          return Object.create(this);
+        };
+        XMLAttribute2.prototype.toString = function(options) {
+          return this.options.writer.attribute(this, this.options.writer.filterOptions(options));
+        };
+        XMLAttribute2.prototype.debugInfo = function(name) {
+          name = name || this.name;
+          if (name == null) {
+            return "parent: <" + this.parent.name + ">";
+          } else {
+            return "attribute: {" + name + "}, parent: <" + this.parent.name + ">";
+          }
+        };
+        XMLAttribute2.prototype.isEqualNode = function(node) {
+          if (node.namespaceURI !== this.namespaceURI) {
+            return false;
+          }
+          if (node.prefix !== this.prefix) {
+            return false;
+          }
+          if (node.localName !== this.localName) {
+            return false;
+          }
+          if (node.value !== this.value) {
+            return false;
+          }
+          return true;
+        };
+        return XMLAttribute2;
+      })();
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLNamedNodeMap.js
+var require_XMLNamedNodeMap = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLNamedNodeMap.js"(exports2, module2) {
+    (function() {
+      var XMLNamedNodeMap;
+      module2.exports = XMLNamedNodeMap = (function() {
+        function XMLNamedNodeMap2(nodes) {
+          this.nodes = nodes;
+        }
+        Object.defineProperty(XMLNamedNodeMap2.prototype, "length", {
+          get: function() {
+            return Object.keys(this.nodes).length || 0;
+          }
+        });
+        XMLNamedNodeMap2.prototype.clone = function() {
+          return this.nodes = null;
+        };
+        XMLNamedNodeMap2.prototype.getNamedItem = function(name) {
+          return this.nodes[name];
+        };
+        XMLNamedNodeMap2.prototype.setNamedItem = function(node) {
+          var oldNode;
+          oldNode = this.nodes[node.nodeName];
+          this.nodes[node.nodeName] = node;
+          return oldNode || null;
+        };
+        XMLNamedNodeMap2.prototype.removeNamedItem = function(name) {
+          var oldNode;
+          oldNode = this.nodes[name];
+          delete this.nodes[name];
+          return oldNode || null;
+        };
+        XMLNamedNodeMap2.prototype.item = function(index) {
+          return this.nodes[Object.keys(this.nodes)[index]] || null;
+        };
+        XMLNamedNodeMap2.prototype.getNamedItemNS = function(namespaceURI, localName) {
+          throw new Error("This DOM method is not implemented.");
+        };
+        XMLNamedNodeMap2.prototype.setNamedItemNS = function(node) {
+          throw new Error("This DOM method is not implemented.");
+        };
+        XMLNamedNodeMap2.prototype.removeNamedItemNS = function(namespaceURI, localName) {
+          throw new Error("This DOM method is not implemented.");
+        };
+        return XMLNamedNodeMap2;
+      })();
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLElement.js
+var require_XMLElement = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLElement.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLAttribute, XMLElement, XMLNamedNodeMap, XMLNode, getValue, isFunction, isObject, ref, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      ref = require_Utility(), isObject = ref.isObject, isFunction = ref.isFunction, getValue = ref.getValue;
+      XMLNode = require_XMLNode();
+      NodeType = require_NodeType();
+      XMLAttribute = require_XMLAttribute();
+      XMLNamedNodeMap = require_XMLNamedNodeMap();
+      module2.exports = XMLElement = (function(superClass) {
+        extend(XMLElement2, superClass);
+        function XMLElement2(parent, name, attributes) {
+          var child, j, len, ref1;
+          XMLElement2.__super__.constructor.call(this, parent);
+          if (name == null) {
+            throw new Error("Missing element name. " + this.debugInfo());
+          }
+          this.name = this.stringify.name(name);
+          this.type = NodeType.Element;
+          this.attribs = {};
+          this.schemaTypeInfo = null;
+          if (attributes != null) {
+            this.attribute(attributes);
+          }
+          if (parent.type === NodeType.Document) {
+            this.isRoot = true;
+            this.documentObject = parent;
+            parent.rootObject = this;
+            if (parent.children) {
+              ref1 = parent.children;
+              for (j = 0, len = ref1.length; j < len; j++) {
+                child = ref1[j];
+                if (child.type === NodeType.DocType) {
+                  child.name = this.name;
+                  break;
+                }
+              }
+            }
+          }
+        }
+        Object.defineProperty(XMLElement2.prototype, "tagName", {
+          get: function() {
+            return this.name;
+          }
+        });
+        Object.defineProperty(XMLElement2.prototype, "namespaceURI", {
+          get: function() {
+            return "";
+          }
+        });
+        Object.defineProperty(XMLElement2.prototype, "prefix", {
+          get: function() {
+            return "";
+          }
+        });
+        Object.defineProperty(XMLElement2.prototype, "localName", {
+          get: function() {
+            return this.name;
+          }
+        });
+        Object.defineProperty(XMLElement2.prototype, "id", {
+          get: function() {
+            throw new Error("This DOM method is not implemented." + this.debugInfo());
+          }
+        });
+        Object.defineProperty(XMLElement2.prototype, "className", {
+          get: function() {
+            throw new Error("This DOM method is not implemented." + this.debugInfo());
+          }
+        });
+        Object.defineProperty(XMLElement2.prototype, "classList", {
+          get: function() {
+            throw new Error("This DOM method is not implemented." + this.debugInfo());
+          }
+        });
+        Object.defineProperty(XMLElement2.prototype, "attributes", {
+          get: function() {
+            if (!this.attributeMap || !this.attributeMap.nodes) {
+              this.attributeMap = new XMLNamedNodeMap(this.attribs);
+            }
+            return this.attributeMap;
+          }
+        });
+        XMLElement2.prototype.clone = function() {
+          var att, attName, clonedSelf, ref1;
+          clonedSelf = Object.create(this);
+          if (clonedSelf.isRoot) {
+            clonedSelf.documentObject = null;
+          }
+          clonedSelf.attribs = {};
+          ref1 = this.attribs;
+          for (attName in ref1) {
+            if (!hasProp.call(ref1, attName)) continue;
+            att = ref1[attName];
+            clonedSelf.attribs[attName] = att.clone();
+          }
+          clonedSelf.children = [];
+          this.children.forEach(function(child) {
+            var clonedChild;
+            clonedChild = child.clone();
+            clonedChild.parent = clonedSelf;
+            return clonedSelf.children.push(clonedChild);
+          });
+          return clonedSelf;
+        };
+        XMLElement2.prototype.attribute = function(name, value) {
+          var attName, attValue;
+          if (name != null) {
+            name = getValue(name);
+          }
+          if (isObject(name)) {
+            for (attName in name) {
+              if (!hasProp.call(name, attName)) continue;
+              attValue = name[attName];
+              this.attribute(attName, attValue);
+            }
+          } else {
+            if (isFunction(value)) {
+              value = value.apply();
+            }
+            if (this.options.keepNullAttributes && value == null) {
+              this.attribs[name] = new XMLAttribute(this, name, "");
+            } else if (value != null) {
+              this.attribs[name] = new XMLAttribute(this, name, value);
+            }
+          }
+          return this;
+        };
+        XMLElement2.prototype.removeAttribute = function(name) {
+          var attName, j, len;
+          if (name == null) {
+            throw new Error("Missing attribute name. " + this.debugInfo());
+          }
+          name = getValue(name);
+          if (Array.isArray(name)) {
+            for (j = 0, len = name.length; j < len; j++) {
+              attName = name[j];
+              delete this.attribs[attName];
+            }
+          } else {
+            delete this.attribs[name];
+          }
+          return this;
+        };
+        XMLElement2.prototype.toString = function(options) {
+          return this.options.writer.element(this, this.options.writer.filterOptions(options));
+        };
+        XMLElement2.prototype.att = function(name, value) {
+          return this.attribute(name, value);
+        };
+        XMLElement2.prototype.a = function(name, value) {
+          return this.attribute(name, value);
+        };
+        XMLElement2.prototype.getAttribute = function(name) {
+          if (this.attribs.hasOwnProperty(name)) {
+            return this.attribs[name].value;
+          } else {
+            return null;
+          }
+        };
+        XMLElement2.prototype.setAttribute = function(name, value) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.getAttributeNode = function(name) {
+          if (this.attribs.hasOwnProperty(name)) {
+            return this.attribs[name];
+          } else {
+            return null;
+          }
+        };
+        XMLElement2.prototype.setAttributeNode = function(newAttr) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.removeAttributeNode = function(oldAttr) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.getElementsByTagName = function(name) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.getAttributeNS = function(namespaceURI, localName) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.setAttributeNS = function(namespaceURI, qualifiedName, value) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.removeAttributeNS = function(namespaceURI, localName) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.getAttributeNodeNS = function(namespaceURI, localName) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.setAttributeNodeNS = function(newAttr) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.getElementsByTagNameNS = function(namespaceURI, localName) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.hasAttribute = function(name) {
+          return this.attribs.hasOwnProperty(name);
+        };
+        XMLElement2.prototype.hasAttributeNS = function(namespaceURI, localName) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.setIdAttribute = function(name, isId) {
+          if (this.attribs.hasOwnProperty(name)) {
+            return this.attribs[name].isId;
+          } else {
+            return isId;
+          }
+        };
+        XMLElement2.prototype.setIdAttributeNS = function(namespaceURI, localName, isId) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.setIdAttributeNode = function(idAttr, isId) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.getElementsByTagName = function(tagname) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.getElementsByTagNameNS = function(namespaceURI, localName) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.getElementsByClassName = function(classNames) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLElement2.prototype.isEqualNode = function(node) {
+          var i, j, ref1;
+          if (!XMLElement2.__super__.isEqualNode.apply(this, arguments).isEqualNode(node)) {
+            return false;
+          }
+          if (node.namespaceURI !== this.namespaceURI) {
+            return false;
+          }
+          if (node.prefix !== this.prefix) {
+            return false;
+          }
+          if (node.localName !== this.localName) {
+            return false;
+          }
+          if (node.attribs.length !== this.attribs.length) {
+            return false;
+          }
+          for (i = j = 0, ref1 = this.attribs.length - 1; 0 <= ref1 ? j <= ref1 : j >= ref1; i = 0 <= ref1 ? ++j : --j) {
+            if (!this.attribs[i].isEqualNode(node.attribs[i])) {
+              return false;
+            }
+          }
+          return true;
+        };
+        return XMLElement2;
+      })(XMLNode);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLCharacterData.js
+var require_XMLCharacterData = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLCharacterData.js"(exports2, module2) {
+    (function() {
+      var XMLCharacterData, XMLNode, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      XMLNode = require_XMLNode();
+      module2.exports = XMLCharacterData = (function(superClass) {
+        extend(XMLCharacterData2, superClass);
+        function XMLCharacterData2(parent) {
+          XMLCharacterData2.__super__.constructor.call(this, parent);
+          this.value = "";
+        }
+        Object.defineProperty(XMLCharacterData2.prototype, "data", {
+          get: function() {
+            return this.value;
+          },
+          set: function(value) {
+            return this.value = value || "";
+          }
+        });
+        Object.defineProperty(XMLCharacterData2.prototype, "length", {
+          get: function() {
+            return this.value.length;
+          }
+        });
+        Object.defineProperty(XMLCharacterData2.prototype, "textContent", {
+          get: function() {
+            return this.value;
+          },
+          set: function(value) {
+            return this.value = value || "";
+          }
+        });
+        XMLCharacterData2.prototype.clone = function() {
+          return Object.create(this);
+        };
+        XMLCharacterData2.prototype.substringData = function(offset, count) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLCharacterData2.prototype.appendData = function(arg) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLCharacterData2.prototype.insertData = function(offset, arg) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLCharacterData2.prototype.deleteData = function(offset, count) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLCharacterData2.prototype.replaceData = function(offset, count, arg) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLCharacterData2.prototype.isEqualNode = function(node) {
+          if (!XMLCharacterData2.__super__.isEqualNode.apply(this, arguments).isEqualNode(node)) {
+            return false;
+          }
+          if (node.data !== this.data) {
+            return false;
+          }
+          return true;
+        };
+        return XMLCharacterData2;
+      })(XMLNode);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLCData.js
+var require_XMLCData = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLCData.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLCData, XMLCharacterData, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      NodeType = require_NodeType();
+      XMLCharacterData = require_XMLCharacterData();
+      module2.exports = XMLCData = (function(superClass) {
+        extend(XMLCData2, superClass);
+        function XMLCData2(parent, text) {
+          XMLCData2.__super__.constructor.call(this, parent);
+          if (text == null) {
+            throw new Error("Missing CDATA text. " + this.debugInfo());
+          }
+          this.name = "#cdata-section";
+          this.type = NodeType.CData;
+          this.value = this.stringify.cdata(text);
+        }
+        XMLCData2.prototype.clone = function() {
+          return Object.create(this);
+        };
+        XMLCData2.prototype.toString = function(options) {
+          return this.options.writer.cdata(this, this.options.writer.filterOptions(options));
+        };
+        return XMLCData2;
+      })(XMLCharacterData);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLComment.js
+var require_XMLComment = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLComment.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLCharacterData, XMLComment, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      NodeType = require_NodeType();
+      XMLCharacterData = require_XMLCharacterData();
+      module2.exports = XMLComment = (function(superClass) {
+        extend(XMLComment2, superClass);
+        function XMLComment2(parent, text) {
+          XMLComment2.__super__.constructor.call(this, parent);
+          if (text == null) {
+            throw new Error("Missing comment text. " + this.debugInfo());
+          }
+          this.name = "#comment";
+          this.type = NodeType.Comment;
+          this.value = this.stringify.comment(text);
+        }
+        XMLComment2.prototype.clone = function() {
+          return Object.create(this);
+        };
+        XMLComment2.prototype.toString = function(options) {
+          return this.options.writer.comment(this, this.options.writer.filterOptions(options));
+        };
+        return XMLComment2;
+      })(XMLCharacterData);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLDeclaration.js
+var require_XMLDeclaration = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLDeclaration.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLDeclaration, XMLNode, isObject, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      isObject = require_Utility().isObject;
+      XMLNode = require_XMLNode();
+      NodeType = require_NodeType();
+      module2.exports = XMLDeclaration = (function(superClass) {
+        extend(XMLDeclaration2, superClass);
+        function XMLDeclaration2(parent, version, encoding, standalone) {
+          var ref;
+          XMLDeclaration2.__super__.constructor.call(this, parent);
+          if (isObject(version)) {
+            ref = version, version = ref.version, encoding = ref.encoding, standalone = ref.standalone;
+          }
+          if (!version) {
+            version = "1.0";
+          }
+          this.type = NodeType.Declaration;
+          this.version = this.stringify.xmlVersion(version);
+          if (encoding != null) {
+            this.encoding = this.stringify.xmlEncoding(encoding);
+          }
+          if (standalone != null) {
+            this.standalone = this.stringify.xmlStandalone(standalone);
+          }
+        }
+        XMLDeclaration2.prototype.toString = function(options) {
+          return this.options.writer.declaration(this, this.options.writer.filterOptions(options));
+        };
+        return XMLDeclaration2;
+      })(XMLNode);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLDTDAttList.js
+var require_XMLDTDAttList = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLDTDAttList.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLDTDAttList, XMLNode, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      XMLNode = require_XMLNode();
+      NodeType = require_NodeType();
+      module2.exports = XMLDTDAttList = (function(superClass) {
+        extend(XMLDTDAttList2, superClass);
+        function XMLDTDAttList2(parent, elementName, attributeName, attributeType, defaultValueType, defaultValue) {
+          XMLDTDAttList2.__super__.constructor.call(this, parent);
+          if (elementName == null) {
+            throw new Error("Missing DTD element name. " + this.debugInfo());
+          }
+          if (attributeName == null) {
+            throw new Error("Missing DTD attribute name. " + this.debugInfo(elementName));
+          }
+          if (!attributeType) {
+            throw new Error("Missing DTD attribute type. " + this.debugInfo(elementName));
+          }
+          if (!defaultValueType) {
+            throw new Error("Missing DTD attribute default. " + this.debugInfo(elementName));
+          }
+          if (defaultValueType.indexOf("#") !== 0) {
+            defaultValueType = "#" + defaultValueType;
+          }
+          if (!defaultValueType.match(/^(#REQUIRED|#IMPLIED|#FIXED|#DEFAULT)$/)) {
+            throw new Error("Invalid default value type; expected: #REQUIRED, #IMPLIED, #FIXED or #DEFAULT. " + this.debugInfo(elementName));
+          }
+          if (defaultValue && !defaultValueType.match(/^(#FIXED|#DEFAULT)$/)) {
+            throw new Error("Default value only applies to #FIXED or #DEFAULT. " + this.debugInfo(elementName));
+          }
+          this.elementName = this.stringify.name(elementName);
+          this.type = NodeType.AttributeDeclaration;
+          this.attributeName = this.stringify.name(attributeName);
+          this.attributeType = this.stringify.dtdAttType(attributeType);
+          if (defaultValue) {
+            this.defaultValue = this.stringify.dtdAttDefault(defaultValue);
+          }
+          this.defaultValueType = defaultValueType;
+        }
+        XMLDTDAttList2.prototype.toString = function(options) {
+          return this.options.writer.dtdAttList(this, this.options.writer.filterOptions(options));
+        };
+        return XMLDTDAttList2;
+      })(XMLNode);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLDTDEntity.js
+var require_XMLDTDEntity = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLDTDEntity.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLDTDEntity, XMLNode, isObject, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      isObject = require_Utility().isObject;
+      XMLNode = require_XMLNode();
+      NodeType = require_NodeType();
+      module2.exports = XMLDTDEntity = (function(superClass) {
+        extend(XMLDTDEntity2, superClass);
+        function XMLDTDEntity2(parent, pe, name, value) {
+          XMLDTDEntity2.__super__.constructor.call(this, parent);
+          if (name == null) {
+            throw new Error("Missing DTD entity name. " + this.debugInfo(name));
+          }
+          if (value == null) {
+            throw new Error("Missing DTD entity value. " + this.debugInfo(name));
+          }
+          this.pe = !!pe;
+          this.name = this.stringify.name(name);
+          this.type = NodeType.EntityDeclaration;
+          if (!isObject(value)) {
+            this.value = this.stringify.dtdEntityValue(value);
+            this.internal = true;
+          } else {
+            if (!value.pubID && !value.sysID) {
+              throw new Error("Public and/or system identifiers are required for an external entity. " + this.debugInfo(name));
+            }
+            if (value.pubID && !value.sysID) {
+              throw new Error("System identifier is required for a public external entity. " + this.debugInfo(name));
+            }
+            this.internal = false;
+            if (value.pubID != null) {
+              this.pubID = this.stringify.dtdPubID(value.pubID);
+            }
+            if (value.sysID != null) {
+              this.sysID = this.stringify.dtdSysID(value.sysID);
+            }
+            if (value.nData != null) {
+              this.nData = this.stringify.dtdNData(value.nData);
+            }
+            if (this.pe && this.nData) {
+              throw new Error("Notation declaration is not allowed in a parameter entity. " + this.debugInfo(name));
+            }
+          }
+        }
+        Object.defineProperty(XMLDTDEntity2.prototype, "publicId", {
+          get: function() {
+            return this.pubID;
+          }
+        });
+        Object.defineProperty(XMLDTDEntity2.prototype, "systemId", {
+          get: function() {
+            return this.sysID;
+          }
+        });
+        Object.defineProperty(XMLDTDEntity2.prototype, "notationName", {
+          get: function() {
+            return this.nData || null;
+          }
+        });
+        Object.defineProperty(XMLDTDEntity2.prototype, "inputEncoding", {
+          get: function() {
+            return null;
+          }
+        });
+        Object.defineProperty(XMLDTDEntity2.prototype, "xmlEncoding", {
+          get: function() {
+            return null;
+          }
+        });
+        Object.defineProperty(XMLDTDEntity2.prototype, "xmlVersion", {
+          get: function() {
+            return null;
+          }
+        });
+        XMLDTDEntity2.prototype.toString = function(options) {
+          return this.options.writer.dtdEntity(this, this.options.writer.filterOptions(options));
+        };
+        return XMLDTDEntity2;
+      })(XMLNode);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLDTDElement.js
+var require_XMLDTDElement = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLDTDElement.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLDTDElement, XMLNode, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      XMLNode = require_XMLNode();
+      NodeType = require_NodeType();
+      module2.exports = XMLDTDElement = (function(superClass) {
+        extend(XMLDTDElement2, superClass);
+        function XMLDTDElement2(parent, name, value) {
+          XMLDTDElement2.__super__.constructor.call(this, parent);
+          if (name == null) {
+            throw new Error("Missing DTD element name. " + this.debugInfo());
+          }
+          if (!value) {
+            value = "(#PCDATA)";
+          }
+          if (Array.isArray(value)) {
+            value = "(" + value.join(",") + ")";
+          }
+          this.name = this.stringify.name(name);
+          this.type = NodeType.ElementDeclaration;
+          this.value = this.stringify.dtdElementValue(value);
+        }
+        XMLDTDElement2.prototype.toString = function(options) {
+          return this.options.writer.dtdElement(this, this.options.writer.filterOptions(options));
+        };
+        return XMLDTDElement2;
+      })(XMLNode);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLDTDNotation.js
+var require_XMLDTDNotation = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLDTDNotation.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLDTDNotation, XMLNode, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      XMLNode = require_XMLNode();
+      NodeType = require_NodeType();
+      module2.exports = XMLDTDNotation = (function(superClass) {
+        extend(XMLDTDNotation2, superClass);
+        function XMLDTDNotation2(parent, name, value) {
+          XMLDTDNotation2.__super__.constructor.call(this, parent);
+          if (name == null) {
+            throw new Error("Missing DTD notation name. " + this.debugInfo(name));
+          }
+          if (!value.pubID && !value.sysID) {
+            throw new Error("Public or system identifiers are required for an external entity. " + this.debugInfo(name));
+          }
+          this.name = this.stringify.name(name);
+          this.type = NodeType.NotationDeclaration;
+          if (value.pubID != null) {
+            this.pubID = this.stringify.dtdPubID(value.pubID);
+          }
+          if (value.sysID != null) {
+            this.sysID = this.stringify.dtdSysID(value.sysID);
+          }
+        }
+        Object.defineProperty(XMLDTDNotation2.prototype, "publicId", {
+          get: function() {
+            return this.pubID;
+          }
+        });
+        Object.defineProperty(XMLDTDNotation2.prototype, "systemId", {
+          get: function() {
+            return this.sysID;
+          }
+        });
+        XMLDTDNotation2.prototype.toString = function(options) {
+          return this.options.writer.dtdNotation(this, this.options.writer.filterOptions(options));
+        };
+        return XMLDTDNotation2;
+      })(XMLNode);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLDocType.js
+var require_XMLDocType = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLDocType.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLDTDAttList, XMLDTDElement, XMLDTDEntity, XMLDTDNotation, XMLDocType, XMLNamedNodeMap, XMLNode, isObject, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      isObject = require_Utility().isObject;
+      XMLNode = require_XMLNode();
+      NodeType = require_NodeType();
+      XMLDTDAttList = require_XMLDTDAttList();
+      XMLDTDEntity = require_XMLDTDEntity();
+      XMLDTDElement = require_XMLDTDElement();
+      XMLDTDNotation = require_XMLDTDNotation();
+      XMLNamedNodeMap = require_XMLNamedNodeMap();
+      module2.exports = XMLDocType = (function(superClass) {
+        extend(XMLDocType2, superClass);
+        function XMLDocType2(parent, pubID, sysID) {
+          var child, i, len, ref, ref1, ref2;
+          XMLDocType2.__super__.constructor.call(this, parent);
+          this.type = NodeType.DocType;
+          if (parent.children) {
+            ref = parent.children;
+            for (i = 0, len = ref.length; i < len; i++) {
+              child = ref[i];
+              if (child.type === NodeType.Element) {
+                this.name = child.name;
+                break;
+              }
+            }
+          }
+          this.documentObject = parent;
+          if (isObject(pubID)) {
+            ref1 = pubID, pubID = ref1.pubID, sysID = ref1.sysID;
+          }
+          if (sysID == null) {
+            ref2 = [pubID, sysID], sysID = ref2[0], pubID = ref2[1];
+          }
+          if (pubID != null) {
+            this.pubID = this.stringify.dtdPubID(pubID);
+          }
+          if (sysID != null) {
+            this.sysID = this.stringify.dtdSysID(sysID);
+          }
+        }
+        Object.defineProperty(XMLDocType2.prototype, "entities", {
+          get: function() {
+            var child, i, len, nodes, ref;
+            nodes = {};
+            ref = this.children;
+            for (i = 0, len = ref.length; i < len; i++) {
+              child = ref[i];
+              if (child.type === NodeType.EntityDeclaration && !child.pe) {
+                nodes[child.name] = child;
+              }
+            }
+            return new XMLNamedNodeMap(nodes);
+          }
+        });
+        Object.defineProperty(XMLDocType2.prototype, "notations", {
+          get: function() {
+            var child, i, len, nodes, ref;
+            nodes = {};
+            ref = this.children;
+            for (i = 0, len = ref.length; i < len; i++) {
+              child = ref[i];
+              if (child.type === NodeType.NotationDeclaration) {
+                nodes[child.name] = child;
+              }
+            }
+            return new XMLNamedNodeMap(nodes);
+          }
+        });
+        Object.defineProperty(XMLDocType2.prototype, "publicId", {
+          get: function() {
+            return this.pubID;
+          }
+        });
+        Object.defineProperty(XMLDocType2.prototype, "systemId", {
+          get: function() {
+            return this.sysID;
+          }
+        });
+        Object.defineProperty(XMLDocType2.prototype, "internalSubset", {
+          get: function() {
+            throw new Error("This DOM method is not implemented." + this.debugInfo());
+          }
+        });
+        XMLDocType2.prototype.element = function(name, value) {
+          var child;
+          child = new XMLDTDElement(this, name, value);
+          this.children.push(child);
+          return this;
+        };
+        XMLDocType2.prototype.attList = function(elementName, attributeName, attributeType, defaultValueType, defaultValue) {
+          var child;
+          child = new XMLDTDAttList(this, elementName, attributeName, attributeType, defaultValueType, defaultValue);
+          this.children.push(child);
+          return this;
+        };
+        XMLDocType2.prototype.entity = function(name, value) {
+          var child;
+          child = new XMLDTDEntity(this, false, name, value);
+          this.children.push(child);
+          return this;
+        };
+        XMLDocType2.prototype.pEntity = function(name, value) {
+          var child;
+          child = new XMLDTDEntity(this, true, name, value);
+          this.children.push(child);
+          return this;
+        };
+        XMLDocType2.prototype.notation = function(name, value) {
+          var child;
+          child = new XMLDTDNotation(this, name, value);
+          this.children.push(child);
+          return this;
+        };
+        XMLDocType2.prototype.toString = function(options) {
+          return this.options.writer.docType(this, this.options.writer.filterOptions(options));
+        };
+        XMLDocType2.prototype.ele = function(name, value) {
+          return this.element(name, value);
+        };
+        XMLDocType2.prototype.att = function(elementName, attributeName, attributeType, defaultValueType, defaultValue) {
+          return this.attList(elementName, attributeName, attributeType, defaultValueType, defaultValue);
+        };
+        XMLDocType2.prototype.ent = function(name, value) {
+          return this.entity(name, value);
+        };
+        XMLDocType2.prototype.pent = function(name, value) {
+          return this.pEntity(name, value);
+        };
+        XMLDocType2.prototype.not = function(name, value) {
+          return this.notation(name, value);
+        };
+        XMLDocType2.prototype.up = function() {
+          return this.root() || this.documentObject;
+        };
+        XMLDocType2.prototype.isEqualNode = function(node) {
+          if (!XMLDocType2.__super__.isEqualNode.apply(this, arguments).isEqualNode(node)) {
+            return false;
+          }
+          if (node.name !== this.name) {
+            return false;
+          }
+          if (node.publicId !== this.publicId) {
+            return false;
+          }
+          if (node.systemId !== this.systemId) {
+            return false;
+          }
+          return true;
+        };
+        return XMLDocType2;
+      })(XMLNode);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLRaw.js
+var require_XMLRaw = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLRaw.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLNode, XMLRaw, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      NodeType = require_NodeType();
+      XMLNode = require_XMLNode();
+      module2.exports = XMLRaw = (function(superClass) {
+        extend(XMLRaw2, superClass);
+        function XMLRaw2(parent, text) {
+          XMLRaw2.__super__.constructor.call(this, parent);
+          if (text == null) {
+            throw new Error("Missing raw text. " + this.debugInfo());
+          }
+          this.type = NodeType.Raw;
+          this.value = this.stringify.raw(text);
+        }
+        XMLRaw2.prototype.clone = function() {
+          return Object.create(this);
+        };
+        XMLRaw2.prototype.toString = function(options) {
+          return this.options.writer.raw(this, this.options.writer.filterOptions(options));
+        };
+        return XMLRaw2;
+      })(XMLNode);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLText.js
+var require_XMLText = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLText.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLCharacterData, XMLText, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      NodeType = require_NodeType();
+      XMLCharacterData = require_XMLCharacterData();
+      module2.exports = XMLText = (function(superClass) {
+        extend(XMLText2, superClass);
+        function XMLText2(parent, text) {
+          XMLText2.__super__.constructor.call(this, parent);
+          if (text == null) {
+            throw new Error("Missing element text. " + this.debugInfo());
+          }
+          this.name = "#text";
+          this.type = NodeType.Text;
+          this.value = this.stringify.text(text);
+        }
+        Object.defineProperty(XMLText2.prototype, "isElementContentWhitespace", {
+          get: function() {
+            throw new Error("This DOM method is not implemented." + this.debugInfo());
+          }
+        });
+        Object.defineProperty(XMLText2.prototype, "wholeText", {
+          get: function() {
+            var next, prev, str;
+            str = "";
+            prev = this.previousSibling;
+            while (prev) {
+              str = prev.data + str;
+              prev = prev.previousSibling;
+            }
+            str += this.data;
+            next = this.nextSibling;
+            while (next) {
+              str = str + next.data;
+              next = next.nextSibling;
+            }
+            return str;
+          }
+        });
+        XMLText2.prototype.clone = function() {
+          return Object.create(this);
+        };
+        XMLText2.prototype.toString = function(options) {
+          return this.options.writer.text(this, this.options.writer.filterOptions(options));
+        };
+        XMLText2.prototype.splitText = function(offset) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLText2.prototype.replaceWholeText = function(content) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        return XMLText2;
+      })(XMLCharacterData);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLProcessingInstruction.js
+var require_XMLProcessingInstruction = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLProcessingInstruction.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLCharacterData, XMLProcessingInstruction, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      NodeType = require_NodeType();
+      XMLCharacterData = require_XMLCharacterData();
+      module2.exports = XMLProcessingInstruction = (function(superClass) {
+        extend(XMLProcessingInstruction2, superClass);
+        function XMLProcessingInstruction2(parent, target, value) {
+          XMLProcessingInstruction2.__super__.constructor.call(this, parent);
+          if (target == null) {
+            throw new Error("Missing instruction target. " + this.debugInfo());
+          }
+          this.type = NodeType.ProcessingInstruction;
+          this.target = this.stringify.insTarget(target);
+          this.name = this.target;
+          if (value) {
+            this.value = this.stringify.insValue(value);
+          }
+        }
+        XMLProcessingInstruction2.prototype.clone = function() {
+          return Object.create(this);
+        };
+        XMLProcessingInstruction2.prototype.toString = function(options) {
+          return this.options.writer.processingInstruction(this, this.options.writer.filterOptions(options));
+        };
+        XMLProcessingInstruction2.prototype.isEqualNode = function(node) {
+          if (!XMLProcessingInstruction2.__super__.isEqualNode.apply(this, arguments).isEqualNode(node)) {
+            return false;
+          }
+          if (node.target !== this.target) {
+            return false;
+          }
+          return true;
+        };
+        return XMLProcessingInstruction2;
+      })(XMLCharacterData);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLDummy.js
+var require_XMLDummy = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLDummy.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLDummy, XMLNode, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      XMLNode = require_XMLNode();
+      NodeType = require_NodeType();
+      module2.exports = XMLDummy = (function(superClass) {
+        extend(XMLDummy2, superClass);
+        function XMLDummy2(parent) {
+          XMLDummy2.__super__.constructor.call(this, parent);
+          this.type = NodeType.Dummy;
+        }
+        XMLDummy2.prototype.clone = function() {
+          return Object.create(this);
+        };
+        XMLDummy2.prototype.toString = function(options) {
+          return "";
+        };
+        return XMLDummy2;
+      })(XMLNode);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLNodeList.js
+var require_XMLNodeList = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLNodeList.js"(exports2, module2) {
+    (function() {
+      var XMLNodeList;
+      module2.exports = XMLNodeList = (function() {
+        function XMLNodeList2(nodes) {
+          this.nodes = nodes;
+        }
+        Object.defineProperty(XMLNodeList2.prototype, "length", {
+          get: function() {
+            return this.nodes.length || 0;
+          }
+        });
+        XMLNodeList2.prototype.clone = function() {
+          return this.nodes = null;
+        };
+        XMLNodeList2.prototype.item = function(index) {
+          return this.nodes[index] || null;
+        };
+        return XMLNodeList2;
+      })();
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/DocumentPosition.js
+var require_DocumentPosition = __commonJS({
+  "node_modules/xmlbuilder/lib/DocumentPosition.js"(exports2, module2) {
+    (function() {
+      module2.exports = {
+        Disconnected: 1,
+        Preceding: 2,
+        Following: 4,
+        Contains: 8,
+        ContainedBy: 16,
+        ImplementationSpecific: 32
+      };
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLNode.js
+var require_XMLNode = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLNode.js"(exports2, module2) {
+    (function() {
+      var DocumentPosition, NodeType, XMLCData, XMLComment, XMLDeclaration, XMLDocType, XMLDummy, XMLElement, XMLNamedNodeMap, XMLNode, XMLNodeList, XMLProcessingInstruction, XMLRaw, XMLText, getValue, isEmpty, isFunction, isObject, ref1, hasProp = {}.hasOwnProperty;
+      ref1 = require_Utility(), isObject = ref1.isObject, isFunction = ref1.isFunction, isEmpty = ref1.isEmpty, getValue = ref1.getValue;
+      XMLElement = null;
+      XMLCData = null;
+      XMLComment = null;
+      XMLDeclaration = null;
+      XMLDocType = null;
+      XMLRaw = null;
+      XMLText = null;
+      XMLProcessingInstruction = null;
+      XMLDummy = null;
+      NodeType = null;
+      XMLNodeList = null;
+      XMLNamedNodeMap = null;
+      DocumentPosition = null;
+      module2.exports = XMLNode = (function() {
+        function XMLNode2(parent1) {
+          this.parent = parent1;
+          if (this.parent) {
+            this.options = this.parent.options;
+            this.stringify = this.parent.stringify;
+          }
+          this.value = null;
+          this.children = [];
+          this.baseURI = null;
+          if (!XMLElement) {
+            XMLElement = require_XMLElement();
+            XMLCData = require_XMLCData();
+            XMLComment = require_XMLComment();
+            XMLDeclaration = require_XMLDeclaration();
+            XMLDocType = require_XMLDocType();
+            XMLRaw = require_XMLRaw();
+            XMLText = require_XMLText();
+            XMLProcessingInstruction = require_XMLProcessingInstruction();
+            XMLDummy = require_XMLDummy();
+            NodeType = require_NodeType();
+            XMLNodeList = require_XMLNodeList();
+            XMLNamedNodeMap = require_XMLNamedNodeMap();
+            DocumentPosition = require_DocumentPosition();
+          }
+        }
+        Object.defineProperty(XMLNode2.prototype, "nodeName", {
+          get: function() {
+            return this.name;
+          }
+        });
+        Object.defineProperty(XMLNode2.prototype, "nodeType", {
+          get: function() {
+            return this.type;
+          }
+        });
+        Object.defineProperty(XMLNode2.prototype, "nodeValue", {
+          get: function() {
+            return this.value;
+          }
+        });
+        Object.defineProperty(XMLNode2.prototype, "parentNode", {
+          get: function() {
+            return this.parent;
+          }
+        });
+        Object.defineProperty(XMLNode2.prototype, "childNodes", {
+          get: function() {
+            if (!this.childNodeList || !this.childNodeList.nodes) {
+              this.childNodeList = new XMLNodeList(this.children);
+            }
+            return this.childNodeList;
+          }
+        });
+        Object.defineProperty(XMLNode2.prototype, "firstChild", {
+          get: function() {
+            return this.children[0] || null;
+          }
+        });
+        Object.defineProperty(XMLNode2.prototype, "lastChild", {
+          get: function() {
+            return this.children[this.children.length - 1] || null;
+          }
+        });
+        Object.defineProperty(XMLNode2.prototype, "previousSibling", {
+          get: function() {
+            var i;
+            i = this.parent.children.indexOf(this);
+            return this.parent.children[i - 1] || null;
+          }
+        });
+        Object.defineProperty(XMLNode2.prototype, "nextSibling", {
+          get: function() {
+            var i;
+            i = this.parent.children.indexOf(this);
+            return this.parent.children[i + 1] || null;
+          }
+        });
+        Object.defineProperty(XMLNode2.prototype, "ownerDocument", {
+          get: function() {
+            return this.document() || null;
+          }
+        });
+        Object.defineProperty(XMLNode2.prototype, "textContent", {
+          get: function() {
+            var child, j, len, ref2, str;
+            if (this.nodeType === NodeType.Element || this.nodeType === NodeType.DocumentFragment) {
+              str = "";
+              ref2 = this.children;
+              for (j = 0, len = ref2.length; j < len; j++) {
+                child = ref2[j];
+                if (child.textContent) {
+                  str += child.textContent;
+                }
+              }
+              return str;
+            } else {
+              return null;
+            }
+          },
+          set: function(value) {
+            throw new Error("This DOM method is not implemented." + this.debugInfo());
+          }
+        });
+        XMLNode2.prototype.setParent = function(parent) {
+          var child, j, len, ref2, results;
+          this.parent = parent;
+          if (parent) {
+            this.options = parent.options;
+            this.stringify = parent.stringify;
+          }
+          ref2 = this.children;
+          results = [];
+          for (j = 0, len = ref2.length; j < len; j++) {
+            child = ref2[j];
+            results.push(child.setParent(this));
+          }
+          return results;
+        };
+        XMLNode2.prototype.element = function(name, attributes, text) {
+          var childNode, item, j, k, key, lastChild, len, len1, ref2, ref3, val;
+          lastChild = null;
+          if (attributes === null && text == null) {
+            ref2 = [{}, null], attributes = ref2[0], text = ref2[1];
+          }
+          if (attributes == null) {
+            attributes = {};
+          }
+          attributes = getValue(attributes);
+          if (!isObject(attributes)) {
+            ref3 = [attributes, text], text = ref3[0], attributes = ref3[1];
+          }
+          if (name != null) {
+            name = getValue(name);
+          }
+          if (Array.isArray(name)) {
+            for (j = 0, len = name.length; j < len; j++) {
+              item = name[j];
+              lastChild = this.element(item);
+            }
+          } else if (isFunction(name)) {
+            lastChild = this.element(name.apply());
+          } else if (isObject(name)) {
+            for (key in name) {
+              if (!hasProp.call(name, key)) continue;
+              val = name[key];
+              if (isFunction(val)) {
+                val = val.apply();
+              }
+              if (!this.options.ignoreDecorators && this.stringify.convertAttKey && key.indexOf(this.stringify.convertAttKey) === 0) {
+                lastChild = this.attribute(key.substr(this.stringify.convertAttKey.length), val);
+              } else if (!this.options.separateArrayItems && Array.isArray(val) && isEmpty(val)) {
+                lastChild = this.dummy();
+              } else if (isObject(val) && isEmpty(val)) {
+                lastChild = this.element(key);
+              } else if (!this.options.keepNullNodes && val == null) {
+                lastChild = this.dummy();
+              } else if (!this.options.separateArrayItems && Array.isArray(val)) {
+                for (k = 0, len1 = val.length; k < len1; k++) {
+                  item = val[k];
+                  childNode = {};
+                  childNode[key] = item;
+                  lastChild = this.element(childNode);
+                }
+              } else if (isObject(val)) {
+                if (!this.options.ignoreDecorators && this.stringify.convertTextKey && key.indexOf(this.stringify.convertTextKey) === 0) {
+                  lastChild = this.element(val);
+                } else {
+                  lastChild = this.element(key);
+                  lastChild.element(val);
+                }
+              } else {
+                lastChild = this.element(key, val);
+              }
+            }
+          } else if (!this.options.keepNullNodes && text === null) {
+            lastChild = this.dummy();
+          } else {
+            if (!this.options.ignoreDecorators && this.stringify.convertTextKey && name.indexOf(this.stringify.convertTextKey) === 0) {
+              lastChild = this.text(text);
+            } else if (!this.options.ignoreDecorators && this.stringify.convertCDataKey && name.indexOf(this.stringify.convertCDataKey) === 0) {
+              lastChild = this.cdata(text);
+            } else if (!this.options.ignoreDecorators && this.stringify.convertCommentKey && name.indexOf(this.stringify.convertCommentKey) === 0) {
+              lastChild = this.comment(text);
+            } else if (!this.options.ignoreDecorators && this.stringify.convertRawKey && name.indexOf(this.stringify.convertRawKey) === 0) {
+              lastChild = this.raw(text);
+            } else if (!this.options.ignoreDecorators && this.stringify.convertPIKey && name.indexOf(this.stringify.convertPIKey) === 0) {
+              lastChild = this.instruction(name.substr(this.stringify.convertPIKey.length), text);
+            } else {
+              lastChild = this.node(name, attributes, text);
+            }
+          }
+          if (lastChild == null) {
+            throw new Error("Could not create any elements with: " + name + ". " + this.debugInfo());
+          }
+          return lastChild;
+        };
+        XMLNode2.prototype.insertBefore = function(name, attributes, text) {
+          var child, i, newChild, refChild, removed;
+          if (name != null ? name.type : void 0) {
+            newChild = name;
+            refChild = attributes;
+            newChild.setParent(this);
+            if (refChild) {
+              i = children.indexOf(refChild);
+              removed = children.splice(i);
+              children.push(newChild);
+              Array.prototype.push.apply(children, removed);
+            } else {
+              children.push(newChild);
+            }
+            return newChild;
+          } else {
+            if (this.isRoot) {
+              throw new Error("Cannot insert elements at root level. " + this.debugInfo(name));
+            }
+            i = this.parent.children.indexOf(this);
+            removed = this.parent.children.splice(i);
+            child = this.parent.element(name, attributes, text);
+            Array.prototype.push.apply(this.parent.children, removed);
+            return child;
+          }
+        };
+        XMLNode2.prototype.insertAfter = function(name, attributes, text) {
+          var child, i, removed;
+          if (this.isRoot) {
+            throw new Error("Cannot insert elements at root level. " + this.debugInfo(name));
+          }
+          i = this.parent.children.indexOf(this);
+          removed = this.parent.children.splice(i + 1);
+          child = this.parent.element(name, attributes, text);
+          Array.prototype.push.apply(this.parent.children, removed);
+          return child;
+        };
+        XMLNode2.prototype.remove = function() {
+          var i, ref2;
+          if (this.isRoot) {
+            throw new Error("Cannot remove the root element. " + this.debugInfo());
+          }
+          i = this.parent.children.indexOf(this);
+          [].splice.apply(this.parent.children, [i, i - i + 1].concat(ref2 = [])), ref2;
+          return this.parent;
+        };
+        XMLNode2.prototype.node = function(name, attributes, text) {
+          var child, ref2;
+          if (name != null) {
+            name = getValue(name);
+          }
+          attributes || (attributes = {});
+          attributes = getValue(attributes);
+          if (!isObject(attributes)) {
+            ref2 = [attributes, text], text = ref2[0], attributes = ref2[1];
+          }
+          child = new XMLElement(this, name, attributes);
+          if (text != null) {
+            child.text(text);
+          }
+          this.children.push(child);
+          return child;
+        };
+        XMLNode2.prototype.text = function(value) {
+          var child;
+          if (isObject(value)) {
+            this.element(value);
+          }
+          child = new XMLText(this, value);
+          this.children.push(child);
+          return this;
+        };
+        XMLNode2.prototype.cdata = function(value) {
+          var child;
+          child = new XMLCData(this, value);
+          this.children.push(child);
+          return this;
+        };
+        XMLNode2.prototype.comment = function(value) {
+          var child;
+          child = new XMLComment(this, value);
+          this.children.push(child);
+          return this;
+        };
+        XMLNode2.prototype.commentBefore = function(value) {
+          var child, i, removed;
+          i = this.parent.children.indexOf(this);
+          removed = this.parent.children.splice(i);
+          child = this.parent.comment(value);
+          Array.prototype.push.apply(this.parent.children, removed);
+          return this;
+        };
+        XMLNode2.prototype.commentAfter = function(value) {
+          var child, i, removed;
+          i = this.parent.children.indexOf(this);
+          removed = this.parent.children.splice(i + 1);
+          child = this.parent.comment(value);
+          Array.prototype.push.apply(this.parent.children, removed);
+          return this;
+        };
+        XMLNode2.prototype.raw = function(value) {
+          var child;
+          child = new XMLRaw(this, value);
+          this.children.push(child);
+          return this;
+        };
+        XMLNode2.prototype.dummy = function() {
+          var child;
+          child = new XMLDummy(this);
+          return child;
+        };
+        XMLNode2.prototype.instruction = function(target, value) {
+          var insTarget, insValue, instruction, j, len;
+          if (target != null) {
+            target = getValue(target);
+          }
+          if (value != null) {
+            value = getValue(value);
+          }
+          if (Array.isArray(target)) {
+            for (j = 0, len = target.length; j < len; j++) {
+              insTarget = target[j];
+              this.instruction(insTarget);
+            }
+          } else if (isObject(target)) {
+            for (insTarget in target) {
+              if (!hasProp.call(target, insTarget)) continue;
+              insValue = target[insTarget];
+              this.instruction(insTarget, insValue);
+            }
+          } else {
+            if (isFunction(value)) {
+              value = value.apply();
+            }
+            instruction = new XMLProcessingInstruction(this, target, value);
+            this.children.push(instruction);
+          }
+          return this;
+        };
+        XMLNode2.prototype.instructionBefore = function(target, value) {
+          var child, i, removed;
+          i = this.parent.children.indexOf(this);
+          removed = this.parent.children.splice(i);
+          child = this.parent.instruction(target, value);
+          Array.prototype.push.apply(this.parent.children, removed);
+          return this;
+        };
+        XMLNode2.prototype.instructionAfter = function(target, value) {
+          var child, i, removed;
+          i = this.parent.children.indexOf(this);
+          removed = this.parent.children.splice(i + 1);
+          child = this.parent.instruction(target, value);
+          Array.prototype.push.apply(this.parent.children, removed);
+          return this;
+        };
+        XMLNode2.prototype.declaration = function(version, encoding, standalone) {
+          var doc, xmldec;
+          doc = this.document();
+          xmldec = new XMLDeclaration(doc, version, encoding, standalone);
+          if (doc.children.length === 0) {
+            doc.children.unshift(xmldec);
+          } else if (doc.children[0].type === NodeType.Declaration) {
+            doc.children[0] = xmldec;
+          } else {
+            doc.children.unshift(xmldec);
+          }
+          return doc.root() || doc;
+        };
+        XMLNode2.prototype.dtd = function(pubID, sysID) {
+          var child, doc, doctype, i, j, k, len, len1, ref2, ref3;
+          doc = this.document();
+          doctype = new XMLDocType(doc, pubID, sysID);
+          ref2 = doc.children;
+          for (i = j = 0, len = ref2.length; j < len; i = ++j) {
+            child = ref2[i];
+            if (child.type === NodeType.DocType) {
+              doc.children[i] = doctype;
+              return doctype;
+            }
+          }
+          ref3 = doc.children;
+          for (i = k = 0, len1 = ref3.length; k < len1; i = ++k) {
+            child = ref3[i];
+            if (child.isRoot) {
+              doc.children.splice(i, 0, doctype);
+              return doctype;
+            }
+          }
+          doc.children.push(doctype);
+          return doctype;
+        };
+        XMLNode2.prototype.up = function() {
+          if (this.isRoot) {
+            throw new Error("The root node has no parent. Use doc() if you need to get the document object.");
+          }
+          return this.parent;
+        };
+        XMLNode2.prototype.root = function() {
+          var node;
+          node = this;
+          while (node) {
+            if (node.type === NodeType.Document) {
+              return node.rootObject;
+            } else if (node.isRoot) {
+              return node;
+            } else {
+              node = node.parent;
+            }
+          }
+        };
+        XMLNode2.prototype.document = function() {
+          var node;
+          node = this;
+          while (node) {
+            if (node.type === NodeType.Document) {
+              return node;
+            } else {
+              node = node.parent;
+            }
+          }
+        };
+        XMLNode2.prototype.end = function(options) {
+          return this.document().end(options);
+        };
+        XMLNode2.prototype.prev = function() {
+          var i;
+          i = this.parent.children.indexOf(this);
+          if (i < 1) {
+            throw new Error("Already at the first node. " + this.debugInfo());
+          }
+          return this.parent.children[i - 1];
+        };
+        XMLNode2.prototype.next = function() {
+          var i;
+          i = this.parent.children.indexOf(this);
+          if (i === -1 || i === this.parent.children.length - 1) {
+            throw new Error("Already at the last node. " + this.debugInfo());
+          }
+          return this.parent.children[i + 1];
+        };
+        XMLNode2.prototype.importDocument = function(doc) {
+          var clonedRoot;
+          clonedRoot = doc.root().clone();
+          clonedRoot.parent = this;
+          clonedRoot.isRoot = false;
+          this.children.push(clonedRoot);
+          return this;
+        };
+        XMLNode2.prototype.debugInfo = function(name) {
+          var ref2, ref3;
+          name = name || this.name;
+          if (name == null && !((ref2 = this.parent) != null ? ref2.name : void 0)) {
+            return "";
+          } else if (name == null) {
+            return "parent: <" + this.parent.name + ">";
+          } else if (!((ref3 = this.parent) != null ? ref3.name : void 0)) {
+            return "node: <" + name + ">";
+          } else {
+            return "node: <" + name + ">, parent: <" + this.parent.name + ">";
+          }
+        };
+        XMLNode2.prototype.ele = function(name, attributes, text) {
+          return this.element(name, attributes, text);
+        };
+        XMLNode2.prototype.nod = function(name, attributes, text) {
+          return this.node(name, attributes, text);
+        };
+        XMLNode2.prototype.txt = function(value) {
+          return this.text(value);
+        };
+        XMLNode2.prototype.dat = function(value) {
+          return this.cdata(value);
+        };
+        XMLNode2.prototype.com = function(value) {
+          return this.comment(value);
+        };
+        XMLNode2.prototype.ins = function(target, value) {
+          return this.instruction(target, value);
+        };
+        XMLNode2.prototype.doc = function() {
+          return this.document();
+        };
+        XMLNode2.prototype.dec = function(version, encoding, standalone) {
+          return this.declaration(version, encoding, standalone);
+        };
+        XMLNode2.prototype.e = function(name, attributes, text) {
+          return this.element(name, attributes, text);
+        };
+        XMLNode2.prototype.n = function(name, attributes, text) {
+          return this.node(name, attributes, text);
+        };
+        XMLNode2.prototype.t = function(value) {
+          return this.text(value);
+        };
+        XMLNode2.prototype.d = function(value) {
+          return this.cdata(value);
+        };
+        XMLNode2.prototype.c = function(value) {
+          return this.comment(value);
+        };
+        XMLNode2.prototype.r = function(value) {
+          return this.raw(value);
+        };
+        XMLNode2.prototype.i = function(target, value) {
+          return this.instruction(target, value);
+        };
+        XMLNode2.prototype.u = function() {
+          return this.up();
+        };
+        XMLNode2.prototype.importXMLBuilder = function(doc) {
+          return this.importDocument(doc);
+        };
+        XMLNode2.prototype.replaceChild = function(newChild, oldChild) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLNode2.prototype.removeChild = function(oldChild) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLNode2.prototype.appendChild = function(newChild) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLNode2.prototype.hasChildNodes = function() {
+          return this.children.length !== 0;
+        };
+        XMLNode2.prototype.cloneNode = function(deep) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLNode2.prototype.normalize = function() {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLNode2.prototype.isSupported = function(feature, version) {
+          return true;
+        };
+        XMLNode2.prototype.hasAttributes = function() {
+          return this.attribs.length !== 0;
+        };
+        XMLNode2.prototype.compareDocumentPosition = function(other) {
+          var ref, res;
+          ref = this;
+          if (ref === other) {
+            return 0;
+          } else if (this.document() !== other.document()) {
+            res = DocumentPosition.Disconnected | DocumentPosition.ImplementationSpecific;
+            if (Math.random() < 0.5) {
+              res |= DocumentPosition.Preceding;
+            } else {
+              res |= DocumentPosition.Following;
+            }
+            return res;
+          } else if (ref.isAncestor(other)) {
+            return DocumentPosition.Contains | DocumentPosition.Preceding;
+          } else if (ref.isDescendant(other)) {
+            return DocumentPosition.Contains | DocumentPosition.Following;
+          } else if (ref.isPreceding(other)) {
+            return DocumentPosition.Preceding;
+          } else {
+            return DocumentPosition.Following;
+          }
+        };
+        XMLNode2.prototype.isSameNode = function(other) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLNode2.prototype.lookupPrefix = function(namespaceURI) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLNode2.prototype.isDefaultNamespace = function(namespaceURI) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLNode2.prototype.lookupNamespaceURI = function(prefix) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLNode2.prototype.isEqualNode = function(node) {
+          var i, j, ref2;
+          if (node.nodeType !== this.nodeType) {
+            return false;
+          }
+          if (node.children.length !== this.children.length) {
+            return false;
+          }
+          for (i = j = 0, ref2 = this.children.length - 1; 0 <= ref2 ? j <= ref2 : j >= ref2; i = 0 <= ref2 ? ++j : --j) {
+            if (!this.children[i].isEqualNode(node.children[i])) {
+              return false;
+            }
+          }
+          return true;
+        };
+        XMLNode2.prototype.getFeature = function(feature, version) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLNode2.prototype.setUserData = function(key, data, handler) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLNode2.prototype.getUserData = function(key) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLNode2.prototype.contains = function(other) {
+          if (!other) {
+            return false;
+          }
+          return other === this || this.isDescendant(other);
+        };
+        XMLNode2.prototype.isDescendant = function(node) {
+          var child, isDescendantChild, j, len, ref2;
+          ref2 = this.children;
+          for (j = 0, len = ref2.length; j < len; j++) {
+            child = ref2[j];
+            if (node === child) {
+              return true;
+            }
+            isDescendantChild = child.isDescendant(node);
+            if (isDescendantChild) {
+              return true;
+            }
+          }
+          return false;
+        };
+        XMLNode2.prototype.isAncestor = function(node) {
+          return node.isDescendant(this);
+        };
+        XMLNode2.prototype.isPreceding = function(node) {
+          var nodePos, thisPos;
+          nodePos = this.treePosition(node);
+          thisPos = this.treePosition(this);
+          if (nodePos === -1 || thisPos === -1) {
+            return false;
+          } else {
+            return nodePos < thisPos;
+          }
+        };
+        XMLNode2.prototype.isFollowing = function(node) {
+          var nodePos, thisPos;
+          nodePos = this.treePosition(node);
+          thisPos = this.treePosition(this);
+          if (nodePos === -1 || thisPos === -1) {
+            return false;
+          } else {
+            return nodePos > thisPos;
+          }
+        };
+        XMLNode2.prototype.treePosition = function(node) {
+          var found, pos;
+          pos = 0;
+          found = false;
+          this.foreachTreeNode(this.document(), function(childNode) {
+            pos++;
+            if (!found && childNode === node) {
+              return found = true;
+            }
+          });
+          if (found) {
+            return pos;
+          } else {
+            return -1;
+          }
+        };
+        XMLNode2.prototype.foreachTreeNode = function(node, func) {
+          var child, j, len, ref2, res;
+          node || (node = this.document());
+          ref2 = node.children;
+          for (j = 0, len = ref2.length; j < len; j++) {
+            child = ref2[j];
+            if (res = func(child)) {
+              return res;
+            } else {
+              res = this.foreachTreeNode(child, func);
+              if (res) {
+                return res;
+              }
+            }
+          }
+        };
+        return XMLNode2;
+      })();
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLStringifier.js
+var require_XMLStringifier = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLStringifier.js"(exports2, module2) {
+    (function() {
+      var XMLStringifier, bind = function(fn, me) {
+        return function() {
+          return fn.apply(me, arguments);
+        };
+      }, hasProp = {}.hasOwnProperty;
+      module2.exports = XMLStringifier = (function() {
+        function XMLStringifier2(options) {
+          this.assertLegalName = bind(this.assertLegalName, this);
+          this.assertLegalChar = bind(this.assertLegalChar, this);
+          var key, ref, value;
+          options || (options = {});
+          this.options = options;
+          if (!this.options.version) {
+            this.options.version = "1.0";
+          }
+          ref = options.stringify || {};
+          for (key in ref) {
+            if (!hasProp.call(ref, key)) continue;
+            value = ref[key];
+            this[key] = value;
+          }
+        }
+        XMLStringifier2.prototype.name = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          return this.assertLegalName("" + val || "");
+        };
+        XMLStringifier2.prototype.text = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          return this.assertLegalChar(this.textEscape("" + val || ""));
+        };
+        XMLStringifier2.prototype.cdata = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          val = "" + val || "";
+          val = val.replace("]]>", "]]]]><![CDATA[>");
+          return this.assertLegalChar(val);
+        };
+        XMLStringifier2.prototype.comment = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          val = "" + val || "";
+          if (val.match(/--/)) {
+            throw new Error("Comment text cannot contain double-hypen: " + val);
+          }
+          return this.assertLegalChar(val);
+        };
+        XMLStringifier2.prototype.raw = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          return "" + val || "";
+        };
+        XMLStringifier2.prototype.attValue = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          return this.assertLegalChar(this.attEscape(val = "" + val || ""));
+        };
+        XMLStringifier2.prototype.insTarget = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          return this.assertLegalChar("" + val || "");
+        };
+        XMLStringifier2.prototype.insValue = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          val = "" + val || "";
+          if (val.match(/\?>/)) {
+            throw new Error("Invalid processing instruction value: " + val);
+          }
+          return this.assertLegalChar(val);
+        };
+        XMLStringifier2.prototype.xmlVersion = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          val = "" + val || "";
+          if (!val.match(/1\.[0-9]+/)) {
+            throw new Error("Invalid version number: " + val);
+          }
+          return val;
+        };
+        XMLStringifier2.prototype.xmlEncoding = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          val = "" + val || "";
+          if (!val.match(/^[A-Za-z](?:[A-Za-z0-9._-])*$/)) {
+            throw new Error("Invalid encoding: " + val);
+          }
+          return this.assertLegalChar(val);
+        };
+        XMLStringifier2.prototype.xmlStandalone = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          if (val) {
+            return "yes";
+          } else {
+            return "no";
+          }
+        };
+        XMLStringifier2.prototype.dtdPubID = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          return this.assertLegalChar("" + val || "");
+        };
+        XMLStringifier2.prototype.dtdSysID = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          return this.assertLegalChar("" + val || "");
+        };
+        XMLStringifier2.prototype.dtdElementValue = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          return this.assertLegalChar("" + val || "");
+        };
+        XMLStringifier2.prototype.dtdAttType = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          return this.assertLegalChar("" + val || "");
+        };
+        XMLStringifier2.prototype.dtdAttDefault = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          return this.assertLegalChar("" + val || "");
+        };
+        XMLStringifier2.prototype.dtdEntityValue = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          return this.assertLegalChar("" + val || "");
+        };
+        XMLStringifier2.prototype.dtdNData = function(val) {
+          if (this.options.noValidation) {
+            return val;
+          }
+          return this.assertLegalChar("" + val || "");
+        };
+        XMLStringifier2.prototype.convertAttKey = "@";
+        XMLStringifier2.prototype.convertPIKey = "?";
+        XMLStringifier2.prototype.convertTextKey = "#text";
+        XMLStringifier2.prototype.convertCDataKey = "#cdata";
+        XMLStringifier2.prototype.convertCommentKey = "#comment";
+        XMLStringifier2.prototype.convertRawKey = "#raw";
+        XMLStringifier2.prototype.assertLegalChar = function(str) {
+          var regex, res;
+          if (this.options.noValidation) {
+            return str;
+          }
+          regex = "";
+          if (this.options.version === "1.0") {
+            regex = /[\0-\x08\x0B\f\x0E-\x1F\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/;
+            if (res = str.match(regex)) {
+              throw new Error("Invalid character in string: " + str + " at index " + res.index);
+            }
+          } else if (this.options.version === "1.1") {
+            regex = /[\0\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/;
+            if (res = str.match(regex)) {
+              throw new Error("Invalid character in string: " + str + " at index " + res.index);
+            }
+          }
+          return str;
+        };
+        XMLStringifier2.prototype.assertLegalName = function(str) {
+          var regex;
+          if (this.options.noValidation) {
+            return str;
+          }
+          this.assertLegalChar(str);
+          regex = /^([:A-Z_a-z\xC0-\xD6\xD8-\xF6\xF8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]|[\uD800-\uDB7F][\uDC00-\uDFFF])([\x2D\.0-:A-Z_a-z\xB7\xC0-\xD6\xD8-\xF6\xF8-\u037D\u037F-\u1FFF\u200C\u200D\u203F\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]|[\uD800-\uDB7F][\uDC00-\uDFFF])*$/;
+          if (!str.match(regex)) {
+            throw new Error("Invalid character in name");
+          }
+          return str;
+        };
+        XMLStringifier2.prototype.textEscape = function(str) {
+          var ampregex;
+          if (this.options.noValidation) {
+            return str;
+          }
+          ampregex = this.options.noDoubleEncoding ? /(?!&\S+;)&/g : /&/g;
+          return str.replace(ampregex, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\r/g, "&#xD;");
+        };
+        XMLStringifier2.prototype.attEscape = function(str) {
+          var ampregex;
+          if (this.options.noValidation) {
+            return str;
+          }
+          ampregex = this.options.noDoubleEncoding ? /(?!&\S+;)&/g : /&/g;
+          return str.replace(ampregex, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;").replace(/\t/g, "&#x9;").replace(/\n/g, "&#xA;").replace(/\r/g, "&#xD;");
+        };
+        return XMLStringifier2;
+      })();
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/WriterState.js
+var require_WriterState = __commonJS({
+  "node_modules/xmlbuilder/lib/WriterState.js"(exports2, module2) {
+    (function() {
+      module2.exports = {
+        None: 0,
+        OpenTag: 1,
+        InsideTag: 2,
+        CloseTag: 3
+      };
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLWriterBase.js
+var require_XMLWriterBase = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLWriterBase.js"(exports2, module2) {
+    (function() {
+      var NodeType, WriterState, XMLCData, XMLComment, XMLDTDAttList, XMLDTDElement, XMLDTDEntity, XMLDTDNotation, XMLDeclaration, XMLDocType, XMLDummy, XMLElement, XMLProcessingInstruction, XMLRaw, XMLText, XMLWriterBase, assign, hasProp = {}.hasOwnProperty;
+      assign = require_Utility().assign;
+      NodeType = require_NodeType();
+      XMLDeclaration = require_XMLDeclaration();
+      XMLDocType = require_XMLDocType();
+      XMLCData = require_XMLCData();
+      XMLComment = require_XMLComment();
+      XMLElement = require_XMLElement();
+      XMLRaw = require_XMLRaw();
+      XMLText = require_XMLText();
+      XMLProcessingInstruction = require_XMLProcessingInstruction();
+      XMLDummy = require_XMLDummy();
+      XMLDTDAttList = require_XMLDTDAttList();
+      XMLDTDElement = require_XMLDTDElement();
+      XMLDTDEntity = require_XMLDTDEntity();
+      XMLDTDNotation = require_XMLDTDNotation();
+      WriterState = require_WriterState();
+      module2.exports = XMLWriterBase = (function() {
+        function XMLWriterBase2(options) {
+          var key, ref, value;
+          options || (options = {});
+          this.options = options;
+          ref = options.writer || {};
+          for (key in ref) {
+            if (!hasProp.call(ref, key)) continue;
+            value = ref[key];
+            this["_" + key] = this[key];
+            this[key] = value;
+          }
+        }
+        XMLWriterBase2.prototype.filterOptions = function(options) {
+          var filteredOptions, ref, ref1, ref2, ref3, ref4, ref5, ref6;
+          options || (options = {});
+          options = assign({}, this.options, options);
+          filteredOptions = {
+            writer: this
+          };
+          filteredOptions.pretty = options.pretty || false;
+          filteredOptions.allowEmpty = options.allowEmpty || false;
+          filteredOptions.indent = (ref = options.indent) != null ? ref : "  ";
+          filteredOptions.newline = (ref1 = options.newline) != null ? ref1 : "\n";
+          filteredOptions.offset = (ref2 = options.offset) != null ? ref2 : 0;
+          filteredOptions.dontPrettyTextNodes = (ref3 = (ref4 = options.dontPrettyTextNodes) != null ? ref4 : options.dontprettytextnodes) != null ? ref3 : 0;
+          filteredOptions.spaceBeforeSlash = (ref5 = (ref6 = options.spaceBeforeSlash) != null ? ref6 : options.spacebeforeslash) != null ? ref5 : "";
+          if (filteredOptions.spaceBeforeSlash === true) {
+            filteredOptions.spaceBeforeSlash = " ";
+          }
+          filteredOptions.suppressPrettyCount = 0;
+          filteredOptions.user = {};
+          filteredOptions.state = WriterState.None;
+          return filteredOptions;
+        };
+        XMLWriterBase2.prototype.indent = function(node, options, level) {
+          var indentLevel;
+          if (!options.pretty || options.suppressPrettyCount) {
+            return "";
+          } else if (options.pretty) {
+            indentLevel = (level || 0) + options.offset + 1;
+            if (indentLevel > 0) {
+              return new Array(indentLevel).join(options.indent);
+            }
+          }
+          return "";
+        };
+        XMLWriterBase2.prototype.endline = function(node, options, level) {
+          if (!options.pretty || options.suppressPrettyCount) {
+            return "";
+          } else {
+            return options.newline;
+          }
+        };
+        XMLWriterBase2.prototype.attribute = function(att, options, level) {
+          var r;
+          this.openAttribute(att, options, level);
+          r = " " + att.name + '="' + att.value + '"';
+          this.closeAttribute(att, options, level);
+          return r;
+        };
+        XMLWriterBase2.prototype.cdata = function(node, options, level) {
+          var r;
+          this.openNode(node, options, level);
+          options.state = WriterState.OpenTag;
+          r = this.indent(node, options, level) + "<![CDATA[";
+          options.state = WriterState.InsideTag;
+          r += node.value;
+          options.state = WriterState.CloseTag;
+          r += "]]>" + this.endline(node, options, level);
+          options.state = WriterState.None;
+          this.closeNode(node, options, level);
+          return r;
+        };
+        XMLWriterBase2.prototype.comment = function(node, options, level) {
+          var r;
+          this.openNode(node, options, level);
+          options.state = WriterState.OpenTag;
+          r = this.indent(node, options, level) + "<!-- ";
+          options.state = WriterState.InsideTag;
+          r += node.value;
+          options.state = WriterState.CloseTag;
+          r += " -->" + this.endline(node, options, level);
+          options.state = WriterState.None;
+          this.closeNode(node, options, level);
+          return r;
+        };
+        XMLWriterBase2.prototype.declaration = function(node, options, level) {
+          var r;
+          this.openNode(node, options, level);
+          options.state = WriterState.OpenTag;
+          r = this.indent(node, options, level) + "<?xml";
+          options.state = WriterState.InsideTag;
+          r += ' version="' + node.version + '"';
+          if (node.encoding != null) {
+            r += ' encoding="' + node.encoding + '"';
+          }
+          if (node.standalone != null) {
+            r += ' standalone="' + node.standalone + '"';
+          }
+          options.state = WriterState.CloseTag;
+          r += options.spaceBeforeSlash + "?>";
+          r += this.endline(node, options, level);
+          options.state = WriterState.None;
+          this.closeNode(node, options, level);
+          return r;
+        };
+        XMLWriterBase2.prototype.docType = function(node, options, level) {
+          var child, i, len, r, ref;
+          level || (level = 0);
+          this.openNode(node, options, level);
+          options.state = WriterState.OpenTag;
+          r = this.indent(node, options, level);
+          r += "<!DOCTYPE " + node.root().name;
+          if (node.pubID && node.sysID) {
+            r += ' PUBLIC "' + node.pubID + '" "' + node.sysID + '"';
+          } else if (node.sysID) {
+            r += ' SYSTEM "' + node.sysID + '"';
+          }
+          if (node.children.length > 0) {
+            r += " [";
+            r += this.endline(node, options, level);
+            options.state = WriterState.InsideTag;
+            ref = node.children;
+            for (i = 0, len = ref.length; i < len; i++) {
+              child = ref[i];
+              r += this.writeChildNode(child, options, level + 1);
+            }
+            options.state = WriterState.CloseTag;
+            r += "]";
+          }
+          options.state = WriterState.CloseTag;
+          r += options.spaceBeforeSlash + ">";
+          r += this.endline(node, options, level);
+          options.state = WriterState.None;
+          this.closeNode(node, options, level);
+          return r;
+        };
+        XMLWriterBase2.prototype.element = function(node, options, level) {
+          var att, child, childNodeCount, firstChildNode, i, j, len, len1, name, prettySuppressed, r, ref, ref1, ref2;
+          level || (level = 0);
+          prettySuppressed = false;
+          r = "";
+          this.openNode(node, options, level);
+          options.state = WriterState.OpenTag;
+          r += this.indent(node, options, level) + "<" + node.name;
+          ref = node.attribs;
+          for (name in ref) {
+            if (!hasProp.call(ref, name)) continue;
+            att = ref[name];
+            r += this.attribute(att, options, level);
+          }
+          childNodeCount = node.children.length;
+          firstChildNode = childNodeCount === 0 ? null : node.children[0];
+          if (childNodeCount === 0 || node.children.every(function(e) {
+            return (e.type === NodeType.Text || e.type === NodeType.Raw) && e.value === "";
+          })) {
+            if (options.allowEmpty) {
+              r += ">";
+              options.state = WriterState.CloseTag;
+              r += "</" + node.name + ">" + this.endline(node, options, level);
+            } else {
+              options.state = WriterState.CloseTag;
+              r += options.spaceBeforeSlash + "/>" + this.endline(node, options, level);
+            }
+          } else if (options.pretty && childNodeCount === 1 && (firstChildNode.type === NodeType.Text || firstChildNode.type === NodeType.Raw) && firstChildNode.value != null) {
+            r += ">";
+            options.state = WriterState.InsideTag;
+            options.suppressPrettyCount++;
+            prettySuppressed = true;
+            r += this.writeChildNode(firstChildNode, options, level + 1);
+            options.suppressPrettyCount--;
+            prettySuppressed = false;
+            options.state = WriterState.CloseTag;
+            r += "</" + node.name + ">" + this.endline(node, options, level);
+          } else {
+            if (options.dontPrettyTextNodes) {
+              ref1 = node.children;
+              for (i = 0, len = ref1.length; i < len; i++) {
+                child = ref1[i];
+                if ((child.type === NodeType.Text || child.type === NodeType.Raw) && child.value != null) {
+                  options.suppressPrettyCount++;
+                  prettySuppressed = true;
+                  break;
+                }
+              }
+            }
+            r += ">" + this.endline(node, options, level);
+            options.state = WriterState.InsideTag;
+            ref2 = node.children;
+            for (j = 0, len1 = ref2.length; j < len1; j++) {
+              child = ref2[j];
+              r += this.writeChildNode(child, options, level + 1);
+            }
+            options.state = WriterState.CloseTag;
+            r += this.indent(node, options, level) + "</" + node.name + ">";
+            if (prettySuppressed) {
+              options.suppressPrettyCount--;
+            }
+            r += this.endline(node, options, level);
+            options.state = WriterState.None;
+          }
+          this.closeNode(node, options, level);
+          return r;
+        };
+        XMLWriterBase2.prototype.writeChildNode = function(node, options, level) {
+          switch (node.type) {
+            case NodeType.CData:
+              return this.cdata(node, options, level);
+            case NodeType.Comment:
+              return this.comment(node, options, level);
+            case NodeType.Element:
+              return this.element(node, options, level);
+            case NodeType.Raw:
+              return this.raw(node, options, level);
+            case NodeType.Text:
+              return this.text(node, options, level);
+            case NodeType.ProcessingInstruction:
+              return this.processingInstruction(node, options, level);
+            case NodeType.Dummy:
+              return "";
+            case NodeType.Declaration:
+              return this.declaration(node, options, level);
+            case NodeType.DocType:
+              return this.docType(node, options, level);
+            case NodeType.AttributeDeclaration:
+              return this.dtdAttList(node, options, level);
+            case NodeType.ElementDeclaration:
+              return this.dtdElement(node, options, level);
+            case NodeType.EntityDeclaration:
+              return this.dtdEntity(node, options, level);
+            case NodeType.NotationDeclaration:
+              return this.dtdNotation(node, options, level);
+            default:
+              throw new Error("Unknown XML node type: " + node.constructor.name);
+          }
+        };
+        XMLWriterBase2.prototype.processingInstruction = function(node, options, level) {
+          var r;
+          this.openNode(node, options, level);
+          options.state = WriterState.OpenTag;
+          r = this.indent(node, options, level) + "<?";
+          options.state = WriterState.InsideTag;
+          r += node.target;
+          if (node.value) {
+            r += " " + node.value;
+          }
+          options.state = WriterState.CloseTag;
+          r += options.spaceBeforeSlash + "?>";
+          r += this.endline(node, options, level);
+          options.state = WriterState.None;
+          this.closeNode(node, options, level);
+          return r;
+        };
+        XMLWriterBase2.prototype.raw = function(node, options, level) {
+          var r;
+          this.openNode(node, options, level);
+          options.state = WriterState.OpenTag;
+          r = this.indent(node, options, level);
+          options.state = WriterState.InsideTag;
+          r += node.value;
+          options.state = WriterState.CloseTag;
+          r += this.endline(node, options, level);
+          options.state = WriterState.None;
+          this.closeNode(node, options, level);
+          return r;
+        };
+        XMLWriterBase2.prototype.text = function(node, options, level) {
+          var r;
+          this.openNode(node, options, level);
+          options.state = WriterState.OpenTag;
+          r = this.indent(node, options, level);
+          options.state = WriterState.InsideTag;
+          r += node.value;
+          options.state = WriterState.CloseTag;
+          r += this.endline(node, options, level);
+          options.state = WriterState.None;
+          this.closeNode(node, options, level);
+          return r;
+        };
+        XMLWriterBase2.prototype.dtdAttList = function(node, options, level) {
+          var r;
+          this.openNode(node, options, level);
+          options.state = WriterState.OpenTag;
+          r = this.indent(node, options, level) + "<!ATTLIST";
+          options.state = WriterState.InsideTag;
+          r += " " + node.elementName + " " + node.attributeName + " " + node.attributeType;
+          if (node.defaultValueType !== "#DEFAULT") {
+            r += " " + node.defaultValueType;
+          }
+          if (node.defaultValue) {
+            r += ' "' + node.defaultValue + '"';
+          }
+          options.state = WriterState.CloseTag;
+          r += options.spaceBeforeSlash + ">" + this.endline(node, options, level);
+          options.state = WriterState.None;
+          this.closeNode(node, options, level);
+          return r;
+        };
+        XMLWriterBase2.prototype.dtdElement = function(node, options, level) {
+          var r;
+          this.openNode(node, options, level);
+          options.state = WriterState.OpenTag;
+          r = this.indent(node, options, level) + "<!ELEMENT";
+          options.state = WriterState.InsideTag;
+          r += " " + node.name + " " + node.value;
+          options.state = WriterState.CloseTag;
+          r += options.spaceBeforeSlash + ">" + this.endline(node, options, level);
+          options.state = WriterState.None;
+          this.closeNode(node, options, level);
+          return r;
+        };
+        XMLWriterBase2.prototype.dtdEntity = function(node, options, level) {
+          var r;
+          this.openNode(node, options, level);
+          options.state = WriterState.OpenTag;
+          r = this.indent(node, options, level) + "<!ENTITY";
+          options.state = WriterState.InsideTag;
+          if (node.pe) {
+            r += " %";
+          }
+          r += " " + node.name;
+          if (node.value) {
+            r += ' "' + node.value + '"';
+          } else {
+            if (node.pubID && node.sysID) {
+              r += ' PUBLIC "' + node.pubID + '" "' + node.sysID + '"';
+            } else if (node.sysID) {
+              r += ' SYSTEM "' + node.sysID + '"';
+            }
+            if (node.nData) {
+              r += " NDATA " + node.nData;
+            }
+          }
+          options.state = WriterState.CloseTag;
+          r += options.spaceBeforeSlash + ">" + this.endline(node, options, level);
+          options.state = WriterState.None;
+          this.closeNode(node, options, level);
+          return r;
+        };
+        XMLWriterBase2.prototype.dtdNotation = function(node, options, level) {
+          var r;
+          this.openNode(node, options, level);
+          options.state = WriterState.OpenTag;
+          r = this.indent(node, options, level) + "<!NOTATION";
+          options.state = WriterState.InsideTag;
+          r += " " + node.name;
+          if (node.pubID && node.sysID) {
+            r += ' PUBLIC "' + node.pubID + '" "' + node.sysID + '"';
+          } else if (node.pubID) {
+            r += ' PUBLIC "' + node.pubID + '"';
+          } else if (node.sysID) {
+            r += ' SYSTEM "' + node.sysID + '"';
+          }
+          options.state = WriterState.CloseTag;
+          r += options.spaceBeforeSlash + ">" + this.endline(node, options, level);
+          options.state = WriterState.None;
+          this.closeNode(node, options, level);
+          return r;
+        };
+        XMLWriterBase2.prototype.openNode = function(node, options, level) {
+        };
+        XMLWriterBase2.prototype.closeNode = function(node, options, level) {
+        };
+        XMLWriterBase2.prototype.openAttribute = function(att, options, level) {
+        };
+        XMLWriterBase2.prototype.closeAttribute = function(att, options, level) {
+        };
+        return XMLWriterBase2;
+      })();
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLStringWriter.js
+var require_XMLStringWriter = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLStringWriter.js"(exports2, module2) {
+    (function() {
+      var XMLStringWriter, XMLWriterBase, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      XMLWriterBase = require_XMLWriterBase();
+      module2.exports = XMLStringWriter = (function(superClass) {
+        extend(XMLStringWriter2, superClass);
+        function XMLStringWriter2(options) {
+          XMLStringWriter2.__super__.constructor.call(this, options);
+        }
+        XMLStringWriter2.prototype.document = function(doc, options) {
+          var child, i, len, r, ref;
+          options = this.filterOptions(options);
+          r = "";
+          ref = doc.children;
+          for (i = 0, len = ref.length; i < len; i++) {
+            child = ref[i];
+            r += this.writeChildNode(child, options, 0);
+          }
+          if (options.pretty && r.slice(-options.newline.length) === options.newline) {
+            r = r.slice(0, -options.newline.length);
+          }
+          return r;
+        };
+        return XMLStringWriter2;
+      })(XMLWriterBase);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLDocument.js
+var require_XMLDocument = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLDocument.js"(exports2, module2) {
+    (function() {
+      var NodeType, XMLDOMConfiguration, XMLDOMImplementation, XMLDocument, XMLNode, XMLStringWriter, XMLStringifier, isPlainObject, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      isPlainObject = require_Utility().isPlainObject;
+      XMLDOMImplementation = require_XMLDOMImplementation();
+      XMLDOMConfiguration = require_XMLDOMConfiguration();
+      XMLNode = require_XMLNode();
+      NodeType = require_NodeType();
+      XMLStringifier = require_XMLStringifier();
+      XMLStringWriter = require_XMLStringWriter();
+      module2.exports = XMLDocument = (function(superClass) {
+        extend(XMLDocument2, superClass);
+        function XMLDocument2(options) {
+          XMLDocument2.__super__.constructor.call(this, null);
+          this.name = "#document";
+          this.type = NodeType.Document;
+          this.documentURI = null;
+          this.domConfig = new XMLDOMConfiguration();
+          options || (options = {});
+          if (!options.writer) {
+            options.writer = new XMLStringWriter();
+          }
+          this.options = options;
+          this.stringify = new XMLStringifier(options);
+        }
+        Object.defineProperty(XMLDocument2.prototype, "implementation", {
+          value: new XMLDOMImplementation()
+        });
+        Object.defineProperty(XMLDocument2.prototype, "doctype", {
+          get: function() {
+            var child, i, len, ref;
+            ref = this.children;
+            for (i = 0, len = ref.length; i < len; i++) {
+              child = ref[i];
+              if (child.type === NodeType.DocType) {
+                return child;
+              }
+            }
+            return null;
+          }
+        });
+        Object.defineProperty(XMLDocument2.prototype, "documentElement", {
+          get: function() {
+            return this.rootObject || null;
+          }
+        });
+        Object.defineProperty(XMLDocument2.prototype, "inputEncoding", {
+          get: function() {
+            return null;
+          }
+        });
+        Object.defineProperty(XMLDocument2.prototype, "strictErrorChecking", {
+          get: function() {
+            return false;
+          }
+        });
+        Object.defineProperty(XMLDocument2.prototype, "xmlEncoding", {
+          get: function() {
+            if (this.children.length !== 0 && this.children[0].type === NodeType.Declaration) {
+              return this.children[0].encoding;
+            } else {
+              return null;
+            }
+          }
+        });
+        Object.defineProperty(XMLDocument2.prototype, "xmlStandalone", {
+          get: function() {
+            if (this.children.length !== 0 && this.children[0].type === NodeType.Declaration) {
+              return this.children[0].standalone === "yes";
+            } else {
+              return false;
+            }
+          }
+        });
+        Object.defineProperty(XMLDocument2.prototype, "xmlVersion", {
+          get: function() {
+            if (this.children.length !== 0 && this.children[0].type === NodeType.Declaration) {
+              return this.children[0].version;
+            } else {
+              return "1.0";
+            }
+          }
+        });
+        Object.defineProperty(XMLDocument2.prototype, "URL", {
+          get: function() {
+            return this.documentURI;
+          }
+        });
+        Object.defineProperty(XMLDocument2.prototype, "origin", {
+          get: function() {
+            return null;
+          }
+        });
+        Object.defineProperty(XMLDocument2.prototype, "compatMode", {
+          get: function() {
+            return null;
+          }
+        });
+        Object.defineProperty(XMLDocument2.prototype, "characterSet", {
+          get: function() {
+            return null;
+          }
+        });
+        Object.defineProperty(XMLDocument2.prototype, "contentType", {
+          get: function() {
+            return null;
+          }
+        });
+        XMLDocument2.prototype.end = function(writer) {
+          var writerOptions;
+          writerOptions = {};
+          if (!writer) {
+            writer = this.options.writer;
+          } else if (isPlainObject(writer)) {
+            writerOptions = writer;
+            writer = this.options.writer;
+          }
+          return writer.document(this, writer.filterOptions(writerOptions));
+        };
+        XMLDocument2.prototype.toString = function(options) {
+          return this.options.writer.document(this, this.options.writer.filterOptions(options));
+        };
+        XMLDocument2.prototype.createElement = function(tagName) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.createDocumentFragment = function() {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.createTextNode = function(data) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.createComment = function(data) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.createCDATASection = function(data) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.createProcessingInstruction = function(target, data) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.createAttribute = function(name) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.createEntityReference = function(name) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.getElementsByTagName = function(tagname) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.importNode = function(importedNode, deep) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.createElementNS = function(namespaceURI, qualifiedName) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.createAttributeNS = function(namespaceURI, qualifiedName) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.getElementsByTagNameNS = function(namespaceURI, localName) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.getElementById = function(elementId) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.adoptNode = function(source) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.normalizeDocument = function() {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.renameNode = function(node, namespaceURI, qualifiedName) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.getElementsByClassName = function(classNames) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.createEvent = function(eventInterface) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.createRange = function() {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.createNodeIterator = function(root, whatToShow, filter) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        XMLDocument2.prototype.createTreeWalker = function(root, whatToShow, filter) {
+          throw new Error("This DOM method is not implemented." + this.debugInfo());
+        };
+        return XMLDocument2;
+      })(XMLNode);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLDocumentCB.js
+var require_XMLDocumentCB = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLDocumentCB.js"(exports2, module2) {
+    (function() {
+      var NodeType, WriterState, XMLAttribute, XMLCData, XMLComment, XMLDTDAttList, XMLDTDElement, XMLDTDEntity, XMLDTDNotation, XMLDeclaration, XMLDocType, XMLDocument, XMLDocumentCB, XMLElement, XMLProcessingInstruction, XMLRaw, XMLStringWriter, XMLStringifier, XMLText, getValue, isFunction, isObject, isPlainObject, ref, hasProp = {}.hasOwnProperty;
+      ref = require_Utility(), isObject = ref.isObject, isFunction = ref.isFunction, isPlainObject = ref.isPlainObject, getValue = ref.getValue;
+      NodeType = require_NodeType();
+      XMLDocument = require_XMLDocument();
+      XMLElement = require_XMLElement();
+      XMLCData = require_XMLCData();
+      XMLComment = require_XMLComment();
+      XMLRaw = require_XMLRaw();
+      XMLText = require_XMLText();
+      XMLProcessingInstruction = require_XMLProcessingInstruction();
+      XMLDeclaration = require_XMLDeclaration();
+      XMLDocType = require_XMLDocType();
+      XMLDTDAttList = require_XMLDTDAttList();
+      XMLDTDEntity = require_XMLDTDEntity();
+      XMLDTDElement = require_XMLDTDElement();
+      XMLDTDNotation = require_XMLDTDNotation();
+      XMLAttribute = require_XMLAttribute();
+      XMLStringifier = require_XMLStringifier();
+      XMLStringWriter = require_XMLStringWriter();
+      WriterState = require_WriterState();
+      module2.exports = XMLDocumentCB = (function() {
+        function XMLDocumentCB2(options, onData, onEnd) {
+          var writerOptions;
+          this.name = "?xml";
+          this.type = NodeType.Document;
+          options || (options = {});
+          writerOptions = {};
+          if (!options.writer) {
+            options.writer = new XMLStringWriter();
+          } else if (isPlainObject(options.writer)) {
+            writerOptions = options.writer;
+            options.writer = new XMLStringWriter();
+          }
+          this.options = options;
+          this.writer = options.writer;
+          this.writerOptions = this.writer.filterOptions(writerOptions);
+          this.stringify = new XMLStringifier(options);
+          this.onDataCallback = onData || function() {
+          };
+          this.onEndCallback = onEnd || function() {
+          };
+          this.currentNode = null;
+          this.currentLevel = -1;
+          this.openTags = {};
+          this.documentStarted = false;
+          this.documentCompleted = false;
+          this.root = null;
+        }
+        XMLDocumentCB2.prototype.createChildNode = function(node) {
+          var att, attName, attributes, child, i, len, ref1, ref2;
+          switch (node.type) {
+            case NodeType.CData:
+              this.cdata(node.value);
+              break;
+            case NodeType.Comment:
+              this.comment(node.value);
+              break;
+            case NodeType.Element:
+              attributes = {};
+              ref1 = node.attribs;
+              for (attName in ref1) {
+                if (!hasProp.call(ref1, attName)) continue;
+                att = ref1[attName];
+                attributes[attName] = att.value;
+              }
+              this.node(node.name, attributes);
+              break;
+            case NodeType.Dummy:
+              this.dummy();
+              break;
+            case NodeType.Raw:
+              this.raw(node.value);
+              break;
+            case NodeType.Text:
+              this.text(node.value);
+              break;
+            case NodeType.ProcessingInstruction:
+              this.instruction(node.target, node.value);
+              break;
+            default:
+              throw new Error("This XML node type is not supported in a JS object: " + node.constructor.name);
+          }
+          ref2 = node.children;
+          for (i = 0, len = ref2.length; i < len; i++) {
+            child = ref2[i];
+            this.createChildNode(child);
+            if (child.type === NodeType.Element) {
+              this.up();
+            }
+          }
+          return this;
+        };
+        XMLDocumentCB2.prototype.dummy = function() {
+          return this;
+        };
+        XMLDocumentCB2.prototype.node = function(name, attributes, text) {
+          var ref1;
+          if (name == null) {
+            throw new Error("Missing node name.");
+          }
+          if (this.root && this.currentLevel === -1) {
+            throw new Error("Document can only have one root node. " + this.debugInfo(name));
+          }
+          this.openCurrent();
+          name = getValue(name);
+          if (attributes == null) {
+            attributes = {};
+          }
+          attributes = getValue(attributes);
+          if (!isObject(attributes)) {
+            ref1 = [attributes, text], text = ref1[0], attributes = ref1[1];
+          }
+          this.currentNode = new XMLElement(this, name, attributes);
+          this.currentNode.children = false;
+          this.currentLevel++;
+          this.openTags[this.currentLevel] = this.currentNode;
+          if (text != null) {
+            this.text(text);
+          }
+          return this;
+        };
+        XMLDocumentCB2.prototype.element = function(name, attributes, text) {
+          var child, i, len, oldValidationFlag, ref1, root;
+          if (this.currentNode && this.currentNode.type === NodeType.DocType) {
+            this.dtdElement.apply(this, arguments);
+          } else {
+            if (Array.isArray(name) || isObject(name) || isFunction(name)) {
+              oldValidationFlag = this.options.noValidation;
+              this.options.noValidation = true;
+              root = new XMLDocument(this.options).element("TEMP_ROOT");
+              root.element(name);
+              this.options.noValidation = oldValidationFlag;
+              ref1 = root.children;
+              for (i = 0, len = ref1.length; i < len; i++) {
+                child = ref1[i];
+                this.createChildNode(child);
+                if (child.type === NodeType.Element) {
+                  this.up();
+                }
+              }
+            } else {
+              this.node(name, attributes, text);
+            }
+          }
+          return this;
+        };
+        XMLDocumentCB2.prototype.attribute = function(name, value) {
+          var attName, attValue;
+          if (!this.currentNode || this.currentNode.children) {
+            throw new Error("att() can only be used immediately after an ele() call in callback mode. " + this.debugInfo(name));
+          }
+          if (name != null) {
+            name = getValue(name);
+          }
+          if (isObject(name)) {
+            for (attName in name) {
+              if (!hasProp.call(name, attName)) continue;
+              attValue = name[attName];
+              this.attribute(attName, attValue);
+            }
+          } else {
+            if (isFunction(value)) {
+              value = value.apply();
+            }
+            if (this.options.keepNullAttributes && value == null) {
+              this.currentNode.attribs[name] = new XMLAttribute(this, name, "");
+            } else if (value != null) {
+              this.currentNode.attribs[name] = new XMLAttribute(this, name, value);
+            }
+          }
+          return this;
+        };
+        XMLDocumentCB2.prototype.text = function(value) {
+          var node;
+          this.openCurrent();
+          node = new XMLText(this, value);
+          this.onData(this.writer.text(node, this.writerOptions, this.currentLevel + 1), this.currentLevel + 1);
+          return this;
+        };
+        XMLDocumentCB2.prototype.cdata = function(value) {
+          var node;
+          this.openCurrent();
+          node = new XMLCData(this, value);
+          this.onData(this.writer.cdata(node, this.writerOptions, this.currentLevel + 1), this.currentLevel + 1);
+          return this;
+        };
+        XMLDocumentCB2.prototype.comment = function(value) {
+          var node;
+          this.openCurrent();
+          node = new XMLComment(this, value);
+          this.onData(this.writer.comment(node, this.writerOptions, this.currentLevel + 1), this.currentLevel + 1);
+          return this;
+        };
+        XMLDocumentCB2.prototype.raw = function(value) {
+          var node;
+          this.openCurrent();
+          node = new XMLRaw(this, value);
+          this.onData(this.writer.raw(node, this.writerOptions, this.currentLevel + 1), this.currentLevel + 1);
+          return this;
+        };
+        XMLDocumentCB2.prototype.instruction = function(target, value) {
+          var i, insTarget, insValue, len, node;
+          this.openCurrent();
+          if (target != null) {
+            target = getValue(target);
+          }
+          if (value != null) {
+            value = getValue(value);
+          }
+          if (Array.isArray(target)) {
+            for (i = 0, len = target.length; i < len; i++) {
+              insTarget = target[i];
+              this.instruction(insTarget);
+            }
+          } else if (isObject(target)) {
+            for (insTarget in target) {
+              if (!hasProp.call(target, insTarget)) continue;
+              insValue = target[insTarget];
+              this.instruction(insTarget, insValue);
+            }
+          } else {
+            if (isFunction(value)) {
+              value = value.apply();
+            }
+            node = new XMLProcessingInstruction(this, target, value);
+            this.onData(this.writer.processingInstruction(node, this.writerOptions, this.currentLevel + 1), this.currentLevel + 1);
+          }
+          return this;
+        };
+        XMLDocumentCB2.prototype.declaration = function(version, encoding, standalone) {
+          var node;
+          this.openCurrent();
+          if (this.documentStarted) {
+            throw new Error("declaration() must be the first node.");
+          }
+          node = new XMLDeclaration(this, version, encoding, standalone);
+          this.onData(this.writer.declaration(node, this.writerOptions, this.currentLevel + 1), this.currentLevel + 1);
+          return this;
+        };
+        XMLDocumentCB2.prototype.doctype = function(root, pubID, sysID) {
+          this.openCurrent();
+          if (root == null) {
+            throw new Error("Missing root node name.");
+          }
+          if (this.root) {
+            throw new Error("dtd() must come before the root node.");
+          }
+          this.currentNode = new XMLDocType(this, pubID, sysID);
+          this.currentNode.rootNodeName = root;
+          this.currentNode.children = false;
+          this.currentLevel++;
+          this.openTags[this.currentLevel] = this.currentNode;
+          return this;
+        };
+        XMLDocumentCB2.prototype.dtdElement = function(name, value) {
+          var node;
+          this.openCurrent();
+          node = new XMLDTDElement(this, name, value);
+          this.onData(this.writer.dtdElement(node, this.writerOptions, this.currentLevel + 1), this.currentLevel + 1);
+          return this;
+        };
+        XMLDocumentCB2.prototype.attList = function(elementName, attributeName, attributeType, defaultValueType, defaultValue) {
+          var node;
+          this.openCurrent();
+          node = new XMLDTDAttList(this, elementName, attributeName, attributeType, defaultValueType, defaultValue);
+          this.onData(this.writer.dtdAttList(node, this.writerOptions, this.currentLevel + 1), this.currentLevel + 1);
+          return this;
+        };
+        XMLDocumentCB2.prototype.entity = function(name, value) {
+          var node;
+          this.openCurrent();
+          node = new XMLDTDEntity(this, false, name, value);
+          this.onData(this.writer.dtdEntity(node, this.writerOptions, this.currentLevel + 1), this.currentLevel + 1);
+          return this;
+        };
+        XMLDocumentCB2.prototype.pEntity = function(name, value) {
+          var node;
+          this.openCurrent();
+          node = new XMLDTDEntity(this, true, name, value);
+          this.onData(this.writer.dtdEntity(node, this.writerOptions, this.currentLevel + 1), this.currentLevel + 1);
+          return this;
+        };
+        XMLDocumentCB2.prototype.notation = function(name, value) {
+          var node;
+          this.openCurrent();
+          node = new XMLDTDNotation(this, name, value);
+          this.onData(this.writer.dtdNotation(node, this.writerOptions, this.currentLevel + 1), this.currentLevel + 1);
+          return this;
+        };
+        XMLDocumentCB2.prototype.up = function() {
+          if (this.currentLevel < 0) {
+            throw new Error("The document node has no parent.");
+          }
+          if (this.currentNode) {
+            if (this.currentNode.children) {
+              this.closeNode(this.currentNode);
+            } else {
+              this.openNode(this.currentNode);
+            }
+            this.currentNode = null;
+          } else {
+            this.closeNode(this.openTags[this.currentLevel]);
+          }
+          delete this.openTags[this.currentLevel];
+          this.currentLevel--;
+          return this;
+        };
+        XMLDocumentCB2.prototype.end = function() {
+          while (this.currentLevel >= 0) {
+            this.up();
+          }
+          return this.onEnd();
+        };
+        XMLDocumentCB2.prototype.openCurrent = function() {
+          if (this.currentNode) {
+            this.currentNode.children = true;
+            return this.openNode(this.currentNode);
+          }
+        };
+        XMLDocumentCB2.prototype.openNode = function(node) {
+          var att, chunk, name, ref1;
+          if (!node.isOpen) {
+            if (!this.root && this.currentLevel === 0 && node.type === NodeType.Element) {
+              this.root = node;
+            }
+            chunk = "";
+            if (node.type === NodeType.Element) {
+              this.writerOptions.state = WriterState.OpenTag;
+              chunk = this.writer.indent(node, this.writerOptions, this.currentLevel) + "<" + node.name;
+              ref1 = node.attribs;
+              for (name in ref1) {
+                if (!hasProp.call(ref1, name)) continue;
+                att = ref1[name];
+                chunk += this.writer.attribute(att, this.writerOptions, this.currentLevel);
+              }
+              chunk += (node.children ? ">" : "/>") + this.writer.endline(node, this.writerOptions, this.currentLevel);
+              this.writerOptions.state = WriterState.InsideTag;
+            } else {
+              this.writerOptions.state = WriterState.OpenTag;
+              chunk = this.writer.indent(node, this.writerOptions, this.currentLevel) + "<!DOCTYPE " + node.rootNodeName;
+              if (node.pubID && node.sysID) {
+                chunk += ' PUBLIC "' + node.pubID + '" "' + node.sysID + '"';
+              } else if (node.sysID) {
+                chunk += ' SYSTEM "' + node.sysID + '"';
+              }
+              if (node.children) {
+                chunk += " [";
+                this.writerOptions.state = WriterState.InsideTag;
+              } else {
+                this.writerOptions.state = WriterState.CloseTag;
+                chunk += ">";
+              }
+              chunk += this.writer.endline(node, this.writerOptions, this.currentLevel);
+            }
+            this.onData(chunk, this.currentLevel);
+            return node.isOpen = true;
+          }
+        };
+        XMLDocumentCB2.prototype.closeNode = function(node) {
+          var chunk;
+          if (!node.isClosed) {
+            chunk = "";
+            this.writerOptions.state = WriterState.CloseTag;
+            if (node.type === NodeType.Element) {
+              chunk = this.writer.indent(node, this.writerOptions, this.currentLevel) + "</" + node.name + ">" + this.writer.endline(node, this.writerOptions, this.currentLevel);
+            } else {
+              chunk = this.writer.indent(node, this.writerOptions, this.currentLevel) + "]>" + this.writer.endline(node, this.writerOptions, this.currentLevel);
+            }
+            this.writerOptions.state = WriterState.None;
+            this.onData(chunk, this.currentLevel);
+            return node.isClosed = true;
+          }
+        };
+        XMLDocumentCB2.prototype.onData = function(chunk, level) {
+          this.documentStarted = true;
+          return this.onDataCallback(chunk, level + 1);
+        };
+        XMLDocumentCB2.prototype.onEnd = function() {
+          this.documentCompleted = true;
+          return this.onEndCallback();
+        };
+        XMLDocumentCB2.prototype.debugInfo = function(name) {
+          if (name == null) {
+            return "";
+          } else {
+            return "node: <" + name + ">";
+          }
+        };
+        XMLDocumentCB2.prototype.ele = function() {
+          return this.element.apply(this, arguments);
+        };
+        XMLDocumentCB2.prototype.nod = function(name, attributes, text) {
+          return this.node(name, attributes, text);
+        };
+        XMLDocumentCB2.prototype.txt = function(value) {
+          return this.text(value);
+        };
+        XMLDocumentCB2.prototype.dat = function(value) {
+          return this.cdata(value);
+        };
+        XMLDocumentCB2.prototype.com = function(value) {
+          return this.comment(value);
+        };
+        XMLDocumentCB2.prototype.ins = function(target, value) {
+          return this.instruction(target, value);
+        };
+        XMLDocumentCB2.prototype.dec = function(version, encoding, standalone) {
+          return this.declaration(version, encoding, standalone);
+        };
+        XMLDocumentCB2.prototype.dtd = function(root, pubID, sysID) {
+          return this.doctype(root, pubID, sysID);
+        };
+        XMLDocumentCB2.prototype.e = function(name, attributes, text) {
+          return this.element(name, attributes, text);
+        };
+        XMLDocumentCB2.prototype.n = function(name, attributes, text) {
+          return this.node(name, attributes, text);
+        };
+        XMLDocumentCB2.prototype.t = function(value) {
+          return this.text(value);
+        };
+        XMLDocumentCB2.prototype.d = function(value) {
+          return this.cdata(value);
+        };
+        XMLDocumentCB2.prototype.c = function(value) {
+          return this.comment(value);
+        };
+        XMLDocumentCB2.prototype.r = function(value) {
+          return this.raw(value);
+        };
+        XMLDocumentCB2.prototype.i = function(target, value) {
+          return this.instruction(target, value);
+        };
+        XMLDocumentCB2.prototype.att = function() {
+          if (this.currentNode && this.currentNode.type === NodeType.DocType) {
+            return this.attList.apply(this, arguments);
+          } else {
+            return this.attribute.apply(this, arguments);
+          }
+        };
+        XMLDocumentCB2.prototype.a = function() {
+          if (this.currentNode && this.currentNode.type === NodeType.DocType) {
+            return this.attList.apply(this, arguments);
+          } else {
+            return this.attribute.apply(this, arguments);
+          }
+        };
+        XMLDocumentCB2.prototype.ent = function(name, value) {
+          return this.entity(name, value);
+        };
+        XMLDocumentCB2.prototype.pent = function(name, value) {
+          return this.pEntity(name, value);
+        };
+        XMLDocumentCB2.prototype.not = function(name, value) {
+          return this.notation(name, value);
+        };
+        return XMLDocumentCB2;
+      })();
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/XMLStreamWriter.js
+var require_XMLStreamWriter = __commonJS({
+  "node_modules/xmlbuilder/lib/XMLStreamWriter.js"(exports2, module2) {
+    (function() {
+      var NodeType, WriterState, XMLStreamWriter, XMLWriterBase, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      NodeType = require_NodeType();
+      XMLWriterBase = require_XMLWriterBase();
+      WriterState = require_WriterState();
+      module2.exports = XMLStreamWriter = (function(superClass) {
+        extend(XMLStreamWriter2, superClass);
+        function XMLStreamWriter2(stream, options) {
+          this.stream = stream;
+          XMLStreamWriter2.__super__.constructor.call(this, options);
+        }
+        XMLStreamWriter2.prototype.endline = function(node, options, level) {
+          if (node.isLastRootNode && options.state === WriterState.CloseTag) {
+            return "";
+          } else {
+            return XMLStreamWriter2.__super__.endline.call(this, node, options, level);
+          }
+        };
+        XMLStreamWriter2.prototype.document = function(doc, options) {
+          var child, i, j, k, len, len1, ref, ref1, results;
+          ref = doc.children;
+          for (i = j = 0, len = ref.length; j < len; i = ++j) {
+            child = ref[i];
+            child.isLastRootNode = i === doc.children.length - 1;
+          }
+          options = this.filterOptions(options);
+          ref1 = doc.children;
+          results = [];
+          for (k = 0, len1 = ref1.length; k < len1; k++) {
+            child = ref1[k];
+            results.push(this.writeChildNode(child, options, 0));
+          }
+          return results;
+        };
+        XMLStreamWriter2.prototype.attribute = function(att, options, level) {
+          return this.stream.write(XMLStreamWriter2.__super__.attribute.call(this, att, options, level));
+        };
+        XMLStreamWriter2.prototype.cdata = function(node, options, level) {
+          return this.stream.write(XMLStreamWriter2.__super__.cdata.call(this, node, options, level));
+        };
+        XMLStreamWriter2.prototype.comment = function(node, options, level) {
+          return this.stream.write(XMLStreamWriter2.__super__.comment.call(this, node, options, level));
+        };
+        XMLStreamWriter2.prototype.declaration = function(node, options, level) {
+          return this.stream.write(XMLStreamWriter2.__super__.declaration.call(this, node, options, level));
+        };
+        XMLStreamWriter2.prototype.docType = function(node, options, level) {
+          var child, j, len, ref;
+          level || (level = 0);
+          this.openNode(node, options, level);
+          options.state = WriterState.OpenTag;
+          this.stream.write(this.indent(node, options, level));
+          this.stream.write("<!DOCTYPE " + node.root().name);
+          if (node.pubID && node.sysID) {
+            this.stream.write(' PUBLIC "' + node.pubID + '" "' + node.sysID + '"');
+          } else if (node.sysID) {
+            this.stream.write(' SYSTEM "' + node.sysID + '"');
+          }
+          if (node.children.length > 0) {
+            this.stream.write(" [");
+            this.stream.write(this.endline(node, options, level));
+            options.state = WriterState.InsideTag;
+            ref = node.children;
+            for (j = 0, len = ref.length; j < len; j++) {
+              child = ref[j];
+              this.writeChildNode(child, options, level + 1);
+            }
+            options.state = WriterState.CloseTag;
+            this.stream.write("]");
+          }
+          options.state = WriterState.CloseTag;
+          this.stream.write(options.spaceBeforeSlash + ">");
+          this.stream.write(this.endline(node, options, level));
+          options.state = WriterState.None;
+          return this.closeNode(node, options, level);
+        };
+        XMLStreamWriter2.prototype.element = function(node, options, level) {
+          var att, child, childNodeCount, firstChildNode, j, len, name, prettySuppressed, ref, ref1;
+          level || (level = 0);
+          this.openNode(node, options, level);
+          options.state = WriterState.OpenTag;
+          this.stream.write(this.indent(node, options, level) + "<" + node.name);
+          ref = node.attribs;
+          for (name in ref) {
+            if (!hasProp.call(ref, name)) continue;
+            att = ref[name];
+            this.attribute(att, options, level);
+          }
+          childNodeCount = node.children.length;
+          firstChildNode = childNodeCount === 0 ? null : node.children[0];
+          if (childNodeCount === 0 || node.children.every(function(e) {
+            return (e.type === NodeType.Text || e.type === NodeType.Raw) && e.value === "";
+          })) {
+            if (options.allowEmpty) {
+              this.stream.write(">");
+              options.state = WriterState.CloseTag;
+              this.stream.write("</" + node.name + ">");
+            } else {
+              options.state = WriterState.CloseTag;
+              this.stream.write(options.spaceBeforeSlash + "/>");
+            }
+          } else if (options.pretty && childNodeCount === 1 && (firstChildNode.type === NodeType.Text || firstChildNode.type === NodeType.Raw) && firstChildNode.value != null) {
+            this.stream.write(">");
+            options.state = WriterState.InsideTag;
+            options.suppressPrettyCount++;
+            prettySuppressed = true;
+            this.writeChildNode(firstChildNode, options, level + 1);
+            options.suppressPrettyCount--;
+            prettySuppressed = false;
+            options.state = WriterState.CloseTag;
+            this.stream.write("</" + node.name + ">");
+          } else {
+            this.stream.write(">" + this.endline(node, options, level));
+            options.state = WriterState.InsideTag;
+            ref1 = node.children;
+            for (j = 0, len = ref1.length; j < len; j++) {
+              child = ref1[j];
+              this.writeChildNode(child, options, level + 1);
+            }
+            options.state = WriterState.CloseTag;
+            this.stream.write(this.indent(node, options, level) + "</" + node.name + ">");
+          }
+          this.stream.write(this.endline(node, options, level));
+          options.state = WriterState.None;
+          return this.closeNode(node, options, level);
+        };
+        XMLStreamWriter2.prototype.processingInstruction = function(node, options, level) {
+          return this.stream.write(XMLStreamWriter2.__super__.processingInstruction.call(this, node, options, level));
+        };
+        XMLStreamWriter2.prototype.raw = function(node, options, level) {
+          return this.stream.write(XMLStreamWriter2.__super__.raw.call(this, node, options, level));
+        };
+        XMLStreamWriter2.prototype.text = function(node, options, level) {
+          return this.stream.write(XMLStreamWriter2.__super__.text.call(this, node, options, level));
+        };
+        XMLStreamWriter2.prototype.dtdAttList = function(node, options, level) {
+          return this.stream.write(XMLStreamWriter2.__super__.dtdAttList.call(this, node, options, level));
+        };
+        XMLStreamWriter2.prototype.dtdElement = function(node, options, level) {
+          return this.stream.write(XMLStreamWriter2.__super__.dtdElement.call(this, node, options, level));
+        };
+        XMLStreamWriter2.prototype.dtdEntity = function(node, options, level) {
+          return this.stream.write(XMLStreamWriter2.__super__.dtdEntity.call(this, node, options, level));
+        };
+        XMLStreamWriter2.prototype.dtdNotation = function(node, options, level) {
+          return this.stream.write(XMLStreamWriter2.__super__.dtdNotation.call(this, node, options, level));
+        };
+        return XMLStreamWriter2;
+      })(XMLWriterBase);
+    }).call(exports2);
+  }
+});
+
+// node_modules/xmlbuilder/lib/index.js
+var require_lib = __commonJS({
+  "node_modules/xmlbuilder/lib/index.js"(exports2, module2) {
+    (function() {
+      var NodeType, WriterState, XMLDOMImplementation, XMLDocument, XMLDocumentCB, XMLStreamWriter, XMLStringWriter, assign, isFunction, ref;
+      ref = require_Utility(), assign = ref.assign, isFunction = ref.isFunction;
+      XMLDOMImplementation = require_XMLDOMImplementation();
+      XMLDocument = require_XMLDocument();
+      XMLDocumentCB = require_XMLDocumentCB();
+      XMLStringWriter = require_XMLStringWriter();
+      XMLStreamWriter = require_XMLStreamWriter();
+      NodeType = require_NodeType();
+      WriterState = require_WriterState();
+      module2.exports.create = function(name, xmldec, doctype, options) {
+        var doc, root;
+        if (name == null) {
+          throw new Error("Root element needs a name.");
+        }
+        options = assign({}, xmldec, doctype, options);
+        doc = new XMLDocument(options);
+        root = doc.element(name);
+        if (!options.headless) {
+          doc.declaration(options);
+          if (options.pubID != null || options.sysID != null) {
+            doc.dtd(options);
+          }
+        }
+        return root;
+      };
+      module2.exports.begin = function(options, onData, onEnd) {
+        var ref1;
+        if (isFunction(options)) {
+          ref1 = [options, onData], onData = ref1[0], onEnd = ref1[1];
+          options = {};
+        }
+        if (onData) {
+          return new XMLDocumentCB(options, onData, onEnd);
+        } else {
+          return new XMLDocument(options);
+        }
+      };
+      module2.exports.stringWriter = function(options) {
+        return new XMLStringWriter(options);
+      };
+      module2.exports.streamWriter = function(stream, options) {
+        return new XMLStreamWriter(stream, options);
+      };
+      module2.exports.implementation = new XMLDOMImplementation();
+      module2.exports.nodeType = NodeType;
+      module2.exports.writerState = WriterState;
+    }).call(exports2);
+  }
+});
+
+// node_modules/xml2js/lib/builder.js
+var require_builder = __commonJS({
+  "node_modules/xml2js/lib/builder.js"(exports2) {
+    (function() {
+      "use strict";
+      var builder, defaults, escapeCDATA, requiresCDATA, wrapCDATA, hasProp = {}.hasOwnProperty;
+      builder = require_lib();
+      defaults = require_defaults().defaults;
+      requiresCDATA = function(entry) {
+        return typeof entry === "string" && (entry.indexOf("&") >= 0 || entry.indexOf(">") >= 0 || entry.indexOf("<") >= 0);
+      };
+      wrapCDATA = function(entry) {
+        return "<![CDATA[" + escapeCDATA(entry) + "]]>";
+      };
+      escapeCDATA = function(entry) {
+        return entry.replace("]]>", "]]]]><![CDATA[>");
+      };
+      exports2.Builder = (function() {
+        function Builder(opts) {
+          var key, ref, value;
+          this.options = {};
+          ref = defaults["0.2"];
+          for (key in ref) {
+            if (!hasProp.call(ref, key)) continue;
+            value = ref[key];
+            this.options[key] = value;
+          }
+          for (key in opts) {
+            if (!hasProp.call(opts, key)) continue;
+            value = opts[key];
+            this.options[key] = value;
+          }
+        }
+        Builder.prototype.buildObject = function(rootObj) {
+          var attrkey, charkey, render, rootElement, rootName;
+          attrkey = this.options.attrkey;
+          charkey = this.options.charkey;
+          if (Object.keys(rootObj).length === 1 && this.options.rootName === defaults["0.2"].rootName) {
+            rootName = Object.keys(rootObj)[0];
+            rootObj = rootObj[rootName];
+          } else {
+            rootName = this.options.rootName;
+          }
+          render = /* @__PURE__ */ (function(_this) {
+            return function(element, obj) {
+              var attr, child, entry, index, key, value;
+              if (typeof obj !== "object") {
+                if (_this.options.cdata && requiresCDATA(obj)) {
+                  element.raw(wrapCDATA(obj));
+                } else {
+                  element.txt(obj);
+                }
+              } else if (Array.isArray(obj)) {
+                for (index in obj) {
+                  if (!hasProp.call(obj, index)) continue;
+                  child = obj[index];
+                  for (key in child) {
+                    entry = child[key];
+                    element = render(element.ele(key), entry).up();
+                  }
+                }
+              } else {
+                for (key in obj) {
+                  if (!hasProp.call(obj, key)) continue;
+                  child = obj[key];
+                  if (key === attrkey) {
+                    if (typeof child === "object") {
+                      for (attr in child) {
+                        value = child[attr];
+                        element = element.att(attr, value);
+                      }
+                    }
+                  } else if (key === charkey) {
+                    if (_this.options.cdata && requiresCDATA(child)) {
+                      element = element.raw(wrapCDATA(child));
+                    } else {
+                      element = element.txt(child);
+                    }
+                  } else if (Array.isArray(child)) {
+                    for (index in child) {
+                      if (!hasProp.call(child, index)) continue;
+                      entry = child[index];
+                      if (typeof entry === "string") {
+                        if (_this.options.cdata && requiresCDATA(entry)) {
+                          element = element.ele(key).raw(wrapCDATA(entry)).up();
+                        } else {
+                          element = element.ele(key, entry).up();
+                        }
+                      } else {
+                        element = render(element.ele(key), entry).up();
+                      }
+                    }
+                  } else if (typeof child === "object") {
+                    element = render(element.ele(key), child).up();
+                  } else {
+                    if (typeof child === "string" && _this.options.cdata && requiresCDATA(child)) {
+                      element = element.ele(key).raw(wrapCDATA(child)).up();
+                    } else {
+                      if (child == null) {
+                        child = "";
+                      }
+                      element = element.ele(key, child.toString()).up();
+                    }
+                  }
+                }
+              }
+              return element;
+            };
+          })(this);
+          rootElement = builder.create(rootName, this.options.xmldec, this.options.doctype, {
+            headless: this.options.headless,
+            allowSurrogateChars: this.options.allowSurrogateChars
+          });
+          return render(rootElement, rootObj).end(this.options.renderOpts);
+        };
+        return Builder;
+      })();
+    }).call(exports2);
+  }
+});
+
+// node_modules/sax/lib/sax.js
+var require_sax = __commonJS({
+  "node_modules/sax/lib/sax.js"(exports2) {
+    (function(sax) {
+      sax.parser = function(strict, opt) {
+        return new SAXParser(strict, opt);
+      };
+      sax.SAXParser = SAXParser;
+      sax.SAXStream = SAXStream;
+      sax.createStream = createStream;
+      sax.MAX_BUFFER_LENGTH = 64 * 1024;
+      var buffers = [
+        "comment",
+        "sgmlDecl",
+        "textNode",
+        "tagName",
+        "doctype",
+        "procInstName",
+        "procInstBody",
+        "entity",
+        "attribName",
+        "attribValue",
+        "cdata",
+        "script"
+      ];
+      sax.EVENTS = [
+        "text",
+        "processinginstruction",
+        "sgmldeclaration",
+        "doctype",
+        "comment",
+        "opentagstart",
+        "attribute",
+        "opentag",
+        "closetag",
+        "opencdata",
+        "cdata",
+        "closecdata",
+        "error",
+        "end",
+        "ready",
+        "script",
+        "opennamespace",
+        "closenamespace"
+      ];
+      function SAXParser(strict, opt) {
+        if (!(this instanceof SAXParser)) {
+          return new SAXParser(strict, opt);
+        }
+        var parser = this;
+        clearBuffers(parser);
+        parser.q = parser.c = "";
+        parser.bufferCheckPosition = sax.MAX_BUFFER_LENGTH;
+        parser.encoding = null;
+        parser.opt = opt || {};
+        parser.opt.lowercase = parser.opt.lowercase || parser.opt.lowercasetags;
+        parser.looseCase = parser.opt.lowercase ? "toLowerCase" : "toUpperCase";
+        parser.opt.maxEntityCount = parser.opt.maxEntityCount || 512;
+        parser.opt.maxEntityDepth = parser.opt.maxEntityDepth || 4;
+        parser.entityCount = parser.entityDepth = 0;
+        parser.tags = [];
+        parser.closed = parser.closedRoot = parser.sawRoot = false;
+        parser.tag = parser.error = null;
+        parser.strict = !!strict;
+        parser.noscript = !!(strict || parser.opt.noscript);
+        parser.state = S.BEGIN;
+        parser.strictEntities = parser.opt.strictEntities;
+        parser.ENTITIES = parser.strictEntities ? Object.create(sax.XML_ENTITIES) : Object.create(sax.ENTITIES);
+        parser.attribList = [];
+        if (parser.opt.xmlns) {
+          parser.ns = Object.create(rootNS);
+        }
+        if (parser.opt.unquotedAttributeValues === void 0) {
+          parser.opt.unquotedAttributeValues = !strict;
+        }
+        parser.trackPosition = parser.opt.position !== false;
+        if (parser.trackPosition) {
+          parser.position = parser.line = parser.column = 0;
+        }
+        emit(parser, "onready");
+      }
+      if (!Object.create) {
+        Object.create = function(o) {
+          function F() {
+          }
+          F.prototype = o;
+          var newf = new F();
+          return newf;
+        };
+      }
+      if (!Object.keys) {
+        Object.keys = function(o) {
+          var a = [];
+          for (var i in o) if (o.hasOwnProperty(i)) a.push(i);
+          return a;
+        };
+      }
+      function checkBufferLength(parser) {
+        var maxAllowed = Math.max(sax.MAX_BUFFER_LENGTH, 10);
+        var maxActual = 0;
+        for (var i = 0, l = buffers.length; i < l; i++) {
+          var len = parser[buffers[i]].length;
+          if (len > maxAllowed) {
+            switch (buffers[i]) {
+              case "textNode":
+                closeText(parser);
+                break;
+              case "cdata":
+                emitNode(parser, "oncdata", parser.cdata);
+                parser.cdata = "";
+                break;
+              case "script":
+                emitNode(parser, "onscript", parser.script);
+                parser.script = "";
+                break;
+              default:
+                error(parser, "Max buffer length exceeded: " + buffers[i]);
+            }
+          }
+          maxActual = Math.max(maxActual, len);
+        }
+        var m = sax.MAX_BUFFER_LENGTH - maxActual;
+        parser.bufferCheckPosition = m + parser.position;
+      }
+      function clearBuffers(parser) {
+        for (var i = 0, l = buffers.length; i < l; i++) {
+          parser[buffers[i]] = "";
+        }
+      }
+      function flushBuffers(parser) {
+        closeText(parser);
+        if (parser.cdata !== "") {
+          emitNode(parser, "oncdata", parser.cdata);
+          parser.cdata = "";
+        }
+        if (parser.script !== "") {
+          emitNode(parser, "onscript", parser.script);
+          parser.script = "";
+        }
+      }
+      SAXParser.prototype = {
+        end: function() {
+          end(this);
+        },
+        write,
+        resume: function() {
+          this.error = null;
+          return this;
+        },
+        close: function() {
+          return this.write(null);
+        },
+        flush: function() {
+          flushBuffers(this);
+        }
+      };
+      var Stream;
+      try {
+        Stream = require("stream").Stream;
+      } catch (ex) {
+        Stream = function() {
+        };
+      }
+      if (!Stream) Stream = function() {
+      };
+      var streamWraps = sax.EVENTS.filter(function(ev) {
+        return ev !== "error" && ev !== "end";
+      });
+      function createStream(strict, opt) {
+        return new SAXStream(strict, opt);
+      }
+      function determineBufferEncoding(data, isEnd) {
+        if (data.length >= 2) {
+          if (data[0] === 255 && data[1] === 254) {
+            return "utf-16le";
+          }
+          if (data[0] === 254 && data[1] === 255) {
+            return "utf-16be";
+          }
+        }
+        if (data.length >= 3 && data[0] === 239 && data[1] === 187 && data[2] === 191) {
+          return "utf8";
+        }
+        if (data.length >= 4) {
+          if (data[0] === 60 && data[1] === 0 && data[2] === 63 && data[3] === 0) {
+            return "utf-16le";
+          }
+          if (data[0] === 0 && data[1] === 60 && data[2] === 0 && data[3] === 63) {
+            return "utf-16be";
+          }
+          return "utf8";
+        }
+        return isEnd ? "utf8" : null;
+      }
+      function SAXStream(strict, opt) {
+        if (!(this instanceof SAXStream)) {
+          return new SAXStream(strict, opt);
+        }
+        Stream.apply(this);
+        this._parser = new SAXParser(strict, opt);
+        this.writable = true;
+        this.readable = true;
+        var me = this;
+        this._parser.onend = function() {
+          me.emit("end");
+        };
+        this._parser.onerror = function(er) {
+          me.emit("error", er);
+          me._parser.error = null;
+        };
+        this._decoder = null;
+        this._decoderBuffer = null;
+        streamWraps.forEach(function(ev) {
+          Object.defineProperty(me, "on" + ev, {
+            get: function() {
+              return me._parser["on" + ev];
+            },
+            set: function(h) {
+              if (!h) {
+                me.removeAllListeners(ev);
+                me._parser["on" + ev] = h;
+                return h;
+              }
+              me.on(ev, h);
+            },
+            enumerable: true,
+            configurable: false
+          });
+        });
+      }
+      SAXStream.prototype = Object.create(Stream.prototype, {
+        constructor: {
+          value: SAXStream
+        }
+      });
+      SAXStream.prototype._decodeBuffer = function(data, isEnd) {
+        if (this._decoderBuffer) {
+          data = Buffer.concat([this._decoderBuffer, data]);
+          this._decoderBuffer = null;
+        }
+        if (!this._decoder) {
+          var encoding = determineBufferEncoding(data, isEnd);
+          if (!encoding) {
+            this._decoderBuffer = data;
+            return "";
+          }
+          this._parser.encoding = encoding;
+          this._decoder = new TextDecoder(encoding);
+        }
+        return this._decoder.decode(data, { stream: !isEnd });
+      };
+      SAXStream.prototype.write = function(data) {
+        if (typeof Buffer === "function" && typeof Buffer.isBuffer === "function" && Buffer.isBuffer(data)) {
+          data = this._decodeBuffer(data, false);
+        } else if (this._decoderBuffer) {
+          var remaining = this._decodeBuffer(Buffer.alloc(0), true);
+          if (remaining) {
+            this._parser.write(remaining);
+            this.emit("data", remaining);
+          }
+        }
+        this._parser.write(data.toString());
+        this.emit("data", data);
+        return true;
+      };
+      SAXStream.prototype.end = function(chunk) {
+        if (chunk && chunk.length) {
+          this.write(chunk);
+        }
+        if (this._decoderBuffer) {
+          var finalChunk = this._decodeBuffer(Buffer.alloc(0), true);
+          if (finalChunk) {
+            this._parser.write(finalChunk);
+            this.emit("data", finalChunk);
+          }
+        } else if (this._decoder) {
+          var remaining = this._decoder.decode();
+          if (remaining) {
+            this._parser.write(remaining);
+            this.emit("data", remaining);
+          }
+        }
+        this._parser.end();
+        return true;
+      };
+      SAXStream.prototype.on = function(ev, handler) {
+        var me = this;
+        if (!me._parser["on" + ev] && streamWraps.indexOf(ev) !== -1) {
+          me._parser["on" + ev] = function() {
+            var args = arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments);
+            args.splice(0, 0, ev);
+            me.emit.apply(me, args);
+          };
+        }
+        return Stream.prototype.on.call(me, ev, handler);
+      };
+      var CDATA = "[CDATA[";
+      var DOCTYPE = "DOCTYPE";
+      var XML_NAMESPACE = "http://www.w3.org/XML/1998/namespace";
+      var XMLNS_NAMESPACE = "http://www.w3.org/2000/xmlns/";
+      var rootNS = { xml: XML_NAMESPACE, xmlns: XMLNS_NAMESPACE };
+      var nameStart = /[:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]/;
+      var nameBody = /[:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u00B7\u0300-\u036F\u203F-\u2040.\d-]/;
+      var entityStart = /[#:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]/;
+      var entityBody = /[#:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u00B7\u0300-\u036F\u203F-\u2040.\d-]/;
+      function isWhitespace(c) {
+        return c === " " || c === "\n" || c === "\r" || c === "	";
+      }
+      function isQuote(c) {
+        return c === '"' || c === "'";
+      }
+      function isAttribEnd(c) {
+        return c === ">" || isWhitespace(c);
+      }
+      function isMatch(regex, c) {
+        return regex.test(c);
+      }
+      function notMatch(regex, c) {
+        return !isMatch(regex, c);
+      }
+      var S = 0;
+      sax.STATE = {
+        BEGIN: S++,
+        // leading byte order mark or whitespace
+        BEGIN_WHITESPACE: S++,
+        // leading whitespace
+        TEXT: S++,
+        // general stuff
+        TEXT_ENTITY: S++,
+        // &amp and such.
+        OPEN_WAKA: S++,
+        // <
+        SGML_DECL: S++,
+        // <!BLARG
+        SGML_DECL_QUOTED: S++,
+        // <!BLARG foo "bar
+        DOCTYPE: S++,
+        // <!DOCTYPE
+        DOCTYPE_QUOTED: S++,
+        // <!DOCTYPE "//blah
+        DOCTYPE_DTD: S++,
+        // <!DOCTYPE "//blah" [ ...
+        DOCTYPE_DTD_QUOTED: S++,
+        // <!DOCTYPE "//blah" [ "foo
+        COMMENT_STARTING: S++,
+        // <!-
+        COMMENT: S++,
+        // <!--
+        COMMENT_ENDING: S++,
+        // <!-- blah -
+        COMMENT_ENDED: S++,
+        // <!-- blah --
+        CDATA: S++,
+        // <![CDATA[ something
+        CDATA_ENDING: S++,
+        // ]
+        CDATA_ENDING_2: S++,
+        // ]]
+        PROC_INST: S++,
+        // <?hi
+        PROC_INST_BODY: S++,
+        // <?hi there
+        PROC_INST_ENDING: S++,
+        // <?hi "there" ?
+        OPEN_TAG: S++,
+        // <strong
+        OPEN_TAG_SLASH: S++,
+        // <strong /
+        ATTRIB: S++,
+        // <a
+        ATTRIB_NAME: S++,
+        // <a foo
+        ATTRIB_NAME_SAW_WHITE: S++,
+        // <a foo _
+        ATTRIB_VALUE: S++,
+        // <a foo=
+        ATTRIB_VALUE_QUOTED: S++,
+        // <a foo="bar
+        ATTRIB_VALUE_CLOSED: S++,
+        // <a foo="bar"
+        ATTRIB_VALUE_UNQUOTED: S++,
+        // <a foo=bar
+        ATTRIB_VALUE_ENTITY_Q: S++,
+        // <foo bar="&quot;"
+        ATTRIB_VALUE_ENTITY_U: S++,
+        // <foo bar=&quot
+        CLOSE_TAG: S++,
+        // </a
+        CLOSE_TAG_SAW_WHITE: S++,
+        // </a   >
+        SCRIPT: S++,
+        // <script> ...
+        SCRIPT_ENDING: S++
+        // <script> ... <
+      };
+      sax.XML_ENTITIES = {
+        amp: "&",
+        gt: ">",
+        lt: "<",
+        quot: '"',
+        apos: "'"
+      };
+      sax.ENTITIES = {
+        amp: "&",
+        gt: ">",
+        lt: "<",
+        quot: '"',
+        apos: "'",
+        AElig: 198,
+        Aacute: 193,
+        Acirc: 194,
+        Agrave: 192,
+        Aring: 197,
+        Atilde: 195,
+        Auml: 196,
+        Ccedil: 199,
+        ETH: 208,
+        Eacute: 201,
+        Ecirc: 202,
+        Egrave: 200,
+        Euml: 203,
+        Iacute: 205,
+        Icirc: 206,
+        Igrave: 204,
+        Iuml: 207,
+        Ntilde: 209,
+        Oacute: 211,
+        Ocirc: 212,
+        Ograve: 210,
+        Oslash: 216,
+        Otilde: 213,
+        Ouml: 214,
+        THORN: 222,
+        Uacute: 218,
+        Ucirc: 219,
+        Ugrave: 217,
+        Uuml: 220,
+        Yacute: 221,
+        aacute: 225,
+        acirc: 226,
+        aelig: 230,
+        agrave: 224,
+        aring: 229,
+        atilde: 227,
+        auml: 228,
+        ccedil: 231,
+        eacute: 233,
+        ecirc: 234,
+        egrave: 232,
+        eth: 240,
+        euml: 235,
+        iacute: 237,
+        icirc: 238,
+        igrave: 236,
+        iuml: 239,
+        ntilde: 241,
+        oacute: 243,
+        ocirc: 244,
+        ograve: 242,
+        oslash: 248,
+        otilde: 245,
+        ouml: 246,
+        szlig: 223,
+        thorn: 254,
+        uacute: 250,
+        ucirc: 251,
+        ugrave: 249,
+        uuml: 252,
+        yacute: 253,
+        yuml: 255,
+        copy: 169,
+        reg: 174,
+        nbsp: 160,
+        iexcl: 161,
+        cent: 162,
+        pound: 163,
+        curren: 164,
+        yen: 165,
+        brvbar: 166,
+        sect: 167,
+        uml: 168,
+        ordf: 170,
+        laquo: 171,
+        not: 172,
+        shy: 173,
+        macr: 175,
+        deg: 176,
+        plusmn: 177,
+        sup1: 185,
+        sup2: 178,
+        sup3: 179,
+        acute: 180,
+        micro: 181,
+        para: 182,
+        middot: 183,
+        cedil: 184,
+        ordm: 186,
+        raquo: 187,
+        frac14: 188,
+        frac12: 189,
+        frac34: 190,
+        iquest: 191,
+        times: 215,
+        divide: 247,
+        OElig: 338,
+        oelig: 339,
+        Scaron: 352,
+        scaron: 353,
+        Yuml: 376,
+        fnof: 402,
+        circ: 710,
+        tilde: 732,
+        Alpha: 913,
+        Beta: 914,
+        Gamma: 915,
+        Delta: 916,
+        Epsilon: 917,
+        Zeta: 918,
+        Eta: 919,
+        Theta: 920,
+        Iota: 921,
+        Kappa: 922,
+        Lambda: 923,
+        Mu: 924,
+        Nu: 925,
+        Xi: 926,
+        Omicron: 927,
+        Pi: 928,
+        Rho: 929,
+        Sigma: 931,
+        Tau: 932,
+        Upsilon: 933,
+        Phi: 934,
+        Chi: 935,
+        Psi: 936,
+        Omega: 937,
+        alpha: 945,
+        beta: 946,
+        gamma: 947,
+        delta: 948,
+        epsilon: 949,
+        zeta: 950,
+        eta: 951,
+        theta: 952,
+        iota: 953,
+        kappa: 954,
+        lambda: 955,
+        mu: 956,
+        nu: 957,
+        xi: 958,
+        omicron: 959,
+        pi: 960,
+        rho: 961,
+        sigmaf: 962,
+        sigma: 963,
+        tau: 964,
+        upsilon: 965,
+        phi: 966,
+        chi: 967,
+        psi: 968,
+        omega: 969,
+        thetasym: 977,
+        upsih: 978,
+        piv: 982,
+        ensp: 8194,
+        emsp: 8195,
+        thinsp: 8201,
+        zwnj: 8204,
+        zwj: 8205,
+        lrm: 8206,
+        rlm: 8207,
+        ndash: 8211,
+        mdash: 8212,
+        lsquo: 8216,
+        rsquo: 8217,
+        sbquo: 8218,
+        ldquo: 8220,
+        rdquo: 8221,
+        bdquo: 8222,
+        dagger: 8224,
+        Dagger: 8225,
+        bull: 8226,
+        hellip: 8230,
+        permil: 8240,
+        prime: 8242,
+        Prime: 8243,
+        lsaquo: 8249,
+        rsaquo: 8250,
+        oline: 8254,
+        frasl: 8260,
+        euro: 8364,
+        image: 8465,
+        weierp: 8472,
+        real: 8476,
+        trade: 8482,
+        alefsym: 8501,
+        larr: 8592,
+        uarr: 8593,
+        rarr: 8594,
+        darr: 8595,
+        harr: 8596,
+        crarr: 8629,
+        lArr: 8656,
+        uArr: 8657,
+        rArr: 8658,
+        dArr: 8659,
+        hArr: 8660,
+        forall: 8704,
+        part: 8706,
+        exist: 8707,
+        empty: 8709,
+        nabla: 8711,
+        isin: 8712,
+        notin: 8713,
+        ni: 8715,
+        prod: 8719,
+        sum: 8721,
+        minus: 8722,
+        lowast: 8727,
+        radic: 8730,
+        prop: 8733,
+        infin: 8734,
+        ang: 8736,
+        and: 8743,
+        or: 8744,
+        cap: 8745,
+        cup: 8746,
+        int: 8747,
+        there4: 8756,
+        sim: 8764,
+        cong: 8773,
+        asymp: 8776,
+        ne: 8800,
+        equiv: 8801,
+        le: 8804,
+        ge: 8805,
+        sub: 8834,
+        sup: 8835,
+        nsub: 8836,
+        sube: 8838,
+        supe: 8839,
+        oplus: 8853,
+        otimes: 8855,
+        perp: 8869,
+        sdot: 8901,
+        lceil: 8968,
+        rceil: 8969,
+        lfloor: 8970,
+        rfloor: 8971,
+        lang: 9001,
+        rang: 9002,
+        loz: 9674,
+        spades: 9824,
+        clubs: 9827,
+        hearts: 9829,
+        diams: 9830
+      };
+      Object.keys(sax.ENTITIES).forEach(function(key) {
+        var e = sax.ENTITIES[key];
+        var s2 = typeof e === "number" ? String.fromCharCode(e) : e;
+        sax.ENTITIES[key] = s2;
+      });
+      for (var s in sax.STATE) {
+        sax.STATE[sax.STATE[s]] = s;
+      }
+      S = sax.STATE;
+      function emit(parser, event, data) {
+        parser[event] && parser[event](data);
+      }
+      function getDeclaredEncoding(body) {
+        var match = body && body.match(/(?:^|\s)encoding\s*=\s*(['"])([^'"]+)\1/i);
+        return match ? match[2] : null;
+      }
+      function normalizeEncodingName(encoding) {
+        if (!encoding) {
+          return null;
+        }
+        return encoding.toLowerCase().replace(/[^a-z0-9]/g, "");
+      }
+      function encodingsMatch(detectedEncoding, declaredEncoding) {
+        const detected = normalizeEncodingName(detectedEncoding);
+        const declared = normalizeEncodingName(declaredEncoding);
+        if (!detected || !declared) {
+          return true;
+        }
+        if (declared === "utf16") {
+          return detected === "utf16le" || detected === "utf16be";
+        }
+        return detected === declared;
+      }
+      function validateXmlDeclarationEncoding(parser, data) {
+        if (!parser.strict || !parser.encoding || !data || data.name !== "xml") {
+          return;
+        }
+        var declaredEncoding = getDeclaredEncoding(data.body);
+        if (declaredEncoding && !encodingsMatch(parser.encoding, declaredEncoding)) {
+          strictFail(
+            parser,
+            "XML declaration encoding " + declaredEncoding + " does not match detected stream encoding " + parser.encoding.toUpperCase()
+          );
+        }
+      }
+      function emitNode(parser, nodeType, data) {
+        if (parser.textNode) closeText(parser);
+        emit(parser, nodeType, data);
+      }
+      function closeText(parser) {
+        parser.textNode = textopts(parser.opt, parser.textNode);
+        if (parser.textNode) emit(parser, "ontext", parser.textNode);
+        parser.textNode = "";
+      }
+      function textopts(opt, text) {
+        if (opt.trim) text = text.trim();
+        if (opt.normalize) text = text.replace(/\s+/g, " ");
+        return text;
+      }
+      function error(parser, er) {
+        closeText(parser);
+        if (parser.trackPosition) {
+          er += "\nLine: " + parser.line + "\nColumn: " + parser.column + "\nChar: " + parser.c;
+        }
+        er = new Error(er);
+        parser.error = er;
+        emit(parser, "onerror", er);
+        return parser;
+      }
+      function end(parser) {
+        if (parser.sawRoot && !parser.closedRoot)
+          strictFail(parser, "Unclosed root tag");
+        if (parser.state !== S.BEGIN && parser.state !== S.BEGIN_WHITESPACE && parser.state !== S.TEXT) {
+          error(parser, "Unexpected end");
+        }
+        closeText(parser);
+        parser.c = "";
+        parser.closed = true;
+        emit(parser, "onend");
+        SAXParser.call(parser, parser.strict, parser.opt);
+        return parser;
+      }
+      function strictFail(parser, message) {
+        if (typeof parser !== "object" || !(parser instanceof SAXParser)) {
+          throw new Error("bad call to strictFail");
+        }
+        if (parser.strict) {
+          error(parser, message);
+        }
+      }
+      function newTag(parser) {
+        if (!parser.strict) parser.tagName = parser.tagName[parser.looseCase]();
+        var parent = parser.tags[parser.tags.length - 1] || parser;
+        var tag = parser.tag = { name: parser.tagName, attributes: {} };
+        if (parser.opt.xmlns) {
+          tag.ns = parent.ns;
+        }
+        parser.attribList.length = 0;
+        emitNode(parser, "onopentagstart", tag);
+      }
+      function qname(name, attribute) {
+        var i = name.indexOf(":");
+        var qualName = i < 0 ? ["", name] : name.split(":");
+        var prefix = qualName[0];
+        var local = qualName[1];
+        if (attribute && name === "xmlns") {
+          prefix = "xmlns";
+          local = "";
+        }
+        return { prefix, local };
+      }
+      function attrib(parser) {
+        if (!parser.strict) {
+          parser.attribName = parser.attribName[parser.looseCase]();
+        }
+        if (parser.attribList.indexOf(parser.attribName) !== -1 || parser.tag.attributes.hasOwnProperty(parser.attribName)) {
+          parser.attribName = parser.attribValue = "";
+          return;
+        }
+        if (parser.opt.xmlns) {
+          var qn = qname(parser.attribName, true);
+          var prefix = qn.prefix;
+          var local = qn.local;
+          if (prefix === "xmlns") {
+            if (local === "xml" && parser.attribValue !== XML_NAMESPACE) {
+              strictFail(
+                parser,
+                "xml: prefix must be bound to " + XML_NAMESPACE + "\nActual: " + parser.attribValue
+              );
+            } else if (local === "xmlns" && parser.attribValue !== XMLNS_NAMESPACE) {
+              strictFail(
+                parser,
+                "xmlns: prefix must be bound to " + XMLNS_NAMESPACE + "\nActual: " + parser.attribValue
+              );
+            } else {
+              var tag = parser.tag;
+              var parent = parser.tags[parser.tags.length - 1] || parser;
+              if (tag.ns === parent.ns) {
+                tag.ns = Object.create(parent.ns);
+              }
+              tag.ns[local] = parser.attribValue;
+            }
+          }
+          parser.attribList.push([parser.attribName, parser.attribValue]);
+        } else {
+          parser.tag.attributes[parser.attribName] = parser.attribValue;
+          emitNode(parser, "onattribute", {
+            name: parser.attribName,
+            value: parser.attribValue
+          });
+        }
+        parser.attribName = parser.attribValue = "";
+      }
+      function openTag(parser, selfClosing) {
+        if (parser.opt.xmlns) {
+          var tag = parser.tag;
+          var qn = qname(parser.tagName);
+          tag.prefix = qn.prefix;
+          tag.local = qn.local;
+          tag.uri = tag.ns[qn.prefix] || "";
+          if (tag.prefix && !tag.uri) {
+            strictFail(
+              parser,
+              "Unbound namespace prefix: " + JSON.stringify(parser.tagName)
+            );
+            tag.uri = qn.prefix;
+          }
+          var parent = parser.tags[parser.tags.length - 1] || parser;
+          if (tag.ns && parent.ns !== tag.ns) {
+            Object.keys(tag.ns).forEach(function(p) {
+              emitNode(parser, "onopennamespace", {
+                prefix: p,
+                uri: tag.ns[p]
+              });
+            });
+          }
+          for (var i = 0, l = parser.attribList.length; i < l; i++) {
+            var nv = parser.attribList[i];
+            var name = nv[0];
+            var value = nv[1];
+            var qualName = qname(name, true);
+            var prefix = qualName.prefix;
+            var local = qualName.local;
+            var uri = prefix === "" ? "" : tag.ns[prefix] || "";
+            var a = {
+              name,
+              value,
+              prefix,
+              local,
+              uri
+            };
+            if (prefix && prefix !== "xmlns" && !uri) {
+              strictFail(
+                parser,
+                "Unbound namespace prefix: " + JSON.stringify(prefix)
+              );
+              a.uri = prefix;
+            }
+            parser.tag.attributes[name] = a;
+            emitNode(parser, "onattribute", a);
+          }
+          parser.attribList.length = 0;
+        }
+        parser.tag.isSelfClosing = !!selfClosing;
+        parser.sawRoot = true;
+        parser.tags.push(parser.tag);
+        emitNode(parser, "onopentag", parser.tag);
+        if (!selfClosing) {
+          if (!parser.noscript && parser.tagName.toLowerCase() === "script") {
+            parser.state = S.SCRIPT;
+          } else {
+            parser.state = S.TEXT;
+          }
+          parser.tag = null;
+          parser.tagName = "";
+        }
+        parser.attribName = parser.attribValue = "";
+        parser.attribList.length = 0;
+      }
+      function closeTag(parser) {
+        if (!parser.tagName) {
+          strictFail(parser, "Weird empty close tag.");
+          parser.textNode += "</>";
+          parser.state = S.TEXT;
+          return;
+        }
+        if (parser.script) {
+          if (parser.tagName !== "script") {
+            parser.script += "</" + parser.tagName + ">";
+            parser.tagName = "";
+            parser.state = S.SCRIPT;
+            return;
+          }
+          emitNode(parser, "onscript", parser.script);
+          parser.script = "";
+        }
+        var t = parser.tags.length;
+        var tagName = parser.tagName;
+        if (!parser.strict) {
+          tagName = tagName[parser.looseCase]();
+        }
+        var closeTo = tagName;
+        while (t--) {
+          var close = parser.tags[t];
+          if (close.name !== closeTo) {
+            strictFail(parser, "Unexpected close tag");
+          } else {
+            break;
+          }
+        }
+        if (t < 0) {
+          strictFail(parser, "Unmatched closing tag: " + parser.tagName);
+          parser.textNode += "</" + parser.tagName + ">";
+          parser.state = S.TEXT;
+          return;
+        }
+        parser.tagName = tagName;
+        var s2 = parser.tags.length;
+        while (s2-- > t) {
+          var tag = parser.tag = parser.tags.pop();
+          parser.tagName = parser.tag.name;
+          emitNode(parser, "onclosetag", parser.tagName);
+          var x2 = {};
+          for (var i in tag.ns) {
+            x2[i] = tag.ns[i];
+          }
+          var parent = parser.tags[parser.tags.length - 1] || parser;
+          if (parser.opt.xmlns && tag.ns !== parent.ns) {
+            Object.keys(tag.ns).forEach(function(p) {
+              var n = tag.ns[p];
+              emitNode(parser, "onclosenamespace", { prefix: p, uri: n });
+            });
+          }
+        }
+        if (t === 0) parser.closedRoot = true;
+        parser.tagName = parser.attribValue = parser.attribName = "";
+        parser.attribList.length = 0;
+        parser.state = S.TEXT;
+      }
+      function parseEntity(parser) {
+        var entity = parser.entity;
+        var entityLC = entity.toLowerCase();
+        var num;
+        var numStr = "";
+        if (parser.ENTITIES[entity]) {
+          return parser.ENTITIES[entity];
+        }
+        if (parser.ENTITIES[entityLC]) {
+          return parser.ENTITIES[entityLC];
+        }
+        entity = entityLC;
+        if (entity.charAt(0) === "#") {
+          if (entity.charAt(1) === "x") {
+            entity = entity.slice(2);
+            num = parseInt(entity, 16);
+            numStr = num.toString(16);
+          } else {
+            entity = entity.slice(1);
+            num = parseInt(entity, 10);
+            numStr = num.toString(10);
+          }
+        }
+        entity = entity.replace(/^0+/, "");
+        if (isNaN(num) || numStr.toLowerCase() !== entity || num < 0 || num > 1114111) {
+          strictFail(parser, "Invalid character entity");
+          return "&" + parser.entity + ";";
+        }
+        return String.fromCodePoint(num);
+      }
+      function beginWhiteSpace(parser, c) {
+        if (c === "<") {
+          parser.state = S.OPEN_WAKA;
+          parser.startTagPosition = parser.position;
+        } else if (!isWhitespace(c)) {
+          strictFail(parser, "Non-whitespace before first tag.");
+          parser.textNode = c;
+          parser.state = S.TEXT;
+        }
+      }
+      function charAt(chunk, i) {
+        var result = "";
+        if (i < chunk.length) {
+          result = chunk.charAt(i);
+        }
+        return result;
+      }
+      function write(chunk) {
+        var parser = this;
+        if (this.error) {
+          throw this.error;
+        }
+        if (parser.closed) {
+          return error(
+            parser,
+            "Cannot write after close. Assign an onready handler."
+          );
+        }
+        if (chunk === null) {
+          return end(parser);
+        }
+        if (typeof chunk === "object") {
+          chunk = chunk.toString();
+        }
+        var i = 0;
+        var c = "";
+        while (true) {
+          c = charAt(chunk, i++);
+          parser.c = c;
+          if (!c) {
+            break;
+          }
+          if (parser.trackPosition) {
+            parser.position++;
+            if (c === "\n") {
+              parser.line++;
+              parser.column = 0;
+            } else {
+              parser.column++;
+            }
+          }
+          switch (parser.state) {
+            case S.BEGIN:
+              parser.state = S.BEGIN_WHITESPACE;
+              if (c === "\uFEFF") {
+                continue;
+              }
+              beginWhiteSpace(parser, c);
+              continue;
+            case S.BEGIN_WHITESPACE:
+              beginWhiteSpace(parser, c);
+              continue;
+            case S.TEXT:
+              if (parser.sawRoot && !parser.closedRoot) {
+                var starti = i - 1;
+                while (c && c !== "<" && c !== "&") {
+                  c = charAt(chunk, i++);
+                  if (c && parser.trackPosition) {
+                    parser.position++;
+                    if (c === "\n") {
+                      parser.line++;
+                      parser.column = 0;
+                    } else {
+                      parser.column++;
+                    }
+                  }
+                }
+                parser.textNode += chunk.substring(starti, i - 1);
+              }
+              if (c === "<" && !(parser.sawRoot && parser.closedRoot && !parser.strict)) {
+                parser.state = S.OPEN_WAKA;
+                parser.startTagPosition = parser.position;
+              } else {
+                if (!isWhitespace(c) && (!parser.sawRoot || parser.closedRoot)) {
+                  strictFail(parser, "Text data outside of root node.");
+                }
+                if (c === "&") {
+                  parser.state = S.TEXT_ENTITY;
+                } else {
+                  parser.textNode += c;
+                }
+              }
+              continue;
+            case S.SCRIPT:
+              if (c === "<") {
+                parser.state = S.SCRIPT_ENDING;
+              } else {
+                parser.script += c;
+              }
+              continue;
+            case S.SCRIPT_ENDING:
+              if (c === "/") {
+                parser.state = S.CLOSE_TAG;
+              } else {
+                parser.script += "<" + c;
+                parser.state = S.SCRIPT;
+              }
+              continue;
+            case S.OPEN_WAKA:
+              if (c === "!") {
+                parser.state = S.SGML_DECL;
+                parser.sgmlDecl = "";
+              } else if (isWhitespace(c)) {
+              } else if (isMatch(nameStart, c)) {
+                parser.state = S.OPEN_TAG;
+                parser.tagName = c;
+              } else if (c === "/") {
+                parser.state = S.CLOSE_TAG;
+                parser.tagName = "";
+              } else if (c === "?") {
+                parser.state = S.PROC_INST;
+                parser.procInstName = parser.procInstBody = "";
+              } else {
+                strictFail(parser, "Unencoded <");
+                if (parser.startTagPosition + 1 < parser.position) {
+                  var pad = parser.position - parser.startTagPosition;
+                  c = new Array(pad).join(" ") + c;
+                }
+                parser.textNode += "<" + c;
+                parser.state = S.TEXT;
+              }
+              continue;
+            case S.SGML_DECL:
+              if (parser.sgmlDecl + c === "--") {
+                parser.state = S.COMMENT;
+                parser.comment = "";
+                parser.sgmlDecl = "";
+                continue;
+              }
+              if (parser.doctype && parser.doctype !== true && parser.sgmlDecl) {
+                parser.state = S.DOCTYPE_DTD;
+                parser.doctype += "<!" + parser.sgmlDecl + c;
+                parser.sgmlDecl = "";
+              } else if ((parser.sgmlDecl + c).toUpperCase() === CDATA) {
+                emitNode(parser, "onopencdata");
+                parser.state = S.CDATA;
+                parser.sgmlDecl = "";
+                parser.cdata = "";
+              } else if ((parser.sgmlDecl + c).toUpperCase() === DOCTYPE) {
+                parser.state = S.DOCTYPE;
+                if (parser.doctype || parser.sawRoot) {
+                  strictFail(
+                    parser,
+                    "Inappropriately located doctype declaration"
+                  );
+                }
+                parser.doctype = "";
+                parser.sgmlDecl = "";
+              } else if (c === ">") {
+                emitNode(parser, "onsgmldeclaration", parser.sgmlDecl);
+                parser.sgmlDecl = "";
+                parser.state = S.TEXT;
+              } else if (isQuote(c)) {
+                parser.state = S.SGML_DECL_QUOTED;
+                parser.sgmlDecl += c;
+              } else {
+                parser.sgmlDecl += c;
+              }
+              continue;
+            case S.SGML_DECL_QUOTED:
+              if (c === parser.q) {
+                parser.state = S.SGML_DECL;
+                parser.q = "";
+              }
+              parser.sgmlDecl += c;
+              continue;
+            case S.DOCTYPE:
+              if (c === ">") {
+                parser.state = S.TEXT;
+                emitNode(parser, "ondoctype", parser.doctype);
+                parser.doctype = true;
+              } else {
+                parser.doctype += c;
+                if (c === "[") {
+                  parser.state = S.DOCTYPE_DTD;
+                } else if (isQuote(c)) {
+                  parser.state = S.DOCTYPE_QUOTED;
+                  parser.q = c;
+                }
+              }
+              continue;
+            case S.DOCTYPE_QUOTED:
+              parser.doctype += c;
+              if (c === parser.q) {
+                parser.q = "";
+                parser.state = S.DOCTYPE;
+              }
+              continue;
+            case S.DOCTYPE_DTD:
+              if (c === "]") {
+                parser.doctype += c;
+                parser.state = S.DOCTYPE;
+              } else if (c === "<") {
+                parser.state = S.OPEN_WAKA;
+                parser.startTagPosition = parser.position;
+              } else if (isQuote(c)) {
+                parser.doctype += c;
+                parser.state = S.DOCTYPE_DTD_QUOTED;
+                parser.q = c;
+              } else {
+                parser.doctype += c;
+              }
+              continue;
+            case S.DOCTYPE_DTD_QUOTED:
+              parser.doctype += c;
+              if (c === parser.q) {
+                parser.state = S.DOCTYPE_DTD;
+                parser.q = "";
+              }
+              continue;
+            case S.COMMENT:
+              if (c === "-") {
+                parser.state = S.COMMENT_ENDING;
+              } else {
+                parser.comment += c;
+              }
+              continue;
+            case S.COMMENT_ENDING:
+              if (c === "-") {
+                parser.state = S.COMMENT_ENDED;
+                parser.comment = textopts(parser.opt, parser.comment);
+                if (parser.comment) {
+                  emitNode(parser, "oncomment", parser.comment);
+                }
+                parser.comment = "";
+              } else {
+                parser.comment += "-" + c;
+                parser.state = S.COMMENT;
+              }
+              continue;
+            case S.COMMENT_ENDED:
+              if (c !== ">") {
+                strictFail(parser, "Malformed comment");
+                parser.comment += "--" + c;
+                parser.state = S.COMMENT;
+              } else if (parser.doctype && parser.doctype !== true) {
+                parser.state = S.DOCTYPE_DTD;
+              } else {
+                parser.state = S.TEXT;
+              }
+              continue;
+            case S.CDATA:
+              var starti = i - 1;
+              while (c && c !== "]") {
+                c = charAt(chunk, i++);
+                if (c && parser.trackPosition) {
+                  parser.position++;
+                  if (c === "\n") {
+                    parser.line++;
+                    parser.column = 0;
+                  } else {
+                    parser.column++;
+                  }
+                }
+              }
+              parser.cdata += chunk.substring(starti, i - 1);
+              if (c === "]") {
+                parser.state = S.CDATA_ENDING;
+              }
+              continue;
+            case S.CDATA_ENDING:
+              if (c === "]") {
+                parser.state = S.CDATA_ENDING_2;
+              } else {
+                parser.cdata += "]" + c;
+                parser.state = S.CDATA;
+              }
+              continue;
+            case S.CDATA_ENDING_2:
+              if (c === ">") {
+                if (parser.cdata) {
+                  emitNode(parser, "oncdata", parser.cdata);
+                }
+                emitNode(parser, "onclosecdata");
+                parser.cdata = "";
+                parser.state = S.TEXT;
+              } else if (c === "]") {
+                parser.cdata += "]";
+              } else {
+                parser.cdata += "]]" + c;
+                parser.state = S.CDATA;
+              }
+              continue;
+            case S.PROC_INST:
+              if (c === "?") {
+                parser.state = S.PROC_INST_ENDING;
+              } else if (isWhitespace(c)) {
+                parser.state = S.PROC_INST_BODY;
+              } else {
+                parser.procInstName += c;
+              }
+              continue;
+            case S.PROC_INST_BODY:
+              if (!parser.procInstBody && isWhitespace(c)) {
+                continue;
+              } else if (c === "?") {
+                parser.state = S.PROC_INST_ENDING;
+              } else {
+                parser.procInstBody += c;
+              }
+              continue;
+            case S.PROC_INST_ENDING:
+              if (c === ">") {
+                const procInstEndData = {
+                  name: parser.procInstName,
+                  body: parser.procInstBody
+                };
+                validateXmlDeclarationEncoding(parser, procInstEndData);
+                emitNode(parser, "onprocessinginstruction", procInstEndData);
+                parser.procInstName = parser.procInstBody = "";
+                parser.state = S.TEXT;
+              } else {
+                parser.procInstBody += "?" + c;
+                parser.state = S.PROC_INST_BODY;
+              }
+              continue;
+            case S.OPEN_TAG:
+              if (isMatch(nameBody, c)) {
+                parser.tagName += c;
+              } else {
+                newTag(parser);
+                if (c === ">") {
+                  openTag(parser);
+                } else if (c === "/") {
+                  parser.state = S.OPEN_TAG_SLASH;
+                } else {
+                  if (!isWhitespace(c)) {
+                    strictFail(parser, "Invalid character in tag name");
+                  }
+                  parser.state = S.ATTRIB;
+                }
+              }
+              continue;
+            case S.OPEN_TAG_SLASH:
+              if (c === ">") {
+                openTag(parser, true);
+                closeTag(parser);
+              } else {
+                strictFail(
+                  parser,
+                  "Forward-slash in opening tag not followed by >"
+                );
+                parser.state = S.ATTRIB;
+              }
+              continue;
+            case S.ATTRIB:
+              if (isWhitespace(c)) {
+                continue;
+              } else if (c === ">") {
+                openTag(parser);
+              } else if (c === "/") {
+                parser.state = S.OPEN_TAG_SLASH;
+              } else if (isMatch(nameStart, c)) {
+                parser.attribName = c;
+                parser.attribValue = "";
+                parser.state = S.ATTRIB_NAME;
+              } else {
+                strictFail(parser, "Invalid attribute name");
+              }
+              continue;
+            case S.ATTRIB_NAME:
+              if (c === "=") {
+                parser.state = S.ATTRIB_VALUE;
+              } else if (c === ">") {
+                strictFail(parser, "Attribute without value");
+                parser.attribValue = parser.attribName;
+                attrib(parser);
+                openTag(parser);
+              } else if (isWhitespace(c)) {
+                parser.state = S.ATTRIB_NAME_SAW_WHITE;
+              } else if (isMatch(nameBody, c)) {
+                parser.attribName += c;
+              } else {
+                strictFail(parser, "Invalid attribute name");
+              }
+              continue;
+            case S.ATTRIB_NAME_SAW_WHITE:
+              if (c === "=") {
+                parser.state = S.ATTRIB_VALUE;
+              } else if (isWhitespace(c)) {
+                continue;
+              } else {
+                strictFail(parser, "Attribute without value");
+                parser.tag.attributes[parser.attribName] = "";
+                parser.attribValue = "";
+                emitNode(parser, "onattribute", {
+                  name: parser.attribName,
+                  value: ""
+                });
+                parser.attribName = "";
+                if (c === ">") {
+                  openTag(parser);
+                } else if (isMatch(nameStart, c)) {
+                  parser.attribName = c;
+                  parser.state = S.ATTRIB_NAME;
+                } else {
+                  strictFail(parser, "Invalid attribute name");
+                  parser.state = S.ATTRIB;
+                }
+              }
+              continue;
+            case S.ATTRIB_VALUE:
+              if (isWhitespace(c)) {
+                continue;
+              } else if (isQuote(c)) {
+                parser.q = c;
+                parser.state = S.ATTRIB_VALUE_QUOTED;
+              } else {
+                if (!parser.opt.unquotedAttributeValues) {
+                  error(parser, "Unquoted attribute value");
+                }
+                parser.state = S.ATTRIB_VALUE_UNQUOTED;
+                parser.attribValue = c;
+              }
+              continue;
+            case S.ATTRIB_VALUE_QUOTED:
+              if (c !== parser.q) {
+                if (c === "&") {
+                  parser.state = S.ATTRIB_VALUE_ENTITY_Q;
+                } else {
+                  parser.attribValue += c;
+                }
+                continue;
+              }
+              attrib(parser);
+              parser.q = "";
+              parser.state = S.ATTRIB_VALUE_CLOSED;
+              continue;
+            case S.ATTRIB_VALUE_CLOSED:
+              if (isWhitespace(c)) {
+                parser.state = S.ATTRIB;
+              } else if (c === ">") {
+                openTag(parser);
+              } else if (c === "/") {
+                parser.state = S.OPEN_TAG_SLASH;
+              } else if (isMatch(nameStart, c)) {
+                strictFail(parser, "No whitespace between attributes");
+                parser.attribName = c;
+                parser.attribValue = "";
+                parser.state = S.ATTRIB_NAME;
+              } else {
+                strictFail(parser, "Invalid attribute name");
+              }
+              continue;
+            case S.ATTRIB_VALUE_UNQUOTED:
+              if (!isAttribEnd(c)) {
+                if (c === "&") {
+                  parser.state = S.ATTRIB_VALUE_ENTITY_U;
+                } else {
+                  parser.attribValue += c;
+                }
+                continue;
+              }
+              attrib(parser);
+              if (c === ">") {
+                openTag(parser);
+              } else {
+                parser.state = S.ATTRIB;
+              }
+              continue;
+            case S.CLOSE_TAG:
+              if (!parser.tagName) {
+                if (isWhitespace(c)) {
+                  continue;
+                } else if (notMatch(nameStart, c)) {
+                  if (parser.script) {
+                    parser.script += "</" + c;
+                    parser.state = S.SCRIPT;
+                  } else {
+                    strictFail(parser, "Invalid tagname in closing tag.");
+                  }
+                } else {
+                  parser.tagName = c;
+                }
+              } else if (c === ">") {
+                closeTag(parser);
+              } else if (isMatch(nameBody, c)) {
+                parser.tagName += c;
+              } else if (parser.script) {
+                parser.script += "</" + parser.tagName + c;
+                parser.tagName = "";
+                parser.state = S.SCRIPT;
+              } else {
+                if (!isWhitespace(c)) {
+                  strictFail(parser, "Invalid tagname in closing tag");
+                }
+                parser.state = S.CLOSE_TAG_SAW_WHITE;
+              }
+              continue;
+            case S.CLOSE_TAG_SAW_WHITE:
+              if (isWhitespace(c)) {
+                continue;
+              }
+              if (c === ">") {
+                closeTag(parser);
+              } else {
+                strictFail(parser, "Invalid characters in closing tag");
+              }
+              continue;
+            case S.TEXT_ENTITY:
+            case S.ATTRIB_VALUE_ENTITY_Q:
+            case S.ATTRIB_VALUE_ENTITY_U:
+              var returnState;
+              var buffer;
+              switch (parser.state) {
+                case S.TEXT_ENTITY:
+                  returnState = S.TEXT;
+                  buffer = "textNode";
+                  break;
+                case S.ATTRIB_VALUE_ENTITY_Q:
+                  returnState = S.ATTRIB_VALUE_QUOTED;
+                  buffer = "attribValue";
+                  break;
+                case S.ATTRIB_VALUE_ENTITY_U:
+                  returnState = S.ATTRIB_VALUE_UNQUOTED;
+                  buffer = "attribValue";
+                  break;
+              }
+              if (c === ";") {
+                var parsedEntity = parseEntity(parser);
+                if (parser.opt.unparsedEntities && !Object.values(sax.XML_ENTITIES).includes(parsedEntity)) {
+                  if ((parser.entityCount += 1) > parser.opt.maxEntityCount) {
+                    error(
+                      parser,
+                      "Parsed entity count exceeds max entity count"
+                    );
+                  }
+                  if ((parser.entityDepth += 1) > parser.opt.maxEntityDepth) {
+                    error(
+                      parser,
+                      "Parsed entity depth exceeds max entity depth"
+                    );
+                  }
+                  parser.entity = "";
+                  parser.state = returnState;
+                  parser.write(parsedEntity);
+                  parser.entityDepth -= 1;
+                } else {
+                  parser[buffer] += parsedEntity;
+                  parser.entity = "";
+                  parser.state = returnState;
+                }
+              } else if (isMatch(parser.entity.length ? entityBody : entityStart, c)) {
+                parser.entity += c;
+              } else {
+                strictFail(parser, "Invalid character in entity name");
+                parser[buffer] += "&" + parser.entity + c;
+                parser.entity = "";
+                parser.state = returnState;
+              }
+              continue;
+            default: {
+              throw new Error(parser, "Unknown state: " + parser.state);
+            }
+          }
+        }
+        if (parser.position >= parser.bufferCheckPosition) {
+          checkBufferLength(parser);
+        }
+        return parser;
+      }
+      if (!String.fromCodePoint) {
+        ;
+        (function() {
+          var stringFromCharCode = String.fromCharCode;
+          var floor = Math.floor;
+          var fromCodePoint = function() {
+            var MAX_SIZE = 16384;
+            var codeUnits = [];
+            var highSurrogate;
+            var lowSurrogate;
+            var index = -1;
+            var length = arguments.length;
+            if (!length) {
+              return "";
+            }
+            var result = "";
+            while (++index < length) {
+              var codePoint = Number(arguments[index]);
+              if (!isFinite(codePoint) || // `NaN`, `+Infinity`, or `-Infinity`
+              codePoint < 0 || // not a valid Unicode code point
+              codePoint > 1114111 || // not a valid Unicode code point
+              floor(codePoint) !== codePoint) {
+                throw RangeError("Invalid code point: " + codePoint);
+              }
+              if (codePoint <= 65535) {
+                codeUnits.push(codePoint);
+              } else {
+                codePoint -= 65536;
+                highSurrogate = (codePoint >> 10) + 55296;
+                lowSurrogate = codePoint % 1024 + 56320;
+                codeUnits.push(highSurrogate, lowSurrogate);
+              }
+              if (index + 1 === length || codeUnits.length > MAX_SIZE) {
+                result += stringFromCharCode.apply(null, codeUnits);
+                codeUnits.length = 0;
+              }
+            }
+            return result;
+          };
+          if (Object.defineProperty) {
+            Object.defineProperty(String, "fromCodePoint", {
+              value: fromCodePoint,
+              configurable: true,
+              writable: true
+            });
+          } else {
+            String.fromCodePoint = fromCodePoint;
+          }
+        })();
+      }
+    })(typeof exports2 === "undefined" ? exports2.sax = {} : exports2);
+  }
+});
+
+// node_modules/xml2js/lib/bom.js
+var require_bom = __commonJS({
+  "node_modules/xml2js/lib/bom.js"(exports2) {
+    (function() {
+      "use strict";
+      exports2.stripBOM = function(str) {
+        if (str[0] === "\uFEFF") {
+          return str.substring(1);
+        } else {
+          return str;
+        }
+      };
+    }).call(exports2);
+  }
+});
+
+// node_modules/xml2js/lib/processors.js
+var require_processors = __commonJS({
+  "node_modules/xml2js/lib/processors.js"(exports2) {
+    (function() {
+      "use strict";
+      var prefixMatch;
+      prefixMatch = new RegExp(/(?!xmlns)^.*:/);
+      exports2.normalize = function(str) {
+        return str.toLowerCase();
+      };
+      exports2.firstCharLowerCase = function(str) {
+        return str.charAt(0).toLowerCase() + str.slice(1);
+      };
+      exports2.stripPrefix = function(str) {
+        return str.replace(prefixMatch, "");
+      };
+      exports2.parseNumbers = function(str) {
+        if (!isNaN(str)) {
+          str = str % 1 === 0 ? parseInt(str, 10) : parseFloat(str);
+        }
+        return str;
+      };
+      exports2.parseBooleans = function(str) {
+        if (/^(?:true|false)$/i.test(str)) {
+          str = str.toLowerCase() === "true";
+        }
+        return str;
+      };
+    }).call(exports2);
+  }
+});
+
+// node_modules/xml2js/lib/parser.js
+var require_parser = __commonJS({
+  "node_modules/xml2js/lib/parser.js"(exports2) {
+    (function() {
+      "use strict";
+      var bom, defaults, defineProperty, events, isEmpty, processItem, processors5, sax, setImmediate, bind = function(fn, me) {
+        return function() {
+          return fn.apply(me, arguments);
+        };
+      }, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      sax = require_sax();
+      events = require("events");
+      bom = require_bom();
+      processors5 = require_processors();
+      setImmediate = require("timers").setImmediate;
+      defaults = require_defaults().defaults;
+      isEmpty = function(thing) {
+        return typeof thing === "object" && thing != null && Object.keys(thing).length === 0;
+      };
+      processItem = function(processors6, item, key) {
+        var i, len, process;
+        for (i = 0, len = processors6.length; i < len; i++) {
+          process = processors6[i];
+          item = process(item, key);
+        }
+        return item;
+      };
+      defineProperty = function(obj, key, value) {
+        var descriptor;
+        descriptor = /* @__PURE__ */ Object.create(null);
+        descriptor.value = value;
+        descriptor.writable = true;
+        descriptor.enumerable = true;
+        descriptor.configurable = true;
+        return Object.defineProperty(obj, key, descriptor);
+      };
+      exports2.Parser = (function(superClass) {
+        extend(Parser, superClass);
+        function Parser(opts) {
+          this.parseStringPromise = bind(this.parseStringPromise, this);
+          this.parseString = bind(this.parseString, this);
+          this.reset = bind(this.reset, this);
+          this.assignOrPush = bind(this.assignOrPush, this);
+          this.processAsync = bind(this.processAsync, this);
+          var key, ref, value;
+          if (!(this instanceof exports2.Parser)) {
+            return new exports2.Parser(opts);
+          }
+          this.options = {};
+          ref = defaults["0.2"];
+          for (key in ref) {
+            if (!hasProp.call(ref, key)) continue;
+            value = ref[key];
+            this.options[key] = value;
+          }
+          for (key in opts) {
+            if (!hasProp.call(opts, key)) continue;
+            value = opts[key];
+            this.options[key] = value;
+          }
+          if (this.options.xmlns) {
+            this.options.xmlnskey = this.options.attrkey + "ns";
+          }
+          if (this.options.normalizeTags) {
+            if (!this.options.tagNameProcessors) {
+              this.options.tagNameProcessors = [];
+            }
+            this.options.tagNameProcessors.unshift(processors5.normalize);
+          }
+          this.reset();
+        }
+        Parser.prototype.processAsync = function() {
+          var chunk, err;
+          try {
+            if (this.remaining.length <= this.options.chunkSize) {
+              chunk = this.remaining;
+              this.remaining = "";
+              this.saxParser = this.saxParser.write(chunk);
+              return this.saxParser.close();
+            } else {
+              chunk = this.remaining.substr(0, this.options.chunkSize);
+              this.remaining = this.remaining.substr(this.options.chunkSize, this.remaining.length);
+              this.saxParser = this.saxParser.write(chunk);
+              return setImmediate(this.processAsync);
+            }
+          } catch (error1) {
+            err = error1;
+            if (!this.saxParser.errThrown) {
+              this.saxParser.errThrown = true;
+              return this.emit(err);
+            }
+          }
+        };
+        Parser.prototype.assignOrPush = function(obj, key, newValue) {
+          if (!(key in obj)) {
+            if (!this.options.explicitArray) {
+              return defineProperty(obj, key, newValue);
+            } else {
+              return defineProperty(obj, key, [newValue]);
+            }
+          } else {
+            if (!(obj[key] instanceof Array)) {
+              defineProperty(obj, key, [obj[key]]);
+            }
+            return obj[key].push(newValue);
+          }
+        };
+        Parser.prototype.reset = function() {
+          var attrkey, charkey, ontext, stack;
+          this.removeAllListeners();
+          this.saxParser = sax.parser(this.options.strict, {
+            trim: false,
+            normalize: false,
+            xmlns: this.options.xmlns
+          });
+          this.saxParser.errThrown = false;
+          this.saxParser.onerror = /* @__PURE__ */ (function(_this) {
+            return function(error) {
+              _this.saxParser.resume();
+              if (!_this.saxParser.errThrown) {
+                _this.saxParser.errThrown = true;
+                return _this.emit("error", error);
+              }
+            };
+          })(this);
+          this.saxParser.onend = /* @__PURE__ */ (function(_this) {
+            return function() {
+              if (!_this.saxParser.ended) {
+                _this.saxParser.ended = true;
+                return _this.emit("end", _this.resultObject);
+              }
+            };
+          })(this);
+          this.saxParser.ended = false;
+          this.EXPLICIT_CHARKEY = this.options.explicitCharkey;
+          this.resultObject = null;
+          stack = [];
+          attrkey = this.options.attrkey;
+          charkey = this.options.charkey;
+          this.saxParser.onopentag = /* @__PURE__ */ (function(_this) {
+            return function(node) {
+              var key, newValue, obj, processedKey, ref;
+              obj = {};
+              obj[charkey] = "";
+              if (!_this.options.ignoreAttrs) {
+                ref = node.attributes;
+                for (key in ref) {
+                  if (!hasProp.call(ref, key)) continue;
+                  if (!(attrkey in obj) && !_this.options.mergeAttrs) {
+                    obj[attrkey] = {};
+                  }
+                  newValue = _this.options.attrValueProcessors ? processItem(_this.options.attrValueProcessors, node.attributes[key], key) : node.attributes[key];
+                  processedKey = _this.options.attrNameProcessors ? processItem(_this.options.attrNameProcessors, key) : key;
+                  if (_this.options.mergeAttrs) {
+                    _this.assignOrPush(obj, processedKey, newValue);
+                  } else {
+                    defineProperty(obj[attrkey], processedKey, newValue);
+                  }
+                }
+              }
+              obj["#name"] = _this.options.tagNameProcessors ? processItem(_this.options.tagNameProcessors, node.name) : node.name;
+              if (_this.options.xmlns) {
+                obj[_this.options.xmlnskey] = {
+                  uri: node.uri,
+                  local: node.local
+                };
+              }
+              return stack.push(obj);
+            };
+          })(this);
+          this.saxParser.onclosetag = /* @__PURE__ */ (function(_this) {
+            return function() {
+              var cdata, emptyStr, key, node, nodeName, obj, objClone, old, s, xpath;
+              obj = stack.pop();
+              nodeName = obj["#name"];
+              if (!_this.options.explicitChildren || !_this.options.preserveChildrenOrder) {
+                delete obj["#name"];
+              }
+              if (obj.cdata === true) {
+                cdata = obj.cdata;
+                delete obj.cdata;
+              }
+              s = stack[stack.length - 1];
+              if (obj[charkey].match(/^\s*$/) && !cdata) {
+                emptyStr = obj[charkey];
+                delete obj[charkey];
+              } else {
+                if (_this.options.trim) {
+                  obj[charkey] = obj[charkey].trim();
+                }
+                if (_this.options.normalize) {
+                  obj[charkey] = obj[charkey].replace(/\s{2,}/g, " ").trim();
+                }
+                obj[charkey] = _this.options.valueProcessors ? processItem(_this.options.valueProcessors, obj[charkey], nodeName) : obj[charkey];
+                if (Object.keys(obj).length === 1 && charkey in obj && !_this.EXPLICIT_CHARKEY) {
+                  obj = obj[charkey];
+                }
+              }
+              if (isEmpty(obj)) {
+                if (typeof _this.options.emptyTag === "function") {
+                  obj = _this.options.emptyTag();
+                } else {
+                  obj = _this.options.emptyTag !== "" ? _this.options.emptyTag : emptyStr;
+                }
+              }
+              if (_this.options.validator != null) {
+                xpath = "/" + (function() {
+                  var i, len, results;
+                  results = [];
+                  for (i = 0, len = stack.length; i < len; i++) {
+                    node = stack[i];
+                    results.push(node["#name"]);
+                  }
+                  return results;
+                })().concat(nodeName).join("/");
+                (function() {
+                  var err;
+                  try {
+                    return obj = _this.options.validator(xpath, s && s[nodeName], obj);
+                  } catch (error1) {
+                    err = error1;
+                    return _this.emit("error", err);
+                  }
+                })();
+              }
+              if (_this.options.explicitChildren && !_this.options.mergeAttrs && typeof obj === "object") {
+                if (!_this.options.preserveChildrenOrder) {
+                  node = {};
+                  if (_this.options.attrkey in obj) {
+                    node[_this.options.attrkey] = obj[_this.options.attrkey];
+                    delete obj[_this.options.attrkey];
+                  }
+                  if (!_this.options.charsAsChildren && _this.options.charkey in obj) {
+                    node[_this.options.charkey] = obj[_this.options.charkey];
+                    delete obj[_this.options.charkey];
+                  }
+                  if (Object.getOwnPropertyNames(obj).length > 0) {
+                    node[_this.options.childkey] = obj;
+                  }
+                  obj = node;
+                } else if (s) {
+                  s[_this.options.childkey] = s[_this.options.childkey] || [];
+                  objClone = {};
+                  for (key in obj) {
+                    if (!hasProp.call(obj, key)) continue;
+                    defineProperty(objClone, key, obj[key]);
+                  }
+                  s[_this.options.childkey].push(objClone);
+                  delete obj["#name"];
+                  if (Object.keys(obj).length === 1 && charkey in obj && !_this.EXPLICIT_CHARKEY) {
+                    obj = obj[charkey];
+                  }
+                }
+              }
+              if (stack.length > 0) {
+                return _this.assignOrPush(s, nodeName, obj);
+              } else {
+                if (_this.options.explicitRoot) {
+                  old = obj;
+                  obj = {};
+                  defineProperty(obj, nodeName, old);
+                }
+                _this.resultObject = obj;
+                _this.saxParser.ended = true;
+                return _this.emit("end", _this.resultObject);
+              }
+            };
+          })(this);
+          ontext = /* @__PURE__ */ (function(_this) {
+            return function(text) {
+              var charChild, s;
+              s = stack[stack.length - 1];
+              if (s) {
+                s[charkey] += text;
+                if (_this.options.explicitChildren && _this.options.preserveChildrenOrder && _this.options.charsAsChildren && (_this.options.includeWhiteChars || text.replace(/\\n/g, "").trim() !== "")) {
+                  s[_this.options.childkey] = s[_this.options.childkey] || [];
+                  charChild = {
+                    "#name": "__text__"
+                  };
+                  charChild[charkey] = text;
+                  if (_this.options.normalize) {
+                    charChild[charkey] = charChild[charkey].replace(/\s{2,}/g, " ").trim();
+                  }
+                  s[_this.options.childkey].push(charChild);
+                }
+                return s;
+              }
+            };
+          })(this);
+          this.saxParser.ontext = ontext;
+          return this.saxParser.oncdata = /* @__PURE__ */ (function(_this) {
+            return function(text) {
+              var s;
+              s = ontext(text);
+              if (s) {
+                return s.cdata = true;
+              }
+            };
+          })(this);
+        };
+        Parser.prototype.parseString = function(str, cb) {
+          var err;
+          if (cb != null && typeof cb === "function") {
+            this.on("end", function(result) {
+              this.reset();
+              return cb(null, result);
+            });
+            this.on("error", function(err2) {
+              this.reset();
+              return cb(err2);
+            });
+          }
+          try {
+            str = str.toString();
+            if (str.trim() === "") {
+              this.emit("end", null);
+              return true;
+            }
+            str = bom.stripBOM(str);
+            if (this.options.async) {
+              this.remaining = str;
+              setImmediate(this.processAsync);
+              return this.saxParser;
+            }
+            return this.saxParser.write(str).close();
+          } catch (error1) {
+            err = error1;
+            if (!(this.saxParser.errThrown || this.saxParser.ended)) {
+              this.emit("error", err);
+              return this.saxParser.errThrown = true;
+            } else if (this.saxParser.ended) {
+              throw err;
+            }
+          }
+        };
+        Parser.prototype.parseStringPromise = function(str) {
+          return new Promise(/* @__PURE__ */ (function(_this) {
+            return function(resolve, reject) {
+              return _this.parseString(str, function(err, value) {
+                if (err) {
+                  return reject(err);
+                } else {
+                  return resolve(value);
+                }
+              });
+            };
+          })(this));
+        };
+        return Parser;
+      })(events);
+      exports2.parseString = function(str, a, b) {
+        var cb, options, parser;
+        if (b != null) {
+          if (typeof b === "function") {
+            cb = b;
+          }
+          if (typeof a === "object") {
+            options = a;
+          }
+        } else {
+          if (typeof a === "function") {
+            cb = a;
+          }
+          options = {};
+        }
+        parser = new exports2.Parser(options);
+        return parser.parseString(str, cb);
+      };
+      exports2.parseStringPromise = function(str, a) {
+        var options, parser;
+        if (typeof a === "object") {
+          options = a;
+        }
+        parser = new exports2.Parser(options);
+        return parser.parseStringPromise(str);
+      };
+    }).call(exports2);
+  }
+});
+
+// node_modules/xml2js/lib/xml2js.js
+var require_xml2js = __commonJS({
+  "node_modules/xml2js/lib/xml2js.js"(exports2) {
+    (function() {
+      "use strict";
+      var builder, defaults, parser, processors5, extend = function(child, parent) {
+        for (var key in parent) {
+          if (hasProp.call(parent, key)) child[key] = parent[key];
+        }
+        function ctor() {
+          this.constructor = child;
+        }
+        ctor.prototype = parent.prototype;
+        child.prototype = new ctor();
+        child.__super__ = parent.prototype;
+        return child;
+      }, hasProp = {}.hasOwnProperty;
+      defaults = require_defaults();
+      builder = require_builder();
+      parser = require_parser();
+      processors5 = require_processors();
+      exports2.defaults = defaults.defaults;
+      exports2.processors = processors5;
+      exports2.ValidationError = (function(superClass) {
+        extend(ValidationError, superClass);
+        function ValidationError(message) {
+          this.message = message;
+        }
+        return ValidationError;
+      })(Error);
+      exports2.Builder = builder.Builder;
+      exports2.Parser = parser.Parser;
+      exports2.parseString = parser.parseString;
+      exports2.parseStringPromise = parser.parseStringPromise;
+    }).call(exports2);
+  }
+});
+
+// src/extension.ts
+var extension_exports = {};
+__export(extension_exports, {
+  activate: () => activate,
+  deactivate: () => deactivate
+});
+module.exports = __toCommonJS(extension_exports);
+var vscode13 = __toESM(require("vscode"));
+
+// src/cklbEditorProvider.ts
+var vscode = __toESM(require("vscode"));
+var fs = __toESM(require("fs"));
+var path = __toESM(require("path"));
+
+// src/webviewContent.ts
+function esc(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+function sevCat(s) {
+  return s === "high" ? "I" : s === "medium" ? "II" : "III";
+}
+function computeStats(rules) {
+  const s = { total: rules.length, not_reviewed: 0, open: 0, not_a_finding: 0, not_applicable: 0, high: 0, medium: 0, low: 0 };
+  for (const r of rules) {
+    s[r.status]++;
+    s[r.severity]++;
+  }
+  return s;
+}
+function safeJson(obj) {
+  return JSON.stringify(obj).replace(/<\//g, "<\\/").replace(/<!--/g, "<\\!--");
+}
+function buildWebviewHtml(data) {
+  const rulesJson = safeJson(
+    Object.fromEntries(
+      data.stigs.flatMap((st) => st.rules.map((r) => [r.uuid, r]))
+    )
+  );
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline';">
-<title>${ct(e.title)}</title>
-<style>${ii}</style>
+<title>${esc(data.title)}</title>
+<style>${CSS}</style>
 </head>
 <body>
 
 <!-- \u2550\u2550\u2550 HEADER \u2550\u2550\u2550 -->
 <header class="hdr">
   <div class="hdr-row">
-    <h1>${ct(e.title)}</h1>
-    <span class="chip chip-accent">CKLB v${ct(e.cklb_version)}</span>
+    <h1>${esc(data.title)}</h1>
+    <span class="chip chip-accent">CKLB v${esc(data.cklb_version)}</span>
     <div class="hdr-actions">
       <button class="btn-export" id="btnExportCsv">Export CSV</button>
       <button class="btn-export" id="btnExportCkl">Export CKL</button>
       <button class="btn-export" id="btnExportPoam">Export POA&amp;M</button>
     </div>
   </div>
-  ${ti(e.target_data)}
+  ${targetHtml(data.target_data)}
 </header>
 
-${e.stigs.map((a,b)=>ei(a,b)).join(`
-`)}
+${data.stigs.map((st, i) => stigSection(st, i)).join("\n")}
 
 <!-- \u2550\u2550\u2550 TARGET EDIT MODAL \u2550\u2550\u2550 -->
 <div id="targetBackdrop" class="backdrop hidden"></div>
@@ -87,50 +6179,67 @@ ${e.stigs.map((a,b)=>ei(a,b)).join(`
 
 <script>
 const vscode = acquireVsCodeApi();
-const RULES = ${t};
-const TARGET = ${Ze(e.target_data)};
-${ni}
+const RULES = ${rulesJson};
+const TARGET = ${safeJson(data.target_data)};
+${SCRIPT}
 </script>
 </body>
-</html>`}function ti(e){let t=[e.host_name&&`Host: ${e.host_name}`,e.ip_address&&`IP: ${e.ip_address}`,e.fqdn&&`FQDN: ${e.fqdn}`,e.mac_address&&`MAC: ${e.mac_address}`,e.target_type&&`Type: ${e.target_type}`,e.role&&e.role!=="None"&&`Role: ${e.role}`].filter(Boolean);return t.length?`<div class="target-row">${t.map(a=>`<span class="chip">${ct(a)}</span>`).join("")}<button class="btn-edit-target" id="editTargetBtn">Edit Target</button></div>`:'<p class="muted">No target data configured <button class="btn-edit-target" id="editTargetBtn">Edit Target</button></p>'}function ei(e,t){let a=Zn(e.rules),b=o=>a.total?Math.round(o/a.total*100):0;return`
-<section class="stig" data-idx="${t}">
+</html>`;
+}
+function targetHtml(td) {
+  const parts = [
+    td.host_name && `Host: ${td.host_name}`,
+    td.ip_address && `IP: ${td.ip_address}`,
+    td.fqdn && `FQDN: ${td.fqdn}`,
+    td.mac_address && `MAC: ${td.mac_address}`,
+    td.target_type && `Type: ${td.target_type}`,
+    td.role && td.role !== "None" && `Role: ${td.role}`
+  ].filter(Boolean);
+  if (!parts.length) return '<p class="muted">No target data configured <button class="btn-edit-target" id="editTargetBtn">Edit Target</button></p>';
+  return `<div class="target-row">${parts.map((p) => `<span class="chip">${esc(p)}</span>`).join("")}<button class="btn-edit-target" id="editTargetBtn">Edit Target</button></div>`;
+}
+function stigSection(stig, idx) {
+  const st = computeStats(stig.rules);
+  const pct = (n) => st.total ? Math.round(n / st.total * 100) : 0;
+  return `
+<section class="stig" data-idx="${idx}">
   <!-- title -->
   <div class="stig-title-row">
-    <h2>${ct(e.display_name||e.stig_name)}</h2>
+    <h2>${esc(stig.display_name || stig.stig_name)}</h2>
     <div class="chip-row">
-      <span class="chip">${ct(e.release_info)}</span>
-      <span class="chip">Version ${ct(e.version)}</span>
-      <span class="chip">${e.size} rules</span>
+      <span class="chip">${esc(stig.release_info)}</span>
+      <span class="chip">Version ${esc(stig.version)}</span>
+      <span class="chip">${stig.size} rules</span>
     </div>
   </div>
 
   <!-- stat cards -->
   <div class="cards">
-    <div class="card card-total"><div class="card-n">${a.total}</div><div class="card-l">Total</div></div>
-    <div class="card card-open"><div class="card-n">${a.open}</div><div class="card-l">Open</div></div>
-    <div class="card card-naf"><div class="card-n">${a.not_a_finding}</div><div class="card-l">Not a Finding</div></div>
-    <div class="card card-nr"><div class="card-n">${a.not_reviewed}</div><div class="card-l">Not Reviewed</div></div>
-    <div class="card card-na"><div class="card-n">${a.not_applicable}</div><div class="card-l">Not Applicable</div></div>
+    <div class="card card-total"><div class="card-n">${st.total}</div><div class="card-l">Total</div></div>
+    <div class="card card-open"><div class="card-n">${st.open}</div><div class="card-l">Open</div></div>
+    <div class="card card-naf"><div class="card-n">${st.not_a_finding}</div><div class="card-l">Not a Finding</div></div>
+    <div class="card card-nr"><div class="card-n">${st.not_reviewed}</div><div class="card-l">Not Reviewed</div></div>
+    <div class="card card-na"><div class="card-n">${st.not_applicable}</div><div class="card-l">Not Applicable</div></div>
   </div>
 
   <!-- severity bar -->
   <div class="sev-bar">
-    <div class="sev-seg sev-high" style="width:${b(a.high)}%"><span>CAT I \xB7 ${a.high}</span></div>
-    <div class="sev-seg sev-med"  style="width:${b(a.medium)}%"><span>CAT II \xB7 ${a.medium}</span></div>
-    <div class="sev-seg sev-low"  style="width:${b(a.low)}%"><span>CAT III \xB7 ${a.low}</span></div>
+    <div class="sev-seg sev-high" style="width:${pct(st.high)}%"><span>CAT I \xB7 ${st.high}</span></div>
+    <div class="sev-seg sev-med"  style="width:${pct(st.medium)}%"><span>CAT II \xB7 ${st.medium}</span></div>
+    <div class="sev-seg sev-low"  style="width:${pct(st.low)}%"><span>CAT III \xB7 ${st.low}</span></div>
   </div>
 
   <!-- completion bar -->
   <div class="completion">
-    <div class="completion-label">Completion: ${b(a.not_a_finding+a.not_applicable)}%</div>
+    <div class="completion-label">Completion: ${pct(st.not_a_finding + st.not_applicable)}%</div>
     <div class="completion-track">
-      <div class="completion-fill completion-naf" style="width:${b(a.not_a_finding)}%"></div>
-      <div class="completion-fill completion-na"  style="width:${b(a.not_applicable)}%"></div>
+      <div class="completion-fill completion-naf" style="width:${pct(st.not_a_finding)}%"></div>
+      <div class="completion-fill completion-na"  style="width:${pct(st.not_applicable)}%"></div>
     </div>
   </div>
 
   <!-- bulk action bar -->
-  <div class="bulk-bar hidden" data-stig="${e.uuid}">
+  <div class="bulk-bar hidden" data-stig="${stig.uuid}">
     <span class="bulk-count">0 selected</span>
     <select class="bulk-status">
       <option value="not_reviewed">Not Reviewed</option>
@@ -144,19 +6253,19 @@ ${ni}
   </div>
 
   <!-- filters -->
-  <div class="filters" data-stig="${e.uuid}">
+  <div class="filters" data-stig="${stig.uuid}">
     <select class="flt" data-kind="status">
       <option value="">All Statuses</option>
-      <option value="not_reviewed">Not Reviewed (${a.not_reviewed})</option>
-      <option value="open">Open (${a.open})</option>
-      <option value="not_a_finding">Not a Finding (${a.not_a_finding})</option>
-      <option value="not_applicable">Not Applicable (${a.not_applicable})</option>
+      <option value="not_reviewed">Not Reviewed (${st.not_reviewed})</option>
+      <option value="open">Open (${st.open})</option>
+      <option value="not_a_finding">Not a Finding (${st.not_a_finding})</option>
+      <option value="not_applicable">Not Applicable (${st.not_applicable})</option>
     </select>
     <select class="flt" data-kind="severity">
       <option value="">All Severities</option>
-      <option value="high">CAT I \u2013 High (${a.high})</option>
-      <option value="medium">CAT II \u2013 Medium (${a.medium})</option>
-      <option value="low">CAT III \u2013 Low (${a.low})</option>
+      <option value="high">CAT I \u2013 High (${st.high})</option>
+      <option value="medium">CAT II \u2013 Medium (${st.medium})</option>
+      <option value="low">CAT III \u2013 Low (${st.low})</option>
     </select>
     <input type="text" class="flt flt-search" data-kind="search" placeholder="Search rules\u2026" />
   </div>
@@ -165,7 +6274,7 @@ ${ni}
   <div class="tbl-wrap">
     <table class="tbl">
       <thead><tr>
-        <th style="width:36px"><input type="checkbox" class="select-all" data-stig="${e.uuid}" title="Select all" /></th>
+        <th style="width:36px"><input type="checkbox" class="select-all" data-stig="${stig.uuid}" title="Select all" /></th>
         <th style="width:72px">CAT</th>
         <th style="width:90px">Vuln ID</th>
         <th style="width:130px">Rule Ver</th>
@@ -173,25 +6282,30 @@ ${ni}
         <th style="width:120px">Status</th>
       </tr></thead>
       <tbody>
-        ${e.rules.map(o=>ri(o,e.uuid)).join(`
-`)}
+        ${stig.rules.map((r) => ruleRow(r, stig.uuid)).join("\n")}
       </tbody>
     </table>
   </div>
-</section>`}function ri(e,t){let a=`${e.group_id} ${e.rule_version} ${e.rule_title} ${e.group_title}`.toLowerCase();return`<tr class="row" data-uuid="${e.uuid}" data-stig="${t}"
-    data-sev="${e.severity}" data-status="${e.status}" data-search="${ct(a)}">
-  <td class="td-cb"><input type="checkbox" class="row-cb" data-uuid="${e.uuid}" data-stig="${t}" /></td>
-  <td><span class="pill sev-${e.severity}">CAT ${Qn(e.severity)}</span></td>
-  <td><code>${ct(e.group_id)}</code></td>
-  <td><code>${ct(e.rule_version)}</code></td>
-  <td class="td-title">${ct(e.rule_title)}</td>
-  <td><select class="inline-status st-${e.status}" data-uuid="${e.uuid}" data-stig="${t}">
-    <option value="not_reviewed" ${e.status==="not_reviewed"?"selected":""}>Not Reviewed</option>
-    <option value="open" ${e.status==="open"?"selected":""}>Open</option>
-    <option value="not_a_finding" ${e.status==="not_a_finding"?"selected":""}>Not a Finding</option>
-    <option value="not_applicable" ${e.status==="not_applicable"?"selected":""}>Not Applicable</option>
+</section>`;
+}
+function ruleRow(r, stigUuid) {
+  const search = `${r.group_id} ${r.rule_version} ${r.rule_title} ${r.group_title}`.toLowerCase();
+  return `<tr class="row" data-uuid="${r.uuid}" data-stig="${stigUuid}"
+    data-sev="${r.severity}" data-status="${r.status}" data-search="${esc(search)}">
+  <td class="td-cb"><input type="checkbox" class="row-cb" data-uuid="${r.uuid}" data-stig="${stigUuid}" /></td>
+  <td><span class="pill sev-${r.severity}">CAT ${sevCat(r.severity)}</span></td>
+  <td><code>${esc(r.group_id)}</code></td>
+  <td><code>${esc(r.rule_version)}</code></td>
+  <td class="td-title">${esc(r.rule_title)}</td>
+  <td><select class="inline-status st-${r.status}" data-uuid="${r.uuid}" data-stig="${stigUuid}">
+    <option value="not_reviewed" ${r.status === "not_reviewed" ? "selected" : ""}>Not Reviewed</option>
+    <option value="open" ${r.status === "open" ? "selected" : ""}>Open</option>
+    <option value="not_a_finding" ${r.status === "not_a_finding" ? "selected" : ""}>Not a Finding</option>
+    <option value="not_applicable" ${r.status === "not_applicable" ? "selected" : ""}>Not Applicable</option>
   </select></td>
-</tr>`}var ni=`
+</tr>`;
+}
+var SCRIPT = `
 // \u2500\u2500 Stats refresh \u2500\u2500
 function refreshStats(stigId) {
   const section = document.querySelector('tr.row[data-stig="'+stigId+'"]')?.closest('.stig');
@@ -771,7 +6885,8 @@ document.querySelectorAll('.tbl th').forEach((th, i) => {
     rows.forEach(r => tbody.appendChild(r));
   });
 });
-`,ii=`
+`;
+var CSS = `
 /* \u2500\u2500 reset & vars \u2500\u2500 */
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -964,106 +7079,1094 @@ body{font-family:var(--vscode-font-family,system-ui,sans-serif);font-size:13px;c
 /* \u2500\u2500 sort indicators \u2500\u2500 */
 .sort-asc::after{content:' \\25B2';font-size:.7em}
 .sort-desc::after{content:' \\25BC';font-size:.7em}
-`;var oi={not_reviewed:"Not Reviewed",open:"Open",not_a_finding:"Not a Finding",not_applicable:"Not Applicable"},si={high:"CAT I",medium:"CAT II",low:"CAT III"};function er(e){return e?e.includes('"')||e.includes(",")||e.includes(`
-`)||e.includes("\r")?'"'+e.replace(/"/g,'""')+'"':e:""}function Jt(e){let a=[["Vuln ID","Rule ID","Rule Version","Severity","Status","Title","Finding Details","Comments","CCIs","SRG ID"].map(er).join(",")];for(let b of e.stigs)for(let o of b.rules)a.push([o.group_id,o.rule_id,o.rule_version,si[o.severity]||o.severity,oi[o.status]||o.status,o.rule_title,o.finding_details,o.comments,o.ccis.join("; "),o.srg_id].map(er).join(","));return a.join(`\r
-`)}function tt(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&apos;")}var ai={not_reviewed:"Not_Reviewed",open:"Open",not_a_finding:"NotAFinding",not_applicable:"Not_Applicable"};function G(e,t){return`        <STIG_DATA>
-          <VULN_ATTRIBUTE>${tt(e)}</VULN_ATTRIBUTE>
-          <ATTRIBUTE_DATA>${tt(t)}</ATTRIBUTE_DATA>
-        </STIG_DATA>`}function ci(e){let t=[G("Vuln_Num",e.group_id),G("Severity",e.severity),G("Group_Title",e.group_title),G("Rule_ID",e.rule_id),G("Rule_Ver",e.rule_version),G("Rule_Title",e.rule_title),G("Vuln_Discuss",e.discussion),G("IA_Controls",e.ia_controls),G("Check_Content",e.check_content),G("Fix_Text",e.fix_text),G("False_Positives",e.false_positives),G("False_Negatives",e.false_negatives),G("Documentable",e.documentable),G("Mitigations",e.mitigations),G("Potential_Impact",e.potential_impacts),G("Third_Party_Tools",e.third_party_tools),G("Mitigation_Control",e.mitigation_control),G("Responsibility",e.responsibility),G("Security_Override_Guidance",e.security_override_guidance),G("Check_Content_Ref",e.check_content_ref?.href||""),G("Weight",e.weight),G("Class",e.classification),G("STIGRef",e.stig_ref||""),G("TargetKey",e.target_key||"")];for(let a of e.ccis)t.push(G("CCI_REF",a));for(let a of e.legacy_ids)t.push(G("Legacy_ID",a));return`      <VULN>
-${t.join(`
-`)}
-        <STATUS>${tt(ai[e.status]||"Not_Reviewed")}</STATUS>
-        <FINDING_DETAILS>${tt(e.finding_details)}</FINDING_DETAILS>
-        <COMMENTS>${tt(e.comments)}</COMMENTS>
+`;
+
+// src/exportCsv.ts
+var STATUS_LABELS = {
+  not_reviewed: "Not Reviewed",
+  open: "Open",
+  not_a_finding: "Not a Finding",
+  not_applicable: "Not Applicable"
+};
+var SEV_LABELS = {
+  high: "CAT I",
+  medium: "CAT II",
+  low: "CAT III"
+};
+function csvEsc(s) {
+  if (!s) {
+    return "";
+  }
+  if (s.includes('"') || s.includes(",") || s.includes("\n") || s.includes("\r")) {
+    return '"' + s.replace(/"/g, '""') + '"';
+  }
+  return s;
+}
+function buildCsv(data) {
+  const headers = [
+    "Vuln ID",
+    "Rule ID",
+    "Rule Version",
+    "Severity",
+    "Status",
+    "Title",
+    "Finding Details",
+    "Comments",
+    "CCIs",
+    "SRG ID"
+  ];
+  const rows = [headers.map(csvEsc).join(",")];
+  for (const stig of data.stigs) {
+    for (const r of stig.rules) {
+      rows.push([
+        r.group_id,
+        r.rule_id,
+        r.rule_version,
+        SEV_LABELS[r.severity] || r.severity,
+        STATUS_LABELS[r.status] || r.status,
+        r.rule_title,
+        r.finding_details,
+        r.comments,
+        r.ccis.join("; "),
+        r.srg_id
+      ].map(csvEsc).join(","));
+    }
+  }
+  return rows.join("\r\n");
+}
+
+// src/exportCkl.ts
+function x(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+}
+var STATUS_MAP = {
+  not_reviewed: "Not_Reviewed",
+  open: "Open",
+  not_a_finding: "NotAFinding",
+  not_applicable: "Not_Applicable"
+};
+function stigData(name, data) {
+  return `        <STIG_DATA>
+          <VULN_ATTRIBUTE>${x(name)}</VULN_ATTRIBUTE>
+          <ATTRIBUTE_DATA>${x(data)}</ATTRIBUTE_DATA>
+        </STIG_DATA>`;
+}
+function buildVuln(r) {
+  const parts = [
+    stigData("Vuln_Num", r.group_id),
+    stigData("Severity", r.severity),
+    stigData("Group_Title", r.group_title),
+    stigData("Rule_ID", r.rule_id),
+    stigData("Rule_Ver", r.rule_version),
+    stigData("Rule_Title", r.rule_title),
+    stigData("Vuln_Discuss", r.discussion),
+    stigData("IA_Controls", r.ia_controls),
+    stigData("Check_Content", r.check_content),
+    stigData("Fix_Text", r.fix_text),
+    stigData("False_Positives", r.false_positives),
+    stigData("False_Negatives", r.false_negatives),
+    stigData("Documentable", r.documentable),
+    stigData("Mitigations", r.mitigations),
+    stigData("Potential_Impact", r.potential_impacts),
+    stigData("Third_Party_Tools", r.third_party_tools),
+    stigData("Mitigation_Control", r.mitigation_control),
+    stigData("Responsibility", r.responsibility),
+    stigData("Security_Override_Guidance", r.security_override_guidance),
+    stigData("Check_Content_Ref", r.check_content_ref?.href || ""),
+    stigData("Weight", r.weight),
+    stigData("Class", r.classification),
+    stigData("STIGRef", r.stig_ref || ""),
+    stigData("TargetKey", r.target_key || "")
+  ];
+  for (const cci of r.ccis) {
+    parts.push(stigData("CCI_REF", cci));
+  }
+  for (const lid of r.legacy_ids) {
+    parts.push(stigData("Legacy_ID", lid));
+  }
+  return `      <VULN>
+${parts.join("\n")}
+        <STATUS>${x(STATUS_MAP[r.status] || "Not_Reviewed")}</STATUS>
+        <FINDING_DETAILS>${x(r.finding_details)}</FINDING_DETAILS>
+        <COMMENTS>${x(r.comments)}</COMMENTS>
         <SEVERITY_OVERRIDE></SEVERITY_OVERRIDE>
         <SEVERITY_JUSTIFICATION></SEVERITY_JUSTIFICATION>
-      </VULN>`}function lt(e,t){return`          <SI_DATA>
-            <SID_NAME>${tt(e)}</SID_NAME>
-            <SID_DATA>${tt(t)}</SID_DATA>
-          </SI_DATA>`}function li(e){let t=[lt("version",e.version),lt("classification","UNCLASSIFIED"),lt("customname",""),lt("stigid",e.stig_id),lt("description",""),lt("filename",""),lt("releaseinfo",e.release_info),lt("title",e.stig_name),lt("uuid",e.uuid),lt("notice","terms-of-use"),lt("source","")].join(`
-`),a=e.rules.map(ci).join(`
-`);return`    <iSTIG>
+      </VULN>`;
+}
+function siData(name, data) {
+  return `          <SI_DATA>
+            <SID_NAME>${x(name)}</SID_NAME>
+            <SID_DATA>${x(data)}</SID_DATA>
+          </SI_DATA>`;
+}
+function buildIStig(stig) {
+  const info = [
+    siData("version", stig.version),
+    siData("classification", "UNCLASSIFIED"),
+    siData("customname", ""),
+    siData("stigid", stig.stig_id),
+    siData("description", ""),
+    siData("filename", ""),
+    siData("releaseinfo", stig.release_info),
+    siData("title", stig.stig_name),
+    siData("uuid", stig.uuid),
+    siData("notice", "terms-of-use"),
+    siData("source", "")
+  ].join("\n");
+  const vulns = stig.rules.map(buildVuln).join("\n");
+  return `    <iSTIG>
         <STIG_INFO>
-${t}
+${info}
         </STIG_INFO>
-${a}
-    </iSTIG>`}function Qt(e){let t=e.target_data,a=t.is_web_database?"true":"false",b=`  <ASSET>
-    <ROLE>${tt(t.role)}</ROLE>
-    <ASSET_TYPE>${tt(t.target_type)}</ASSET_TYPE>
-    <HOST_NAME>${tt(t.host_name)}</HOST_NAME>
-    <HOST_IP>${tt(t.ip_address)}</HOST_IP>
-    <HOST_MAC>${tt(t.mac_address)}</HOST_MAC>
-    <HOST_FQDN>${tt(t.fqdn)}</HOST_FQDN>
-    <TARGET_COMMENT>${tt(t.comments)}</TARGET_COMMENT>
-    <TECH_AREA>${tt(t.technology_area)}</TECH_AREA>
+${vulns}
+    </iSTIG>`;
+}
+function buildCkl(data) {
+  const td = data.target_data;
+  const webDb = td.is_web_database ? "true" : "false";
+  const asset = `  <ASSET>
+    <ROLE>${x(td.role)}</ROLE>
+    <ASSET_TYPE>${x(td.target_type)}</ASSET_TYPE>
+    <HOST_NAME>${x(td.host_name)}</HOST_NAME>
+    <HOST_IP>${x(td.ip_address)}</HOST_IP>
+    <HOST_MAC>${x(td.mac_address)}</HOST_MAC>
+    <HOST_FQDN>${x(td.fqdn)}</HOST_FQDN>
+    <TARGET_COMMENT>${x(td.comments)}</TARGET_COMMENT>
+    <TECH_AREA>${x(td.technology_area)}</TECH_AREA>
     <TARGET_KEY></TARGET_KEY>
-    <WEB_OR_DATABASE>${a}</WEB_OR_DATABASE>
-    <WEB_DB_SITE>${tt(t.web_db_site)}</WEB_DB_SITE>
-    <WEB_DB_INSTANCE>${tt(t.web_db_instance)}</WEB_DB_INSTANCE>
-  </ASSET>`,o=e.stigs.map(li).join(`
-`);return`<?xml version="1.0" encoding="UTF-8"?>
+    <WEB_OR_DATABASE>${webDb}</WEB_OR_DATABASE>
+    <WEB_DB_SITE>${x(td.web_db_site)}</WEB_DB_SITE>
+    <WEB_DB_INSTANCE>${x(td.web_db_instance)}</WEB_DB_INSTANCE>
+  </ASSET>`;
+  const stigs = data.stigs.map(buildIStig).join("\n");
+  return `<?xml version="1.0" encoding="UTF-8"?>
 <!--DISA STIG Viewer :: 2.x-->
 <CHECKLIST>
-${b}
+${asset}
   <STIGS>
-${o}
+${stigs}
   </STIGS>
-</CHECKLIST>`}var ui={high:"CAT I",medium:"CAT II",low:"CAT III"};function rr(e){return e?e.includes('"')||e.includes(",")||e.includes(`
-`)||e.includes("\r")?'"'+e.replace(/"/g,'""')+'"':e:""}function Zt(e){let a=[["POA&M ID","Vuln ID","Rule ID","Rule Version","Raw Severity","Weakness Description","Source","Finding Details","Point of Contact","Resources Required","Scheduled Completion Date","Milestones with Completion Dates","Milestone Changes","Identified By","Status","Comments","CCIs","Host Name"].map(rr).join(",")],b=1;for(let o of e.stigs){let p=o.rules.filter(c=>c.status==="open");for(let c of p)a.push([String(b++),c.group_id,c.rule_id,c.rule_version,ui[c.severity]||c.severity,c.rule_title,`${o.stig_name} ${o.release_info}`,c.finding_details,"","","","","","","Ongoing",c.comments,c.ccis.join("; "),e.target_data.host_name].map(rr).join(","))}return a.join(`\r
-`)}var ut=class e{constructor(t){this._context=t}static get activeDocumentUri(){return e._activeDocumentUri}static register(t){return U.window.registerCustomEditorProvider("stigViewer.cklbEditor",new e(t),{webviewOptions:{retainContextWhenHidden:!0},supportsMultipleEditorsPerDocument:!1})}async resolveCustomTextEditor(t,a,b){a.webview.options={enableScripts:!0},(()=>{try{let l=JSON.parse(t.getText());a.webview.html=tr(l)}catch(l){a.webview.html=`<!DOCTYPE html><html><body>
+</CHECKLIST>`;
+}
+
+// src/exportPoam.ts
+var SEV_LABELS2 = {
+  high: "CAT I",
+  medium: "CAT II",
+  low: "CAT III"
+};
+function csvEsc2(s) {
+  if (!s) {
+    return "";
+  }
+  if (s.includes('"') || s.includes(",") || s.includes("\n") || s.includes("\r")) {
+    return '"' + s.replace(/"/g, '""') + '"';
+  }
+  return s;
+}
+function buildPoam(data) {
+  const headers = [
+    "POA&M ID",
+    "Vuln ID",
+    "Rule ID",
+    "Rule Version",
+    "Raw Severity",
+    "Weakness Description",
+    "Source",
+    "Finding Details",
+    "Point of Contact",
+    "Resources Required",
+    "Scheduled Completion Date",
+    "Milestones with Completion Dates",
+    "Milestone Changes",
+    "Identified By",
+    "Status",
+    "Comments",
+    "CCIs",
+    "Host Name"
+  ];
+  const rows = [headers.map(csvEsc2).join(",")];
+  let id = 1;
+  for (const stig of data.stigs) {
+    const openRules = stig.rules.filter((r) => r.status === "open");
+    for (const r of openRules) {
+      rows.push([
+        String(id++),
+        r.group_id,
+        r.rule_id,
+        r.rule_version,
+        SEV_LABELS2[r.severity] || r.severity,
+        r.rule_title,
+        `${stig.stig_name} ${stig.release_info}`,
+        r.finding_details,
+        "",
+        // POC — user fills in
+        "",
+        // Resources — user fills in
+        "",
+        // Scheduled completion — user fills in
+        "",
+        // Milestones — user fills in
+        "",
+        // Milestone changes — user fills in
+        "",
+        // Identified by — user fills in
+        "Ongoing",
+        r.comments,
+        r.ccis.join("; "),
+        data.target_data.host_name
+      ].map(csvEsc2).join(","));
+    }
+  }
+  return rows.join("\r\n");
+}
+
+// src/cklbEditorProvider.ts
+var CklbEditorProvider = class _CklbEditorProvider {
+  constructor(_context) {
+    this._context = _context;
+  }
+  static get activeDocumentUri() {
+    return _CklbEditorProvider._activeDocumentUri;
+  }
+  static register(context) {
+    return vscode.window.registerCustomEditorProvider(
+      "stigViewer.cklbEditor",
+      new _CklbEditorProvider(context),
+      { webviewOptions: { retainContextWhenHidden: true }, supportsMultipleEditorsPerDocument: false }
+    );
+  }
+  async resolveCustomTextEditor(document, webviewPanel, _token) {
+    webviewPanel.webview.options = { enableScripts: true };
+    const updateWebview = () => {
+      try {
+        const data = JSON.parse(document.getText());
+        webviewPanel.webview.html = buildWebviewHtml(data);
+      } catch (e) {
+        webviewPanel.webview.html = `<!DOCTYPE html><html><body>
           <h2 style="color:#f44;">Error parsing .cklb file</h2>
-          <pre>${String(l)}</pre></body></html>`}})(),e._activeDocumentUri=t.uri,a.onDidChangeViewState(()=>{a.active&&(e._activeDocumentUri=t.uri)});let p,c=U.workspace.onDidChangeTextDocument(l=>{l.document.uri.toString()===t.uri.toString()&&(clearTimeout(p),p=setTimeout(()=>{try{let d=JSON.parse(t.getText()),m=Object.fromEntries(d.stigs.flatMap(T=>T.rules.map(_=>[_.uuid,_])));a.webview.postMessage({type:"dataUpdate",rules:m})}catch{}},150))});a.webview.onDidReceiveMessage(async l=>{if(l.type==="saveRule"){let{ruleUuid:d,stigUuid:m,status:T,finding_details:_,comments:w}=l;try{let h=JSON.parse(t.getText()),E=h.stigs.find(k=>k.uuid===m)?.rules.find(k=>k.uuid===d);if(E){E.status=T,E.finding_details=_,E.comments=w;let k=new U.WorkspaceEdit,N=new U.Range(t.positionAt(0),t.positionAt(t.getText().length));k.replace(t.uri,N,JSON.stringify(h,null,2)),await U.workspace.applyEdit(k)}}catch(h){U.window.showErrorMessage(`Save failed: ${h}`)}}if(l.type==="saveTargetData")try{let d=JSON.parse(t.getText());Object.assign(d.target_data,l.targetData);let m=new U.WorkspaceEdit,T=new U.Range(t.positionAt(0),t.positionAt(t.getText().length));m.replace(t.uri,T,JSON.stringify(d,null,2)),await U.workspace.applyEdit(m),U.window.showInformationMessage("Target data updated")}catch(d){U.window.showErrorMessage(`Save target data failed: ${d}`)}if(l.type==="exportPoam")try{let d=JSON.parse(t.getText()),m=Zt(d),T=d.stigs.reduce((h,v)=>h+v.rules.filter(E=>E.status==="open").length,0),_=nt.basename(t.uri.fsPath,".cklb")+"_POAM.csv",w=await U.window.showSaveDialog({defaultUri:U.Uri.file(nt.join(nt.dirname(t.uri.fsPath),_)),filters:{CSV:["csv"]},title:`Export POA&M (${T} open findings)`});w&&(te.writeFileSync(w.fsPath,m,"utf-8"),U.window.showInformationMessage(`Exported POA&M (${T} findings) \u2192 ${nt.basename(w.fsPath)}`))}catch(d){U.window.showErrorMessage(`POA&M export failed: ${d}`)}if(l.type==="exportCsv")try{let d=JSON.parse(t.getText()),m=Jt(d),T=nt.basename(t.uri.fsPath,".cklb")+".csv",_=await U.window.showSaveDialog({defaultUri:U.Uri.file(nt.join(nt.dirname(t.uri.fsPath),T)),filters:{CSV:["csv"]},title:"Export Summary CSV"});_&&(te.writeFileSync(_.fsPath,m,"utf-8"),U.window.showInformationMessage(`Exported CSV \u2192 ${nt.basename(_.fsPath)}`))}catch(d){U.window.showErrorMessage(`CSV export failed: ${d}`)}if(l.type==="exportCkl")try{let d=JSON.parse(t.getText()),m=Qt(d),T=nt.basename(t.uri.fsPath,".cklb")+".ckl",_=await U.window.showSaveDialog({defaultUri:U.Uri.file(nt.join(nt.dirname(t.uri.fsPath),T)),filters:{"CKL Checklist":["ckl"]},title:"Export CKL (XML)"});_&&(te.writeFileSync(_.fsPath,m,"utf-8"),U.window.showInformationMessage(`Exported CKL \u2192 ${nt.basename(_.fsPath)}`))}catch(d){U.window.showErrorMessage(`CKL export failed: ${d}`)}if(l.type==="bulkSaveRules"){let{ruleUuids:d,stigUuid:m,status:T,comments:_}=l;try{let w=JSON.parse(t.getText()),h=w.stigs.find(N=>N.uuid===m);if(!h)return;let v=0;for(let N of h.rules)d.includes(N.uuid)&&(N.status=T,_&&(N.comments=_),v++);let E=new U.WorkspaceEdit,k=new U.Range(t.positionAt(0),t.positionAt(t.getText().length));E.replace(t.uri,k,JSON.stringify(w,null,2)),await U.workspace.applyEdit(E),U.window.showInformationMessage(`Bulk updated ${v} rules \u2192 ${T.replace(/_/g," ")}`)}catch(w){U.window.showErrorMessage(`Bulk save failed: ${w}`)}}}),a.onDidDispose(()=>c.dispose())}};var St=j(require("vscode")),ve=j(require("fs")),Nt=j(require("path")),_e=j(ye());var et=[];for(let e=0;e<256;++e)et.push((e+256).toString(16).slice(1));function Cn(e,t=0){return(et[e[t+0]]+et[e[t+1]]+et[e[t+2]]+et[e[t+3]]+"-"+et[e[t+4]]+et[e[t+5]]+"-"+et[e[t+6]]+et[e[t+7]]+"-"+et[e[t+8]]+et[e[t+9]]+"-"+et[e[t+10]]+et[e[t+11]]+et[e[t+12]]+et[e[t+13]]+et[e[t+14]]+et[e[t+15]]).toLowerCase()}var Dn=require("node:crypto"),we=new Uint8Array(256),be=we.length;function Ve(){return be>we.length-16&&((0,Dn.randomFillSync)(we),be=0),we.slice(be,be+=16)}var Sn=require("node:crypto"),Xe={randomUUID:Sn.randomUUID};function di(e,t,a){e=e||{};let b=e.random??e.rng?.()??Ve();if(b.length<16)throw new Error("Random bytes length must be >= 16");if(b[6]=b[6]&15|64,b[8]=b[8]&63|128,t){if(a=a||0,a<0||a+16>t.length)throw new RangeError(`UUID byte range ${a}:${a+15} is out of buffer bounds`);for(let o=0;o<16;++o)t[a+o]=b[o];return t}return Cn(b)}function pi(e,t,a){return Xe.randomUUID&&!t&&!e?Xe.randomUUID():di(e,t,a)}var wt=pi;function Tt(e){return e==null?[]:Array.isArray(e)?e:[e]}function it(e){return e==null?"":typeof e=="string"?e:Array.isArray(e)?it(e[0]):typeof e=="object"&&"_"in e?String(e._):String(e)}function dt(e,t){let a=e.match(new RegExp(`<${t}>([\\s\\S]*?)<\\/${t}>`));return a?a[1].trim():""}function fi(e){let t=e.match(/(V-\d+)/);return t?t[1]:e}function hi(e){let t=e.match(/(SV-\d+r\d+_rule)/);return t?t[1]:e}function gi(e){let t=(e||"").toLowerCase();return t==="high"?"high":t==="medium"?"medium":"low"}function mi(e){let t=e;if(t.Benchmark)return t.Benchmark;let a=e["data-stream-collection"];if(a?.component!=null)for(let b of Tt(a.component)){let o=b.Benchmark;if(o)return o}return null}async function Nn(e){let t=e.fsPath,a=ve.readFileSync(t,"utf-8"),b=await(0,_e.parseStringPromise)(a,{explicitArray:!1,tagNameProcessors:[_e.processors.stripPrefix]}),o=mi(b);if(!o)throw new Error("No XCCDF <Benchmark> found. Use a standalone *-xccdf.xml benchmark, or an SCAP 1.2/1.3 data stream (e.g. *Benchmark*.xml) that embeds the checklist.");let c=(o.$||{}).id||"",l=it(o.title),d=it(o.version),m="";for(let n of Tt(o["plain-text"]))if((n?.$||{}).id==="release-info"){m=it(n);break}let T=wt(),_=wt(),w=new Date().toISOString(),h=Tt(o.Group),v=[];for(let n of h){let y=n?.$||{},S=fi(y.id||""),C=it(n.title),u=it(n.description);for(let g of Tt(n.Rule)){let D=g?.$||{},O=hi(D.id||""),L=gi(D.severity),R=D.weight||"10.0",M=it(g.version),P=it(g.title),F=it(g.description),$=dt(F,"VulnDiscussion"),Y=dt(F,"FalsePositives"),ot=dt(F,"FalseNegatives"),V=dt(F,"Documentable"),Ae=dt(F,"Mitigations"),Rt=dt(F,"SeverityOverrideGuidance"),Ft=dt(F,"PotentialImpacts"),mt=dt(F,"ThirdPartyTools"),Bt=dt(F,"MitigationControl"),ke=dt(F,"Responsibility"),Ht=dt(F,"IAControls"),$t=it(g.fixtext),Kt=Tt(g.check),s="",r={href:"",name:""},x=Kt.find(W=>W["check-content"])||Kt[0];if(x){s=it(x["check-content"]);let W=Tt(x["check-content-ref"])[0];W?.$&&(r={href:W.$.href||"",name:W.$.name||""})}let q=[],z=[];for(let W of Tt(g.ident)){let J=W?.$?.system||"",at=it(W);J.includes("cci")?q.push(at):J.includes("legacy")&&z.push(at)}let H=null,Z=null;for(let W of Tt(g.reference))W?.identifier&&(H=it(W.identifier)),W?.title&&(Z=it(W.title));let rt=wt();v.push({uuid:rt,stig_uuid:T,target_key:H,stig_ref:Z,group_id:S,rule_id:O,rule_id_src:O,weight:R,classification:"Unclassified",severity:L,rule_version:M,group_title:C,rule_title:P,fix_text:$t,false_positives:Y,false_negatives:ot,discussion:$,check_content:s,documentable:V,mitigations:Ae,potential_impacts:Ft,third_party_tools:mt,mitigation_control:Bt,responsibility:ke,security_override_guidance:Rt,ia_controls:Ht,check_content_ref:r,legacy_ids:z,ccis:q,group_tree:[{id:S,title:C,description:u}],createdAt:w,updatedAt:w,STIGUuid:T,status:"not_reviewed",overrides:{},comments:"",finding_details:"",srg_id:C})}}let E={stig_name:l,display_name:l,stig_id:c,release_info:m,version:d,uuid:T,reference_identifier:c,size:v.length,rules:v},N={title:l,id:_,stigs:[E],active:!0,mode:1,has_path:!0,target_data:{target_type:"Non-Computing",host_name:"",ip_address:"",mac_address:"",fqdn:"",comments:"",role:"None",is_web_database:!1,technology_area:"",web_db_site:"",web_db_instance:"",classification:null},cklb_version:"1"},I=Nt.basename(t).replace(/-xccdf\.xml$/i,".cklb").replace(/\.xml$/i,".cklb"),f=Nt.join(Nt.dirname(t),I);ve.writeFileSync(f,JSON.stringify(N,null,2));let i=St.Uri.file(f);await St.commands.executeCommand("vscode.openWith",i,"stigViewer.cklbEditor"),St.window.showInformationMessage(`Imported ${v.length} rules from XCCDF \u2192 ${I}`)}var At=j(require("vscode")),Ie=j(require("fs")),kt=j(require("path")),Ee=j(ye());function Te(e){return e==null?[]:Array.isArray(e)?e:[e]}function Q(e){return e==null?"":typeof e=="string"?e:Array.isArray(e)?Q(e[0]):typeof e=="object"&&"_"in e?String(e._):String(e)}var yi={Not_Reviewed:"not_reviewed",Open:"open",NotAFinding:"not_a_finding",Not_Applicable:"not_applicable"};function bi(e){let t=(e||"").toLowerCase();return t==="high"?"high":t==="medium"?"medium":"low"}async function An(e){let t=e.fsPath,a=Ie.readFileSync(t,"utf-8"),o=(await(0,Ee.parseStringPromise)(a,{explicitArray:!1,tagNameProcessors:[Ee.processors.stripPrefix]})).CHECKLIST;if(!o)throw new Error("No <CHECKLIST> element found in the CKL file.");let p=o.ASSET||{},c={target_type:Q(p.ASSET_TYPE)||"Computing",host_name:Q(p.HOST_NAME),ip_address:Q(p.HOST_IP),mac_address:Q(p.HOST_MAC),fqdn:Q(p.HOST_FQDN),comments:Q(p.TARGET_COMMENT),role:Q(p.ROLE)||"None",is_web_database:Q(p.WEB_OR_DATABASE).toLowerCase()==="true",technology_area:Q(p.TECH_AREA),web_db_site:Q(p.WEB_DB_SITE),web_db_instance:Q(p.WEB_DB_INSTANCE),classification:null},l=Te(o.STIGS?.iSTIG),d=wt(),m=new Date().toISOString(),T=[];for(let k of l){let N=new Map;for(let u of Te(k.STIG_INFO?.SI_DATA))N.set(Q(u.SID_NAME),Q(u.SID_DATA));let I=N.get("uuid")||wt(),f=N.get("title")||"",i=N.get("stigid")||"",n=N.get("version")||"",y=N.get("releaseinfo")||"",S=Te(k.VULN),C=[];for(let u of S){let g=new Map,D=[],O=[];for(let $ of Te(u.STIG_DATA)){let Y=Q($.VULN_ATTRIBUTE),ot=Q($.ATTRIBUTE_DATA);Y==="CCI_REF"?D.push(ot):Y==="Legacy_ID"&&ot?O.push(ot):g.set(Y,ot)}let L=g.get("Vuln_Num")||"",R=g.get("Rule_ID")||"",M=wt(),P=Q(u.STATUS),F=yi[P]||"not_reviewed";C.push({uuid:M,stig_uuid:I,target_key:g.get("TargetKey")||null,stig_ref:g.get("STIGRef")||null,group_id:L,rule_id:R,rule_id_src:R,weight:g.get("Weight")||"10.0",classification:g.get("Class")||"Unclassified",severity:bi(g.get("Severity")),rule_version:g.get("Rule_Ver")||"",group_title:g.get("Group_Title")||"",rule_title:g.get("Rule_Title")||"",fix_text:g.get("Fix_Text")||"",false_positives:g.get("False_Positives")||"",false_negatives:g.get("False_Negatives")||"",discussion:g.get("Vuln_Discuss")||"",check_content:g.get("Check_Content")||"",documentable:g.get("Documentable")||"",mitigations:g.get("Mitigations")||"",potential_impacts:g.get("Potential_Impact")||"",third_party_tools:g.get("Third_Party_Tools")||"",mitigation_control:g.get("Mitigation_Control")||"",responsibility:g.get("Responsibility")||"",security_override_guidance:g.get("Security_Override_Guidance")||"",ia_controls:g.get("IA_Controls")||"",check_content_ref:{href:g.get("Check_Content_Ref")||"",name:""},legacy_ids:O,ccis:D,group_tree:[{id:L,title:g.get("Group_Title")||"",description:""}],createdAt:m,updatedAt:m,STIGUuid:I,status:F,overrides:{},comments:Q(u.COMMENTS),finding_details:Q(u.FINDING_DETAILS),srg_id:g.get("Group_Title")||""})}T.push({stig_name:f,display_name:f,stig_id:i,release_info:y,version:n,uuid:I,reference_identifier:i,size:C.length,rules:C})}let _={title:T[0]?.stig_name||"Imported CKL",id:d,stigs:T,active:!0,mode:1,has_path:!0,target_data:c,cklb_version:"1"},w=kt.basename(t,".ckl")+".cklb",h=kt.join(kt.dirname(t),w);Ie.writeFileSync(h,JSON.stringify(_,null,2));let v=At.Uri.file(h);await At.commands.executeCommand("vscode.openWith",v,"stigViewer.cklbEditor");let E=T.reduce((k,N)=>k+N.rules.length,0);At.window.showInformationMessage(`Imported ${E} rules from CKL \u2192 ${w}`)}var Ot=j(require("vscode")),jt=j(require("fs"));async function kn(e){let t=await Ot.window.showOpenDialog({canSelectMany:!1,filters:{"STIG Checklist":["cklb"]},title:"Select OLD (completed) checklist to carry findings FROM"});if(!t?.[0])return;let a=e;if(!a){let _=await Ot.window.showOpenDialog({canSelectMany:!1,filters:{"STIG Checklist":["cklb"]},title:"Select NEW checklist to carry findings INTO"});if(!_?.[0])return;a=_[0]}let b=JSON.parse(jt.readFileSync(t[0].fsPath,"utf-8")),o=JSON.parse(jt.readFileSync(a.fsPath,"utf-8")),p=new Map;for(let _ of b.stigs)for(let w of _.rules)p.set(w.rule_version,w);let c=0,l=0,d=0;for(let _ of o.stigs)for(let w of _.rules){d++;let h=p.get(w.rule_version);h?(w.status=h.status,w.finding_details=h.finding_details,w.comments=h.comments,w.updatedAt=new Date().toISOString(),c++):l++}let m=new Set;for(let _ of o.stigs)for(let w of _.rules)m.add(w.rule_version);let T=0;for(let _ of p.keys())m.has(_)||T++;jt.writeFileSync(a.fsPath,JSON.stringify(o,null,2)),await Ot.commands.executeCommand("vscode.openWith",a,"stigViewer.cklbEditor"),Ot.window.showInformationMessage(`Merge complete: ${c} carried forward, ${l} new rules, ${T} removed from old STIG`)}var pt=j(require("vscode")),On=j(require("fs")),Ce=class e{static async show(t){if(e._panel){e._panel.reveal(),await e._refresh();return}let a=pt.window.createWebviewPanel("stigViewer.dashboard","STIG Dashboard",pt.ViewColumn.One,{enableScripts:!0,retainContextWhenHidden:!0});e._panel=a,a.onDidDispose(()=>{e._panel=void 0}),a.webview.onDidReceiveMessage(async b=>{if(b.type==="openFile"){let o=pt.Uri.file(b.path);await pt.commands.executeCommand("vscode.openWith",o,"stigViewer.cklbEditor")}b.type==="refresh"&&await e._refresh()}),await e._refresh()}static async _refresh(){let t=e._panel;if(!t)return;let a=await pt.workspace.findFiles("**/*.cklb","**/node_modules/**"),b=[];for(let o of a)try{let p=On.readFileSync(o.fsPath,"utf-8"),c=JSON.parse(p);for(let l of c.stigs){let d={file:pt.workspace.asRelativePath(o),uri:o.fsPath,title:c.title,hostName:c.target_data.host_name||"\u2014",stigName:l.display_name||l.stig_name,total:l.rules.length,open:0,not_a_finding:0,not_reviewed:0,not_applicable:0,high:0,medium:0,low:0};for(let m of l.rules)d[m.status]++,d[m.severity]++;b.push(d)}}catch{}t.webview.html=wi(b)}};function wi(e){let t={total:0,open:0,not_a_finding:0,not_reviewed:0,not_applicable:0,high:0,medium:0,low:0};for(let p of e)t.total+=p.total,t.open+=p.open,t.not_a_finding+=p.not_a_finding,t.not_reviewed+=p.not_reviewed,t.not_applicable+=p.not_applicable,t.high+=p.high,t.medium+=p.medium,t.low+=p.low;let a=p=>t.total?Math.round(p/t.total*100):0,b=a(t.not_a_finding+t.not_applicable),o=e.map(p=>{let c=p.total?Math.round((p.not_a_finding+p.not_applicable)/p.total*100):0;return`<tr class="row" data-path="${xe(p.uri)}">
-      <td class="td-host">${xe(p.hostName)}</td>
-      <td class="td-stig">${xe(p.stigName)}</td>
-      <td class="td-n">${p.total}</td>
-      <td class="td-n td-open">${p.open}</td>
-      <td class="td-n td-naf">${p.not_a_finding}</td>
-      <td class="td-n td-nr">${p.not_reviewed}</td>
-      <td class="td-n td-na">${p.not_applicable}</td>
-      <td class="td-n">${c}%</td>
-      <td class="td-file">${xe(p.file)}</td>
-    </tr>`}).join(`
-`);return`<!DOCTYPE html>
+          <pre>${String(e)}</pre></body></html>`;
+      }
+    };
+    updateWebview();
+    _CklbEditorProvider._activeDocumentUri = document.uri;
+    webviewPanel.onDidChangeViewState(() => {
+      if (webviewPanel.active) {
+        _CklbEditorProvider._activeDocumentUri = document.uri;
+      }
+    });
+    let syncTimeout;
+    const changeSub = vscode.workspace.onDidChangeTextDocument((e) => {
+      if (e.document.uri.toString() === document.uri.toString()) {
+        clearTimeout(syncTimeout);
+        syncTimeout = setTimeout(() => {
+          try {
+            const data = JSON.parse(document.getText());
+            const rules = Object.fromEntries(
+              data.stigs.flatMap((st) => st.rules.map((r) => [r.uuid, r]))
+            );
+            webviewPanel.webview.postMessage({ type: "dataUpdate", rules });
+          } catch {
+          }
+        }, 150);
+      }
+    });
+    webviewPanel.webview.onDidReceiveMessage(async (msg) => {
+      if (msg.type === "saveRule") {
+        const { ruleUuid, stigUuid, status, finding_details, comments } = msg;
+        try {
+          const data = JSON.parse(document.getText());
+          const stig = data.stigs.find((s) => s.uuid === stigUuid);
+          const rule = stig?.rules.find((r) => r.uuid === ruleUuid);
+          if (rule) {
+            rule.status = status;
+            rule.finding_details = finding_details;
+            rule.comments = comments;
+            const edit = new vscode.WorkspaceEdit();
+            const fullRange = new vscode.Range(
+              document.positionAt(0),
+              document.positionAt(document.getText().length)
+            );
+            edit.replace(document.uri, fullRange, JSON.stringify(data, null, 2));
+            await vscode.workspace.applyEdit(edit);
+          }
+        } catch (e) {
+          vscode.window.showErrorMessage(`Save failed: ${e}`);
+        }
+      }
+      if (msg.type === "saveTargetData") {
+        try {
+          const data = JSON.parse(document.getText());
+          Object.assign(data.target_data, msg.targetData);
+          const edit = new vscode.WorkspaceEdit();
+          const fullRange = new vscode.Range(
+            document.positionAt(0),
+            document.positionAt(document.getText().length)
+          );
+          edit.replace(document.uri, fullRange, JSON.stringify(data, null, 2));
+          await vscode.workspace.applyEdit(edit);
+          vscode.window.showInformationMessage("Target data updated");
+        } catch (e) {
+          vscode.window.showErrorMessage(`Save target data failed: ${e}`);
+        }
+      }
+      if (msg.type === "exportPoam") {
+        try {
+          const data = JSON.parse(document.getText());
+          const poam = buildPoam(data);
+          const openCount = data.stigs.reduce((n, s) => n + s.rules.filter((r) => r.status === "open").length, 0);
+          const defaultName = path.basename(document.uri.fsPath, ".cklb") + "_POAM.csv";
+          const saveUri = await vscode.window.showSaveDialog({
+            defaultUri: vscode.Uri.file(path.join(path.dirname(document.uri.fsPath), defaultName)),
+            filters: { "CSV": ["csv"] },
+            title: `Export POA&M (${openCount} open findings)`
+          });
+          if (saveUri) {
+            fs.writeFileSync(saveUri.fsPath, poam, "utf-8");
+            vscode.window.showInformationMessage(`Exported POA&M (${openCount} findings) \u2192 ${path.basename(saveUri.fsPath)}`);
+          }
+        } catch (e) {
+          vscode.window.showErrorMessage(`POA&M export failed: ${e}`);
+        }
+      }
+      if (msg.type === "exportCsv") {
+        try {
+          const data = JSON.parse(document.getText());
+          const csv = buildCsv(data);
+          const defaultName = path.basename(document.uri.fsPath, ".cklb") + ".csv";
+          const saveUri = await vscode.window.showSaveDialog({
+            defaultUri: vscode.Uri.file(path.join(path.dirname(document.uri.fsPath), defaultName)),
+            filters: { "CSV": ["csv"] },
+            title: "Export Summary CSV"
+          });
+          if (saveUri) {
+            fs.writeFileSync(saveUri.fsPath, csv, "utf-8");
+            vscode.window.showInformationMessage(`Exported CSV \u2192 ${path.basename(saveUri.fsPath)}`);
+          }
+        } catch (e) {
+          vscode.window.showErrorMessage(`CSV export failed: ${e}`);
+        }
+      }
+      if (msg.type === "exportCkl") {
+        try {
+          const data = JSON.parse(document.getText());
+          const ckl = buildCkl(data);
+          const defaultName = path.basename(document.uri.fsPath, ".cklb") + ".ckl";
+          const saveUri = await vscode.window.showSaveDialog({
+            defaultUri: vscode.Uri.file(path.join(path.dirname(document.uri.fsPath), defaultName)),
+            filters: { "CKL Checklist": ["ckl"] },
+            title: "Export CKL (XML)"
+          });
+          if (saveUri) {
+            fs.writeFileSync(saveUri.fsPath, ckl, "utf-8");
+            vscode.window.showInformationMessage(`Exported CKL \u2192 ${path.basename(saveUri.fsPath)}`);
+          }
+        } catch (e) {
+          vscode.window.showErrorMessage(`CKL export failed: ${e}`);
+        }
+      }
+      if (msg.type === "bulkSaveRules") {
+        const { ruleUuids, stigUuid, status, comments } = msg;
+        try {
+          const data = JSON.parse(document.getText());
+          const stig = data.stigs.find((s) => s.uuid === stigUuid);
+          if (!stig) {
+            return;
+          }
+          let count = 0;
+          for (const rule of stig.rules) {
+            if (ruleUuids.includes(rule.uuid)) {
+              rule.status = status;
+              if (comments) {
+                rule.comments = comments;
+              }
+              count++;
+            }
+          }
+          const edit = new vscode.WorkspaceEdit();
+          const fullRange = new vscode.Range(
+            document.positionAt(0),
+            document.positionAt(document.getText().length)
+          );
+          edit.replace(document.uri, fullRange, JSON.stringify(data, null, 2));
+          await vscode.workspace.applyEdit(edit);
+          vscode.window.showInformationMessage(
+            `Bulk updated ${count} rules \u2192 ${status.replace(/_/g, " ")}`
+          );
+        } catch (e) {
+          vscode.window.showErrorMessage(`Bulk save failed: ${e}`);
+        }
+      }
+    });
+    webviewPanel.onDidDispose(() => changeSub.dispose());
+  }
+};
+
+// src/xccdfImporter.ts
+var vscode2 = __toESM(require("vscode"));
+var fs2 = __toESM(require("fs"));
+var path2 = __toESM(require("path"));
+var import_xml2js = __toESM(require_xml2js());
+
+// node_modules/uuid/dist-node/stringify.js
+var byteToHex = [];
+for (let i = 0; i < 256; ++i) {
+  byteToHex.push((i + 256).toString(16).slice(1));
+}
+function unsafeStringify(arr, offset = 0) {
+  return (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
+}
+
+// node_modules/uuid/dist-node/rng.js
+var import_node_crypto = require("node:crypto");
+var rnds8Pool = new Uint8Array(256);
+var poolPtr = rnds8Pool.length;
+function rng() {
+  if (poolPtr > rnds8Pool.length - 16) {
+    (0, import_node_crypto.randomFillSync)(rnds8Pool);
+    poolPtr = 0;
+  }
+  return rnds8Pool.slice(poolPtr, poolPtr += 16);
+}
+
+// node_modules/uuid/dist-node/native.js
+var import_node_crypto2 = require("node:crypto");
+var native_default = { randomUUID: import_node_crypto2.randomUUID };
+
+// node_modules/uuid/dist-node/v4.js
+function _v4(options, buf, offset) {
+  options = options || {};
+  const rnds = options.random ?? options.rng?.() ?? rng();
+  if (rnds.length < 16) {
+    throw new Error("Random bytes length must be >= 16");
+  }
+  rnds[6] = rnds[6] & 15 | 64;
+  rnds[8] = rnds[8] & 63 | 128;
+  if (buf) {
+    offset = offset || 0;
+    if (offset < 0 || offset + 16 > buf.length) {
+      throw new RangeError(`UUID byte range ${offset}:${offset + 15} is out of buffer bounds`);
+    }
+    for (let i = 0; i < 16; ++i) {
+      buf[offset + i] = rnds[i];
+    }
+    return buf;
+  }
+  return unsafeStringify(rnds);
+}
+function v4(options, buf, offset) {
+  if (native_default.randomUUID && !buf && !options) {
+    return native_default.randomUUID();
+  }
+  return _v4(options, buf, offset);
+}
+var v4_default = v4;
+
+// src/xccdfImporter.ts
+function toArray(val) {
+  if (val == null) return [];
+  return Array.isArray(val) ? val : [val];
+}
+function textOf(node) {
+  if (node == null) return "";
+  if (typeof node === "string") return node;
+  if (Array.isArray(node)) return textOf(node[0]);
+  if (typeof node === "object" && "_" in node) {
+    return String(node._);
+  }
+  return String(node);
+}
+function extractTag(text, tag) {
+  const m = text.match(new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`));
+  return m ? m[1].trim() : "";
+}
+function normalizeVulnId(id) {
+  const m = id.match(/(V-\d+)/);
+  return m ? m[1] : id;
+}
+function normalizeRuleId(id) {
+  const m = id.match(/(SV-\d+r\d+_rule)/);
+  return m ? m[1] : id;
+}
+function normalizeSeverity(sev) {
+  const s = (sev || "").toLowerCase();
+  if (s === "high") return "high";
+  if (s === "medium") return "medium";
+  return "low";
+}
+function extractBenchmark(parsed) {
+  const root = parsed;
+  if (root.Benchmark) {
+    return root.Benchmark;
+  }
+  const dsc = parsed["data-stream-collection"];
+  if (dsc?.component != null) {
+    for (const comp of toArray(dsc.component)) {
+      const b = comp.Benchmark;
+      if (b) {
+        return b;
+      }
+    }
+  }
+  return null;
+}
+async function importXccdf(uri) {
+  const xmlPath = uri.fsPath;
+  const xmlContent = fs2.readFileSync(xmlPath, "utf-8");
+  const parsed = await (0, import_xml2js.parseStringPromise)(xmlContent, {
+    explicitArray: false,
+    tagNameProcessors: [import_xml2js.processors.stripPrefix]
+  });
+  const benchmark = extractBenchmark(parsed);
+  if (!benchmark) {
+    throw new Error(
+      "No XCCDF <Benchmark> found. Use a standalone *-xccdf.xml benchmark, or an SCAP 1.2/1.3 data stream (e.g. *Benchmark*.xml) that embeds the checklist."
+    );
+  }
+  const attrs = benchmark.$ || {};
+  const benchmarkId = attrs.id || "";
+  const benchmarkTitle = textOf(benchmark.title);
+  const benchmarkVersion = textOf(benchmark.version);
+  let releaseInfo = "";
+  for (const pt of toArray(benchmark["plain-text"])) {
+    const ptAttrs = pt?.$ || {};
+    if (ptAttrs.id === "release-info") {
+      releaseInfo = textOf(pt);
+      break;
+    }
+  }
+  const stigUuid = v4_default();
+  const docId = v4_default();
+  const now = (/* @__PURE__ */ new Date()).toISOString();
+  const groups = toArray(benchmark.Group);
+  const rules = [];
+  for (const group of groups) {
+    const gAttrs = group?.$ || {};
+    const groupId = normalizeVulnId(gAttrs.id || "");
+    const groupTitle = textOf(group.title);
+    const groupDesc = textOf(group.description);
+    for (const rule of toArray(group.Rule)) {
+      const rAttrs = rule?.$ || {};
+      const ruleId = normalizeRuleId(rAttrs.id || "");
+      const severity = normalizeSeverity(rAttrs.severity);
+      const weight = rAttrs.weight || "10.0";
+      const ruleVersion = textOf(rule.version);
+      const ruleTitle = textOf(rule.title);
+      const descRaw = textOf(rule.description);
+      const discussion = extractTag(descRaw, "VulnDiscussion");
+      const falsePositives = extractTag(descRaw, "FalsePositives");
+      const falseNegatives = extractTag(descRaw, "FalseNegatives");
+      const documentable = extractTag(descRaw, "Documentable");
+      const mitigations = extractTag(descRaw, "Mitigations");
+      const severityOverrideGuidance = extractTag(descRaw, "SeverityOverrideGuidance");
+      const potentialImpacts = extractTag(descRaw, "PotentialImpacts");
+      const thirdPartyTools = extractTag(descRaw, "ThirdPartyTools");
+      const mitigationControl = extractTag(descRaw, "MitigationControl");
+      const responsibility = extractTag(descRaw, "Responsibility");
+      const iaControls = extractTag(descRaw, "IAControls");
+      const fixText = textOf(rule.fixtext);
+      const checks = toArray(rule.check);
+      let checkContent = "";
+      let checkContentRef = { href: "", name: "" };
+      const manualCheck = checks.find((c) => c["check-content"]);
+      const selectedCheck = manualCheck || checks[0];
+      if (selectedCheck) {
+        checkContent = textOf(selectedCheck["check-content"]);
+        const ref = toArray(selectedCheck["check-content-ref"])[0];
+        if (ref?.$) {
+          checkContentRef = { href: ref.$.href || "", name: ref.$.name || "" };
+        }
+      }
+      const ccis = [];
+      const legacyIds = [];
+      for (const ident of toArray(rule.ident)) {
+        const sys = ident?.$?.system || "";
+        const val = textOf(ident);
+        if (sys.includes("cci")) {
+          ccis.push(val);
+        } else if (sys.includes("legacy")) {
+          legacyIds.push(val);
+        }
+      }
+      let targetKey = null;
+      let stigRef = null;
+      for (const ref of toArray(rule.reference)) {
+        if (ref?.identifier) {
+          targetKey = textOf(ref.identifier);
+        }
+        if (ref?.title) {
+          stigRef = textOf(ref.title);
+        }
+      }
+      const ruleUuid = v4_default();
+      rules.push({
+        uuid: ruleUuid,
+        stig_uuid: stigUuid,
+        target_key: targetKey,
+        stig_ref: stigRef,
+        group_id: groupId,
+        rule_id: ruleId,
+        rule_id_src: ruleId,
+        weight,
+        classification: "Unclassified",
+        severity,
+        rule_version: ruleVersion,
+        group_title: groupTitle,
+        rule_title: ruleTitle,
+        fix_text: fixText,
+        false_positives: falsePositives,
+        false_negatives: falseNegatives,
+        discussion,
+        check_content: checkContent,
+        documentable,
+        mitigations,
+        potential_impacts: potentialImpacts,
+        third_party_tools: thirdPartyTools,
+        mitigation_control: mitigationControl,
+        responsibility,
+        security_override_guidance: severityOverrideGuidance,
+        ia_controls: iaControls,
+        check_content_ref: checkContentRef,
+        legacy_ids: legacyIds,
+        ccis,
+        group_tree: [{ id: groupId, title: groupTitle, description: groupDesc }],
+        createdAt: now,
+        updatedAt: now,
+        STIGUuid: stigUuid,
+        status: "not_reviewed",
+        overrides: {},
+        comments: "",
+        finding_details: "",
+        srg_id: groupTitle
+      });
+    }
+  }
+  const stig = {
+    stig_name: benchmarkTitle,
+    display_name: benchmarkTitle,
+    stig_id: benchmarkId,
+    release_info: releaseInfo,
+    version: benchmarkVersion,
+    uuid: stigUuid,
+    reference_identifier: benchmarkId,
+    size: rules.length,
+    rules
+  };
+  const targetData = {
+    target_type: "Non-Computing",
+    host_name: "",
+    ip_address: "",
+    mac_address: "",
+    fqdn: "",
+    comments: "",
+    role: "None",
+    is_web_database: false,
+    technology_area: "",
+    web_db_site: "",
+    web_db_instance: "",
+    classification: null
+  };
+  const doc = {
+    title: benchmarkTitle,
+    id: docId,
+    stigs: [stig],
+    active: true,
+    mode: 1,
+    has_path: true,
+    target_data: targetData,
+    cklb_version: "1"
+  };
+  const outName = path2.basename(xmlPath).replace(/-xccdf\.xml$/i, ".cklb").replace(/\.xml$/i, ".cklb");
+  const outPath = path2.join(path2.dirname(xmlPath), outName);
+  fs2.writeFileSync(outPath, JSON.stringify(doc, null, 2));
+  const outUri = vscode2.Uri.file(outPath);
+  await vscode2.commands.executeCommand("vscode.openWith", outUri, "stigViewer.cklbEditor");
+  vscode2.window.showInformationMessage(
+    `Imported ${rules.length} rules from XCCDF \u2192 ${outName}`
+  );
+}
+
+// src/importCkl.ts
+var vscode3 = __toESM(require("vscode"));
+var fs3 = __toESM(require("fs"));
+var path3 = __toESM(require("path"));
+var import_xml2js2 = __toESM(require_xml2js());
+function toArray2(val) {
+  if (val == null) return [];
+  return Array.isArray(val) ? val : [val];
+}
+function txt(node) {
+  if (node == null) return "";
+  if (typeof node === "string") return node;
+  if (Array.isArray(node)) return txt(node[0]);
+  if (typeof node === "object" && "_" in node) {
+    return String(node._);
+  }
+  return String(node);
+}
+var STATUS_MAP2 = {
+  "Not_Reviewed": "not_reviewed",
+  "Open": "open",
+  "NotAFinding": "not_a_finding",
+  "Not_Applicable": "not_applicable"
+};
+function normalizeSeverity2(sev) {
+  const s = (sev || "").toLowerCase();
+  if (s === "high") return "high";
+  if (s === "medium") return "medium";
+  return "low";
+}
+async function importCkl(uri) {
+  const xmlPath = uri.fsPath;
+  const xmlContent = fs3.readFileSync(xmlPath, "utf-8");
+  const parsed = await (0, import_xml2js2.parseStringPromise)(xmlContent, {
+    explicitArray: false,
+    tagNameProcessors: [import_xml2js2.processors.stripPrefix]
+  });
+  const checklist = parsed.CHECKLIST;
+  if (!checklist) {
+    throw new Error("No <CHECKLIST> element found in the CKL file.");
+  }
+  const asset = checklist.ASSET || {};
+  const targetData = {
+    target_type: txt(asset.ASSET_TYPE) || "Computing",
+    host_name: txt(asset.HOST_NAME),
+    ip_address: txt(asset.HOST_IP),
+    mac_address: txt(asset.HOST_MAC),
+    fqdn: txt(asset.HOST_FQDN),
+    comments: txt(asset.TARGET_COMMENT),
+    role: txt(asset.ROLE) || "None",
+    is_web_database: txt(asset.WEB_OR_DATABASE).toLowerCase() === "true",
+    technology_area: txt(asset.TECH_AREA),
+    web_db_site: txt(asset.WEB_DB_SITE),
+    web_db_instance: txt(asset.WEB_DB_INSTANCE),
+    classification: null
+  };
+  const iStigs = toArray2(checklist.STIGS?.iSTIG);
+  const docId = v4_default();
+  const now = (/* @__PURE__ */ new Date()).toISOString();
+  const stigs = [];
+  for (const iStig of iStigs) {
+    const siMap = /* @__PURE__ */ new Map();
+    for (const si of toArray2(iStig.STIG_INFO?.SI_DATA)) {
+      siMap.set(txt(si.SID_NAME), txt(si.SID_DATA));
+    }
+    const stigUuid = siMap.get("uuid") || v4_default();
+    const stigName = siMap.get("title") || "";
+    const stigId = siMap.get("stigid") || "";
+    const version = siMap.get("version") || "";
+    const releaseInfo = siMap.get("releaseinfo") || "";
+    const vulns = toArray2(iStig.VULN);
+    const rules = [];
+    for (const vuln of vulns) {
+      const attrMap = /* @__PURE__ */ new Map();
+      const cciRefs = [];
+      const legacyIds = [];
+      for (const sd of toArray2(vuln.STIG_DATA)) {
+        const attr = txt(sd.VULN_ATTRIBUTE);
+        const data = txt(sd.ATTRIBUTE_DATA);
+        if (attr === "CCI_REF") {
+          cciRefs.push(data);
+        } else if (attr === "Legacy_ID" && data) {
+          legacyIds.push(data);
+        } else {
+          attrMap.set(attr, data);
+        }
+      }
+      const groupId = attrMap.get("Vuln_Num") || "";
+      const ruleId = attrMap.get("Rule_ID") || "";
+      const ruleUuid = v4_default();
+      const rawStatus = txt(vuln.STATUS);
+      const status = STATUS_MAP2[rawStatus] || "not_reviewed";
+      rules.push({
+        uuid: ruleUuid,
+        stig_uuid: stigUuid,
+        target_key: attrMap.get("TargetKey") || null,
+        stig_ref: attrMap.get("STIGRef") || null,
+        group_id: groupId,
+        rule_id: ruleId,
+        rule_id_src: ruleId,
+        weight: attrMap.get("Weight") || "10.0",
+        classification: attrMap.get("Class") || "Unclassified",
+        severity: normalizeSeverity2(attrMap.get("Severity")),
+        rule_version: attrMap.get("Rule_Ver") || "",
+        group_title: attrMap.get("Group_Title") || "",
+        rule_title: attrMap.get("Rule_Title") || "",
+        fix_text: attrMap.get("Fix_Text") || "",
+        false_positives: attrMap.get("False_Positives") || "",
+        false_negatives: attrMap.get("False_Negatives") || "",
+        discussion: attrMap.get("Vuln_Discuss") || "",
+        check_content: attrMap.get("Check_Content") || "",
+        documentable: attrMap.get("Documentable") || "",
+        mitigations: attrMap.get("Mitigations") || "",
+        potential_impacts: attrMap.get("Potential_Impact") || "",
+        third_party_tools: attrMap.get("Third_Party_Tools") || "",
+        mitigation_control: attrMap.get("Mitigation_Control") || "",
+        responsibility: attrMap.get("Responsibility") || "",
+        security_override_guidance: attrMap.get("Security_Override_Guidance") || "",
+        ia_controls: attrMap.get("IA_Controls") || "",
+        check_content_ref: { href: attrMap.get("Check_Content_Ref") || "", name: "" },
+        legacy_ids: legacyIds,
+        ccis: cciRefs,
+        group_tree: [{ id: groupId, title: attrMap.get("Group_Title") || "", description: "" }],
+        createdAt: now,
+        updatedAt: now,
+        STIGUuid: stigUuid,
+        status,
+        overrides: {},
+        comments: txt(vuln.COMMENTS),
+        finding_details: txt(vuln.FINDING_DETAILS),
+        srg_id: attrMap.get("Group_Title") || ""
+      });
+    }
+    stigs.push({
+      stig_name: stigName,
+      display_name: stigName,
+      stig_id: stigId,
+      release_info: releaseInfo,
+      version,
+      uuid: stigUuid,
+      reference_identifier: stigId,
+      size: rules.length,
+      rules
+    });
+  }
+  const doc = {
+    title: stigs[0]?.stig_name || "Imported CKL",
+    id: docId,
+    stigs,
+    active: true,
+    mode: 1,
+    has_path: true,
+    target_data: targetData,
+    cklb_version: "1"
+  };
+  const outName = path3.basename(xmlPath, ".ckl") + ".cklb";
+  const outPath = path3.join(path3.dirname(xmlPath), outName);
+  fs3.writeFileSync(outPath, JSON.stringify(doc, null, 2));
+  const outUri = vscode3.Uri.file(outPath);
+  await vscode3.commands.executeCommand("vscode.openWith", outUri, "stigViewer.cklbEditor");
+  const totalRules = stigs.reduce((n, s) => n + s.rules.length, 0);
+  vscode3.window.showInformationMessage(
+    `Imported ${totalRules} rules from CKL \u2192 ${outName}`
+  );
+}
+
+// src/mergeFindings.ts
+var vscode4 = __toESM(require("vscode"));
+var fs4 = __toESM(require("fs"));
+async function mergeFindings(activeCklbUri) {
+  const oldUris = await vscode4.window.showOpenDialog({
+    canSelectMany: false,
+    filters: { "STIG Checklist": ["cklb"] },
+    title: "Select OLD (completed) checklist to carry findings FROM"
+  });
+  if (!oldUris?.[0]) {
+    return;
+  }
+  let newUri = activeCklbUri;
+  if (!newUri) {
+    const uris = await vscode4.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { "STIG Checklist": ["cklb"] },
+      title: "Select NEW checklist to carry findings INTO"
+    });
+    if (!uris?.[0]) {
+      return;
+    }
+    newUri = uris[0];
+  }
+  const oldDoc = JSON.parse(fs4.readFileSync(oldUris[0].fsPath, "utf-8"));
+  const newDoc = JSON.parse(fs4.readFileSync(newUri.fsPath, "utf-8"));
+  const oldRuleMap = /* @__PURE__ */ new Map();
+  for (const stig of oldDoc.stigs) {
+    for (const rule of stig.rules) {
+      oldRuleMap.set(rule.rule_version, rule);
+    }
+  }
+  let carried = 0;
+  let newRules = 0;
+  let total = 0;
+  for (const stig of newDoc.stigs) {
+    for (const rule of stig.rules) {
+      total++;
+      const oldRule = oldRuleMap.get(rule.rule_version);
+      if (oldRule) {
+        rule.status = oldRule.status;
+        rule.finding_details = oldRule.finding_details;
+        rule.comments = oldRule.comments;
+        rule.updatedAt = (/* @__PURE__ */ new Date()).toISOString();
+        carried++;
+      } else {
+        newRules++;
+      }
+    }
+  }
+  const newRuleVersions = /* @__PURE__ */ new Set();
+  for (const stig of newDoc.stigs) {
+    for (const rule of stig.rules) {
+      newRuleVersions.add(rule.rule_version);
+    }
+  }
+  let removed = 0;
+  for (const rv of oldRuleMap.keys()) {
+    if (!newRuleVersions.has(rv)) {
+      removed++;
+    }
+  }
+  fs4.writeFileSync(newUri.fsPath, JSON.stringify(newDoc, null, 2));
+  await vscode4.commands.executeCommand("vscode.openWith", newUri, "stigViewer.cklbEditor");
+  vscode4.window.showInformationMessage(
+    `Merge complete: ${carried} carried forward, ${newRules} new rules, ${removed} removed from old STIG`
+  );
+}
+
+// src/dashboardPanel.ts
+var vscode5 = __toESM(require("vscode"));
+var fs5 = __toESM(require("fs"));
+var DashboardPanel = class _DashboardPanel {
+  static async show(context) {
+    if (_DashboardPanel._panel) {
+      _DashboardPanel._panel.reveal();
+      await _DashboardPanel._refresh();
+      return;
+    }
+    const panel = vscode5.window.createWebviewPanel(
+      "stigViewer.dashboard",
+      "STIG Dashboard",
+      vscode5.ViewColumn.One,
+      { enableScripts: true, retainContextWhenHidden: true }
+    );
+    _DashboardPanel._panel = panel;
+    panel.onDidDispose(() => {
+      _DashboardPanel._panel = void 0;
+    });
+    panel.webview.onDidReceiveMessage(async (msg) => {
+      if (msg.type === "openFile") {
+        const uri = vscode5.Uri.file(msg.path);
+        await vscode5.commands.executeCommand("vscode.openWith", uri, "stigViewer.cklbEditor");
+      }
+      if (msg.type === "refresh") {
+        await _DashboardPanel._refresh();
+      }
+    });
+    await _DashboardPanel._refresh();
+  }
+  static async _refresh() {
+    const panel = _DashboardPanel._panel;
+    if (!panel) return;
+    const files = await vscode5.workspace.findFiles("**/*.cklb", "**/node_modules/**");
+    const summaries = [];
+    for (const f of files) {
+      try {
+        const raw = fs5.readFileSync(f.fsPath, "utf-8");
+        const doc = JSON.parse(raw);
+        for (const stig of doc.stigs) {
+          const s = {
+            file: vscode5.workspace.asRelativePath(f),
+            uri: f.fsPath,
+            title: doc.title,
+            hostName: doc.target_data.host_name || "\u2014",
+            stigName: stig.display_name || stig.stig_name,
+            total: stig.rules.length,
+            open: 0,
+            not_a_finding: 0,
+            not_reviewed: 0,
+            not_applicable: 0,
+            high: 0,
+            medium: 0,
+            low: 0
+          };
+          for (const r of stig.rules) {
+            s[r.status]++;
+            s[r.severity]++;
+          }
+          summaries.push(s);
+        }
+      } catch {
+      }
+    }
+    panel.webview.html = buildDashboardHtml(summaries);
+  }
+};
+function buildDashboardHtml(summaries) {
+  const agg = {
+    total: 0,
+    open: 0,
+    not_a_finding: 0,
+    not_reviewed: 0,
+    not_applicable: 0,
+    high: 0,
+    medium: 0,
+    low: 0
+  };
+  for (const s of summaries) {
+    agg.total += s.total;
+    agg.open += s.open;
+    agg.not_a_finding += s.not_a_finding;
+    agg.not_reviewed += s.not_reviewed;
+    agg.not_applicable += s.not_applicable;
+    agg.high += s.high;
+    agg.medium += s.medium;
+    agg.low += s.low;
+  }
+  const pct = (n) => agg.total ? Math.round(n / agg.total * 100) : 0;
+  const completion = pct(agg.not_a_finding + agg.not_applicable);
+  const rows = summaries.map((s) => {
+    const sPct = s.total ? Math.round((s.not_a_finding + s.not_applicable) / s.total * 100) : 0;
+    return `<tr class="row" data-path="${esc2(s.uri)}">
+      <td class="td-host">${esc2(s.hostName)}</td>
+      <td class="td-stig">${esc2(s.stigName)}</td>
+      <td class="td-n">${s.total}</td>
+      <td class="td-n td-open">${s.open}</td>
+      <td class="td-n td-naf">${s.not_a_finding}</td>
+      <td class="td-n td-nr">${s.not_reviewed}</td>
+      <td class="td-n td-na">${s.not_applicable}</td>
+      <td class="td-n">${sPct}%</td>
+      <td class="td-file">${esc2(s.file)}</td>
+    </tr>`;
+  }).join("\n");
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline';">
 <title>STIG Dashboard</title>
-<style>${vi}</style>
+<style>${CSS2}</style>
 </head>
 <body>
 
 <header class="hdr">
   <div class="hdr-row">
     <h1>STIG Dashboard</h1>
-    <span class="chip">${e.length} checklists</span>
+    <span class="chip">${summaries.length} checklists</span>
     <button class="btn-refresh" id="btnRefresh">Refresh</button>
   </div>
 </header>
 
 <div class="cards">
-  <div class="card card-total"><div class="card-n">${t.total}</div><div class="card-l">Total Rules</div></div>
-  <div class="card card-open"><div class="card-n">${t.open}</div><div class="card-l">Open</div></div>
-  <div class="card card-naf"><div class="card-n">${t.not_a_finding}</div><div class="card-l">Not a Finding</div></div>
-  <div class="card card-nr"><div class="card-n">${t.not_reviewed}</div><div class="card-l">Not Reviewed</div></div>
-  <div class="card card-na"><div class="card-n">${t.not_applicable}</div><div class="card-l">Not Applicable</div></div>
+  <div class="card card-total"><div class="card-n">${agg.total}</div><div class="card-l">Total Rules</div></div>
+  <div class="card card-open"><div class="card-n">${agg.open}</div><div class="card-l">Open</div></div>
+  <div class="card card-naf"><div class="card-n">${agg.not_a_finding}</div><div class="card-l">Not a Finding</div></div>
+  <div class="card card-nr"><div class="card-n">${agg.not_reviewed}</div><div class="card-l">Not Reviewed</div></div>
+  <div class="card card-na"><div class="card-n">${agg.not_applicable}</div><div class="card-l">Not Applicable</div></div>
 </div>
 
 <div class="sev-bar">
-  <div class="sev-seg sev-high" style="width:${a(t.high)}%"><span>CAT I \xB7 ${t.high}</span></div>
-  <div class="sev-seg sev-med"  style="width:${a(t.medium)}%"><span>CAT II \xB7 ${t.medium}</span></div>
-  <div class="sev-seg sev-low"  style="width:${a(t.low)}%"><span>CAT III \xB7 ${t.low}</span></div>
+  <div class="sev-seg sev-high" style="width:${pct(agg.high)}%"><span>CAT I \xB7 ${agg.high}</span></div>
+  <div class="sev-seg sev-med"  style="width:${pct(agg.medium)}%"><span>CAT II \xB7 ${agg.medium}</span></div>
+  <div class="sev-seg sev-low"  style="width:${pct(agg.low)}%"><span>CAT III \xB7 ${agg.low}</span></div>
 </div>
 
 <div class="completion">
-  <div class="completion-label">Overall Completion: ${b}%</div>
+  <div class="completion-label">Overall Completion: ${completion}%</div>
   <div class="completion-track">
-    <div class="completion-fill completion-naf" style="width:${a(t.not_a_finding)}%"></div>
-    <div class="completion-fill completion-na"  style="width:${a(t.not_applicable)}%"></div>
+    <div class="completion-fill completion-naf" style="width:${pct(agg.not_a_finding)}%"></div>
+    <div class="completion-fill completion-na"  style="width:${pct(agg.not_applicable)}%"></div>
   </div>
 </div>
 
-${e.length===0?'<p class="muted">No .cklb files found in this workspace.</p>':`
+${summaries.length === 0 ? '<p class="muted">No .cklb files found in this workspace.</p>' : `
 <div class="tbl-wrap">
   <table class="tbl">
     <thead><tr>
@@ -1077,7 +8180,7 @@ ${e.length===0?'<p class="muted">No .cklb files found in this workspace.</p>':`
       <th style="width:60px">Done</th>
       <th>File</th>
     </tr></thead>
-    <tbody>${o}</tbody>
+    <tbody>${rows}</tbody>
   </table>
 </div>`}
 
@@ -1111,7 +8214,12 @@ document.querySelectorAll('.tbl th').forEach((th, i) => {
   });
 });
 </script>
-</body></html>`}function xe(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}var vi=`
+</body></html>`;
+}
+function esc2(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+var CSS2 = `
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:var(--vscode-editor-background,#1e1e1e);
@@ -1161,41 +8269,177 @@ body{font-family:var(--vscode-font-family,system-ui,sans-serif);font-size:13px;c
 .row:hover{background:var(--hover)}
 .sort-asc::after{content:' \\25B2';font-size:.7em}
 .sort-desc::after{content:' \\25BC';font-size:.7em}
-`;var Lt=j(require("vscode")),Ge=j(require("fs")),Ln={not_reviewed:"Not Reviewed",open:"Open",not_a_finding:"Not a Finding",not_applicable:"Not Applicable"},Pn={open:0,not_reviewed:1,not_applicable:2,not_a_finding:3};function _i(e){return e==="high"?"I":e==="medium"?"II":"III"}var De=class{static async show(t){let a=t;if(!a){let I=await Lt.window.showOpenDialog({canSelectMany:!1,filters:{"STIG Checklist":["cklb"]},title:"Select FIRST checklist (baseline / old)"});if(!I?.[0])return;a=I[0]}let b=await Lt.window.showOpenDialog({canSelectMany:!1,filters:{"STIG Checklist":["cklb"]},title:"Select SECOND checklist (current / new)"});if(!b?.[0])return;let o=JSON.parse(Ge.readFileSync(a.fsPath,"utf-8")),p=JSON.parse(Ge.readFileSync(b[0].fsPath,"utf-8")),c=new Map;for(let I of o.stigs)for(let f of I.rules)c.set(f.rule_version,f);let l=new Map;for(let I of p.stigs)for(let f of I.rules)l.set(f.rule_version,f);let d=[],m=new Set([...c.keys(),...l.keys()]);for(let I of m){let f=c.get(I),i=l.get(I);if(f&&i){let n="unchanged";f.status!==i.status&&(n=Pn[i.status]>Pn[f.status]?"improved":"regression"),d.push({ruleVersion:I,groupId:i.group_id,ruleTitle:i.rule_title,severity:i.severity,statusA:f.status,statusB:i.status,change:n})}else i&&!f?d.push({ruleVersion:I,groupId:i.group_id,ruleTitle:i.rule_title,severity:i.severity,statusA:"",statusB:i.status,change:"new"}):f&&!i&&d.push({ruleVersion:I,groupId:f.group_id,ruleTitle:f.rule_title,severity:f.severity,statusA:f.status,statusB:"",change:"removed"})}let T={regression:0,new:1,improved:2,removed:3,unchanged:4};d.sort((I,f)=>T[I.change]-T[f.change]);let _=d.filter(I=>I.change==="regression").length,w=d.filter(I=>I.change==="improved").length,h=d.filter(I=>I.change==="new").length,v=d.filter(I=>I.change==="removed").length,E=d.filter(I=>I.change==="unchanged").length,k=d.filter(I=>I.change!=="unchanged"),N=Lt.window.createWebviewPanel("stigViewer.diff","STIG Diff",Lt.ViewColumn.One,{enableScripts:!0});N.webview.html=Ti(a.fsPath,b[0].fsPath,k,d,{regressions:_,improvements:w,newRules:h,removed:v,unchanged:E})}};function Vt(e){return e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}function Ti(e,t,a,b,o){let p=e.split("/").pop()||e,c=t.split("/").pop()||t,l={regression:"\u2193 Regression",improved:"\u2191 Improved",new:"+ New",removed:"\u2212 Removed",unchanged:"= Unchanged"},d={regression:"chg-reg",improved:"chg-imp",new:"chg-new",removed:"chg-rem",unchanged:"chg-unc"},m=T=>T.map(_=>`<tr class="row ${d[_.change]}" data-change="${_.change}">
-    <td><span class="pill sev-${_.severity}">CAT ${_i(_.severity)}</span></td>
-    <td><code>${Vt(_.groupId)}</code></td>
-    <td><code>${Vt(_.ruleVersion)}</code></td>
-    <td class="td-title">${Vt(_.ruleTitle)}</td>
-    <td>${_.statusA?`<span class="pill st-${_.statusA}">${Ln[_.statusA]||_.statusA}</span>`:'<span class="muted">\u2014</span>'}</td>
-    <td>${_.statusB?`<span class="pill st-${_.statusB}">${Ln[_.statusB]||_.statusB}</span>`:'<span class="muted">\u2014</span>'}</td>
-    <td><span class="pill ${d[_.change]}">${l[_.change]}</span></td>
-  </tr>`).join(`
-`);return`<!DOCTYPE html>
+`;
+
+// src/diffPanel.ts
+var vscode6 = __toESM(require("vscode"));
+var fs6 = __toESM(require("fs"));
+var STATUS_LABELS2 = {
+  not_reviewed: "Not Reviewed",
+  open: "Open",
+  not_a_finding: "Not a Finding",
+  not_applicable: "Not Applicable"
+};
+var STATUS_RANK = {
+  open: 0,
+  not_reviewed: 1,
+  not_applicable: 2,
+  not_a_finding: 3
+};
+function sevCat2(s) {
+  return s === "high" ? "I" : s === "medium" ? "II" : "III";
+}
+var DiffPanel = class {
+  static async show(activeCklbUri) {
+    let uriAResolved = activeCklbUri;
+    if (!uriAResolved) {
+      const uriA = await vscode6.window.showOpenDialog({
+        canSelectMany: false,
+        filters: { "STIG Checklist": ["cklb"] },
+        title: "Select FIRST checklist (baseline / old)"
+      });
+      if (!uriA?.[0]) return;
+      uriAResolved = uriA[0];
+    }
+    const uriB = await vscode6.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { "STIG Checklist": ["cklb"] },
+      title: "Select SECOND checklist (current / new)"
+    });
+    if (!uriB?.[0]) return;
+    const docA = JSON.parse(fs6.readFileSync(uriAResolved.fsPath, "utf-8"));
+    const docB = JSON.parse(fs6.readFileSync(uriB[0].fsPath, "utf-8"));
+    const mapA = /* @__PURE__ */ new Map();
+    for (const s of docA.stigs) {
+      for (const r of s.rules) {
+        mapA.set(r.rule_version, r);
+      }
+    }
+    const mapB = /* @__PURE__ */ new Map();
+    for (const s of docB.stigs) {
+      for (const r of s.rules) {
+        mapB.set(r.rule_version, r);
+      }
+    }
+    const entries = [];
+    const allKeys = /* @__PURE__ */ new Set([...mapA.keys(), ...mapB.keys()]);
+    for (const rv of allKeys) {
+      const a = mapA.get(rv);
+      const b = mapB.get(rv);
+      if (a && b) {
+        let change = "unchanged";
+        if (a.status !== b.status) {
+          change = STATUS_RANK[b.status] > STATUS_RANK[a.status] ? "improved" : "regression";
+        }
+        entries.push({
+          ruleVersion: rv,
+          groupId: b.group_id,
+          ruleTitle: b.rule_title,
+          severity: b.severity,
+          statusA: a.status,
+          statusB: b.status,
+          change
+        });
+      } else if (b && !a) {
+        entries.push({
+          ruleVersion: rv,
+          groupId: b.group_id,
+          ruleTitle: b.rule_title,
+          severity: b.severity,
+          statusA: "",
+          statusB: b.status,
+          change: "new"
+        });
+      } else if (a && !b) {
+        entries.push({
+          ruleVersion: rv,
+          groupId: a.group_id,
+          ruleTitle: a.rule_title,
+          severity: a.severity,
+          statusA: a.status,
+          statusB: "",
+          change: "removed"
+        });
+      }
+    }
+    const ORDER = { regression: 0, new: 1, improved: 2, removed: 3, unchanged: 4 };
+    entries.sort((a, b) => ORDER[a.change] - ORDER[b.change]);
+    const regressions = entries.filter((e) => e.change === "regression").length;
+    const improvements = entries.filter((e) => e.change === "improved").length;
+    const newRules = entries.filter((e) => e.change === "new").length;
+    const removed = entries.filter((e) => e.change === "removed").length;
+    const unchanged = entries.filter((e) => e.change === "unchanged").length;
+    const changedEntries = entries.filter((e) => e.change !== "unchanged");
+    const panel = vscode6.window.createWebviewPanel(
+      "stigViewer.diff",
+      "STIG Diff",
+      vscode6.ViewColumn.One,
+      { enableScripts: true }
+    );
+    panel.webview.html = buildDiffHtml(
+      uriAResolved.fsPath,
+      uriB[0].fsPath,
+      changedEntries,
+      entries,
+      { regressions, improvements, newRules, removed, unchanged }
+    );
+  }
+};
+function esc3(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+function buildDiffHtml(pathA, pathB, changedEntries, allEntries, stats) {
+  const nameA = pathA.split("/").pop() || pathA;
+  const nameB = pathB.split("/").pop() || pathB;
+  const changeLabel = {
+    regression: "\u2193 Regression",
+    improved: "\u2191 Improved",
+    new: "+ New",
+    removed: "\u2212 Removed",
+    unchanged: "= Unchanged"
+  };
+  const changeCls = {
+    regression: "chg-reg",
+    improved: "chg-imp",
+    new: "chg-new",
+    removed: "chg-rem",
+    unchanged: "chg-unc"
+  };
+  const rows = (list) => list.map((e) => `<tr class="row ${changeCls[e.change]}" data-change="${e.change}">
+    <td><span class="pill sev-${e.severity}">CAT ${sevCat2(e.severity)}</span></td>
+    <td><code>${esc3(e.groupId)}</code></td>
+    <td><code>${esc3(e.ruleVersion)}</code></td>
+    <td class="td-title">${esc3(e.ruleTitle)}</td>
+    <td>${e.statusA ? `<span class="pill st-${e.statusA}">${STATUS_LABELS2[e.statusA] || e.statusA}</span>` : '<span class="muted">\u2014</span>'}</td>
+    <td>${e.statusB ? `<span class="pill st-${e.statusB}">${STATUS_LABELS2[e.statusB] || e.statusB}</span>` : '<span class="muted">\u2014</span>'}</td>
+    <td><span class="pill ${changeCls[e.change]}">${changeLabel[e.change]}</span></td>
+  </tr>`).join("\n");
+  return `<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline';">
 <title>STIG Diff</title>
-<style>${Ii}</style>
+<style>${CSS3}</style>
 </head><body>
 <header class="hdr">
   <h1>Checklist Diff</h1>
   <div class="diff-files">
-    <span class="chip">A: ${Vt(p)}</span>
+    <span class="chip">A: ${esc3(nameA)}</span>
     <span class="arrow">\u2192</span>
-    <span class="chip">B: ${Vt(c)}</span>
+    <span class="chip">B: ${esc3(nameB)}</span>
   </div>
 </header>
 
 <div class="cards">
-  <div class="card card-reg"><div class="card-n">${o.regressions}</div><div class="card-l">Regressions</div></div>
-  <div class="card card-imp"><div class="card-n">${o.improvements}</div><div class="card-l">Improvements</div></div>
-  <div class="card card-new"><div class="card-n">${o.newRules}</div><div class="card-l">New Rules</div></div>
-  <div class="card card-rem"><div class="card-n">${o.removed}</div><div class="card-l">Removed</div></div>
-  <div class="card card-unc"><div class="card-n">${o.unchanged}</div><div class="card-l">Unchanged</div></div>
+  <div class="card card-reg"><div class="card-n">${stats.regressions}</div><div class="card-l">Regressions</div></div>
+  <div class="card card-imp"><div class="card-n">${stats.improvements}</div><div class="card-l">Improvements</div></div>
+  <div class="card card-new"><div class="card-n">${stats.newRules}</div><div class="card-l">New Rules</div></div>
+  <div class="card card-rem"><div class="card-n">${stats.removed}</div><div class="card-l">Removed</div></div>
+  <div class="card card-unc"><div class="card-n">${stats.unchanged}</div><div class="card-l">Unchanged</div></div>
 </div>
 
 <div class="filters">
-  <label><input type="checkbox" id="showUnchanged" /> Show ${o.unchanged} unchanged rules</label>
+  <label><input type="checkbox" id="showUnchanged" /> Show ${stats.unchanged} unchanged rules</label>
 </div>
 
 <div class="tbl-wrap">
@@ -1210,14 +8454,14 @@ body{font-family:var(--vscode-font-family,system-ui,sans-serif);font-size:13px;c
       <th style="width:120px">Change</th>
     </tr></thead>
     <tbody id="diffBody">
-      ${m(a)}
+      ${rows(changedEntries)}
     </tbody>
   </table>
 </div>
 
 <script>
-const CHANGED = ${JSON.stringify(a)};
-const ALL     = ${JSON.stringify(b)};
+const CHANGED = ${JSON.stringify(changedEntries)};
+const ALL     = ${JSON.stringify(allEntries)};
 
 document.getElementById('showUnchanged').addEventListener('change', function() {
   const list = this.checked ? ALL : CHANGED;
@@ -1243,7 +8487,9 @@ function rowHtml(e){
     +'</tr>';
 }
 </script>
-</body></html>`}var Ii=`
+</body></html>`;
+}
+var CSS3 = `
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:var(--vscode-editor-background,#1e1e1e);
@@ -1291,25 +8537,1825 @@ tr.chg-reg{border-left:3px solid var(--red)}
 tr.chg-imp{border-left:3px solid var(--green)}
 tr.chg-new{border-left:3px solid var(--blue)}
 tr.chg-rem{border-left:3px solid var(--orange)}
-`;var Pt=j(require("vscode")),Xt=j(require("fs")),Ne=j(ye());function Mn(e){return e==null?[]:Array.isArray(e)?e:[e]}function Se(e){return e==null?"":typeof e=="string"?e:Array.isArray(e)?Se(e[0]):typeof e=="object"&&"_"in e?String(e._):String(e)}var Ei={pass:"not_a_finding",fail:"open",error:"open",unknown:"not_reviewed",notapplicable:"not_applicable",notchecked:"not_reviewed",informational:"not_reviewed",fixed:"not_a_finding"};function xi(e){let t=e.match(/(SV-\d+r\d+_rule)/);return t?t[1]:e}async function Rn(e){let t=e;if(!t){let _=await Pt.window.showOpenDialog({canSelectMany:!1,filters:{"STIG Checklist":["cklb"]},title:"Select checklist to update with SCAP results"});if(!_?.[0])return;t=_[0]}let a=await Pt.window.showOpenDialog({canSelectMany:!1,filters:{"XCCDF Results":["xml"]},title:"Select SCAP XCCDF results file"});if(!a?.[0])return;let b=JSON.parse(Xt.readFileSync(t.fsPath,"utf-8")),o=Xt.readFileSync(a[0].fsPath,"utf-8"),p=await(0,Ne.parseStringPromise)(o,{explicitArray:!1,tagNameProcessors:[Ne.processors.stripPrefix]}),c=null;if(p.TestResult?c=p.TestResult:p.Benchmark?.TestResult&&(c=p.Benchmark.TestResult,Array.isArray(c)&&(c=c[c.length-1])),!c)throw new Error("No <TestResult> element found in the XCCDF results file.");let l=new Map;for(let _ of Mn(c["rule-result"])){let w=_?.$?.idref||"",h=xi(w),v=Se(_.result).toLowerCase(),E=Ei[v]||"not_reviewed",k="",N=Mn(_.check)[0];N&&(k=Se(N["check-content"])),!k&&_.message&&(k=Se(_.message)),l.set(h,{status:E,detail:k})}let d=0,m=0,T=new Date().toISOString();for(let _ of b.stigs)for(let w of _.rules){let h=l.get(w.rule_id);h?(w.status=h.status,h.detail&&(w.finding_details=h.detail),w.updatedAt=T,d++):m++}Xt.writeFileSync(t.fsPath,JSON.stringify(b,null,2)),await Pt.commands.executeCommand("vscode.openWith",t,"stigViewer.cklbEditor"),Pt.window.showInformationMessage(`SCAP import: ${d} rules updated, ${m} unmatched`)}var ft=j(require("vscode")),gt=j(require("fs")),Dt=j(require("path"));function Ci(e){let t=Dt.join(__dirname,"..","scan-patterns.json"),a=e||t;if(!gt.existsSync(a))throw new Error(`Scan patterns file not found: ${a}`);return JSON.parse(gt.readFileSync(a,"utf-8"))}function Di(e,t){let a=[t.rule_title,t.discussion,t.check_content,t.group_title].join(" ").toLowerCase();return e.ruleKeywords.some(b=>a.includes(b.toLowerCase()))}function Fn(e){let t=e.replace(/[.+^${}()|[\]\\]/g,"\\$&").replace(/\*\*/g,"__DOUBLESTAR__").replace(/\*/g,"[^/]*").replace(/__DOUBLESTAR__/g,".*").replace(/\?/g,".");return new RegExp(`^${t}$`)}function ze(e,t){let a=e.replace(/\\/g,"/");return t.some(b=>{if(b.includes("{")){let o=b.match(/^(.*)\{([^}]+)\}(.*)$/);if(o){let[,p,c,l]=o;return c.split(",").some(d=>{let m=p+d.trim()+l;return Fn(m).test(a)})}}return Fn(b).test(a)})}function Si(e,t){let a=[];function b(o){let p;try{p=gt.readdirSync(o,{withFileTypes:!0})}catch{return}for(let c of p){let l=Dt.join(o,c.name),d=Dt.relative(e,l);ze(d,t)||(c.isDirectory()?ze(d+"/",t)||b(l):c.isFile()&&a.push(l))}}return b(e),a}function Ni(e,t,a){let b;try{let c=gt.readFileSync(e);if(c.includes(0))return[];b=c.toString("utf-8")}catch{return[]}let o=b.split(`
-`),p=[];for(let c of t){let l=a?"g":"gi",d;try{d=new RegExp(c,l)}catch{continue}for(let m=0;m<o.length;m++)d.test(o[m])&&p.push({line:m+1,content:o[m].trim().substring(0,200)}),d.lastIndex=0}return p}async function Bn(e){let t=e;if(!t){let d=await ft.window.showOpenDialog({canSelectMany:!1,filters:{"STIG Checklist":["cklb"]},title:"Select checklist to populate with scan results"});if(!d?.[0])return;t=d[0]}let a=await ft.window.showOpenDialog({canSelectFolders:!0,canSelectFiles:!1,canSelectMany:!1,title:"Select repository folder to scan"});if(!a?.[0])return;let b=await ft.window.showQuickPick(["Use default scan patterns","Select custom scan-patterns.json"],{title:"Scan pattern configuration"});if(!b)return;let o;if(b.includes("custom")){let d=await ft.window.showOpenDialog({canSelectMany:!1,filters:{JSON:["json"]},title:"Select scan-patterns.json"});if(!d?.[0])return;o=d[0].fsPath}let p=Ci(o),c=JSON.parse(gt.readFileSync(t.fsPath,"utf-8")),l=a[0].fsPath;await ft.window.withProgress({location:ft.ProgressLocation.Notification,title:"STIG Repo Scan",cancellable:!0},async(d,m)=>{d.report({message:"Discovering files..."});let T=Si(l,p.excludeGlobs);if(m.isCancellationRequested)return;let _=[],w=new Date().toISOString(),h=0,v=0,E=0,k=0,N=c.stigs.reduce((f,i)=>f+i.rules.length,0);for(let f of c.stigs)for(let i of f.rules){if(m.isCancellationRequested)return;let n=p.scanPatterns.filter(L=>Di(L,i));if(n.length===0)continue;h++,d.report({message:`Scanning ${i.group_id} (${h}/${N})`,increment:1/N*100});let y=[],S=[];for(let L of n){let R=T.filter(P=>{let F=Dt.relative(l,P);return ze(F,L.fileGlobs)}),M=!1;for(let P of R){if(m.isCancellationRequested)return;let F=Ni(P,L.patterns,L.caseSensitive);if(F.length>0){M=!0;let $=Dt.relative(l,P);for(let Y of F)y.push({file:$,line:Y.line,content:Y.content,patternId:L.id})}}M&&S.push(L.name)}let C=n.some(L=>L.matchMeansOpen),u=n.filter(L=>L.matchMeansOpen),g=y.filter(L=>u.some(R=>R.id===L.patternId)),D,O;if(g.length>0){D="open",E++;let L=n.find(R=>R.findingDetailOverride&&y.some(M=>M.patternId===R.id));if(L?.findingDetailOverride){let R=y.filter(M=>M.patternId===L.id).slice(0,20).map(M=>`  ${M.file}:${M.line} \u2014 ${M.content}`).join(`
-`);O=L.findingDetailOverride.replace("{count}",String(y.filter(M=>M.patternId===L.id).length)).replace("{matches}",R).replace("{file}",y[0]?.file||"")}else{let R=g.slice(0,20).map(P=>`  ${P.file}:${P.line} \u2014 ${P.content}`).join(`
-`),M=g.length>20?`
-  ... and ${g.length-20} more`:"";O=`[AUTO-SCAN] Found ${g.length} potential issue(s) matching: ${S.join(", ")}
+`;
 
-${R}${M}`}}else if(C)D="not_a_finding",k++,O=`[AUTO-SCAN] Scanned ${T.length} files for: ${n.map(L=>L.name).join(", ")}. No issues detected.`;else{let L=y.slice(0,10);if(L.length>0){D="not_reviewed";let R=n.find(M=>M.findingDetailOverride);R?.findingDetailOverride?O=R.findingDetailOverride.replace("{count}",String(y.length)).replace("{matches}",L.map(M=>M.file).join(", ")).replace("{file}",L[0]?.file||""):O=`[AUTO-SCAN] Found relevant files: ${L.map(M=>M.file).join(", ")}. Manual review required.`}else continue}i.status=D,i.finding_details=O,i.updatedAt=w,v++}gt.writeFileSync(t.fsPath,JSON.stringify(c,null,2)),await ft.commands.executeCommand("vscode.openWith",t,"stigViewer.cklbEditor");let I=N-v;ft.window.showInformationMessage(`Scan complete: ${v} rules evaluated (${E} open, ${k} not a finding, ${I} unmatched \u2014 review manually)`)})}var Mt=j(require("vscode")),Gt=j(require("fs"));var We=new Map([[89,{cweId:89,name:"SQL Injection",keywords:["injection","SQL","query","parameterized","prepared statement"],stigCategory:"Input Validation"}],[78,{cweId:78,name:"OS Command Injection",keywords:["injection","command","OS command","execute","system command"],stigCategory:"Input Validation"}],[77,{cweId:77,name:"Command Injection",keywords:["injection","command","execute"],stigCategory:"Input Validation"}],[94,{cweId:94,name:"Code Injection",keywords:["injection","code injection","eval","execute"],stigCategory:"Input Validation"}],[79,{cweId:79,name:"Cross-Site Scripting (XSS)",keywords:["cross-site scripting","XSS","script injection","output encoding","sanitize"],stigCategory:"Input Validation"}],[90,{cweId:90,name:"LDAP Injection",keywords:["injection","LDAP","directory"],stigCategory:"Input Validation"}],[91,{cweId:91,name:"XML Injection",keywords:["injection","XML","input validation"],stigCategory:"Input Validation"}],[917,{cweId:917,name:"Expression Language Injection",keywords:["injection","expression","template"],stigCategory:"Input Validation"}],[116,{cweId:116,name:"Improper Output Encoding",keywords:["output encoding","encoding","sanitize","neutralize"],stigCategory:"Input Validation"}],[20,{cweId:20,name:"Improper Input Validation",keywords:["input validation","validate","sanitize","user input","untrusted"],stigCategory:"Input Validation"}],[287,{cweId:287,name:"Improper Authentication",keywords:["authenticat","identity","login","credential"],stigCategory:"Authentication"}],[306,{cweId:306,name:"Missing Authentication",keywords:["authenticat","access control","login","identity"],stigCategory:"Authentication"}],[798,{cweId:798,name:"Hardcoded Credentials",keywords:["credential","password","embedded","hardcoded","hard-coded"],stigCategory:"Authentication"}],[259,{cweId:259,name:"Hardcoded Password",keywords:["password","embedded","hardcoded","hard-coded","credential"],stigCategory:"Authentication"}],[522,{cweId:522,name:"Insufficiently Protected Credentials",keywords:["credential","password","protect","cleartext","plain text"],stigCategory:"Authentication"}],[862,{cweId:862,name:"Missing Authorization",keywords:["authoriz","access control","permission","privilege"],stigCategory:"Access Control"}],[863,{cweId:863,name:"Incorrect Authorization",keywords:["authoriz","access control","permission","privilege"],stigCategory:"Access Control"}],[284,{cweId:284,name:"Improper Access Control",keywords:["access control","permission","privilege","authoriz"],stigCategory:"Access Control"}],[22,{cweId:22,name:"Path Traversal",keywords:["path traversal","directory traversal","file access","canonicalize"],stigCategory:"Access Control"}],[434,{cweId:434,name:"Unrestricted File Upload",keywords:["file upload","unrestricted","file type","content type"],stigCategory:"Access Control"}],[352,{cweId:352,name:"Cross-Site Request Forgery",keywords:["CSRF","cross-site request","token","forgery"],stigCategory:"Session Management"}],[327,{cweId:327,name:"Broken Crypto Algorithm",keywords:["cryptograph","encrypt","cipher","algorithm","FIPS","approved"],stigCategory:"Cryptography"}],[328,{cweId:328,name:"Weak Hash",keywords:["hash","cryptograph","MD5","SHA-1","FIPS"],stigCategory:"Cryptography"}],[326,{cweId:326,name:"Inadequate Encryption Strength",keywords:["encrypt","key length","strength","cryptograph","FIPS"],stigCategory:"Cryptography"}],[311,{cweId:311,name:"Missing Encryption of Sensitive Data",keywords:["encrypt","sensitive","cleartext","plain text","protect","transit"],stigCategory:"Cryptography"}],[319,{cweId:319,name:"Cleartext Transmission",keywords:["cleartext","plain text","encrypt","TLS","HTTPS","transit","transport"],stigCategory:"Cryptography"}],[209,{cweId:209,name:"Error Info Leak",keywords:["error","stack trace","diagnostic","verbose","information exposure"],stigCategory:"Error Handling"}],[215,{cweId:215,name:"Debug Info Leak",keywords:["debug","diagnostic","information exposure","verbose"],stigCategory:"Error Handling"}],[532,{cweId:532,name:"Log Info Leak",keywords:["log","sensitive","information exposure","audit"],stigCategory:"Logging"}],[614,{cweId:614,name:"Missing Secure Cookie Flag",keywords:["cookie","secure flag","session","httpOnly"],stigCategory:"Session Management"}],[1004,{cweId:1004,name:"Missing HttpOnly Cookie Flag",keywords:["cookie","httpOnly","session","script access"],stigCategory:"Session Management"}],[120,{cweId:120,name:"Buffer Overflow",keywords:["buffer overflow","buffer","memory","bounds"],stigCategory:"Buffer Handling"}],[119,{cweId:119,name:"Buffer Boundary Violation",keywords:["buffer","boundary","memory","bounds check"],stigCategory:"Buffer Handling"}],[787,{cweId:787,name:"Out-of-bounds Write",keywords:["buffer","out-of-bounds","memory","write"],stigCategory:"Buffer Handling"}],[125,{cweId:125,name:"Out-of-bounds Read",keywords:["buffer","out-of-bounds","memory","read"],stigCategory:"Buffer Handling"}],[190,{cweId:190,name:"Integer Overflow",keywords:["integer overflow","overflow","arithmetic"],stigCategory:"Buffer Handling"}],[362,{cweId:362,name:"Race Condition",keywords:["race condition","concurren","synchroniz","TOCTOU","time-of-check"],stigCategory:"Concurrency"}],[367,{cweId:367,name:"TOCTOU Race Condition",keywords:["race condition","TOCTOU","time-of-check","time-of-use"],stigCategory:"Concurrency"}],[755,{cweId:755,name:"Improper Exception Handling",keywords:["error handling","exception","catch","handle error"],stigCategory:"Error Handling"}],[754,{cweId:754,name:"Improper Check for Unusual Conditions",keywords:["error handling","exception","unusual condition","error check"],stigCategory:"Error Handling"}],[390,{cweId:390,name:"Detection of Error without Action",keywords:["error handling","exception","ignore","catch"],stigCategory:"Error Handling"}],[502,{cweId:502,name:"Insecure Deserialization",keywords:["deserializ","serializ","untrusted data","marshal","pickle"],stigCategory:"Input Validation"}],[1104,{cweId:1104,name:"Unmaintained Third-Party Component",keywords:["third-party","component","dependency","library","vulnerability","patch"],stigCategory:"Dependencies"}],[937,{cweId:937,name:"Known Vulnerable Component",keywords:["known vulnerabilit","component","dependency","library","patch","CVE"],stigCategory:"Dependencies"}],[778,{cweId:778,name:"Insufficient Logging",keywords:["log","audit","monitor","record","event"],stigCategory:"Logging"}],[117,{cweId:117,name:"Log Injection",keywords:["log","injection","audit","forging"],stigCategory:"Logging"}]]);function Ai(e,t){let a=[];if(e.taxa)for(let o of e.taxa){let p=He(o.id);p&&a.push(p)}if(t?.relationships){for(let o of t.relationships)if(o.target.toolComponent?.name?.toUpperCase()==="CWE"||o.target.id.startsWith("CWE-")){let p=He(o.target.id);p&&a.push(p)}}if(t?.properties?.tags)for(let o of t.properties.tags){let p=o.match(/cwe[/-](\d+)/i);p&&a.push(parseInt(p[1],10))}let b=He(e.ruleId);return b&&a.push(b),[...new Set(a)]}function He(e){let t=e.match(/(?:CWE-?)(\d+)/i);return t?parseInt(t[1],10):null}async function $n(e){let t=e;if(!t){let h=await Mt.window.showOpenDialog({canSelectMany:!1,filters:{"STIG Checklist":["cklb"]},title:"Select checklist to populate with SARIF findings"});if(!h?.[0])return;t=h[0]}let a=await Mt.window.showOpenDialog({canSelectMany:!0,filters:{SARIF:["sarif","json"]},title:"Select SARIF results file(s)"});if(!a?.length)return;let b=JSON.parse(Gt.readFileSync(t.fsPath,"utf-8")),o=new Date().toISOString(),p=[];for(let h of b.stigs)p.push(...h.rules);let c=new Map,l=0,d=0,m=new Set,T=[];for(let h of a){let v=JSON.parse(Gt.readFileSync(h.fsPath,"utf-8"));for(let E of v.runs){let k=E.tool.driver.name;T.includes(k)||T.push(k);let N=new Map;if(E.tool.driver.rules)for(let I of E.tool.driver.rules)N.set(I.id,I);for(let I of E.results){l++;let f=N.get(I.ruleId),i=Ai(I,f);if(i.length===0)continue;let n=I.locations?.[0]?.physicalLocation,y=n?.artifactLocation?.uri||"",S=n?.region?.startLine||0,C=!1;for(let u of i){let g=We.get(u);if(!g){m.add(u);continue}for(let D of p){let O=`${D.rule_title} ${D.discussion} ${D.check_content}`.toLowerCase();g.keywords.some(L=>O.includes(L.toLowerCase()))&&(c.has(D.uuid)||c.set(D.uuid,[]),c.get(D.uuid).push({tool:k,cwe:u,file:y.replace(/^file:\/\//,""),line:S,message:I.message.text.substring(0,300)}),C=!0)}}C&&d++}}}let _=0;for(let[h,v]of c){let E=p.find(I=>I.uuid===h);if(!E)continue;E.status="open",_++;let k=new Map;for(let I of v){let f=`CWE-${I.cwe}`;k.has(f)||k.set(f,[]),k.get(f).push(I)}let N=[`[SARIF IMPORT] ${v.length} finding(s) from: ${T.join(", ")}
-`];for(let[I,f]of k){let i=We.get(parseInt(I.replace("CWE-","")))?.name||I;N.push(`${I} \u2014 ${i}:`);let n=f.slice(0,10);for(let y of n)N.push(`  ${y.file}:${y.line} \u2014 ${y.message}`);f.length>10&&N.push(`  ... and ${f.length-10} more`)}E.finding_details=N.join(`
-`),E.updatedAt=o}Gt.writeFileSync(t.fsPath,JSON.stringify(b,null,2)),await Mt.commands.executeCommand("vscode.openWith",t,"stigViewer.cklbEditor");let w=`SARIF import: ${l} findings processed, ${d} mapped to ${_} rules`;m.size>0&&(w+=` (${m.size} unmapped CWEs: ${[...m].slice(0,5).map(h=>`CWE-${h}`).join(", ")}${m.size>5?"...":""})`),Mt.window.showInformationMessage(w)}var It=j(require("vscode")),zt=j(require("fs"));function ki(e){let t=[];if(!e.vulnerabilities)return t;for(let[a,b]of Object.entries(e.vulnerabilities))for(let o of b.via)typeof o=="object"&&t.push({name:a,severity:o.severity,title:o.title,url:o.url,cwe:o.cwe?.[0],fixAvailable:b.fixAvailable?"Yes":"No"});return t}function Un(e){let t=[],a=Array.isArray(e)?e:e.dependencies||[];for(let b of a)if(b.vulns?.length)for(let o of b.vulns)t.push({name:b.name,version:b.version,id:o.id,description:o.description,fixAvailable:o.fix_versions?.length?o.fix_versions.join(", "):"No"});return t}function Oi(e){if(e.vulnerabilities&&typeof e.vulnerabilities=="object")return{entries:ki(e),source:"npm audit"};if(Array.isArray(e)&&e[0]?.vulns!==void 0)return{entries:Un(e),source:"pip-audit"};if(e.dependencies&&Array.isArray(e.dependencies))return{entries:Un(e),source:"pip-audit"};if(Array.isArray(e))return{entries:e.map(t=>({name:t.name||t.package||t.module||"",version:t.version||t.installed_version||"",severity:t.severity||t.level||"",title:t.title||t.advisory||t.description||"",id:t.id||t.cve||t.advisory_id||"",url:t.url||t.reference||""})),source:"dependency audit"};throw new Error("Unrecognized audit format. Expected npm audit, pip-audit, or a JSON array of vulnerabilities.")}async function qn(e){let t=e;if(!t){let T=await It.window.showOpenDialog({canSelectMany:!1,filters:{"STIG Checklist":["cklb"]},title:"Select checklist to populate with audit findings"});if(!T?.[0])return;t=T[0]}let a=await It.window.showOpenDialog({canSelectMany:!1,filters:{JSON:["json"]},title:"Select dependency audit JSON (npm audit, pip-audit, etc.)"});if(!a?.[0])return;let b=JSON.parse(zt.readFileSync(t.fsPath,"utf-8")),o=JSON.parse(zt.readFileSync(a[0].fsPath,"utf-8")),{entries:p,source:c}=Oi(o);if(p.length===0){It.window.showInformationMessage(`No vulnerabilities found in ${c} output.`);return}let l=["third-party","component","dependency","library","vulnerability","known vulnerabilit","patch","update","unsupported","software composition","package","module","open source"],d=new Date().toISOString(),m=0;for(let T of b.stigs)for(let _ of T.rules){let w=`${_.rule_title} ${_.discussion} ${_.check_content}`.toLowerCase();if(!l.some(I=>w.includes(I)))continue;m++,_.status="open",_.updatedAt=d;let v={};for(let I of p){let f=(I.severity||"unknown").toLowerCase();v[f]=(v[f]||0)+1}let E=Object.entries(v).map(([I,f])=>`${f} ${I}`).join(", "),k=[`[AUDIT IMPORT] ${p.length} vulnerable dependencies found via ${c}`,`Severity breakdown: ${E}
-`],N=p.slice(0,25);for(let I of N){let f=[I.name];I.version&&f.push(`v${I.version}`),I.severity&&f.push(`[${I.severity}]`),I.title&&f.push(`\u2014 ${I.title}`),I.id&&f.push(`(${I.id})`),I.fixAvailable&&I.fixAvailable!=="No"&&f.push(`fix: ${I.fixAvailable}`),k.push(`  ${f.join(" ")}`)}p.length>25&&k.push(`  ... and ${p.length-25} more`),_.finding_details=k.join(`
-`)}zt.writeFileSync(t.fsPath,JSON.stringify(b,null,2)),await It.commands.executeCommand("vscode.openWith",t,"stigViewer.cklbEditor"),m>0?It.window.showInformationMessage(`Imported ${p.length} vulnerabilities from ${c} \u2192 ${m} STIG rule(s) marked open`):It.window.showWarningMessage(`Imported ${p.length} vulnerabilities but no dependency-related STIG rules found in the checklist.`)}var Et=j(require("vscode")),Wt=j(require("fs")),xt=j(require("path")),jn=j(require("zlib"));var Ke=class{constructor(){this.files=[]}addFile(t,a){let b=typeof a=="string"?Buffer.from(a,"utf-8"):a,o=jn.deflateRawSync(b),p=this.crc32(b);this.files.push({name:t,data:b,crc:p,compressedData:o})}build(){let t=[],a=[],b=0;for(let l of this.files){let d=Buffer.from(l.name,"utf-8"),m=Buffer.alloc(30+d.length);m.writeUInt32LE(67324752,0),m.writeUInt16LE(20,4),m.writeUInt16LE(0,6),m.writeUInt16LE(8,8),m.writeUInt16LE(0,10),m.writeUInt16LE(0,12),m.writeUInt32LE(l.crc,14),m.writeUInt32LE(l.compressedData.length,18),m.writeUInt32LE(l.data.length,22),m.writeUInt16LE(d.length,26),m.writeUInt16LE(0,28),d.copy(m,30);let T=Buffer.alloc(46+d.length);T.writeUInt32LE(33639248,0),T.writeUInt16LE(20,4),T.writeUInt16LE(20,6),T.writeUInt16LE(0,8),T.writeUInt16LE(8,10),T.writeUInt16LE(0,12),T.writeUInt16LE(0,14),T.writeUInt32LE(l.crc,16),T.writeUInt32LE(l.compressedData.length,20),T.writeUInt32LE(l.data.length,24),T.writeUInt16LE(d.length,28),T.writeUInt16LE(0,30),T.writeUInt16LE(0,32),T.writeUInt16LE(0,34),T.writeUInt16LE(0,36),T.writeUInt32LE(0,38),T.writeUInt32LE(b,42),d.copy(T,46),t.push(m,l.compressedData),a.push(T),b+=m.length+l.compressedData.length}let o=b,p=0;for(let l of a)t.push(l),p+=l.length;let c=Buffer.alloc(22);return c.writeUInt32LE(101010256,0),c.writeUInt16LE(0,4),c.writeUInt16LE(0,6),c.writeUInt16LE(this.files.length,8),c.writeUInt16LE(this.files.length,10),c.writeUInt32LE(p,12),c.writeUInt32LE(o,16),c.writeUInt16LE(0,20),t.push(c),Buffer.concat(t)}crc32(t){let a=4294967295;for(let b=0;b<t.length;b++){a^=t[b];for(let o=0;o<8;o++)a=a>>>1^(a&1?3988292384:0)}return(a^4294967295)>>>0}};function Li(e){let t=[];t.push("STIG ASSESSMENT EVIDENCE PACKAGE"),t.push(`================================
-`),t.push(`Generated: ${new Date().toISOString()}`),t.push(`Title: ${e.title}`),t.push(`Host: ${e.target_data.host_name||"N/A"}`),t.push(`IP: ${e.target_data.ip_address||"N/A"}`),t.push(`FQDN: ${e.target_data.fqdn||"N/A"}
-`);for(let a of e.stigs){let b={open:0,not_a_finding:0,not_reviewed:0,not_applicable:0,high:0,medium:0,low:0};for(let l of a.rules)b[l.status]++,b[l.severity]++;let o=a.rules.length,p=o?Math.round((b.not_a_finding+b.not_applicable)/o*100):0;t.push(`STIG: ${a.stig_name}`),t.push(`  ${a.release_info} | Version ${a.version}`),t.push(`  Total Rules: ${o}`),t.push(`  Open: ${b.open} | Not a Finding: ${b.not_a_finding} | Not Reviewed: ${b.not_reviewed} | Not Applicable: ${b.not_applicable}`),t.push(`  CAT I: ${b.high} | CAT II: ${b.medium} | CAT III: ${b.low}`),t.push(`  Completion: ${p}%
-`);let c=a.rules.filter(l=>l.status==="open");if(c.length>0){t.push("  OPEN FINDINGS:");for(let l of c){let d=l.severity==="high"?"I":l.severity==="medium"?"II":"III";if(t.push(`    [CAT ${d}] ${l.group_id} \u2014 ${l.rule_title}`),l.finding_details){let m=l.finding_details.substring(0,200).replace(/\n/g,`
-      `);t.push(`      ${m}`)}}t.push("")}}return t.push(`
-PACKAGE CONTENTS:`),t.push("  checklist.cklb    \u2014 Full checklist in JSON format"),t.push("  checklist.ckl     \u2014 Checklist in DISA CKL XML format"),t.push("  summary.csv       \u2014 All rules with status and findings"),t.push("  poam.csv          \u2014 Plan of Action & Milestones (open findings only)"),t.push("  report.txt        \u2014 This summary report"),t.join(`
-`)}async function Vn(e){let t=e;if(!t){let T=await Et.window.showOpenDialog({canSelectMany:!1,filters:{"STIG Checklist":["cklb"]},title:"Select checklist to package as evidence"});if(!T?.[0])return;t=T[0]}let a=JSON.parse(Wt.readFileSync(t.fsPath,"utf-8")),b=xt.basename(t.fsPath,".cklb"),o=new Ke;if(o.addFile("checklist.cklb",JSON.stringify(a,null,2)),o.addFile("checklist.ckl",Qt(a)),o.addFile("summary.csv",Jt(a)),o.addFile("poam.csv",Zt(a)),o.addFile("report.txt",Li(a)),(await Et.window.showQuickPick(["Save package now","Attach additional evidence files first"],{title:"Evidence package"}))?.includes("Attach")){let T=await Et.window.showOpenDialog({canSelectMany:!0,title:"Select additional evidence files (screenshots, scan reports, etc.)"});if(T)for(let _ of T){let w="evidence/"+xt.basename(_.fsPath);o.addFile(w,Wt.readFileSync(_.fsPath))}}let c=`${b}_evidence_${new Date().toISOString().slice(0,10)}.zip`,l=await Et.window.showSaveDialog({defaultUri:Et.Uri.file(xt.join(xt.dirname(t.fsPath),c)),filters:{"ZIP Archive":["zip"]},title:"Save Evidence Package"});if(!l)return;Wt.writeFileSync(l.fsPath,o.build());let d=a.stigs.reduce((T,_)=>T+_.rules.length,0),m=a.stigs.reduce((T,_)=>T+_.rules.filter(w=>w.status==="open").length,0);Et.window.showInformationMessage(`Evidence package saved: ${d} rules, ${m} open findings \u2192 ${xt.basename(l.fsPath)}`)}function Pi(e){e.subscriptions.push(ut.register(e)),e.subscriptions.push(X.commands.registerCommand("stigViewer.openFile",async()=>{let t=await X.window.showOpenDialog({canSelectMany:!1,filters:{"STIG Checklist":["cklb"]},title:"Open STIG Checklist (.cklb)"});t?.[0]&&await X.commands.executeCommand("vscode.openWith",t[0],"stigViewer.cklbEditor")})),e.subscriptions.push(X.commands.registerCommand("stigViewer.importXccdf",async t=>{if(!t){let a=await X.window.showOpenDialog({canSelectMany:!1,filters:{"XCCDF Benchmark":["xml"]},title:"Import XCCDF Benchmark"});if(!a?.[0])return;t=a[0]}try{await Nn(t)}catch(a){X.window.showErrorMessage(`XCCDF import failed: ${a}`)}})),e.subscriptions.push(X.commands.registerCommand("stigViewer.importCkl",async t=>{if(!t){let a=await X.window.showOpenDialog({canSelectMany:!1,filters:{"CKL Checklist":["ckl"]},title:"Import CKL Checklist"});if(!a?.[0])return;t=a[0]}try{await An(t)}catch(a){X.window.showErrorMessage(`CKL import failed: ${a}`)}})),e.subscriptions.push(X.commands.registerCommand("stigViewer.importScapResults",async()=>{try{await Rn(ut.activeDocumentUri)}catch(t){X.window.showErrorMessage(`SCAP import failed: ${t}`)}})),e.subscriptions.push(X.commands.registerCommand("stigViewer.mergeFindings",async()=>{try{await kn(ut.activeDocumentUri)}catch(t){X.window.showErrorMessage(`Merge failed: ${t}`)}})),e.subscriptions.push(X.commands.registerCommand("stigViewer.dashboard",async()=>{try{await Ce.show(e)}catch(t){X.window.showErrorMessage(`Dashboard failed: ${t}`)}})),e.subscriptions.push(X.commands.registerCommand("stigViewer.diffChecklists",async()=>{try{await De.show(ut.activeDocumentUri)}catch(t){X.window.showErrorMessage(`Diff failed: ${t}`)}})),e.subscriptions.push(X.commands.registerCommand("stigViewer.scanRepo",async()=>{try{await Bn(ut.activeDocumentUri)}catch(t){X.window.showErrorMessage(`Repo scan failed: ${t}`)}})),e.subscriptions.push(X.commands.registerCommand("stigViewer.importSarif",async()=>{try{await $n(ut.activeDocumentUri)}catch(t){X.window.showErrorMessage(`SARIF import failed: ${t}`)}})),e.subscriptions.push(X.commands.registerCommand("stigViewer.importAudit",async()=>{try{await qn(ut.activeDocumentUri)}catch(t){X.window.showErrorMessage(`Dependency audit import failed: ${t}`)}})),e.subscriptions.push(X.commands.registerCommand("stigViewer.exportEvidence",async()=>{try{await Vn(ut.activeDocumentUri)}catch(t){X.window.showErrorMessage(`Evidence package failed: ${t}`)}}))}function Mi(){}0&&(module.exports={activate,deactivate});
+// src/importScapResults.ts
+var vscode7 = __toESM(require("vscode"));
+var fs7 = __toESM(require("fs"));
+var import_xml2js3 = __toESM(require_xml2js());
+function toArray3(val) {
+  if (val == null) return [];
+  return Array.isArray(val) ? val : [val];
+}
+function txt2(node) {
+  if (node == null) return "";
+  if (typeof node === "string") return node;
+  if (Array.isArray(node)) return txt2(node[0]);
+  if (typeof node === "object" && "_" in node) {
+    return String(node._);
+  }
+  return String(node);
+}
+var RESULT_MAP = {
+  "pass": "not_a_finding",
+  "fail": "open",
+  "error": "open",
+  "unknown": "not_reviewed",
+  "notapplicable": "not_applicable",
+  "notchecked": "not_reviewed",
+  "informational": "not_reviewed",
+  "fixed": "not_a_finding"
+};
+function extractRuleId(idref) {
+  const m = idref.match(/(SV-\d+r\d+_rule)/);
+  return m ? m[1] : idref;
+}
+async function importScapResults(activeCklbUri) {
+  let cklbUri = activeCklbUri;
+  if (!cklbUri) {
+    const uris = await vscode7.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { "STIG Checklist": ["cklb"] },
+      title: "Select checklist to update with SCAP results"
+    });
+    if (!uris?.[0]) return;
+    cklbUri = uris[0];
+  }
+  const xmlUris = await vscode7.window.showOpenDialog({
+    canSelectMany: false,
+    filters: { "XCCDF Results": ["xml"] },
+    title: "Select SCAP XCCDF results file"
+  });
+  if (!xmlUris?.[0]) return;
+  const doc = JSON.parse(fs7.readFileSync(cklbUri.fsPath, "utf-8"));
+  const xmlContent = fs7.readFileSync(xmlUris[0].fsPath, "utf-8");
+  const parsed = await (0, import_xml2js3.parseStringPromise)(xmlContent, {
+    explicitArray: false,
+    tagNameProcessors: [import_xml2js3.processors.stripPrefix]
+  });
+  let testResult = null;
+  if (parsed.TestResult) {
+    testResult = parsed.TestResult;
+  } else if (parsed.Benchmark?.TestResult) {
+    testResult = parsed.Benchmark.TestResult;
+    if (Array.isArray(testResult)) {
+      testResult = testResult[testResult.length - 1];
+    }
+  }
+  if (!testResult) {
+    throw new Error("No <TestResult> element found in the XCCDF results file.");
+  }
+  const resultMap = /* @__PURE__ */ new Map();
+  for (const rr of toArray3(testResult["rule-result"])) {
+    const idref = rr?.$?.idref || "";
+    const ruleId = extractRuleId(idref);
+    const resultVal = txt2(rr.result).toLowerCase();
+    const status = RESULT_MAP[resultVal] || "not_reviewed";
+    let detail = "";
+    const check = toArray3(rr.check)[0];
+    if (check) {
+      detail = txt2(check["check-content"]);
+    }
+    if (!detail && rr.message) {
+      detail = txt2(rr.message);
+    }
+    resultMap.set(ruleId, { status, detail });
+  }
+  let updated = 0;
+  let skipped = 0;
+  const now = (/* @__PURE__ */ new Date()).toISOString();
+  for (const stig of doc.stigs) {
+    for (const rule of stig.rules) {
+      const result = resultMap.get(rule.rule_id);
+      if (result) {
+        rule.status = result.status;
+        if (result.detail) {
+          rule.finding_details = result.detail;
+        }
+        rule.updatedAt = now;
+        updated++;
+      } else {
+        skipped++;
+      }
+    }
+  }
+  fs7.writeFileSync(cklbUri.fsPath, JSON.stringify(doc, null, 2));
+  await vscode7.commands.executeCommand("vscode.openWith", cklbUri, "stigViewer.cklbEditor");
+  vscode7.window.showInformationMessage(
+    `SCAP import: ${updated} rules updated, ${skipped} unmatched`
+  );
+}
+
+// src/repoScanner.ts
+var vscode8 = __toESM(require("vscode"));
+var fs8 = __toESM(require("fs"));
+var path4 = __toESM(require("path"));
+function loadScanConfig(configPath) {
+  const defaultPath = path4.join(__dirname, "..", "scan-patterns.json");
+  const cfgPath = configPath || defaultPath;
+  if (!fs8.existsSync(cfgPath)) {
+    throw new Error(`Scan patterns file not found: ${cfgPath}`);
+  }
+  return JSON.parse(fs8.readFileSync(cfgPath, "utf-8"));
+}
+function patternMatchesRule(pattern, rule) {
+  const ruleText = [
+    rule.rule_title,
+    rule.discussion,
+    rule.check_content,
+    rule.group_title
+  ].join(" ").toLowerCase();
+  return pattern.ruleKeywords.some((kw) => ruleText.includes(kw.toLowerCase()));
+}
+function globToRegex(glob) {
+  const escaped = glob.replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*\*/g, "__DOUBLESTAR__").replace(/\*/g, "[^/]*").replace(/__DOUBLESTAR__/g, ".*").replace(/\?/g, ".");
+  return new RegExp(`^${escaped}$`);
+}
+function matchesAnyGlob(filePath, globs) {
+  const normalized = filePath.replace(/\\/g, "/");
+  return globs.some((g) => {
+    if (g.includes("{")) {
+      const match = g.match(/^(.*)\{([^}]+)\}(.*)$/);
+      if (match) {
+        const [, prefix, alts, suffix] = match;
+        return alts.split(",").some((alt) => {
+          const expanded = prefix + alt.trim() + suffix;
+          return globToRegex(expanded).test(normalized);
+        });
+      }
+    }
+    return globToRegex(g).test(normalized);
+  });
+}
+function walkDir(dir, excludeGlobs) {
+  const results = [];
+  function walk(currentDir) {
+    let entries;
+    try {
+      entries = fs8.readdirSync(currentDir, { withFileTypes: true });
+    } catch {
+      return;
+    }
+    for (const entry of entries) {
+      const fullPath = path4.join(currentDir, entry.name);
+      const relPath = path4.relative(dir, fullPath);
+      if (matchesAnyGlob(relPath, excludeGlobs)) {
+        continue;
+      }
+      if (entry.isDirectory()) {
+        if (!matchesAnyGlob(relPath + "/", excludeGlobs)) {
+          walk(fullPath);
+        }
+      } else if (entry.isFile()) {
+        results.push(fullPath);
+      }
+    }
+  }
+  walk(dir);
+  return results;
+}
+function scanFile(filePath, patterns, caseSensitive) {
+  let content;
+  try {
+    const buf = fs8.readFileSync(filePath);
+    if (buf.includes(0)) return [];
+    content = buf.toString("utf-8");
+  } catch {
+    return [];
+  }
+  const lines = content.split("\n");
+  const matches = [];
+  for (const pat of patterns) {
+    const flags = caseSensitive ? "g" : "gi";
+    let re;
+    try {
+      re = new RegExp(pat, flags);
+    } catch {
+      continue;
+    }
+    for (let i = 0; i < lines.length; i++) {
+      if (re.test(lines[i])) {
+        matches.push({
+          line: i + 1,
+          content: lines[i].trim().substring(0, 200)
+        });
+      }
+      re.lastIndex = 0;
+    }
+  }
+  return matches;
+}
+async function scanRepo(activeCklbUri) {
+  let cklbUri = activeCklbUri;
+  if (!cklbUri) {
+    const uris = await vscode8.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { "STIG Checklist": ["cklb"] },
+      title: "Select checklist to populate with scan results"
+    });
+    if (!uris?.[0]) return;
+    cklbUri = uris[0];
+  }
+  const repoUris = await vscode8.window.showOpenDialog({
+    canSelectFolders: true,
+    canSelectFiles: false,
+    canSelectMany: false,
+    title: "Select repository folder to scan"
+  });
+  if (!repoUris?.[0]) return;
+  const useCustom = await vscode8.window.showQuickPick(
+    ["Use default scan patterns", "Select custom scan-patterns.json"],
+    { title: "Scan pattern configuration" }
+  );
+  if (!useCustom) return;
+  let configPath;
+  if (useCustom.includes("custom")) {
+    const cfgUris = await vscode8.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { "JSON": ["json"] },
+      title: "Select scan-patterns.json"
+    });
+    if (!cfgUris?.[0]) return;
+    configPath = cfgUris[0].fsPath;
+  }
+  const config = loadScanConfig(configPath);
+  const doc = JSON.parse(fs8.readFileSync(cklbUri.fsPath, "utf-8"));
+  const repoDir = repoUris[0].fsPath;
+  await vscode8.window.withProgress(
+    {
+      location: vscode8.ProgressLocation.Notification,
+      title: "STIG Repo Scan",
+      cancellable: true
+    },
+    async (progress, token) => {
+      progress.report({ message: "Discovering files..." });
+      const allFiles = walkDir(repoDir, config.excludeGlobs);
+      if (token.isCancellationRequested) return;
+      const results = [];
+      const now = (/* @__PURE__ */ new Date()).toISOString();
+      let rulesScanned = 0;
+      let rulesUpdated = 0;
+      let openCount = 0;
+      let nafCount = 0;
+      const totalRules = doc.stigs.reduce((n, s) => n + s.rules.length, 0);
+      for (const stig of doc.stigs) {
+        for (const rule of stig.rules) {
+          if (token.isCancellationRequested) return;
+          const applicablePatterns = config.scanPatterns.filter(
+            (p) => patternMatchesRule(p, rule)
+          );
+          if (applicablePatterns.length === 0) continue;
+          rulesScanned++;
+          progress.report({
+            message: `Scanning ${rule.group_id} (${rulesScanned}/${totalRules})`,
+            increment: 1 / totalRules * 100
+          });
+          const allMatches = [];
+          const matchedPatternNames = [];
+          for (const pattern of applicablePatterns) {
+            const targetFiles = allFiles.filter((f) => {
+              const rel = path4.relative(repoDir, f);
+              return matchesAnyGlob(rel, pattern.fileGlobs);
+            });
+            let patternHasMatch = false;
+            for (const file of targetFiles) {
+              if (token.isCancellationRequested) return;
+              const fileMatches = scanFile(file, pattern.patterns, pattern.caseSensitive);
+              if (fileMatches.length > 0) {
+                patternHasMatch = true;
+                const relFile = path4.relative(repoDir, file);
+                for (const m of fileMatches) {
+                  allMatches.push({
+                    file: relFile,
+                    line: m.line,
+                    content: m.content,
+                    patternId: pattern.id
+                  });
+                }
+              }
+            }
+            if (patternHasMatch) {
+              matchedPatternNames.push(pattern.name);
+            }
+          }
+          const hasOpenPattern = applicablePatterns.some((p) => p.matchMeansOpen);
+          const matchingOpenPatterns = applicablePatterns.filter((p) => p.matchMeansOpen);
+          const openMatches = allMatches.filter(
+            (m) => matchingOpenPatterns.some((p) => p.id === m.patternId)
+          );
+          let newStatus;
+          let findingDetails;
+          if (openMatches.length > 0) {
+            newStatus = "open";
+            openCount++;
+            const overridePattern = applicablePatterns.find((p) => p.findingDetailOverride && allMatches.some((m) => m.patternId === p.id));
+            if (overridePattern?.findingDetailOverride) {
+              const matchList = allMatches.filter((m) => m.patternId === overridePattern.id).slice(0, 20).map((m) => `  ${m.file}:${m.line} \u2014 ${m.content}`).join("\n");
+              findingDetails = overridePattern.findingDetailOverride.replace("{count}", String(allMatches.filter((m) => m.patternId === overridePattern.id).length)).replace("{matches}", matchList).replace("{file}", allMatches[0]?.file || "");
+            } else {
+              const matchList = openMatches.slice(0, 20).map(
+                (m) => `  ${m.file}:${m.line} \u2014 ${m.content}`
+              ).join("\n");
+              const truncated = openMatches.length > 20 ? `
+  ... and ${openMatches.length - 20} more` : "";
+              findingDetails = `[AUTO-SCAN] Found ${openMatches.length} potential issue(s) matching: ${matchedPatternNames.join(", ")}
+
+${matchList}${truncated}`;
+            }
+          } else if (hasOpenPattern) {
+            newStatus = "not_a_finding";
+            nafCount++;
+            findingDetails = `[AUTO-SCAN] Scanned ${allFiles.length} files for: ${applicablePatterns.map((p) => p.name).join(", ")}. No issues detected.`;
+          } else {
+            const infoMatches = allMatches.slice(0, 10);
+            if (infoMatches.length > 0) {
+              newStatus = "not_reviewed";
+              const overridePattern = applicablePatterns.find((p) => p.findingDetailOverride);
+              if (overridePattern?.findingDetailOverride) {
+                findingDetails = overridePattern.findingDetailOverride.replace("{count}", String(allMatches.length)).replace("{matches}", infoMatches.map((m) => m.file).join(", ")).replace("{file}", infoMatches[0]?.file || "");
+              } else {
+                findingDetails = `[AUTO-SCAN] Found relevant files: ${infoMatches.map((m) => m.file).join(", ")}. Manual review required.`;
+              }
+            } else {
+              continue;
+            }
+          }
+          rule.status = newStatus;
+          rule.finding_details = findingDetails;
+          rule.updatedAt = now;
+          rulesUpdated++;
+        }
+      }
+      fs8.writeFileSync(cklbUri.fsPath, JSON.stringify(doc, null, 2));
+      await vscode8.commands.executeCommand("vscode.openWith", cklbUri, "stigViewer.cklbEditor");
+      const skipped = totalRules - rulesUpdated;
+      vscode8.window.showInformationMessage(
+        `Scan complete: ${rulesUpdated} rules evaluated (${openCount} open, ${nafCount} not a finding, ${skipped} unmatched \u2014 review manually)`
+      );
+    }
+  );
+}
+
+// src/importSarif.ts
+var vscode9 = __toESM(require("vscode"));
+var fs9 = __toESM(require("fs"));
+
+// src/cweStigMap.ts
+var CWE_STIG_MAP = /* @__PURE__ */ new Map([
+  // ─── Injection (OWASP A03) ──────────────────────────────────────────
+  [89, { cweId: 89, name: "SQL Injection", keywords: ["injection", "SQL", "query", "parameterized", "prepared statement"], stigCategory: "Input Validation" }],
+  [78, { cweId: 78, name: "OS Command Injection", keywords: ["injection", "command", "OS command", "execute", "system command"], stigCategory: "Input Validation" }],
+  [77, { cweId: 77, name: "Command Injection", keywords: ["injection", "command", "execute"], stigCategory: "Input Validation" }],
+  [94, { cweId: 94, name: "Code Injection", keywords: ["injection", "code injection", "eval", "execute"], stigCategory: "Input Validation" }],
+  [79, { cweId: 79, name: "Cross-Site Scripting (XSS)", keywords: ["cross-site scripting", "XSS", "script injection", "output encoding", "sanitize"], stigCategory: "Input Validation" }],
+  [90, { cweId: 90, name: "LDAP Injection", keywords: ["injection", "LDAP", "directory"], stigCategory: "Input Validation" }],
+  [91, { cweId: 91, name: "XML Injection", keywords: ["injection", "XML", "input validation"], stigCategory: "Input Validation" }],
+  [917, { cweId: 917, name: "Expression Language Injection", keywords: ["injection", "expression", "template"], stigCategory: "Input Validation" }],
+  [116, { cweId: 116, name: "Improper Output Encoding", keywords: ["output encoding", "encoding", "sanitize", "neutralize"], stigCategory: "Input Validation" }],
+  [20, { cweId: 20, name: "Improper Input Validation", keywords: ["input validation", "validate", "sanitize", "user input", "untrusted"], stigCategory: "Input Validation" }],
+  // ─── Broken Auth (OWASP A07) ────────────────────────────────────────
+  [287, { cweId: 287, name: "Improper Authentication", keywords: ["authenticat", "identity", "login", "credential"], stigCategory: "Authentication" }],
+  [306, { cweId: 306, name: "Missing Authentication", keywords: ["authenticat", "access control", "login", "identity"], stigCategory: "Authentication" }],
+  [798, { cweId: 798, name: "Hardcoded Credentials", keywords: ["credential", "password", "embedded", "hardcoded", "hard-coded"], stigCategory: "Authentication" }],
+  [259, { cweId: 259, name: "Hardcoded Password", keywords: ["password", "embedded", "hardcoded", "hard-coded", "credential"], stigCategory: "Authentication" }],
+  [522, { cweId: 522, name: "Insufficiently Protected Credentials", keywords: ["credential", "password", "protect", "cleartext", "plain text"], stigCategory: "Authentication" }],
+  // ─── Broken Access Control (OWASP A01) ──────────────────────────────
+  [862, { cweId: 862, name: "Missing Authorization", keywords: ["authoriz", "access control", "permission", "privilege"], stigCategory: "Access Control" }],
+  [863, { cweId: 863, name: "Incorrect Authorization", keywords: ["authoriz", "access control", "permission", "privilege"], stigCategory: "Access Control" }],
+  [284, { cweId: 284, name: "Improper Access Control", keywords: ["access control", "permission", "privilege", "authoriz"], stigCategory: "Access Control" }],
+  [22, { cweId: 22, name: "Path Traversal", keywords: ["path traversal", "directory traversal", "file access", "canonicalize"], stigCategory: "Access Control" }],
+  [434, { cweId: 434, name: "Unrestricted File Upload", keywords: ["file upload", "unrestricted", "file type", "content type"], stigCategory: "Access Control" }],
+  [352, { cweId: 352, name: "Cross-Site Request Forgery", keywords: ["CSRF", "cross-site request", "token", "forgery"], stigCategory: "Session Management" }],
+  // ─── Cryptographic Failures (OWASP A02) ─────────────────────────────
+  [327, { cweId: 327, name: "Broken Crypto Algorithm", keywords: ["cryptograph", "encrypt", "cipher", "algorithm", "FIPS", "approved"], stigCategory: "Cryptography" }],
+  [328, { cweId: 328, name: "Weak Hash", keywords: ["hash", "cryptograph", "MD5", "SHA-1", "FIPS"], stigCategory: "Cryptography" }],
+  [326, { cweId: 326, name: "Inadequate Encryption Strength", keywords: ["encrypt", "key length", "strength", "cryptograph", "FIPS"], stigCategory: "Cryptography" }],
+  [311, { cweId: 311, name: "Missing Encryption of Sensitive Data", keywords: ["encrypt", "sensitive", "cleartext", "plain text", "protect", "transit"], stigCategory: "Cryptography" }],
+  [319, { cweId: 319, name: "Cleartext Transmission", keywords: ["cleartext", "plain text", "encrypt", "TLS", "HTTPS", "transit", "transport"], stigCategory: "Cryptography" }],
+  // ─── Security Misconfiguration (OWASP A05) ──────────────────────────
+  [209, { cweId: 209, name: "Error Info Leak", keywords: ["error", "stack trace", "diagnostic", "verbose", "information exposure"], stigCategory: "Error Handling" }],
+  [215, { cweId: 215, name: "Debug Info Leak", keywords: ["debug", "diagnostic", "information exposure", "verbose"], stigCategory: "Error Handling" }],
+  [532, { cweId: 532, name: "Log Info Leak", keywords: ["log", "sensitive", "information exposure", "audit"], stigCategory: "Logging" }],
+  [614, { cweId: 614, name: "Missing Secure Cookie Flag", keywords: ["cookie", "secure flag", "session", "httpOnly"], stigCategory: "Session Management" }],
+  [1004, { cweId: 1004, name: "Missing HttpOnly Cookie Flag", keywords: ["cookie", "httpOnly", "session", "script access"], stigCategory: "Session Management" }],
+  // ─── Buffer Overflow (V-70277) ──────────────────────────────────────
+  [120, { cweId: 120, name: "Buffer Overflow", keywords: ["buffer overflow", "buffer", "memory", "bounds"], stigCategory: "Buffer Handling" }],
+  [119, { cweId: 119, name: "Buffer Boundary Violation", keywords: ["buffer", "boundary", "memory", "bounds check"], stigCategory: "Buffer Handling" }],
+  [787, { cweId: 787, name: "Out-of-bounds Write", keywords: ["buffer", "out-of-bounds", "memory", "write"], stigCategory: "Buffer Handling" }],
+  [125, { cweId: 125, name: "Out-of-bounds Read", keywords: ["buffer", "out-of-bounds", "memory", "read"], stigCategory: "Buffer Handling" }],
+  [190, { cweId: 190, name: "Integer Overflow", keywords: ["integer overflow", "overflow", "arithmetic"], stigCategory: "Buffer Handling" }],
+  // ─── Race Conditions (V-70185) ──────────────────────────────────────
+  [362, { cweId: 362, name: "Race Condition", keywords: ["race condition", "concurren", "synchroniz", "TOCTOU", "time-of-check"], stigCategory: "Concurrency" }],
+  [367, { cweId: 367, name: "TOCTOU Race Condition", keywords: ["race condition", "TOCTOU", "time-of-check", "time-of-use"], stigCategory: "Concurrency" }],
+  // ─── Error Handling (V-70391) ───────────────────────────────────────
+  [755, { cweId: 755, name: "Improper Exception Handling", keywords: ["error handling", "exception", "catch", "handle error"], stigCategory: "Error Handling" }],
+  [754, { cweId: 754, name: "Improper Check for Unusual Conditions", keywords: ["error handling", "exception", "unusual condition", "error check"], stigCategory: "Error Handling" }],
+  [390, { cweId: 390, name: "Detection of Error without Action", keywords: ["error handling", "exception", "ignore", "catch"], stigCategory: "Error Handling" }],
+  // ─── Insecure Deserialization (OWASP A08) ───────────────────────────
+  [502, { cweId: 502, name: "Insecure Deserialization", keywords: ["deserializ", "serializ", "untrusted data", "marshal", "pickle"], stigCategory: "Input Validation" }],
+  // ─── Vulnerable Components (OWASP A06) ──────────────────────────────
+  [1104, { cweId: 1104, name: "Unmaintained Third-Party Component", keywords: ["third-party", "component", "dependency", "library", "vulnerability", "patch"], stigCategory: "Dependencies" }],
+  [937, { cweId: 937, name: "Known Vulnerable Component", keywords: ["known vulnerabilit", "component", "dependency", "library", "patch", "CVE"], stigCategory: "Dependencies" }],
+  // ─── Logging & Monitoring (OWASP A09) ───────────────────────────────
+  [778, { cweId: 778, name: "Insufficient Logging", keywords: ["log", "audit", "monitor", "record", "event"], stigCategory: "Logging" }],
+  [117, { cweId: 117, name: "Log Injection", keywords: ["log", "injection", "audit", "forging"], stigCategory: "Logging" }]
+]);
+
+// src/importSarif.ts
+function extractCweIds(result, ruleDesc) {
+  const ids = [];
+  if (result.taxa) {
+    for (const t of result.taxa) {
+      const n = parseCweId(t.id);
+      if (n) ids.push(n);
+    }
+  }
+  if (ruleDesc?.relationships) {
+    for (const rel of ruleDesc.relationships) {
+      if (rel.target.toolComponent?.name?.toUpperCase() === "CWE" || rel.target.id.startsWith("CWE-")) {
+        const n = parseCweId(rel.target.id);
+        if (n) ids.push(n);
+      }
+    }
+  }
+  if (ruleDesc?.properties?.tags) {
+    for (const tag of ruleDesc.properties.tags) {
+      const m = tag.match(/cwe[/-](\d+)/i);
+      if (m) ids.push(parseInt(m[1], 10));
+    }
+  }
+  const fromId = parseCweId(result.ruleId);
+  if (fromId) ids.push(fromId);
+  return [...new Set(ids)];
+}
+function parseCweId(s) {
+  const m = s.match(/(?:CWE-?)(\d+)/i);
+  return m ? parseInt(m[1], 10) : null;
+}
+async function importSarif(activeCklbUri) {
+  let cklbUri = activeCklbUri;
+  if (!cklbUri) {
+    const uris = await vscode9.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { "STIG Checklist": ["cklb"] },
+      title: "Select checklist to populate with SARIF findings"
+    });
+    if (!uris?.[0]) return;
+    cklbUri = uris[0];
+  }
+  const sarifUris = await vscode9.window.showOpenDialog({
+    canSelectMany: true,
+    filters: { "SARIF": ["sarif", "json"] },
+    title: "Select SARIF results file(s)"
+  });
+  if (!sarifUris?.length) return;
+  const doc = JSON.parse(fs9.readFileSync(cklbUri.fsPath, "utf-8"));
+  const now = (/* @__PURE__ */ new Date()).toISOString();
+  const allRules = [];
+  for (const stig of doc.stigs) {
+    allRules.push(...stig.rules);
+  }
+  const ruleFindings = /* @__PURE__ */ new Map();
+  let totalResults = 0;
+  let mappedResults = 0;
+  let unmappedCwes = /* @__PURE__ */ new Set();
+  const tools = [];
+  for (const uri of sarifUris) {
+    const sarif = JSON.parse(fs9.readFileSync(uri.fsPath, "utf-8"));
+    for (const run of sarif.runs) {
+      const toolName = run.tool.driver.name;
+      if (!tools.includes(toolName)) tools.push(toolName);
+      const ruleMap = /* @__PURE__ */ new Map();
+      if (run.tool.driver.rules) {
+        for (const r of run.tool.driver.rules) {
+          ruleMap.set(r.id, r);
+        }
+      }
+      for (const result of run.results) {
+        totalResults++;
+        const ruleDesc = ruleMap.get(result.ruleId);
+        const cweIds = extractCweIds(result, ruleDesc);
+        if (cweIds.length === 0) continue;
+        const loc = result.locations?.[0]?.physicalLocation;
+        const file = loc?.artifactLocation?.uri || "";
+        const line = loc?.region?.startLine || 0;
+        let matched = false;
+        for (const cweId of cweIds) {
+          const mapping = CWE_STIG_MAP.get(cweId);
+          if (!mapping) {
+            unmappedCwes.add(cweId);
+            continue;
+          }
+          for (const rule of allRules) {
+            const ruleText = `${rule.rule_title} ${rule.discussion} ${rule.check_content}`.toLowerCase();
+            if (mapping.keywords.some((kw) => ruleText.includes(kw.toLowerCase()))) {
+              if (!ruleFindings.has(rule.uuid)) {
+                ruleFindings.set(rule.uuid, []);
+              }
+              ruleFindings.get(rule.uuid).push({
+                tool: toolName,
+                cwe: cweId,
+                file: file.replace(/^file:\/\//, ""),
+                line,
+                message: result.message.text.substring(0, 300)
+              });
+              matched = true;
+            }
+          }
+        }
+        if (matched) mappedResults++;
+      }
+    }
+  }
+  let openCount = 0;
+  for (const [uuid, findings] of ruleFindings) {
+    const rule = allRules.find((r) => r.uuid === uuid);
+    if (!rule) continue;
+    rule.status = "open";
+    openCount++;
+    const grouped = /* @__PURE__ */ new Map();
+    for (const f of findings) {
+      const key = `CWE-${f.cwe}`;
+      if (!grouped.has(key)) grouped.set(key, []);
+      grouped.get(key).push(f);
+    }
+    const sections = [`[SARIF IMPORT] ${findings.length} finding(s) from: ${tools.join(", ")}
+`];
+    for (const [cwe, items] of grouped) {
+      const cweName = CWE_STIG_MAP.get(parseInt(cwe.replace("CWE-", "")))?.name || cwe;
+      sections.push(`${cwe} \u2014 ${cweName}:`);
+      const shown = items.slice(0, 10);
+      for (const item of shown) {
+        sections.push(`  ${item.file}:${item.line} \u2014 ${item.message}`);
+      }
+      if (items.length > 10) {
+        sections.push(`  ... and ${items.length - 10} more`);
+      }
+    }
+    rule.finding_details = sections.join("\n");
+    rule.updatedAt = now;
+  }
+  fs9.writeFileSync(cklbUri.fsPath, JSON.stringify(doc, null, 2));
+  await vscode9.commands.executeCommand("vscode.openWith", cklbUri, "stigViewer.cklbEditor");
+  let msg = `SARIF import: ${totalResults} findings processed, ${mappedResults} mapped to ${openCount} rules`;
+  if (unmappedCwes.size > 0) {
+    msg += ` (${unmappedCwes.size} unmapped CWEs: ${[...unmappedCwes].slice(0, 5).map((c) => `CWE-${c}`).join(", ")}${unmappedCwes.size > 5 ? "..." : ""})`;
+  }
+  vscode9.window.showInformationMessage(msg);
+}
+
+// src/importAudit.ts
+var vscode10 = __toESM(require("vscode"));
+var fs10 = __toESM(require("fs"));
+function parseNpmAudit(data) {
+  const entries = [];
+  if (!data.vulnerabilities) return entries;
+  for (const [name, vuln] of Object.entries(data.vulnerabilities)) {
+    for (const v of vuln.via) {
+      if (typeof v === "object") {
+        entries.push({
+          name,
+          severity: v.severity,
+          title: v.title,
+          url: v.url,
+          cwe: v.cwe?.[0],
+          fixAvailable: vuln.fixAvailable ? "Yes" : "No"
+        });
+      }
+    }
+  }
+  return entries;
+}
+function parsePipAudit(data) {
+  const entries = [];
+  const items = Array.isArray(data) ? data : data.dependencies || [];
+  for (const pkg of items) {
+    if (!pkg.vulns?.length) continue;
+    for (const v of pkg.vulns) {
+      entries.push({
+        name: pkg.name,
+        version: pkg.version,
+        id: v.id,
+        description: v.description,
+        fixAvailable: v.fix_versions?.length ? v.fix_versions.join(", ") : "No"
+      });
+    }
+  }
+  return entries;
+}
+function detectAndParse(data) {
+  if (data.vulnerabilities && typeof data.vulnerabilities === "object") {
+    return { entries: parseNpmAudit(data), source: "npm audit" };
+  }
+  if (Array.isArray(data) && data[0]?.vulns !== void 0) {
+    return { entries: parsePipAudit(data), source: "pip-audit" };
+  }
+  if (data.dependencies && Array.isArray(data.dependencies)) {
+    return { entries: parsePipAudit(data), source: "pip-audit" };
+  }
+  if (Array.isArray(data)) {
+    return {
+      entries: data.map((d) => ({
+        name: d.name || d.package || d.module || "",
+        version: d.version || d.installed_version || "",
+        severity: d.severity || d.level || "",
+        title: d.title || d.advisory || d.description || "",
+        id: d.id || d.cve || d.advisory_id || "",
+        url: d.url || d.reference || ""
+      })),
+      source: "dependency audit"
+    };
+  }
+  throw new Error("Unrecognized audit format. Expected npm audit, pip-audit, or a JSON array of vulnerabilities.");
+}
+async function importAudit(activeCklbUri) {
+  let cklbUri = activeCklbUri;
+  if (!cklbUri) {
+    const uris = await vscode10.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { "STIG Checklist": ["cklb"] },
+      title: "Select checklist to populate with audit findings"
+    });
+    if (!uris?.[0]) return;
+    cklbUri = uris[0];
+  }
+  const auditUris = await vscode10.window.showOpenDialog({
+    canSelectMany: false,
+    filters: { "JSON": ["json"] },
+    title: "Select dependency audit JSON (npm audit, pip-audit, etc.)"
+  });
+  if (!auditUris?.[0]) return;
+  const doc = JSON.parse(fs10.readFileSync(cklbUri.fsPath, "utf-8"));
+  const auditData = JSON.parse(fs10.readFileSync(auditUris[0].fsPath, "utf-8"));
+  const { entries, source } = detectAndParse(auditData);
+  if (entries.length === 0) {
+    vscode10.window.showInformationMessage(`No vulnerabilities found in ${source} output.`);
+    return;
+  }
+  const depKeywords = [
+    "third-party",
+    "component",
+    "dependency",
+    "library",
+    "vulnerability",
+    "known vulnerabilit",
+    "patch",
+    "update",
+    "unsupported",
+    "software composition",
+    "package",
+    "module",
+    "open source"
+  ];
+  const now = (/* @__PURE__ */ new Date()).toISOString();
+  let matched = 0;
+  for (const stig of doc.stigs) {
+    for (const rule of stig.rules) {
+      const ruleText = `${rule.rule_title} ${rule.discussion} ${rule.check_content}`.toLowerCase();
+      const isDepRule = depKeywords.some((kw) => ruleText.includes(kw));
+      if (!isDepRule) continue;
+      matched++;
+      rule.status = "open";
+      rule.updatedAt = now;
+      const sevCounts = {};
+      for (const e of entries) {
+        const sev = (e.severity || "unknown").toLowerCase();
+        sevCounts[sev] = (sevCounts[sev] || 0) + 1;
+      }
+      const sevSummary = Object.entries(sevCounts).map(([s, n]) => `${n} ${s}`).join(", ");
+      const lines = [
+        `[AUDIT IMPORT] ${entries.length} vulnerable dependencies found via ${source}`,
+        `Severity breakdown: ${sevSummary}
+`
+      ];
+      const shown = entries.slice(0, 25);
+      for (const e of shown) {
+        const parts = [e.name];
+        if (e.version) parts.push(`v${e.version}`);
+        if (e.severity) parts.push(`[${e.severity}]`);
+        if (e.title) parts.push(`\u2014 ${e.title}`);
+        if (e.id) parts.push(`(${e.id})`);
+        if (e.fixAvailable && e.fixAvailable !== "No") parts.push(`fix: ${e.fixAvailable}`);
+        lines.push(`  ${parts.join(" ")}`);
+      }
+      if (entries.length > 25) {
+        lines.push(`  ... and ${entries.length - 25} more`);
+      }
+      rule.finding_details = lines.join("\n");
+    }
+  }
+  fs10.writeFileSync(cklbUri.fsPath, JSON.stringify(doc, null, 2));
+  await vscode10.commands.executeCommand("vscode.openWith", cklbUri, "stigViewer.cklbEditor");
+  if (matched > 0) {
+    vscode10.window.showInformationMessage(
+      `Imported ${entries.length} vulnerabilities from ${source} \u2192 ${matched} STIG rule(s) marked open`
+    );
+  } else {
+    vscode10.window.showWarningMessage(
+      `Imported ${entries.length} vulnerabilities but no dependency-related STIG rules found in the checklist.`
+    );
+  }
+}
+
+// src/evidencePackage.ts
+var vscode11 = __toESM(require("vscode"));
+var fs11 = __toESM(require("fs"));
+var path5 = __toESM(require("path"));
+var zlib = __toESM(require("zlib"));
+var ZipBuilder = class {
+  constructor() {
+    this.files = [];
+  }
+  addFile(name, content) {
+    const data = typeof content === "string" ? Buffer.from(content, "utf-8") : content;
+    const compressedData = zlib.deflateRawSync(data);
+    const crc = this.crc32(data);
+    this.files.push({ name, data, crc, compressedData });
+  }
+  build() {
+    const parts = [];
+    const centralParts = [];
+    let offset = 0;
+    for (const file of this.files) {
+      const nameBuffer = Buffer.from(file.name, "utf-8");
+      const local = Buffer.alloc(30 + nameBuffer.length);
+      local.writeUInt32LE(67324752, 0);
+      local.writeUInt16LE(20, 4);
+      local.writeUInt16LE(0, 6);
+      local.writeUInt16LE(8, 8);
+      local.writeUInt16LE(0, 10);
+      local.writeUInt16LE(0, 12);
+      local.writeUInt32LE(file.crc, 14);
+      local.writeUInt32LE(file.compressedData.length, 18);
+      local.writeUInt32LE(file.data.length, 22);
+      local.writeUInt16LE(nameBuffer.length, 26);
+      local.writeUInt16LE(0, 28);
+      nameBuffer.copy(local, 30);
+      const central = Buffer.alloc(46 + nameBuffer.length);
+      central.writeUInt32LE(33639248, 0);
+      central.writeUInt16LE(20, 4);
+      central.writeUInt16LE(20, 6);
+      central.writeUInt16LE(0, 8);
+      central.writeUInt16LE(8, 10);
+      central.writeUInt16LE(0, 12);
+      central.writeUInt16LE(0, 14);
+      central.writeUInt32LE(file.crc, 16);
+      central.writeUInt32LE(file.compressedData.length, 20);
+      central.writeUInt32LE(file.data.length, 24);
+      central.writeUInt16LE(nameBuffer.length, 28);
+      central.writeUInt16LE(0, 30);
+      central.writeUInt16LE(0, 32);
+      central.writeUInt16LE(0, 34);
+      central.writeUInt16LE(0, 36);
+      central.writeUInt32LE(0, 38);
+      central.writeUInt32LE(offset, 42);
+      nameBuffer.copy(central, 46);
+      parts.push(local, file.compressedData);
+      centralParts.push(central);
+      offset += local.length + file.compressedData.length;
+    }
+    const centralDirOffset = offset;
+    let centralDirSize = 0;
+    for (const cp of centralParts) {
+      parts.push(cp);
+      centralDirSize += cp.length;
+    }
+    const eocd = Buffer.alloc(22);
+    eocd.writeUInt32LE(101010256, 0);
+    eocd.writeUInt16LE(0, 4);
+    eocd.writeUInt16LE(0, 6);
+    eocd.writeUInt16LE(this.files.length, 8);
+    eocd.writeUInt16LE(this.files.length, 10);
+    eocd.writeUInt32LE(centralDirSize, 12);
+    eocd.writeUInt32LE(centralDirOffset, 16);
+    eocd.writeUInt16LE(0, 20);
+    parts.push(eocd);
+    return Buffer.concat(parts);
+  }
+  crc32(buf) {
+    let crc = 4294967295;
+    for (let i = 0; i < buf.length; i++) {
+      crc ^= buf[i];
+      for (let j = 0; j < 8; j++) {
+        crc = crc >>> 1 ^ (crc & 1 ? 3988292384 : 0);
+      }
+    }
+    return (crc ^ 4294967295) >>> 0;
+  }
+};
+function buildSummaryReport(data) {
+  const lines = [];
+  lines.push("STIG ASSESSMENT EVIDENCE PACKAGE");
+  lines.push("================================\n");
+  lines.push(`Generated: ${(/* @__PURE__ */ new Date()).toISOString()}`);
+  lines.push(`Title: ${data.title}`);
+  lines.push(`Host: ${data.target_data.host_name || "N/A"}`);
+  lines.push(`IP: ${data.target_data.ip_address || "N/A"}`);
+  lines.push(`FQDN: ${data.target_data.fqdn || "N/A"}
+`);
+  for (const stig of data.stigs) {
+    const counts = { open: 0, not_a_finding: 0, not_reviewed: 0, not_applicable: 0, high: 0, medium: 0, low: 0 };
+    for (const r of stig.rules) {
+      counts[r.status]++;
+      counts[r.severity]++;
+    }
+    const total = stig.rules.length;
+    const completion = total ? Math.round((counts.not_a_finding + counts.not_applicable) / total * 100) : 0;
+    lines.push(`STIG: ${stig.stig_name}`);
+    lines.push(`  ${stig.release_info} | Version ${stig.version}`);
+    lines.push(`  Total Rules: ${total}`);
+    lines.push(`  Open: ${counts.open} | Not a Finding: ${counts.not_a_finding} | Not Reviewed: ${counts.not_reviewed} | Not Applicable: ${counts.not_applicable}`);
+    lines.push(`  CAT I: ${counts.high} | CAT II: ${counts.medium} | CAT III: ${counts.low}`);
+    lines.push(`  Completion: ${completion}%
+`);
+    const openRules = stig.rules.filter((r) => r.status === "open");
+    if (openRules.length > 0) {
+      lines.push("  OPEN FINDINGS:");
+      for (const r of openRules) {
+        const cat = r.severity === "high" ? "I" : r.severity === "medium" ? "II" : "III";
+        lines.push(`    [CAT ${cat}] ${r.group_id} \u2014 ${r.rule_title}`);
+        if (r.finding_details) {
+          const detail = r.finding_details.substring(0, 200).replace(/\n/g, "\n      ");
+          lines.push(`      ${detail}`);
+        }
+      }
+      lines.push("");
+    }
+  }
+  lines.push("\nPACKAGE CONTENTS:");
+  lines.push("  checklist.cklb    \u2014 Full checklist in JSON format");
+  lines.push("  checklist.ckl     \u2014 Checklist in DISA CKL XML format");
+  lines.push("  summary.csv       \u2014 All rules with status and findings");
+  lines.push("  poam.csv          \u2014 Plan of Action & Milestones (open findings only)");
+  lines.push("  report.txt        \u2014 This summary report");
+  return lines.join("\n");
+}
+async function exportEvidence(activeCklbUri) {
+  let cklbUri = activeCklbUri;
+  if (!cklbUri) {
+    const uris = await vscode11.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { "STIG Checklist": ["cklb"] },
+      title: "Select checklist to package as evidence"
+    });
+    if (!uris?.[0]) return;
+    cklbUri = uris[0];
+  }
+  const doc = JSON.parse(fs11.readFileSync(cklbUri.fsPath, "utf-8"));
+  const baseName = path5.basename(cklbUri.fsPath, ".cklb");
+  const zip = new ZipBuilder();
+  zip.addFile("checklist.cklb", JSON.stringify(doc, null, 2));
+  zip.addFile("checklist.ckl", buildCkl(doc));
+  zip.addFile("summary.csv", buildCsv(doc));
+  zip.addFile("poam.csv", buildPoam(doc));
+  zip.addFile("report.txt", buildSummaryReport(doc));
+  const attachMore = await vscode11.window.showQuickPick(
+    ["Save package now", "Attach additional evidence files first"],
+    { title: "Evidence package" }
+  );
+  if (attachMore?.includes("Attach")) {
+    const extraUris = await vscode11.window.showOpenDialog({
+      canSelectMany: true,
+      title: "Select additional evidence files (screenshots, scan reports, etc.)"
+    });
+    if (extraUris) {
+      for (const u of extraUris) {
+        const name = "evidence/" + path5.basename(u.fsPath);
+        zip.addFile(name, fs11.readFileSync(u.fsPath));
+      }
+    }
+  }
+  const defaultName = `${baseName}_evidence_${(/* @__PURE__ */ new Date()).toISOString().slice(0, 10)}.zip`;
+  const saveUri = await vscode11.window.showSaveDialog({
+    defaultUri: vscode11.Uri.file(path5.join(path5.dirname(cklbUri.fsPath), defaultName)),
+    filters: { "ZIP Archive": ["zip"] },
+    title: "Save Evidence Package"
+  });
+  if (!saveUri) return;
+  fs11.writeFileSync(saveUri.fsPath, zip.build());
+  const totalRules = doc.stigs.reduce((n, s) => n + s.rules.length, 0);
+  const openCount = doc.stigs.reduce((n, s) => n + s.rules.filter((r) => r.status === "open").length, 0);
+  vscode11.window.showInformationMessage(
+    `Evidence package saved: ${totalRules} rules, ${openCount} open findings \u2192 ${path5.basename(saveUri.fsPath)}`
+  );
+}
+
+// src/crosswalkPanel.ts
+var vscode12 = __toESM(require("vscode"));
+var fs12 = __toESM(require("fs"));
+var path6 = __toESM(require("path"));
+
+// src/cciNistMap.ts
+var import_xml2js4 = __toESM(require_xml2js());
+var CCI_TO_NIST = {
+  // ── Access Control (AC) ─────────────────────────────────────────────────
+  "CCI-000005": { control: "AC-2", title: "Account Management", definition: "The organization manages information system accounts, including establishing, activating, modifying, reviewing, disabling, and removing accounts." },
+  "CCI-000009": { control: "AC-2", title: "Account Management", definition: "The organization reviews information system accounts for compliance with account management requirements." },
+  "CCI-000010": { control: "AC-2", title: "Account Management", definition: "The organization requires approvals by organization-defined personnel or roles for requests to create information system accounts." },
+  "CCI-000012": { control: "AC-2", title: "Account Management", definition: "The organization creates, enables, modifies, disables, and removes information system accounts in accordance with organization-defined procedures or conditions." },
+  "CCI-000015": { control: "AC-2 (1)", title: "Account Management | Automated System Account Management", definition: "The organization employs automated mechanisms to support the management of information system accounts." },
+  "CCI-000017": { control: "AC-2 (2)", title: "Account Management | Removal of Temporary/Emergency Accounts", definition: "The information system automatically removes or disables temporary and emergency accounts after a defined time period." },
+  "CCI-000018": { control: "AC-2 (3)", title: "Account Management | Disable Inactive Accounts", definition: "The information system automatically disables inactive accounts after a defined time period." },
+  "CCI-000019": { control: "AC-2 (3)", title: "Account Management | Disable Inactive Accounts", definition: "The organization defines the time period after which the information system automatically disables inactive accounts." },
+  "CCI-000020": { control: "AC-2 (3)", title: "Account Management | Disable Inactive Accounts", definition: "The information system automatically disables inactive accounts after the organization-defined time period." },
+  "CCI-000023": { control: "AC-2 (4)", title: "Account Management | Automated Audit Actions", definition: "The information system automatically audits account creation, modification, enabling, disabling, and removal actions and notifies organization-defined personnel or roles." },
+  "CCI-000032": { control: "AC-3", title: "Access Enforcement", definition: "The information system enforces approved authorizations for logical access to information and system resources." },
+  "CCI-000033": { control: "AC-3 (3)", title: "Access Enforcement | Mandatory Access Control", definition: "The information system enforces organization-defined mandatory access control policy." },
+  "CCI-000038": { control: "AC-6", title: "Least Privilege", definition: "The organization employs the principle of least privilege, allowing only authorized accesses for users which are necessary to accomplish assigned tasks." },
+  "CCI-000039": { control: "AC-6 (1)", title: "Least Privilege | Authorize Access to Security Functions", definition: "The organization explicitly authorizes access to organization-defined security functions and security-relevant information." },
+  "CCI-000040": { control: "AC-6 (1)", title: "Least Privilege | Authorize Access to Security Functions", definition: "The organization explicitly authorizes access to organization-defined security functions." },
+  "CCI-000044": { control: "AC-7", title: "Unsuccessful Logon Attempts", definition: "The information system enforces a limit of consecutive invalid logon attempts by a user during a defined time period." },
+  "CCI-000045": { control: "AC-7", title: "Unsuccessful Logon Attempts", definition: "The organization defines the number of consecutive invalid logon attempts allowed." },
+  "CCI-000047": { control: "AC-7", title: "Unsuccessful Logon Attempts", definition: "The information system automatically locks the account/node until released by an administrator when the maximum number of unsuccessful attempts is exceeded." },
+  "CCI-000048": { control: "AC-8", title: "System Use Notification", definition: "The information system displays an approved system use notification message or banner before granting access." },
+  "CCI-000050": { control: "AC-8", title: "System Use Notification", definition: "The information system retains the notification message or banner on the screen until users acknowledge the usage conditions." },
+  "CCI-000054": { control: "AC-10", title: "Concurrent Session Control", definition: "The information system limits the number of concurrent sessions for each account to an organization-defined number." },
+  "CCI-000056": { control: "AC-11", title: "Session Lock", definition: "The information system initiates a session lock after the organization-defined time period of inactivity." },
+  "CCI-000057": { control: "AC-11", title: "Session Lock", definition: "The information system provides the capability for users to initiate a session lock for display devices." },
+  "CCI-000058": { control: "AC-11 (1)", title: "Session Lock | Pattern-Hiding Displays", definition: "The information system conceals, via the session lock, information previously visible on the display." },
+  "CCI-000060": { control: "AC-11", title: "Session Lock", definition: "The organization defines the time period of inactivity after which the information system initiates a session lock." },
+  "CCI-000068": { control: "AC-17 (2)", title: "Remote Access | Protection of Confidentiality/Integrity Using Encryption", definition: "The information system implements cryptographic mechanisms to protect the confidentiality and integrity of remote access sessions." },
+  "CCI-000070": { control: "AC-17 (2)", title: "Remote Access | Protection of Confidentiality/Integrity Using Encryption", definition: "The organization defines cryptographic requirements for protecting confidentiality and integrity of remote access sessions." },
+  "CCI-000082": { control: "AC-17 (9)", title: "Remote Access | Disconnect/Disable Access", definition: "The organization provides the capability to expeditiously disconnect or disable remote access." },
+  "CCI-000213": { control: "AC-3", title: "Access Enforcement", definition: "The information system enforces approved authorizations for logical access to information and system resources in accordance with applicable access control policies." },
+  "CCI-001084": { control: "SC-3", title: "Security Function Isolation", definition: "The information system isolates security functions from nonsecurity functions." },
+  // ── Audit and Accountability (AU) ───────────────────────────────────────
+  "CCI-000126": { control: "AU-2", title: "Audit Events", definition: "The organization determines that the information system is capable of auditing organization-defined auditable events." },
+  "CCI-000130": { control: "AU-3", title: "Content of Audit Records", definition: "The information system generates audit records containing information that establishes what type of event occurred." },
+  "CCI-000131": { control: "AU-3", title: "Content of Audit Records", definition: "The information system generates audit records containing information that establishes when an event occurred." },
+  "CCI-000132": { control: "AU-3", title: "Content of Audit Records", definition: "The information system generates audit records containing information that establishes where the event occurred." },
+  "CCI-000133": { control: "AU-3", title: "Content of Audit Records", definition: "The information system generates audit records containing information that establishes the source of the event." },
+  "CCI-000134": { control: "AU-3", title: "Content of Audit Records", definition: "The information system generates audit records containing information that establishes the outcome of the event." },
+  "CCI-000135": { control: "AU-3 (1)", title: "Content of Audit Records | Additional Audit Information", definition: "The information system generates audit records containing organization-defined additional, more detailed information." },
+  "CCI-000136": { control: "AU-3 (2)", title: "Content of Audit Records | Centralized Management", definition: "The information system provides centralized management and configuration of the content to be captured in audit records." },
+  "CCI-000139": { control: "AU-5", title: "Response to Audit Processing Failures", definition: "The information system alerts designated personnel in the event of an audit processing failure." },
+  "CCI-000140": { control: "AU-5", title: "Response to Audit Processing Failures", definition: "The information system takes organization-defined actions in the event of an audit processing failure." },
+  "CCI-000154": { control: "AU-6", title: "Audit Review, Analysis, and Reporting", definition: "The organization reviews and analyzes information system audit records for indications of inappropriate or unusual activity." },
+  "CCI-000158": { control: "AU-7", title: "Audit Reduction and Report Generation", definition: "The information system provides an audit reduction and report generation capability." },
+  "CCI-000162": { control: "AU-9", title: "Protection of Audit Information", definition: "The information system protects audit information from unauthorized access." },
+  "CCI-000163": { control: "AU-9", title: "Protection of Audit Information", definition: "The information system protects audit information from unauthorized modification." },
+  "CCI-000164": { control: "AU-9", title: "Protection of Audit Information", definition: "The information system protects audit information from unauthorized deletion." },
+  "CCI-000166": { control: "AU-10", title: "Non-repudiation", definition: "The information system protects against an individual falsely denying having performed a particular action." },
+  "CCI-000167": { control: "AU-10", title: "Non-repudiation", definition: "The information system provides irrefutable evidence that a specific action was performed." },
+  "CCI-000169": { control: "AU-12", title: "Audit Generation", definition: "The information system provides audit record generation capability for the auditable events defined." },
+  "CCI-000171": { control: "AU-12", title: "Audit Generation", definition: "The information system allows designated personnel to select which auditable events are to be audited by specific components." },
+  "CCI-000172": { control: "AU-12 (3)", title: "Audit Generation | Changes by Authorized Individuals", definition: "The information system provides the capability for authorized individuals to change the auditing to be performed on specific components." },
+  "CCI-001464": { control: "AU-4", title: "Audit Storage Capacity", definition: "The organization allocates audit record storage capacity and configures auditing to reduce the likelihood of capacity being exceeded." },
+  "CCI-001487": { control: "AU-9", title: "Protection of Audit Information", definition: "The information system protects audit information and audit tools from unauthorized access, modification, and deletion." },
+  "CCI-001493": { control: "AU-9 (4)", title: "Protection of Audit Information | Access by Subset of Privileged Users", definition: "The organization authorizes access to management of audit functionality to only an organization-defined subset of privileged users." },
+  "CCI-001494": { control: "AU-9 (4)", title: "Protection of Audit Information | Access by Subset of Privileged Users", definition: "The organization authorizes access to management of audit functionality to only a defined subset of privileged users." },
+  "CCI-001495": { control: "AU-9 (4)", title: "Protection of Audit Information | Access by Subset of Privileged Users", definition: "The organization defines the subset of privileged users authorized for audit management." },
+  "CCI-001496": { control: "AU-9 (5)", title: "Protection of Audit Information | Dual Authorization", definition: "The organization enforces dual authorization for movement and/or deletion of organization-defined audit information." },
+  "CCI-001851": { control: "AU-4 (1)", title: "Audit Storage Capacity | Transfer to Alternate Storage", definition: "The information system off-loads audit records onto a different system or media." },
+  "CCI-001855": { control: "AU-5 (1)", title: "Response to Audit Processing Failures | Audit Storage Capacity", definition: "The information system provides a warning to organization-defined personnel when allocated audit record storage volume reaches a defined percentage." },
+  "CCI-001857": { control: "AU-5 (2)", title: "Response to Audit Processing Failures | Real-Time Alerts", definition: "The information system provides an alert in real-time to organization-defined personnel when audit failure events occur." },
+  "CCI-001858": { control: "AU-5 (2)", title: "Response to Audit Processing Failures | Real-Time Alerts", definition: "The organization defines the audit failure events requiring real-time alerts." },
+  // ── Configuration Management (CM) ───────────────────────────────────────
+  "CCI-000345": { control: "CM-5", title: "Access Restrictions for Change", definition: "The organization defines, documents, approves, and enforces physical and logical access restrictions associated with changes to the information system." },
+  "CCI-000363": { control: "CM-6", title: "Configuration Settings", definition: "The organization defines security configuration settings for the information system components." },
+  "CCI-000366": { control: "CM-6", title: "Configuration Settings", definition: "The organization ensures that the information system components comply with organization-defined configuration settings." },
+  "CCI-000370": { control: "CM-6", title: "Configuration Settings", definition: "The organization establishes and documents configuration settings for information technology products employed within the information system." },
+  "CCI-000379": { control: "CM-7", title: "Least Functionality", definition: "The organization configures the information system to provide only essential capabilities." },
+  "CCI-000381": { control: "CM-7", title: "Least Functionality", definition: "The organization prohibits or restricts the use of organization-defined functions, ports, protocols, and/or services." },
+  "CCI-000382": { control: "CM-7", title: "Least Functionality", definition: "The organization configures the information system to provide only essential capabilities and prohibits or restricts the use of prohibited functions, ports, protocols, and/or services." },
+  "CCI-001749": { control: "CM-5 (3)", title: "Access Restrictions for Change | Signed Components", definition: "The information system prevents the installation of software and firmware components without verification that the component has been digitally signed." },
+  "CCI-001812": { control: "CM-11", title: "User-Installed Software", definition: "The organization defines policies governing the installation of software by users." },
+  "CCI-001813": { control: "CM-5 (1)", title: "Access Restrictions for Change | Automated Access Enforcement/Auditing", definition: "The information system enforces access restrictions and supports auditing of the enforcement actions." },
+  "CCI-001814": { control: "CM-5 (1)", title: "Access Restrictions for Change | Automated Access Enforcement/Auditing", definition: "The information system supports auditing of the enforcement actions." },
+  // ── Identification and Authentication (IA) ──────────────────────────────
+  "CCI-000185": { control: "IA-5 (2)", title: "Authenticator Management | PKI-Based Authentication", definition: "The information system validates certificates by constructing and verifying a certification path." },
+  "CCI-000186": { control: "IA-5 (2)", title: "Authenticator Management | PKI-Based Authentication", definition: "The information system enforces authorized access to the corresponding private key." },
+  "CCI-000187": { control: "IA-5 (2)", title: "Authenticator Management | PKI-Based Authentication", definition: "The information system maps the authenticated identity to the account of the individual or group." },
+  "CCI-000192": { control: "IA-5 (1)", title: "Authenticator Management | Password-Based Authentication", definition: "The information system enforces password complexity by the minimum number of uppercase characters used." },
+  "CCI-000193": { control: "IA-5 (1)", title: "Authenticator Management | Password-Based Authentication", definition: "The information system enforces password complexity by the minimum number of lowercase characters used." },
+  "CCI-000194": { control: "IA-5 (1)", title: "Authenticator Management | Password-Based Authentication", definition: "The information system enforces password complexity by the minimum number of numeric characters used." },
+  "CCI-000195": { control: "IA-5 (1)", title: "Authenticator Management | Password-Based Authentication", definition: "The information system enforces password complexity by the minimum number of special characters used." },
+  "CCI-000196": { control: "IA-5 (1)", title: "Authenticator Management | Password-Based Authentication", definition: "The information system, for password-based authentication, stores only cryptographically-protected passwords." },
+  "CCI-000197": { control: "IA-5 (1)", title: "Authenticator Management | Password-Based Authentication", definition: "The information system, for password-based authentication, transmits only cryptographically-protected passwords." },
+  "CCI-000198": { control: "IA-5 (1)", title: "Authenticator Management | Password-Based Authentication", definition: "The information system enforces minimum password lifetime restrictions." },
+  "CCI-000199": { control: "IA-5 (1)", title: "Authenticator Management | Password-Based Authentication", definition: "The information system enforces maximum password lifetime restrictions." },
+  "CCI-000200": { control: "IA-5 (1)", title: "Authenticator Management | Password-Based Authentication", definition: "The information system prohibits password reuse for a defined number of generations." },
+  "CCI-000205": { control: "IA-5 (1)", title: "Authenticator Management | Password-Based Authentication", definition: "The information system enforces minimum password length." },
+  "CCI-000764": { control: "IA-2", title: "Identification and Authentication (Organizational Users)", definition: "The information system uniquely identifies and authenticates organizational users." },
+  "CCI-000765": { control: "IA-2 (1)", title: "Identification and Authentication | Multi-Factor Authentication to Privileged Accounts", definition: "The information system implements multifactor authentication for network access to privileged accounts." },
+  "CCI-000766": { control: "IA-2 (2)", title: "Identification and Authentication | Multi-Factor Authentication to Non-Privileged Accounts", definition: "The information system implements multifactor authentication for network access to non-privileged accounts." },
+  "CCI-000767": { control: "IA-2 (3)", title: "Identification and Authentication | Local Access to Privileged Accounts", definition: "The information system implements multifactor authentication for local access to privileged accounts." },
+  "CCI-000768": { control: "IA-2 (4)", title: "Identification and Authentication | Local Access to Non-Privileged Accounts", definition: "The information system implements multifactor authentication for local access to non-privileged accounts." },
+  "CCI-000770": { control: "IA-2 (5)", title: "Identification and Authentication | Group Authentication", definition: "The organization requires individuals to be authenticated with an individual authenticator when a group authenticator is employed." },
+  "CCI-000778": { control: "IA-3", title: "Device Identification and Authentication", definition: "The information system uniquely identifies and authenticates devices before establishing a connection." },
+  "CCI-000795": { control: "IA-4", title: "Identifier Management", definition: "The organization manages information system identifiers for users and devices." },
+  "CCI-000803": { control: "IA-7", title: "Cryptographic Module Authentication", definition: "The information system implements mechanisms for authentication to a cryptographic module that meet the requirements of applicable laws." },
+  "CCI-001941": { control: "IA-2 (8)", title: "Identification and Authentication | Network Access to Privileged Accounts \u2014 Replay Resistant", definition: "The information system implements replay-resistant authentication mechanisms for network access to privileged accounts." },
+  "CCI-001942": { control: "IA-2 (9)", title: "Identification and Authentication | Network Access to Non-Privileged Accounts \u2014 Replay Resistant", definition: "The information system implements replay-resistant authentication mechanisms for network access to non-privileged accounts." },
+  "CCI-001953": { control: "IA-2 (12)", title: "Identification and Authentication | Acceptance of PIV Credentials", definition: "The information system accepts and electronically verifies Personal Identity Verification (PIV) credentials." },
+  "CCI-001954": { control: "IA-2 (12)", title: "Identification and Authentication | Acceptance of PIV Credentials", definition: "The information system accepts PIV credentials from other agencies." },
+  "CCI-002007": { control: "IA-5", title: "Authenticator Management", definition: "The organization manages information system authenticators." },
+  "CCI-002009": { control: "IA-5 (1)", title: "Authenticator Management | Password-Based Authentication", definition: "The information system, for password-based authentication, enforces the password complexity defined by the organization." },
+  "CCI-002010": { control: "IA-5 (1)", title: "Authenticator Management | Password-Based Authentication", definition: "The information system enforces the number of characters that are changed when new passwords are created." },
+  "CCI-002041": { control: "IA-11", title: "Re-authentication", definition: "The information system requires users to re-authenticate when organization-defined circumstances or situations require re-authentication." },
+  // ── Maintenance (MA) ────────────────────────────────────────────────────
+  "CCI-000877": { control: "MA-4", title: "Nonlocal Maintenance", definition: "The organization authorizes, monitors, and controls nonlocal maintenance and diagnostic activities." },
+  "CCI-001880": { control: "MA-4 (6)", title: "Nonlocal Maintenance | Cryptographic Protection", definition: "The information system implements cryptographic mechanisms to protect the integrity and confidentiality of nonlocal maintenance and diagnostic communications." },
+  // ── Media Protection (MP) ───────────────────────────────────────────────
+  "CCI-001199": { control: "SC-28", title: "Protection of Information at Rest", definition: "The information system protects the confidentiality and integrity of information at rest." },
+  // ── Physical and Environmental (PE) ─────────────────────────────────────
+  "CCI-000924": { control: "PE-2", title: "Physical Access Authorizations", definition: "The organization develops, approves, and maintains a list of individuals with authorized access to the facility." },
+  // ── Risk Assessment (RA) ────────────────────────────────────────────────
+  "CCI-001643": { control: "RA-5", title: "Vulnerability Scanning", definition: "The organization scans for vulnerabilities in the information system and hosted applications." },
+  "CCI-001644": { control: "RA-5", title: "Vulnerability Scanning", definition: "The organization defines the frequency at which vulnerability scans are conducted." },
+  // ── System and Services Acquisition (SA) ────────────────────────────────
+  "CCI-002233": { control: "SA-11", title: "Developer Security Testing and Evaluation", definition: "The organization requires the developer of the information system to create and implement a security assessment plan." },
+  "CCI-003123": { control: "SA-11 (1)", title: "Developer Security Testing and Evaluation | Static Code Analysis", definition: "The organization requires the developer to employ static code analysis tools." },
+  // ── System and Communications Protection (SC) — additional entries ─────
+  "CCI-001130": { control: "SC-5", title: "Denial of Service Protection", definition: "The information system protects against or limits the effects of organization-defined types of denial-of-service attacks." },
+  "CCI-001184": { control: "SC-23", title: "Session Authenticity", definition: "The information system protects the authenticity of communications sessions." },
+  "CCI-001188": { control: "SC-23 (1)", title: "Session Authenticity | Invalidate Session Identifiers at Logout", definition: "The information system invalidates session identifiers upon user logout or other session termination." },
+  "CCI-002418": { control: "SC-8", title: "Transmission Confidentiality and Integrity", definition: "The information system protects the confidentiality and integrity of transmitted information." },
+  "CCI-002420": { control: "SC-8 (1)", title: "Transmission Confidentiality and Integrity | Cryptographic or Alternate Physical Protection", definition: "The information system implements cryptographic mechanisms to prevent unauthorized disclosure of information during transmission." },
+  "CCI-002421": { control: "SC-8 (1)", title: "Transmission Confidentiality and Integrity | Cryptographic or Alternate Physical Protection", definition: "The information system implements cryptographic mechanisms to recognize changes to information during transmission." },
+  "CCI-002422": { control: "SC-8", title: "Transmission Confidentiality and Integrity", definition: "The information system maintains the confidentiality and integrity of information during preparation for transmission and during reception." },
+  "CCI-002450": { control: "SC-13", title: "Cryptographic Protection", definition: "The information system implements FIPS-validated or NSA-approved cryptography in accordance with applicable laws and policies." },
+  "CCI-002530": { control: "SC-17", title: "Public Key Infrastructure Certificates", definition: "The organization issues public key certificates under an appropriate certificate policy or obtains public key certificates from an approved service provider." },
+  "CCI-002824": { control: "SI-16", title: "Memory Protection", definition: "The information system implements organization-defined security safeguards to protect its memory from unauthorized code execution." },
+  "CCI-003568": { control: "SC-28 (1)", title: "Protection of Information at Rest | Cryptographic Protection", definition: "The information system implements cryptographic mechanisms to prevent unauthorized disclosure and modification of information at rest." },
+  // ── System and Information Integrity (SI) — additional entries ──────────
+  "CCI-001310": { control: "SI-10", title: "Information Input Validation", definition: "The information system checks the validity of organization-defined information inputs." },
+  "CCI-001312": { control: "SI-11", title: "Error Handling", definition: "The information system generates error messages that provide information necessary for corrective actions without revealing information exploitable by adversaries." },
+  "CCI-001314": { control: "SI-11", title: "Error Handling", definition: "The information system reveals error messages only to authorized personnel." },
+  "CCI-002235": { control: "SI-2 (2)", title: "Flaw Remediation | Automated Flaw Remediation Status", definition: "The organization employs automated mechanisms to determine the state of information system components with regard to flaw remediation." },
+  "CCI-002605": { control: "SI-6", title: "Security Function Verification", definition: "The information system verifies the correct operation of security-relevant software and firmware." },
+  "CCI-002617": { control: "SI-2", title: "Flaw Remediation", definition: "The organization installs security-relevant software and firmware updates within the time period directed by an authoritative source." },
+  "CCI-002699": { control: "SI-6", title: "Security Function Verification", definition: "The information system notifies defined personnel of failed security verification tests." },
+  "CCI-002702": { control: "SI-6", title: "Security Function Verification", definition: "The information system implements organization-defined security safeguards when anomalies in security function verification are discovered." },
+  // ── Contingency Planning (CP) ───────────────────────────────────────────
+  "CCI-000537": { control: "CP-9", title: "Information System Backup", definition: "The organization conducts backups of user-level information contained in the information system." },
+  "CCI-000538": { control: "CP-9", title: "Information System Backup", definition: "The organization conducts backups of system-level information contained in the information system." },
+  "CCI-000539": { control: "CP-9", title: "Information System Backup", definition: "The organization conducts backups of information system documentation including security-related documentation." },
+  // ── Program Management (PM) ─────────────────────────────────────────────
+  "CCI-001682": { control: "PM-6", title: "Information Security Measures of Performance", definition: "The organization develops, monitors, and reports on the results of information security measures of performance." },
+  // ── Personnel Security (PS) ─────────────────────────────────────────────
+  "CCI-000971": { control: "PS-4", title: "Personnel Termination", definition: "The organization, upon termination of individual employment, disables information system access within the organization-defined time period." }
+};
+function toArray4(val) {
+  if (val == null) return [];
+  return Array.isArray(val) ? val : [val];
+}
+function textOf2(node) {
+  if (node == null) return "";
+  if (typeof node === "string") return node;
+  if (Array.isArray(node)) return textOf2(node[0]);
+  if (typeof node === "object" && "_" in node) {
+    return String(node._);
+  }
+  return String(node);
+}
+async function parseCciListXml(xmlContent) {
+  const parsed = await (0, import_xml2js4.parseStringPromise)(xmlContent, {
+    explicitArray: false,
+    tagNameProcessors: [import_xml2js4.processors.stripPrefix]
+  });
+  const root = parsed.cci_list ?? parsed["cci-list"];
+  if (!root) {
+    throw new Error("Not a valid CCI List XML \u2014 no <cci_list> root element found.");
+  }
+  const items = toArray4((root.cci_items ?? root["cci-items"])?.cci_item ?? (root.cci_items ?? root["cci-items"])?.["cci-item"]);
+  if (items.length === 0) {
+    throw new Error("No <cci_item> elements found in the CCI List XML.");
+  }
+  const map = {};
+  for (const item of items) {
+    const id = item?.$?.id || "";
+    if (!id.startsWith("CCI-")) continue;
+    const definition = textOf2(item.definition);
+    const refs = toArray4(item.references?.reference);
+    let control = "";
+    let title = "";
+    for (const ref of refs) {
+      const attrs = ref?.$ ?? ref ?? {};
+      const ver = String(attrs.version ?? "");
+      if (ver === "5" || ver === "4") {
+        control = attrs.index ?? "";
+        title = attrs.title ?? "";
+        if (ver === "5") break;
+      }
+    }
+    if (!control && refs.length > 0) {
+      const last = refs[refs.length - 1];
+      const attrs = last?.$ ?? last ?? {};
+      control = attrs.index ?? "";
+      title = attrs.title ?? "";
+    }
+    if (control) {
+      map[id] = { control, title, definition };
+    }
+  }
+  return map;
+}
+
+// src/nistCrosswalk.ts
+var CONTROL_ID_RE = /^[A-Z]{2}-\d+(\s*\(\d+\))?$/;
+function parseCsvLine(line) {
+  const fields = [];
+  let cur = "";
+  let inQuote = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (inQuote) {
+      if (ch === '"') {
+        if (i + 1 < line.length && line[i + 1] === '"') {
+          cur += '"';
+          i++;
+        } else {
+          inQuote = false;
+        }
+      } else {
+        cur += ch;
+      }
+    } else {
+      if (ch === '"') {
+        inQuote = true;
+      } else if (ch === ",") {
+        fields.push(cur.trim());
+        cur = "";
+      } else {
+        cur += ch;
+      }
+    }
+  }
+  fields.push(cur.trim());
+  return fields;
+}
+function parseNistControlsCsv(csvContent) {
+  const lines = csvContent.split(/\r?\n/).filter((l) => l.trim().length > 0);
+  if (lines.length < 2) return [];
+  const header = parseCsvLine(lines[0]);
+  const lowerHeader = header.map((h) => h.toLowerCase().replace(/[_\s-]+/g, " ").trim());
+  let controlCol = -1;
+  for (let i = 0; i < header.length; i++) {
+    const h = lowerHeader[i];
+    if (h.includes("control") && (h.includes("id") || h.includes("identifier"))) {
+      controlCol = i;
+      break;
+    }
+  }
+  if (controlCol < 0) {
+    for (let i = 0; i < header.length; i++) {
+      let matches = 0;
+      for (let j = 1; j < Math.min(lines.length, 10); j++) {
+        const row = parseCsvLine(lines[j]);
+        if (row[i] && CONTROL_ID_RE.test(row[i].trim())) matches++;
+      }
+      if (matches >= Math.min(lines.length - 1, 3)) {
+        controlCol = i;
+        break;
+      }
+    }
+  }
+  if (controlCol < 0) {
+    for (let i = 0; i < header.length; i++) {
+      if (CONTROL_ID_RE.test(header[i].trim())) continue;
+      const h = lowerHeader[i];
+      if (h.includes("control") || h === "id") {
+        controlCol = i;
+        break;
+      }
+    }
+  }
+  if (controlCol < 0) controlCol = 0;
+  const titleCol = lowerHeader.findIndex((h, i) => i !== controlCol && (h.includes("title") || h.includes("name")));
+  const familyCol = lowerHeader.findIndex((h, i) => i !== controlCol && h.includes("family"));
+  const descCol = lowerHeader.findIndex((h, i) => i !== controlCol && (h.includes("description") || h.includes("text")));
+  const seen = /* @__PURE__ */ new Set();
+  const controls = [];
+  for (let r = 1; r < lines.length; r++) {
+    const row = parseCsvLine(lines[r]);
+    const raw = (row[controlCol] ?? "").trim();
+    if (!raw || !CONTROL_ID_RE.test(raw)) continue;
+    const controlId = raw.replace(/\s+/g, " ");
+    if (seen.has(controlId)) continue;
+    seen.add(controlId);
+    const nc = { controlId };
+    if (titleCol >= 0 && row[titleCol]) nc.title = row[titleCol].trim();
+    if (familyCol >= 0 && row[familyCol]) nc.family = row[familyCol].trim();
+    if (descCol >= 0 && row[descCol]) nc.description = row[descCol].trim();
+    const extra = {};
+    for (let c = 0; c < header.length; c++) {
+      if (c === controlCol || c === titleCol || c === familyCol || c === descCol) continue;
+      if (row[c]?.trim()) extra[header[c]] = row[c].trim();
+    }
+    if (Object.keys(extra).length > 0) nc.extra = extra;
+    controls.push(nc);
+  }
+  return controls;
+}
+function baseControl(controlId) {
+  return controlId.replace(/\s*\(\d+\)$/, "").trim();
+}
+function ruleStatus(status) {
+  if (status === "not_a_finding" || status === "not_applicable") return "passing";
+  if (status === "open") return "open";
+  return "not_reviewed";
+}
+function controlStatus(rules) {
+  if (rules.length === 0) return "not_covered";
+  const allPassing = rules.every((r) => r.mappedStatus === "passing");
+  if (allPassing) return "fully_satisfied";
+  const anyPassing = rules.some((r) => r.mappedStatus === "passing");
+  if (anyPassing) return "partially_satisfied";
+  return "at_risk";
+}
+var STATUS_ORDER = {
+  not_covered: 0,
+  at_risk: 1,
+  partially_satisfied: 2,
+  fully_satisfied: 3
+};
+function analyzeCrosswalk(doc, nistControls, cciMap) {
+  const effectiveMap = { ...CCI_TO_NIST, ...cciMap };
+  const controlToCcis = /* @__PURE__ */ new Map();
+  for (const [cci, entry] of Object.entries(effectiveMap)) {
+    const ctrl = entry.control;
+    if (!controlToCcis.has(ctrl)) controlToCcis.set(ctrl, /* @__PURE__ */ new Set());
+    controlToCcis.get(ctrl).add(cci);
+  }
+  const cciToRules = /* @__PURE__ */ new Map();
+  let unmappedCciCount = 0;
+  for (const stig of doc.stigs) {
+    for (const rule of stig.rules) {
+      for (const cci of rule.ccis) {
+        if (!effectiveMap[cci]) {
+          unmappedCciCount++;
+          continue;
+        }
+        if (!cciToRules.has(cci)) cciToRules.set(cci, []);
+        cciToRules.get(cci).push({ rule, cci });
+      }
+    }
+  }
+  const mappings = [];
+  for (const nc of nistControls) {
+    const isBase = !nc.controlId.includes("(");
+    const relevantCcis = /* @__PURE__ */ new Set();
+    if (isBase) {
+      for (const [ctrl, ccis] of controlToCcis.entries()) {
+        if (baseControl(ctrl) === nc.controlId) {
+          for (const c of ccis) relevantCcis.add(c);
+        }
+      }
+    } else {
+      const ccis = controlToCcis.get(nc.controlId);
+      if (ccis) {
+        for (const c of ccis) relevantCcis.add(c);
+      }
+    }
+    const seenRules = /* @__PURE__ */ new Set();
+    const mapped = [];
+    for (const cci of relevantCcis) {
+      const entries = cciToRules.get(cci) ?? [];
+      for (const { rule } of entries) {
+        const key = `${rule.group_id}::${cci}`;
+        if (seenRules.has(key)) continue;
+        seenRules.add(key);
+        mapped.push({
+          groupId: rule.group_id,
+          ruleVersion: rule.rule_version,
+          severity: rule.severity,
+          ruleTitle: rule.rule_title,
+          status: rule.status,
+          mappedStatus: ruleStatus(rule.status),
+          cci
+        });
+      }
+    }
+    mappings.push({
+      control: nc,
+      status: controlStatus(mapped),
+      mappedRules: mapped,
+      ccis: [...relevantCcis].sort()
+    });
+  }
+  mappings.sort((a, b) => {
+    const d = STATUS_ORDER[a.status] - STATUS_ORDER[b.status];
+    if (d !== 0) return d;
+    return a.control.controlId.localeCompare(b.control.controlId, void 0, { numeric: true });
+  });
+  const stigName = doc.stigs.map((s) => s.display_name || s.stig_name).join(", ");
+  return {
+    analyzedAt: (/* @__PURE__ */ new Date()).toISOString(),
+    checklistTitle: doc.title,
+    stigName,
+    totalNistControls: nistControls.length,
+    coveredControls: mappings.filter((m) => m.status !== "not_covered").length,
+    uncoveredControls: mappings.filter((m) => m.status === "not_covered").length,
+    fullySatisfiedControls: mappings.filter((m) => m.status === "fully_satisfied").length,
+    partiallySatisfiedControls: mappings.filter((m) => m.status === "partially_satisfied").length,
+    atRiskControls: mappings.filter((m) => m.status === "at_risk").length,
+    controlMappings: mappings,
+    unmappedCciCount
+  };
+}
+function csvEsc3(v) {
+  if (v.includes(",") || v.includes('"') || v.includes("\n")) return `"${v.replace(/"/g, '""')}"`;
+  return v;
+}
+function buildCrosswalkCsv(result) {
+  const header = "Control ID,Title,Family,Status,Mapped Rules,Passing,Open,Not Reviewed,CCIs,Rule Details";
+  const rows = result.controlMappings.map((m) => {
+    const passing = m.mappedRules.filter((r) => r.mappedStatus === "passing").length;
+    const open = m.mappedRules.filter((r) => r.mappedStatus === "open").length;
+    const nr = m.mappedRules.filter((r) => r.mappedStatus === "not_reviewed").length;
+    const details = m.mappedRules.map((r) => `${r.groupId} (${r.status.replace(/_/g, " ")})`).join("; ");
+    return [
+      csvEsc3(m.control.controlId),
+      csvEsc3(m.control.title ?? ""),
+      csvEsc3(m.control.family ?? ""),
+      csvEsc3(m.status.replace(/_/g, " ")),
+      String(m.mappedRules.length),
+      String(passing),
+      String(open),
+      String(nr),
+      csvEsc3(m.ccis.join(", ")),
+      csvEsc3(details)
+    ].join(",");
+  });
+  return [header, ...rows].join("\n");
+}
+
+// src/crosswalkPanel.ts
+var CrosswalkPanel = class _CrosswalkPanel {
+  static async show(activeCklbUri) {
+    let cklbUri = activeCklbUri;
+    if (!cklbUri) {
+      const uris = await vscode12.window.showOpenDialog({
+        canSelectMany: false,
+        filters: { "STIG Checklist": ["cklb"] },
+        title: "Select STIG Checklist for Crosswalk"
+      });
+      if (!uris?.[0]) return;
+      cklbUri = uris[0];
+    }
+    const doc = JSON.parse(fs12.readFileSync(cklbUri.fsPath, "utf-8"));
+    const csvUris = await vscode12.window.showOpenDialog({
+      canSelectMany: false,
+      filters: { "CSV": ["csv"] },
+      title: "Select NIST 800-53 Controls CSV"
+    });
+    if (!csvUris?.[0]) return;
+    const csvContent = fs12.readFileSync(csvUris[0].fsPath, "utf-8");
+    const nistControls = parseNistControlsCsv(csvContent);
+    if (nistControls.length === 0) {
+      vscode12.window.showErrorMessage("No valid NIST 800-53 control IDs found in the CSV. Expected values like AC-2, CM-7, SI-10.");
+      return;
+    }
+    let importedCciMap;
+    const useCci = await vscode12.window.showQuickPick(
+      ["Use bundled CCI mapping (covers common CCIs)", "Import full CCI List XML from DISA"],
+      { title: "CCI Mapping Source" }
+    );
+    if (useCci?.includes("Import")) {
+      const xmlUris = await vscode12.window.showOpenDialog({
+        canSelectMany: false,
+        filters: { "XML": ["xml"] },
+        title: "Select U_CCI_List.xml from DISA"
+      });
+      if (xmlUris?.[0]) {
+        try {
+          const xml = fs12.readFileSync(xmlUris[0].fsPath, "utf-8");
+          importedCciMap = await parseCciListXml(xml);
+          vscode12.window.showInformationMessage(`Loaded ${Object.keys(importedCciMap).length} CCI entries from XML.`);
+        } catch (e) {
+          vscode12.window.showWarningMessage(`Failed to parse CCI List XML: ${e}. Falling back to bundled map.`);
+        }
+      }
+    }
+    const result = analyzeCrosswalk(doc, nistControls, importedCciMap);
+    if (result.unmappedCciCount > 0) {
+      vscode12.window.showInformationMessage(
+        `${result.unmappedCciCount} CCIs in this checklist could not be mapped. Import the full CCI List XML for complete coverage.`
+      );
+    }
+    if (_CrosswalkPanel._panel) {
+      _CrosswalkPanel._panel.reveal();
+    } else {
+      const panel = vscode12.window.createWebviewPanel(
+        "stigViewer.crosswalk",
+        `NIST 800-53 Crosswalk \u2014 ${doc.title}`,
+        vscode12.ViewColumn.One,
+        { enableScripts: true, retainContextWhenHidden: true }
+      );
+      _CrosswalkPanel._panel = panel;
+      panel.onDidDispose(() => {
+        _CrosswalkPanel._panel = void 0;
+      });
+      panel.webview.onDidReceiveMessage(async (msg) => {
+        if (msg.type === "exportCsv") {
+          const defaultName = path6.basename(cklbUri.fsPath, ".cklb") + "_NIST_crosswalk.csv";
+          const saveUri = await vscode12.window.showSaveDialog({
+            defaultUri: vscode12.Uri.file(path6.join(path6.dirname(cklbUri.fsPath), defaultName)),
+            filters: { "CSV": ["csv"] },
+            title: "Export Crosswalk Report"
+          });
+          if (saveUri) {
+            fs12.writeFileSync(saveUri.fsPath, buildCrosswalkCsv(result), "utf-8");
+            vscode12.window.showInformationMessage(`Exported crosswalk \u2192 ${path6.basename(saveUri.fsPath)}`);
+          }
+        }
+      });
+    }
+    _CrosswalkPanel._panel.webview.html = buildHtml(result);
+  }
+};
+function esc4(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+function statusIcon(s) {
+  switch (s) {
+    case "fully_satisfied":
+      return '<span class="st-icon st-sat">\u2714</span>';
+    case "partially_satisfied":
+      return '<span class="st-icon st-par">\u25D1</span>';
+    case "at_risk":
+      return '<span class="st-icon st-risk">\u26A0</span>';
+    default:
+      return '<span class="st-icon st-gap">\u25CF</span>';
+  }
+}
+function statusLabel(s) {
+  return s.replace(/_/g, " ");
+}
+function buildHtml(result) {
+  const families = [...new Set(result.controlMappings.map((m) => m.control.family).filter(Boolean))].sort();
+  const familyOptions = families.map((f) => `<option value="${esc4(f)}">${esc4(f)}</option>`).join("");
+  const covPct = result.totalNistControls ? Math.round(result.coveredControls / result.totalNistControls * 100) : 0;
+  const rows = result.controlMappings.map((m, idx) => {
+    const passing = m.mappedRules.filter((r) => r.mappedStatus === "passing").length;
+    const open = m.mappedRules.filter((r) => r.mappedStatus === "open").length;
+    const nr = m.mappedRules.filter((r) => r.mappedStatus === "not_reviewed").length;
+    const subRows = m.mappedRules.map((r) => {
+      const sevClass = r.severity === "high" ? "sev-high" : r.severity === "medium" ? "sev-med" : "sev-low";
+      const stClass = r.mappedStatus === "passing" ? "rs-pass" : r.mappedStatus === "open" ? "rs-open" : "rs-nr";
+      return `<tr>
+        <td class="sub-td">${esc4(r.groupId)}</td>
+        <td class="sub-td">${esc4(r.ruleVersion)}</td>
+        <td class="sub-td ${sevClass}">${r.severity === "high" ? "CAT I" : r.severity === "medium" ? "CAT II" : "CAT III"}</td>
+        <td class="sub-td ${stClass}">${esc4(statusLabel(r.status))}</td>
+        <td class="sub-td sub-title">${esc4(r.ruleTitle)}</td>
+        <td class="sub-td sub-cci">${esc4(r.cci)}</td>
+      </tr>`;
+    }).join("");
+    const desc = m.control.description ? `<div class="ctrl-desc">${esc4(m.control.description)}</div>` : m.status === "not_covered" ? '<div class="ctrl-desc muted">No STIG rules in this checklist map to this control. This control may be addressed by other STIGs or non-STIG evidence.</div>' : "";
+    const detail = m.mappedRules.length > 0 ? `<table class="sub-tbl">
+      <thead><tr><th>Vuln ID</th><th>Rule Version</th><th>CAT</th><th>Status</th><th>Rule Title</th><th>CCI</th></tr></thead>
+      <tbody>${subRows}</tbody>
+    </table>` : "";
+    return `<tr class="cw-row" data-idx="${idx}" data-status="${m.status}" data-family="${esc4(m.control.family ?? "")}">
+      <td class="td-st">${statusIcon(m.status)}</td>
+      <td class="td-ctrl">${esc4(m.control.controlId)}</td>
+      <td class="td-title">${esc4(m.control.title ?? "")}</td>
+      <td class="td-fam">${esc4(m.control.family ?? "")}</td>
+      <td class="td-n">${m.mappedRules.length}</td>
+      <td class="td-n td-pass">${passing || ""}</td>
+      <td class="td-n td-open">${open || ""}</td>
+      <td class="td-n td-nr">${nr || ""}</td>
+      <td class="td-ccis">${esc4(m.ccis.slice(0, 5).join(", "))}${m.ccis.length > 5 ? "\u2026" : ""}</td>
+    </tr>
+    <tr class="cw-detail" data-idx="${idx}" style="display:none">
+      <td colspan="9">
+        <div class="detail-wrap">${desc}${detail}</div>
+      </td>
+    </tr>`;
+  }).join("\n");
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline';">
+<title>NIST 800-53 Crosswalk</title>
+<style>${CSS4}</style>
+</head>
+<body>
+
+<header class="hdr">
+  <h1>NIST 800-53 Crosswalk</h1>
+  <span class="chip">${esc4(result.checklistTitle)}</span>
+  <span class="chip">${esc4(result.stigName)}</span>
+</header>
+
+<div class="cards">
+  <div class="card"><div class="card-n">${result.totalNistControls}</div><div class="card-l">Total Controls</div></div>
+  <div class="card card-cov"><div class="card-n">${result.coveredControls}</div><div class="card-l">Covered</div></div>
+  <div class="card card-gap"><div class="card-n">${result.uncoveredControls}</div><div class="card-l">Gaps</div></div>
+  <div class="card card-sat"><div class="card-n">${result.fullySatisfiedControls}</div><div class="card-l">Fully Satisfied</div></div>
+  <div class="card card-par"><div class="card-n">${result.partiallySatisfiedControls}</div><div class="card-l">Partial</div></div>
+  <div class="card card-risk"><div class="card-n">${result.atRiskControls}</div><div class="card-l">At Risk</div></div>
+  <div class="card card-pct"><div class="card-n">${covPct}%</div><div class="card-l">Coverage</div></div>
+</div>
+
+<div class="filters">
+  <select id="fStatus">
+    <option value="">All statuses</option>
+    <option value="not_covered">Gaps</option>
+    <option value="at_risk">At Risk</option>
+    <option value="partially_satisfied">Partially Satisfied</option>
+    <option value="fully_satisfied">Fully Satisfied</option>
+  </select>
+  <select id="fFamily">
+    <option value="">All families</option>
+    ${familyOptions}
+  </select>
+  <input type="text" id="fSearch" placeholder="Search control ID or title\u2026" />
+  <button class="btn-export" id="btnExport">Export Crosswalk CSV</button>
+</div>
+
+<div class="tbl-wrap">
+<table class="tbl">
+  <thead><tr>
+    <th style="width:40px">St</th>
+    <th>Control</th>
+    <th>Title</th>
+    <th>Family</th>
+    <th style="width:50px">Rules</th>
+    <th style="width:50px">Pass</th>
+    <th style="width:50px">Open</th>
+    <th style="width:50px">NR</th>
+    <th>CCIs</th>
+  </tr></thead>
+  <tbody>${rows}</tbody>
+</table>
+</div>
+
+<script>
+const vscode = acquireVsCodeApi();
+document.getElementById('btnExport').onclick = () => vscode.postMessage({ type: 'exportCsv' });
+
+// Expand/collapse
+document.querySelectorAll('tr.cw-row').forEach(tr => {
+  tr.addEventListener('click', () => {
+    const idx = tr.dataset.idx;
+    const detail = document.querySelector('tr.cw-detail[data-idx="'+idx+'"]');
+    if (detail) detail.style.display = detail.style.display === 'none' ? '' : 'none';
+  });
+});
+
+// Filters
+const fStatus = document.getElementById('fStatus');
+const fFamily = document.getElementById('fFamily');
+const fSearch = document.getElementById('fSearch');
+function applyFilters() {
+  const sv = fStatus.value;
+  const fv = fFamily.value.toLowerCase();
+  const q = fSearch.value.toLowerCase();
+  document.querySelectorAll('tr.cw-row').forEach(tr => {
+    const status = tr.dataset.status;
+    const family = (tr.dataset.family || '').toLowerCase();
+    const text = tr.textContent.toLowerCase();
+    const show = (!sv || status === sv) && (!fv || family === fv) && (!q || text.includes(q));
+    tr.style.display = show ? '' : 'none';
+    const detail = document.querySelector('tr.cw-detail[data-idx="'+tr.dataset.idx+'"]');
+    if (detail && !show) detail.style.display = 'none';
+  });
+}
+fStatus.onchange = applyFilters;
+fFamily.onchange = applyFilters;
+fSearch.oninput = applyFilters;
+
+// Sort
+document.querySelectorAll('.tbl thead th').forEach((th, i) => {
+  th.style.cursor = 'pointer';
+  th.style.userSelect = 'none';
+  th.addEventListener('click', () => {
+    const tbody = th.closest('.tbl').querySelector('tbody');
+    const pairs = [];
+    const cwRows = [...tbody.querySelectorAll('tr.cw-row')];
+    cwRows.forEach(row => {
+      const detail = tbody.querySelector('tr.cw-detail[data-idx="'+row.dataset.idx+'"]');
+      pairs.push({ row, detail });
+    });
+    const asc = th.dataset.sort !== 'asc';
+    th.closest('thead').querySelectorAll('th').forEach(h => { h.dataset.sort=''; h.classList.remove('sort-asc','sort-desc'); });
+    th.dataset.sort = asc ? 'asc' : 'desc';
+    th.classList.add(asc ? 'sort-asc' : 'sort-desc');
+    pairs.sort((a, b) => {
+      const av = a.row.cells[i].textContent.trim();
+      const bv = b.row.cells[i].textContent.trim();
+      return (asc ? 1 : -1) * av.localeCompare(bv, undefined, { numeric: true });
+    });
+    pairs.forEach(p => { tbody.appendChild(p.row); if (p.detail) tbody.appendChild(p.detail); });
+  });
+});
+</script>
+</body></html>`;
+}
+var CSS4 = `
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:var(--vscode-editor-background,#1e1e1e);
+  --fg:var(--vscode-editor-foreground,#ccc);
+  --border:var(--vscode-panel-border,#3c3c3c);
+  --card:var(--vscode-editorWidget-background,#252526);
+  --hover:var(--vscode-list-hoverBackground,#2a2d2e);
+  --accent:var(--vscode-focusBorder,#007acc);
+  --btn-bg:var(--vscode-button-background,#0e639c);
+  --btn-fg:var(--vscode-button-foreground,#fff);
+  --input-bg:var(--vscode-input-background,#3c3c3c);
+  --input-fg:var(--vscode-input-foreground,#ccc);
+  --input-border:var(--vscode-input-border,#3c3c3c);
+  --green:#27ae60;--amber:#f39c12;--red:#c0392b;--gray:#7f8c8d;--blue:#3498db;
+}
+body{font-family:var(--vscode-font-family,system-ui,sans-serif);font-size:13px;color:var(--fg);background:var(--bg);padding:0 20px 40px}
+.hdr{padding:20px 0 16px;border-bottom:1px solid var(--border);margin-bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hdr h1{font-size:1.3em;font-weight:600}
+.chip{display:inline-block;padding:2px 9px;border-radius:10px;font-size:.8em;background:var(--card);border:1px solid var(--border)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 8px;text-align:center}
+.card-n{font-size:1.5em;font-weight:700;line-height:1.2}
+.card-l{font-size:.75em;color:var(--gray);margin-top:2px}
+.card-cov .card-n{color:var(--green)}
+.card-gap .card-n{color:var(--red)}
+.card-sat .card-n{color:var(--green)}
+.card-par .card-n{color:var(--amber)}
+.card-risk .card-n{color:var(--amber)}
+.card-pct .card-n{color:var(--blue)}
+.filters{display:flex;gap:8px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+.filters select,.filters input{background:var(--input-bg);color:var(--input-fg);border:1px solid var(--input-border);border-radius:4px;padding:5px 8px;font-size:.85em;font-family:inherit}
+.filters input{flex:1;min-width:160px}
+.btn-export{background:var(--btn-bg);color:var(--btn-fg);border:none;border-radius:4px;padding:5px 14px;font-size:.82em;font-weight:600;cursor:pointer;margin-left:auto;white-space:nowrap}
+.btn-export:hover{opacity:.9}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:6px}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{text-align:left;padding:7px 10px;background:var(--card);border-bottom:1px solid var(--border);font-weight:600;font-size:.82em;color:var(--gray);position:sticky;top:0;z-index:1}
+.tbl td{padding:6px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+.td-n{text-align:center;font-weight:600}
+.td-pass{color:var(--green)}.td-open{color:var(--red)}.td-nr{color:var(--amber)}
+.td-ctrl{font-weight:600;white-space:nowrap}
+.td-title{max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.td-fam{font-size:.85em;color:var(--gray)}
+.td-ccis{font-size:.78em;color:var(--gray);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cw-row{cursor:pointer;transition:background .12s}
+.cw-row:hover{background:var(--hover)}
+.st-icon{font-size:1.1em}
+.st-sat{color:var(--green)}.st-par{color:var(--amber)}.st-risk{color:var(--amber)}.st-gap{color:var(--red)}
+.detail-wrap{padding:8px 12px 12px 24px;background:color-mix(in srgb,var(--card) 60%,var(--bg));border-radius:4px;margin:4px 0}
+.ctrl-desc{font-size:.85em;color:var(--gray);margin-bottom:8px;line-height:1.45}
+.muted{font-style:italic}
+.sub-tbl{width:100%;border-collapse:collapse;font-size:.88em;margin-top:4px}
+.sub-tbl th{text-align:left;padding:4px 8px;border-bottom:1px solid var(--border);font-weight:600;font-size:.8em;color:var(--gray)}
+.sub-td{padding:4px 8px;border-bottom:1px solid color-mix(in srgb,var(--border) 50%,transparent)}
+.sub-title{max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sub-cci{font-size:.82em;color:var(--gray)}
+.sev-high{color:#c0392b;font-weight:600}.sev-med{color:#e67e22;font-weight:600}.sev-low{color:#2980b9}
+.rs-pass{color:var(--green)}.rs-open{color:var(--red)}.rs-nr{color:var(--amber)}
+.sort-asc::after{content:' \\25B2';font-size:.7em}
+.sort-desc::after{content:' \\25BC';font-size:.7em}
+`;
+
+// src/extension.ts
+function activate(context) {
+  context.subscriptions.push(CklbEditorProvider.register(context));
+  context.subscriptions.push(
+    vscode13.commands.registerCommand("stigViewer.openFile", async () => {
+      const uris = await vscode13.window.showOpenDialog({
+        canSelectMany: false,
+        filters: { "STIG Checklist": ["cklb"] },
+        title: "Open STIG Checklist (.cklb)"
+      });
+      if (uris?.[0]) {
+        await vscode13.commands.executeCommand("vscode.openWith", uris[0], "stigViewer.cklbEditor");
+      }
+    })
+  );
+  context.subscriptions.push(
+    vscode13.commands.registerCommand("stigViewer.importXccdf", async (uri) => {
+      if (!uri) {
+        const uris = await vscode13.window.showOpenDialog({
+          canSelectMany: false,
+          filters: { "XCCDF Benchmark": ["xml"] },
+          title: "Import XCCDF Benchmark"
+        });
+        if (!uris?.[0]) {
+          return;
+        }
+        uri = uris[0];
+      }
+      try {
+        await importXccdf(uri);
+      } catch (e) {
+        vscode13.window.showErrorMessage(`XCCDF import failed: ${e}`);
+      }
+    })
+  );
+  context.subscriptions.push(
+    vscode13.commands.registerCommand("stigViewer.importCkl", async (uri) => {
+      if (!uri) {
+        const uris = await vscode13.window.showOpenDialog({
+          canSelectMany: false,
+          filters: { "CKL Checklist": ["ckl"] },
+          title: "Import CKL Checklist"
+        });
+        if (!uris?.[0]) {
+          return;
+        }
+        uri = uris[0];
+      }
+      try {
+        await importCkl(uri);
+      } catch (e) {
+        vscode13.window.showErrorMessage(`CKL import failed: ${e}`);
+      }
+    })
+  );
+  context.subscriptions.push(
+    vscode13.commands.registerCommand("stigViewer.importScapResults", async () => {
+      try {
+        await importScapResults(CklbEditorProvider.activeDocumentUri);
+      } catch (e) {
+        vscode13.window.showErrorMessage(`SCAP import failed: ${e}`);
+      }
+    })
+  );
+  context.subscriptions.push(
+    vscode13.commands.registerCommand("stigViewer.mergeFindings", async () => {
+      try {
+        await mergeFindings(CklbEditorProvider.activeDocumentUri);
+      } catch (e) {
+        vscode13.window.showErrorMessage(`Merge failed: ${e}`);
+      }
+    })
+  );
+  context.subscriptions.push(
+    vscode13.commands.registerCommand("stigViewer.dashboard", async () => {
+      try {
+        await DashboardPanel.show(context);
+      } catch (e) {
+        vscode13.window.showErrorMessage(`Dashboard failed: ${e}`);
+      }
+    })
+  );
+  context.subscriptions.push(
+    vscode13.commands.registerCommand("stigViewer.diffChecklists", async () => {
+      try {
+        await DiffPanel.show(CklbEditorProvider.activeDocumentUri);
+      } catch (e) {
+        vscode13.window.showErrorMessage(`Diff failed: ${e}`);
+      }
+    })
+  );
+  context.subscriptions.push(
+    vscode13.commands.registerCommand("stigViewer.scanRepo", async () => {
+      try {
+        await scanRepo(CklbEditorProvider.activeDocumentUri);
+      } catch (e) {
+        vscode13.window.showErrorMessage(`Repo scan failed: ${e}`);
+      }
+    })
+  );
+  context.subscriptions.push(
+    vscode13.commands.registerCommand("stigViewer.importSarif", async () => {
+      try {
+        await importSarif(CklbEditorProvider.activeDocumentUri);
+      } catch (e) {
+        vscode13.window.showErrorMessage(`SARIF import failed: ${e}`);
+      }
+    })
+  );
+  context.subscriptions.push(
+    vscode13.commands.registerCommand("stigViewer.importAudit", async () => {
+      try {
+        await importAudit(CklbEditorProvider.activeDocumentUri);
+      } catch (e) {
+        vscode13.window.showErrorMessage(`Dependency audit import failed: ${e}`);
+      }
+    })
+  );
+  context.subscriptions.push(
+    vscode13.commands.registerCommand("stigViewer.exportEvidence", async () => {
+      try {
+        await exportEvidence(CklbEditorProvider.activeDocumentUri);
+      } catch (e) {
+        vscode13.window.showErrorMessage(`Evidence package failed: ${e}`);
+      }
+    })
+  );
+  context.subscriptions.push(
+    vscode13.commands.registerCommand("stigViewer.nistCrosswalk", async () => {
+      try {
+        await CrosswalkPanel.show(CklbEditorProvider.activeDocumentUri);
+      } catch (e) {
+        vscode13.window.showErrorMessage(`NIST crosswalk failed: ${e}`);
+      }
+    })
+  );
+}
+function deactivate() {
+}
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  activate,
+  deactivate
+});
 /*! Bundled license information:
 
 sax/lib/sax.js:
   (*! http://mths.be/fromcodepoint v0.1.0 by @mathias *)
 */
+//# sourceMappingURL=extension.js.map
