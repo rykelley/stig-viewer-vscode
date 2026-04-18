@@ -83,6 +83,10 @@
       {
         "command": "stigViewer.nistCrosswalk",
         "title": "STIG Workbench: NIST 800-53 Crosswalk"
+      },
+      {
+        "command": "stigViewer.importHdf",
+        "title": "STIG Workbench: Import InSpec / HDF Results"
       }
     ],
     "menus": {
@@ -95,6 +99,11 @@
         {
           "command": "stigViewer.importCkl",
           "when": "resourceExtname == .ckl",
+          "group": "navigation"
+        },
+        {
+          "command": "stigViewer.importHdf",
+          "when": "resourceExtname == .json",
           "group": "navigation"
         }
       ]

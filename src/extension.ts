@@ -11,6 +11,7 @@ import { importSarif } from './importSarif';
 import { importAudit } from './importAudit';
 import { exportEvidence } from './evidencePackage';
 import { CrosswalkPanel } from './crosswalkPanel';
+import { importHdfFlow } from './hdfImportPanel';
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(CklbEditorProvider.register(context));
@@ -152,6 +153,16 @@ export function activate(context: vscode.ExtensionContext) {
         await CrosswalkPanel.show(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
         vscode.window.showErrorMessage(`NIST crosswalk failed: ${e}`);
+      }
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.importHdf', async (uri?: vscode.Uri) => {
+      try {
+        await importHdfFlow(context, uri);
+      } catch (e) {
+        vscode.window.showErrorMessage(`HDF import failed: ${e}`);
       }
     })
   );

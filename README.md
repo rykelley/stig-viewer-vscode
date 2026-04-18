@@ -39,6 +39,7 @@ STIG Workbench helps you open and edit `.cklb` checklists; import benchmarks fro
   - **SCAP data stream** — SCAP **1.2** or **1.3** bundles (often `*Benchmark*.xml` or `*SCAP*Benchmark*.xml`) whose root is `<data-stream-collection>`; the extension finds the embedded XCCDF `<Benchmark>` inside the checklist component.
 - **Import CKL (legacy)** — convert older `.ckl` XML checklists to `.cklb` format, preserving all statuses, findings, and comments
 - **Import SCAP scan results** — parse XCCDF results files from automated SCAP scans and auto-populate rule statuses (pass/fail/error mapped to the correct checklist statuses)
+- **Import InSpec / HDF (MITRE SAF) results** — ingest Heimdall Data Format JSON produced by InSpec, SAF CLI, or Heimdall and either apply results to an open checklist (Mode A) or generate a new `.cklb` from the HDF alone (Mode B). Matches by `tags.stig_id` → `rule_version` with fallbacks, preserves user-entered findings by default, and produces a downloadable markdown import report
 - **Export to CKL** — generate a DISA STIG Workbench 2.x compatible `.ckl` XML file for eMASS submission
 - **Export summary CSV** — full checklist data with Vuln ID, severity, status, finding details, comments, CCIs
 - **Export POA&M** — auto-generate a Plan of Action & Milestones CSV from all Open findings with standard DOD columns (weakness, POC, scheduled completion, milestones, status)
@@ -86,6 +87,7 @@ All commands are available from the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift
 | `STIG Workbench: Import XCCDF Benchmark` | Generate a blank `.cklb` from standalone XCCDF or an SCAP 1.2/1.3 benchmark data stream |
 | `STIG Workbench: Import CKL Checklist` | Convert a legacy `.ckl` to `.cklb` |
 | `STIG Workbench: Import SCAP Scan Results` | Apply SCAP XCCDF scan results to a checklist |
+| `STIG Workbench: Import InSpec / HDF Results` | Apply InSpec / MITRE SAF HDF JSON to a checklist, or create a new `.cklb` from HDF |
 | `STIG Workbench: Merge / Carry Forward Findings` | Copy findings from an old checklist to a new one |
 | `STIG Workbench: Diff Two Checklists` | Compare two checklists side-by-side |
 | `STIG Workbench: Open Dashboard` | Aggregate stats across all workspace checklists |
@@ -99,6 +101,7 @@ All commands are available from the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift
 
 - Right-click any `.xml` file (including SCAP benchmark bundles) → **STIG Workbench: Import XCCDF Benchmark**
 - Right-click any `.ckl` file → **STIG Workbench: Import CKL Checklist**
+- Right-click any `.json` file → **STIG Workbench: Import InSpec / HDF Results**
 
 ## Installation
 
@@ -151,6 +154,68 @@ Press **F5** to launch an Extension Development Host. Open the included `samples
 2. Run `STIG Workbench: Import SCAP Scan Results`
 3. Select your `.cklb` checklist, then the results XML
 4. Automated results are applied — review and supplement with manual checks
+
+### Importing InSpec / MITRE SAF (HDF) results
+
+The HDF importer ingests JSON produced by InSpec, the [MITRE SAF CLI](https://saf.mitre.org/), or exported from Heimdall. This is the primary path for DoD Software Factory teams (Platform One, Kessel Run, Kobayashi Maru) who run SAF-maintained InSpec STIG profiles against live systems.
+
+**Two import modes:**
+
+- **Mode A — Apply to existing checklist.** Match InSpec controls to rules in your open `.cklb` and stamp statuses + finding evidence onto them. Primary use case.
+- **Mode B — Generate new checklist from HDF.** Useful when you have InSpec results but no XCCDF-derived `.cklb` yet.
+
+**Workflow:**
+
+1. Produce an HDF JSON file, e.g.:
+
+   ```bash
+   # Run an InSpec STIG profile against a target
+   inspec exec https://github.com/mitre/redhat-enterprise-linux-8-stig-baseline \
+     -t ssh://user@host \
+     --reporter json:results.json
+
+   # Or convert other scanner output with SAF CLI
+   saf convert nessus2hdf -i scan.nessus -o scan-hdf.json
+   ```
+
+2. Open the `.cklb` checklist you want to update (Mode A) — or skip this step for Mode B.
+3. Trigger the importer:
+   - **Command Palette**: `STIG Workbench: Import InSpec / HDF Results`
+   - **Or right-click** any `.json` file in the explorer → the same command
+4. Pick the HDF JSON file. If an active checklist is open, a quick pick asks whether to apply results or generate a new checklist.
+5. **Mode A — Preview panel:**
+   - Profile name, version, target host, and projected match count are shown at the top
+   - **Options** (toggle and the preview updates live):
+     - **Overwrite existing rule statuses** — default **off**. When off, any rule you've already set to a non–`Not Reviewed` status keeps its current status (HDF evidence is still appended below `--- HDF Import ---` in finding details).
+     - **Append HDF evidence to existing finding details** — default **on**. When off, the importer replaces existing finding details; when on, it merges them with a divider so your narrative isn't lost.
+     - **Update empty target data** — default **on**. Only populates empty `host_name`, `fqdn`, `ip_address`, `mac_address` from `passthrough.target`; never overwrites values you've set.
+   - **Preview table** shows every rule that would change, with old status → new status and how it matched (`rule_version`, `group_id`, or `gid_tag`).
+   - Click **Apply Import**. Changes are written via `WorkspaceEdit`, so **Cmd+Z / Ctrl+Z** undoes the whole import in one step.
+6. **Mode B — New checklist:** you're prompted to save the new `.cklb`, then the file opens automatically in the editor.
+7. **Summary view** shows totals, the HDF status breakdown (passed / failed / skipped / error / no-results), expandable lists of unmatched HDF controls and unmatched checklist rules, and a **Download Import Report** button that saves a markdown report suitable for attaching to your ATO package.
+
+**Matching algorithm (in order):**
+
+1. `hdf.controls[].tags.stig_id` → `cklb.rules[].rule_version` (most stable; survives DISA renumbering)
+2. `hdf.controls[].id` → `cklb.rules[].group_id` (Vuln ID fallback)
+3. `hdf.controls[].tags.gid` → `cklb.rules[].group_id` (secondary Vuln ID fallback)
+
+**HDF → .cklb status mapping:**
+
+| HDF result | `.cklb` status |
+| ---------- | -------------- |
+| Any `failed` result | Open |
+| All `passed` (or mix of passed + skipped) | Not a Finding |
+| All `skipped` | Not Applicable |
+| No results, or only `error` / `error + skipped` | Not Reviewed |
+
+Note: `error` does **not** map to `Not a Finding` — errors mean the check couldn't be evaluated, so the rule needs manual review.
+
+**Tips:**
+
+- Multi-profile HDF bundles (e.g. RHEL + nginx + postgres scanned together) are supported — every profile is processed and all matches applied.
+- If a control lacks `tags.stig_id` the importer falls back automatically; the summary surfaces a warning so you know match quality is lower.
+- SAF-specific `passthrough` data (CDM feeds, extra target metadata) is preserved verbatim in `target_data.comments` so evidence isn't silently dropped.
 
 ### Automated ASD STIG assessment with SAST tools
 
@@ -287,6 +352,8 @@ src/
   xccdfImporter.ts        # Standalone XCCDF + SCAP data-stream benchmark → .cklb import
   importCkl.ts            # Legacy .ckl → .cklb import
   importScapResults.ts    # SCAP XCCDF results → .cklb import
+  hdfImporter.ts          # Pure InSpec / MITRE SAF HDF JSON parser + Mode A/B logic
+  hdfImportPanel.ts       # HDF import WebviewPanel (preview, apply, summary, report)
   mergeFindings.ts        # Carry forward findings between checklist versions
   exportCkl.ts            # .cklb → .ckl XML export
   exportCsv.ts            # .cklb → summary CSV export
