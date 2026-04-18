@@ -2,7 +2,7 @@
   "name": "stig-workbench",
   "displayName": "STIG Workbench",
   "description": "Complete DISA STIG assessment workbench — view, edit, import, scan, and export .cklb checklists with SARIF/SAST integration",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "publisher": "rykelley",
   "engines": {
     "vscode": "^1.85.0"
