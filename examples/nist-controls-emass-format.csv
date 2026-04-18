@@ -1,0 +1,7 @@
+control_id,name,description,implementation_status,responsible_entity
+AC-2,Account Management,"The organization manages information system accounts",Implemented,ISO
+AC-8,System Use Notification,"The information system displays an approved system use notification message or banner",Implemented,ISO
+CM-6,Configuration Settings,"The organization establishes and documents configuration settings",Planned,ISSO
+CM-7,Least Functionality,"The organization configures the information system to provide only essential capabilities",Implemented,ISSO
+SC-8,Transmission Confidentiality and Integrity,"The information system protects the confidentiality and integrity of transmitted information",Implemented,ISSO
+SI-10,Information Input Validation,"The information system checks the validity of information inputs",Partially Implemented,Developer

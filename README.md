@@ -207,6 +207,14 @@ The crosswalk maps your organization's NIST 800-53 control baseline against the 
 - If you import specific enhancements (e.g. `CM-7 (1)`), only exact matches are shown
 - An info message tells you how many CCIs couldn't be mapped — importing the full XML eliminates these gaps
 
+**Want to try it immediately?** Use the included sample data:
+
+- Checklist: `examples/example.cklb`
+- Controls baseline: `examples/nist-controls-baseline.csv` (16 controls exercising every status type)
+- Alternate format: `examples/nist-controls-emass-format.csv` (demonstrates the CSV auto-detection against different column names)
+
+See `examples/testplan.md` section 9 for a step-by-step verification walkthrough.
+
 ### Generating deliverables
 
 - **For eMASS**: click **Export CKL** to generate a `.ckl` XML file

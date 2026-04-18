@@ -1,0 +1,17 @@
+Control ID,Title,Family
+AC-1,Policy and Procedures,Access Control
+AC-2,Account Management,Access Control
+AC-8,System Use Notification,Access Control
+AU-3,Content of Audit Records,Audit and Accountability
+AU-12,Audit Generation,Audit and Accountability
+CM-6,Configuration Settings,Configuration Management
+CM-7,Least Functionality,Configuration Management
+CP-9,System Backup,Contingency Planning
+IA-2,Identification and Authentication,Identification and Authentication
+IA-5 (1),Password-Based Authentication,Identification and Authentication
+PE-2,Physical Access Authorizations,Physical and Environmental Protection
+RA-5,Vulnerability Scanning,Risk Assessment
+SC-8,Transmission Confidentiality and Integrity,System and Communications Protection
+SC-8 (1),Cryptographic or Alternate Physical Protection,System and Communications Protection
+SI-10,Information Input Validation,System and Information Integrity
+SI-11,Error Handling,System and Information Integrity
