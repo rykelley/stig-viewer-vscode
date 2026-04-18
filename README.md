@@ -184,7 +184,13 @@ The crosswalk maps your organization's NIST 800-53 control baseline against the 
    SI-10,Information Input Validation,System and Information Integrity
    ```
 
-5. Choose whether to **use the bundled CCI mapping** (covers the most common CCIs out of the box) or **import the full `U_CCI_List.xml`** from [public.cyber.mil/stigs/cci/](https://public.cyber.mil/stigs/cci/) for complete coverage
+5. Choose whether to **use the bundled CCI mapping** (covers the most common CCIs out of the box) or **import the full `U_CCI_List.xml`** for complete coverage. To get the full list:
+   - Download `U_CCI_List.zip` from [public.cyber.mil/stigs/cci/](https://public.cyber.mil/stigs/cci/)
+   - **Unzip it first** — the download is a ZIP archive containing `U_CCI_List.xml`. The file picker only accepts the extracted `.xml`, not the `.zip`.
+   - On macOS: double-click the `.zip` in Finder → it extracts next to the archive
+   - On Windows: right-click → Extract All
+   - On Linux: `unzip U_CCI_List.zip`
+   - Then point the file picker at the extracted `U_CCI_List.xml`
 6. The crosswalk panel opens with:
    - **Summary cards** — total controls, covered, gaps, fully satisfied, at risk, and coverage percentage
    - **Crosswalk table** — each NIST control shows its status, mapped STIG rule count, and pass/open/NR breakdown

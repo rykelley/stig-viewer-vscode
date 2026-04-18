@@ -50,8 +50,8 @@ export class CrosswalkPanel {
     if (useCci?.includes('Import')) {
       const xmlUris = await vscode.window.showOpenDialog({
         canSelectMany: false,
-        filters: { 'XML': ['xml'] },
-        title: 'Select U_CCI_List.xml from DISA',
+        filters: { 'CCI List (XML)': ['xml', 'XML'], 'All Files': ['*'] },
+        title: 'Select U_CCI_List.xml (extract U_CCI_List.zip from cyber.mil first)',
       });
       if (xmlUris?.[0]) {
         try {
