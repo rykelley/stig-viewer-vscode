@@ -13,13 +13,16 @@ STIG Workbench helps you open and edit `.cklb` checklists; import benchmarks fro
 ### Checklist Viewer & Editor
 
 - **Auto-opens `.cklb` files** with a custom editor — double-click any `.cklb` file
-- **File icon** — `.cklb` files display a blue shield icon in the explorer
-- **Stat cards** — Open / Not a Finding / Not Reviewed / Not Applicable counts at a glance
-- **Severity bar** — proportional CAT I / CAT II / CAT III breakdown
+- **File icon** — `.cklb` files display a blue shield icon in the explorer (contributed via a `cklb` language definition in `package.json` that associates the `.cklb` extension with `media/cklb-icon.svg` for both light and dark themes, so they stand out even when mixed in with XML/JSON benchmark sources)
+- **Stat cards** — Total / Open / Not a Finding / Not Reviewed / Not Applicable counts at a glance. **Click any card** to filter the table to that status; click it again or click **Total** to clear
+- **Severity bar** — proportional CAT I / CAT II / CAT III breakdown. **Click a segment** to filter by that severity; click it again to clear
 - **Completion tracker** — progress bar showing evaluation progress
-- **Filterable rule table** — filter by status, severity, or free-text search
+- **Filterable rule table** — filter by status, severity, or free-text search (drop-down filters stay in sync with card/segment clicks)
 - **Column sorting** — click any table header to sort ascending/descending
 - **Detail slide-over** — click a rule to see full Discussion, Check Content, Fix Text, and edit findings
+- **Detail navigation** — `←` / `→` buttons or `[` / `]` keys move to the previous/next visible rule without closing the panel (auto-saves the current rule before moving)
+- **Copy-to-clipboard** — one-click copy buttons on Discussion, Check Content, and Fix Text for pasting into tickets or evidence
+- **Automated-import callouts** — finding details that start with `[AUTO-SCAN]`, `[SARIF IMPORT]`, `[AUDIT IMPORT]`, or `[HDF IMPORT]` render with a distinctive badge + monospace block so you can tell tool-generated evidence from your own notes at a glance
 - **Keyboard navigation** — Arrow keys / j/k to move through rows, Enter to open detail, Escape to close
 - **Respects VS Code themes** — uses CSS variables for dark, light, and high-contrast themes
 
@@ -215,7 +218,7 @@ Note: `error` does **not** map to `Not a Finding` — errors mean the check coul
 
 - Multi-profile HDF bundles (e.g. RHEL + nginx + postgres scanned together) are supported — every profile is processed and all matches applied.
 - If a control lacks `tags.stig_id` the importer falls back automatically; the summary surfaces a warning so you know match quality is lower.
-- SAF-specific `passthrough` data (CDM feeds, extra target metadata) is preserved verbatim in `target_data.comments` so evidence isn't silently dropped.
+- SAF-specific `passthrough` data (CDM feeds, extra target metadata, multi-host rollups) is preserved in `target_data.comments` so evidence isn't silently dropped. The importer reads `passthrough.target` first to fill empty standard target fields (`host_name`, `fqdn`, `ip_address`, `mac_address`) when **Update empty target data** is on, then JSON-serializes everything *else* on `passthrough` — CDM asset records, multi-host attestations, container/image IDs, scanner metadata — and appends it to `target_data.comments` tagged as `[HDF passthrough] {…}`. Existing comments are kept (the new line is added below), and the importer is **idempotent**: if the comments field already contains an `[HDF passthrough]` marker it won't duplicate the block on subsequent runs, so re-importing a refreshed HDF file is safe.
 
 ### Automated ASD STIG assessment with SAST tools
 
@@ -369,6 +372,10 @@ src/
 ```
 
 The extension uses VS Code's **Custom Text Editor API**. The `.cklb` file stays a text document — status changes write back via `WorkspaceEdit`, so Cmd+S / Ctrl+S and undo/redo work naturally.
+
+## Release Notes
+
+Version history is tracked in [`CHANGELOG.md`](CHANGELOG.md). Each release corresponds to a matching git tag and to the `version` field in `package.json`; published marketplace builds are produced by the `publish-extension.yml` workflow on tag push. Until a release cuts, new work lives under the `[Unreleased]` heading.
 
 ## License
 

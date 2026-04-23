@@ -590,7 +590,7 @@ function linkify(s) {
 function fmt(s) {
   if (!s) return '<span class="muted">None</span>';
   // Automated import blocks get a distinct callout style
-  const impMatch = s.match(/^\\[(AUTO-SCAN|SARIF IMPORT|AUDIT IMPORT)\\]/);
+  const impMatch = s.match(/^\\[(AUTO-SCAN|SARIF IMPORT|AUDIT IMPORT|HDF IMPORT)\\]/);
   if (impMatch) {
     const rest = s.substring(impMatch[0].length).replace(/^[\\r\\n]+/, '');
     return '<div class="d-imported"><span class="d-imported-badge">'+h(impMatch[0])+'</span>'
