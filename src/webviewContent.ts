@@ -171,18 +171,18 @@ function stigSection(stig: CklbStig, idx: number): string {
 
   <!-- stat cards -->
   <div class="cards">
-    <div class="card card-total"><div class="card-n">${st.total}</div><div class="card-l">Total</div></div>
-    <div class="card card-open"><div class="card-n">${st.open}</div><div class="card-l">Open</div></div>
-    <div class="card card-naf"><div class="card-n">${st.not_a_finding}</div><div class="card-l">Not a Finding</div></div>
-    <div class="card card-nr"><div class="card-n">${st.not_reviewed}</div><div class="card-l">Not Reviewed</div></div>
-    <div class="card card-na"><div class="card-n">${st.not_applicable}</div><div class="card-l">Not Applicable</div></div>
+    <div class="card card-total" data-status="" title="Clear status filter"><div class="card-n">${st.total}</div><div class="card-l">Total</div></div>
+    <div class="card card-open" data-status="open" title="Filter to Open"><div class="card-n">${st.open}</div><div class="card-l">Open</div></div>
+    <div class="card card-naf" data-status="not_a_finding" title="Filter to Not a Finding"><div class="card-n">${st.not_a_finding}</div><div class="card-l">Not a Finding</div></div>
+    <div class="card card-nr" data-status="not_reviewed" title="Filter to Not Reviewed"><div class="card-n">${st.not_reviewed}</div><div class="card-l">Not Reviewed</div></div>
+    <div class="card card-na" data-status="not_applicable" title="Filter to Not Applicable"><div class="card-n">${st.not_applicable}</div><div class="card-l">Not Applicable</div></div>
   </div>
 
   <!-- severity bar -->
   <div class="sev-bar">
-    <div class="sev-seg sev-high" style="width:${pct(st.high)}%"><span>CAT I · ${st.high}</span></div>
-    <div class="sev-seg sev-med"  style="width:${pct(st.medium)}%"><span>CAT II · ${st.medium}</span></div>
-    <div class="sev-seg sev-low"  style="width:${pct(st.low)}%"><span>CAT III · ${st.low}</span></div>
+    <div class="sev-seg sev-high" data-sev="high" title="Filter to CAT I" style="width:${pct(st.high)}%"><span>CAT I · ${st.high}</span></div>
+    <div class="sev-seg sev-med"  data-sev="medium" title="Filter to CAT II" style="width:${pct(st.medium)}%"><span>CAT II · ${st.medium}</span></div>
+    <div class="sev-seg sev-low"  data-sev="low" title="Filter to CAT III" style="width:${pct(st.low)}%"><span>CAT III · ${st.low}</span></div>
   </div>
 
   <!-- completion bar -->
@@ -330,7 +330,58 @@ function filter(stigId) {
     if (sq && !r.dataset.search.includes(sq)) ok = false;
     r.style.display = ok ? '' : 'none';
   });
+  syncStatCardActive(stigId, sv);
+  syncSevSegActive(stigId, se);
 }
+
+function syncStatCardActive(stigId, status) {
+  const section = document.querySelector('tr.row[data-stig="'+stigId+'"]')?.closest('.stig');
+  if (!section) return;
+  section.querySelectorAll('.card[data-status]').forEach(c => {
+    if (status && c.dataset.status === status) c.classList.add('card-active');
+    else if (!status && c.dataset.status === '') c.classList.add('card-active');
+    else c.classList.remove('card-active');
+  });
+}
+
+function syncSevSegActive(stigId, sev) {
+  const section = document.querySelector('tr.row[data-stig="'+stigId+'"]')?.closest('.stig');
+  if (!section) return;
+  section.querySelectorAll('.sev-seg[data-sev]').forEach(s => {
+    if (sev && s.dataset.sev === sev) s.classList.add('seg-active');
+    else s.classList.remove('seg-active');
+  });
+}
+
+// Click stat cards to filter by status (click again / click Total to clear)
+document.querySelectorAll('.card[data-status]').forEach(card => {
+  card.addEventListener('click', () => {
+    const section = card.closest('.stig');
+    if (!section) return;
+    const bar = section.querySelector('.filters');
+    if (!bar) return;
+    const stigId = bar.dataset.stig;
+    const statusSel = bar.querySelector('[data-kind="status"]');
+    const target = card.dataset.status;
+    statusSel.value = (target && statusSel.value === target) ? '' : target;
+    filter(stigId);
+  });
+});
+
+// Click severity bar segments to filter by severity (click same again to clear)
+document.querySelectorAll('.sev-seg[data-sev]').forEach(seg => {
+  seg.addEventListener('click', () => {
+    const section = seg.closest('.stig');
+    if (!section) return;
+    const bar = section.querySelector('.filters');
+    if (!bar) return;
+    const stigId = bar.dataset.stig;
+    const sevSel = bar.querySelector('[data-kind="severity"]');
+    const target = seg.dataset.sev;
+    sevSel.value = (sevSel.value === target) ? '' : target;
+    filter(stigId);
+  });
+});
 
 // ── Detail panel ──
 const panel = document.getElementById('detailPanel');
@@ -889,7 +940,9 @@ body{font-family:var(--vscode-font-family,system-ui,sans-serif);font-size:13px;c
 
 /* ── stat cards ── */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:14px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 10px;text-align:center}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 10px;text-align:center;cursor:pointer;transition:border-color .12s,transform .12s,box-shadow .12s;user-select:none}
+.card:hover{border-color:var(--accent);transform:translateY(-1px)}
+.card-active{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
 .card-n{font-size:1.6em;font-weight:700;line-height:1.2}
 .card-l{font-size:.78em;color:var(--gray);margin-top:2px}
 .card-open  .card-n{color:var(--red)}
@@ -900,7 +953,9 @@ body{font-family:var(--vscode-font-family,system-ui,sans-serif);font-size:13px;c
 
 /* ── severity bar ── */
 .sev-bar{display:flex;height:28px;border-radius:6px;overflow:hidden;margin-bottom:10px;font-size:.78em;font-weight:600}
-.sev-seg{display:flex;align-items:center;justify-content:center;color:#fff;min-width:50px}
+.sev-seg{display:flex;align-items:center;justify-content:center;color:#fff;min-width:50px;cursor:pointer;transition:filter .12s,outline .12s;user-select:none}
+.sev-seg:hover{filter:brightness(1.1)}
+.seg-active{outline:2px solid #fff;outline-offset:-3px;filter:brightness(1.15)}
 .sev-high{background:#c0392b}.sev-med{background:#e67e22}.sev-low{background:#2980b9}
 
 /* ── completion bar ── */
