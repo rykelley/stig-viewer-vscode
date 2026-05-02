@@ -48,10 +48,10 @@ function buildVuln(r: CklbRule): string {
     stigData('TargetKey', r.target_key || ''),
   ];
 
-  for (const cci of r.ccis) {
+  for (const cci of r.ccis ?? []) {
     parts.push(stigData('CCI_REF', cci));
   }
-  for (const lid of r.legacy_ids) {
+  for (const lid of r.legacy_ids ?? []) {
     parts.push(stigData('Legacy_ID', lid));
   }
 
