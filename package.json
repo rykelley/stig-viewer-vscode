@@ -77,6 +77,10 @@
         "title": "STIG Workbench: Import Dependency Audit"
       },
       {
+        "command": "stigViewer.importCsv",
+        "title": "STIG Workbench: Import CSV (merge into checklist)"
+      },
+      {
         "command": "stigViewer.exportEvidence",
         "title": "STIG Workbench: Export Evidence Package"
       },
@@ -104,6 +108,11 @@
         {
           "command": "stigViewer.importHdf",
           "when": "resourceExtname == .json",
+          "group": "navigation"
+        },
+        {
+          "command": "stigViewer.importCsv",
+          "when": "resourceExtname == .csv",
           "group": "navigation"
         }
       ]

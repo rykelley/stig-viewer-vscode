@@ -43,6 +43,7 @@ STIG Workbench helps you open and edit `.cklb` checklists; import benchmarks fro
 - **Import CKL (legacy)** — convert older `.ckl` XML checklists to `.cklb` format, preserving all statuses, findings, and comments
 - **Import SCAP scan results** — parse XCCDF results files from automated SCAP scans and auto-populate rule statuses (pass/fail/error mapped to the correct checklist statuses)
 - **Import InSpec / HDF (MITRE SAF) results** — ingest Heimdall Data Format JSON produced by InSpec, SAF CLI, or Heimdall and either apply results to an open checklist (Mode A) or generate a new `.cklb` from the HDF alone (Mode B). Matches by `tags.stig_id` → `rule_version` with fallbacks, preserves user-entered findings by default, and produces a downloadable markdown import report
+- **Import CSV (round-trip merge)** — edit an exported summary CSV in Excel/Sheets and merge `Status`, `Finding Details`, and `Comments` back into the checklist. Matches each row by `Vuln ID` (with `Rule ID` fallback), accepts both human labels (`Open`, `Not a Finding`, …) and raw values (`open`, `not_a_finding`, …), and reports updated/unmatched/unrecognized-status counts in the summary toast
 - **Export to CKL** — generate a DISA STIG Workbench 2.x compatible `.ckl` XML file for eMASS submission
 - **Export summary CSV** — full checklist data with Vuln ID, severity, status, finding details, comments, CCIs
 - **Export POA&M** — auto-generate a Plan of Action & Milestones CSV from all Open findings with standard DOD columns (weakness, POC, scheduled completion, milestones, status)
@@ -96,6 +97,7 @@ All commands are available from the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift
 | `STIG Workbench: Open Dashboard` | Aggregate stats across all workspace checklists |
 | `STIG Workbench: Import SARIF Results` | Map SAST findings to STIG rules via CWE |
 | `STIG Workbench: Import Dependency Audit` | Import npm audit / pip-audit JSON |
+| `STIG Workbench: Import CSV (merge into checklist)` | Merge `Status`, `Finding Details`, and `Comments` from a CSV back into a checklist (matches by Vuln ID) |
 | `STIG Workbench: Scan Repo Against Checklist` | Run built-in regex scanner on a codebase |
 | `STIG Workbench: Export Evidence Package` | Bundle checklist + exports + evidence into a zip |
 | `STIG Workbench: NIST 800-53 Crosswalk` | Map NIST controls to STIG rules via CCI and show coverage |
@@ -105,6 +107,7 @@ All commands are available from the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift
 - Right-click any `.xml` file (including SCAP benchmark bundles) → **STIG Workbench: Import XCCDF Benchmark**
 - Right-click any `.ckl` file → **STIG Workbench: Import CKL Checklist**
 - Right-click any `.json` file → **STIG Workbench: Import InSpec / HDF Results**
+- Right-click any `.csv` file → **STIG Workbench: Import CSV (merge into checklist)**
 
 ## Installation
 
@@ -289,6 +292,24 @@ The crosswalk maps your organization's NIST 800-53 control baseline against the 
 
 See `examples/testplan.md` section 9 for a step-by-step verification walkthrough.
 
+### Round-tripping findings through CSV
+
+Useful when a reviewer or stakeholder wants to triage findings in Excel/Google Sheets without installing the extension.
+
+1. Open the checklist and click **Export CSV** to produce a summary spreadsheet
+2. Edit the **Status**, **Finding Details**, and **Comments** columns — leave **Vuln ID** alone (it's the match key)
+3. Save the CSV (UTF-8; both the Excel UTF-8 BOM and plain UTF-8 are accepted)
+4. With the same `.cklb` open as the active editor, run **`STIG Workbench: Import CSV (merge into checklist)`** — or right-click the CSV in the explorer
+5. The import summary reports how many rules were updated, how many CSV rows didn't match a rule, and how many had unrecognized `Status` values
+
+**Notes:**
+
+- Match priority is **Vuln ID** (`group_id`) first, then **Rule ID** (`rule_id`) as a fallback. Adding or renaming the Vuln ID column will break matching.
+- Only `Status`, `Finding Details`, and `Comments` are applied. `Severity`, CCIs, and STIG metadata are never overwritten — they're STIG-defined.
+- `Status` accepts the export labels (`Open`, `Not a Finding`, `Not Applicable`, `Not Reviewed`) and the raw internal values (`open`, `not_a_finding`, `not_applicable`, `not_reviewed`). Anything else is counted as "unrecognized" in the summary and skipped, not silently applied.
+- If the CSV contains multiple rows for the same Vuln ID, the last row wins.
+- The importer writes the file directly (same pattern as the other importers); reopen / re-render is automatic. Cmd+Z in the editor will not undo the import — keep the source CSV if you need to revert.
+
 ### Generating deliverables
 
 - **For eMASS**: click **Export CKL** to generate a `.ckl` XML file
@@ -363,6 +384,7 @@ src/
   exportPoam.ts           # .cklb → POA&M CSV export
   importSarif.ts          # SARIF → .cklb with CWE-to-STIG mapping
   importAudit.ts          # npm audit / pip-audit → .cklb
+  importCsv.ts            # Edited summary CSV → .cklb (merge by Vuln ID)
   cweStigMap.ts           # CWE ID → STIG rule keyword mapping table
   repoScanner.ts          # Regex-based repo scanner
   evidencePackage.ts      # Evidence zip builder

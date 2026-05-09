@@ -9,6 +9,7 @@ import { importScapResults } from './importScapResults';
 import { scanRepo } from './repoScanner';
 import { importSarif } from './importSarif';
 import { importAudit } from './importAudit';
+import { importCsv } from './importCsv';
 import { exportEvidence } from './evidencePackage';
 import { CrosswalkPanel } from './crosswalkPanel';
 import { importHdfFlow } from './hdfImportPanel';
@@ -133,6 +134,16 @@ export function activate(context: vscode.ExtensionContext) {
         await importAudit(CklbEditorProvider.activeDocumentUri);
       } catch (e) {
         vscode.window.showErrorMessage(`Dependency audit import failed: ${e}`);
+      }
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('stigViewer.importCsv', async () => {
+      try {
+        await importCsv(CklbEditorProvider.activeDocumentUri);
+      } catch (e) {
+        vscode.window.showErrorMessage(`CSV import failed: ${e}`);
       }
     })
   );

@@ -307,6 +307,62 @@ Before running the crosswalk:
 
 ---
 
+## 10. Import CSV (round-trip merge)
+
+Verifies that an edited summary CSV can be merged back into a checklist, updating `Status`, `Finding Details`, and `Comments` by `Vuln ID`.
+
+### Setup
+
+1. Open `examples/example.cklb` in the editor.
+2. Click **Export CSV** in the webview toolbar and save as `/tmp/example-export.csv`.
+3. Open `/tmp/example-export.csv` in Excel, Numbers, or a text editor and modify a few rows:
+   - Change one rule's `Status` to `Open` and add `Failed manual review` to `Finding Details`.
+   - Change another rule's `Status` to `Not a Finding` and add `Verified compliant` to `Comments`.
+   - Pick a third row and set `Status` to `Bogus Status` (intentionally invalid).
+   - Add a brand-new row at the bottom with `Vuln ID = V-999999` and `Status = Open` (intentionally unmatched).
+   - Save the file.
+
+### Steps
+
+1. Make sure `examples/example.cklb` is the active editor.
+2. Run **STIG Workbench: Import CSV (merge into checklist)** from the command palette.
+3. Confirm the active checklist when prompted.
+4. Select `/tmp/example-export.csv`.
+
+### What to Verify
+
+- [ ] The summary toast reports `2 rule(s) updated` (the two valid edits), `1 unmatched` (the `V-999999` row), and `1 row(s) had unrecognized Status (Bogus Status)`.
+- [ ] First unmatched ID shown in the toast is `V-999999`.
+- [ ] The two edited rules now show the new statuses, finding details, and comments in the table and detail panel.
+- [ ] The row with `Bogus Status` was **not** modified (status unchanged from before the import).
+- [ ] Severity, CCIs, and rule titles are unchanged for every row — only the three writable columns were touched.
+- [ ] Re-running the import with the same CSV reports `0 rule(s) updated` (idempotent — no spurious `updatedAt` churn).
+
+### Right-Click Variant
+
+1. In the explorer, right-click `/tmp/example-export.csv` → **STIG Workbench: Import CSV (merge into checklist)**.
+2. Pick the target `.cklb` from the open dialog.
+3. Verify the same summary toast appears.
+
+### Excel BOM / Encoding
+
+- [ ] Save the CSV from Excel as **CSV UTF-8 (Comma delimited)** — re-import succeeds (the BOM is stripped automatically).
+- [ ] Open the CSV, add a `Finding Details` value containing a comma, a `"` character, and a newline; save and re-import — verify the value round-trips intact.
+
+### Alternate Header Names
+
+1. Edit the CSV and rename `Vuln ID` to `vuln_id` and `Finding Details` to `findingdetails`.
+2. Re-import.
+
+- [ ] Headers match case/space/underscore-insensitively — the import still updates the same rules.
+
+### Status Label Variants
+
+- [ ] `Status` values `Open`, `open`, `Not a Finding`, `not_a_finding`, `Not Applicable`, `not_applicable`, `Not Reviewed`, `not_reviewed` are all accepted.
+- [ ] Empty `Status` cells are left alone (the rule's existing status is preserved).
+
+---
+
 ## Suggested Test Order
 
 1. Import an ASD STIG XCCDF to create a blank checklist.
@@ -319,3 +375,4 @@ Before running the crosswalk:
 8. **Diff Two Checklists** — compare the original vs. merged checklist.
 9. **Dashboard** — view all checklists at once.
 10. **NIST 800-53 Crosswalk** — run against `examples/example.cklb` with `examples/nist-controls-baseline.csv` to validate CCI → NIST coverage analysis.
+11. **Import CSV (round-trip merge)** — export the checklist as CSV, hand-edit a few rows, re-import, and confirm only `Status` / `Finding Details` / `Comments` update, with unmatched and unrecognized-status rows surfaced in the summary toast.
