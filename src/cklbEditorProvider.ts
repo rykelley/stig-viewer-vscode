@@ -63,7 +63,7 @@ export class CklbEditorProvider implements vscode.CustomTextEditorProvider {
             const rules = Object.fromEntries(
               data.stigs.flatMap(st => st.rules.map(r => [r.uuid, r]))
             );
-            webviewPanel.webview.postMessage({ type: 'dataUpdate', rules });
+            webviewPanel.webview.postMessage({ type: 'dataUpdate', rules, title: data.title });
           } catch { /* ignore transient parse errors */ }
         }, 150);
       }
@@ -92,6 +92,25 @@ export class CklbEditorProvider implements vscode.CustomTextEditorProvider {
           }
         } catch (e) {
           vscode.window.showErrorMessage(`Save failed: ${e}`);
+        }
+      }
+
+      if (msg.type === 'saveTitle') {
+        try {
+          const newTitle = String(msg.title ?? '').trim();
+          if (!newTitle) { return; }
+          const data: CklbDocument = JSON.parse(document.getText());
+          if (data.title === newTitle) { return; }
+          data.title = newTitle;
+          const edit = new vscode.WorkspaceEdit();
+          const fullRange = new vscode.Range(
+            document.positionAt(0),
+            document.positionAt(document.getText().length)
+          );
+          edit.replace(document.uri, fullRange, JSON.stringify(data, null, 2));
+          await vscode.workspace.applyEdit(edit);
+        } catch (e) {
+          vscode.window.showErrorMessage(`Save title failed: ${e}`);
         }
       }
 

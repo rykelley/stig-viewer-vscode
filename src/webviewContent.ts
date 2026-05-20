@@ -64,7 +64,7 @@ export function buildWebviewHtml(data: CklbDocument): string {
 <!-- ═══ HEADER ═══ -->
 <header class="hdr">
   <div class="hdr-row">
-    <h1>${esc(data.title)}</h1>
+    <h1 id="docTitle" class="doc-title" contenteditable="true" spellcheck="false" title="Click to edit title">${esc(data.title)}</h1>
     <span class="chip chip-accent">CKLB v${esc(data.cklb_version)}</span>
     <div class="hdr-actions">
       <button class="btn-export" id="btnExportCsv">Export CSV</button>
@@ -646,22 +646,30 @@ document.querySelectorAll('.inline-status').forEach(sel => {
 // ── Undo/redo sync — update webview when document changes externally ──
 window.addEventListener('message', (event) => {
   const msg = event.data;
-  if (msg.type === 'dataUpdate' && msg.rules) {
-    // Update local RULES map
-    for (const [uuid, rule] of Object.entries(msg.rules)) {
-      RULES[uuid] = rule;
+  if (msg.type === 'dataUpdate') {
+    if (msg.rules) {
+      for (const [uuid, rule] of Object.entries(msg.rules)) {
+        RULES[uuid] = rule;
+      }
+      const updatedStigs = new Set();
+      document.querySelectorAll('tr.row').forEach(row => {
+        const r = msg.rules[row.dataset.uuid];
+        if (!r) return;
+        row.dataset.status = r.status;
+        const sel = row.querySelector('.inline-status');
+        if (sel) { sel.value = r.status; sel.className = 'inline-status st-' + r.status; }
+        updatedStigs.add(row.dataset.stig);
+      });
+      updatedStigs.forEach(id => refreshStats(id));
     }
-    // Update all table rows
-    const updatedStigs = new Set();
-    document.querySelectorAll('tr.row').forEach(row => {
-      const r = msg.rules[row.dataset.uuid];
-      if (!r) return;
-      row.dataset.status = r.status;
-      const sel = row.querySelector('.inline-status');
-      if (sel) { sel.value = r.status; sel.className = 'inline-status st-' + r.status; }
-      updatedStigs.add(row.dataset.stig);
-    });
-    updatedStigs.forEach(id => refreshStats(id));
+    if (typeof msg.title === 'string') {
+      const t = document.getElementById('docTitle');
+      if (t && document.activeElement !== t && t.textContent.trim() !== msg.title) {
+        t.textContent = msg.title;
+        titleOriginal = msg.title;
+        document.title = msg.title;
+      }
+    }
   }
 });
 
@@ -669,6 +677,51 @@ window.addEventListener('message', (event) => {
 document.getElementById('btnExportCsv').onclick = () => vscode.postMessage({ type: 'exportCsv' });
 document.getElementById('btnExportCkl').onclick = () => vscode.postMessage({ type: 'exportCkl' });
 document.getElementById('btnExportPoam').onclick = () => vscode.postMessage({ type: 'exportPoam' });
+
+// ── Editable document title ──
+const titleEl = document.getElementById('docTitle');
+let titleOriginal = titleEl.textContent.trim();
+let titleSaving = false;
+
+function commitTitle() {
+  if (titleSaving) return;
+  const next = titleEl.textContent.replace(/\\s+/g, ' ').trim();
+  if (!next) {
+    titleEl.textContent = titleOriginal;
+    return;
+  }
+  if (next === titleOriginal) {
+    titleEl.textContent = titleOriginal;
+    return;
+  }
+  titleSaving = true;
+  titleEl.textContent = next;
+  titleOriginal = next;
+  vscode.postMessage({ type: 'saveTitle', title: next });
+  document.title = next;
+  titleEl.classList.add('doc-title-saved');
+  setTimeout(() => { titleEl.classList.remove('doc-title-saved'); titleSaving = false; }, 1200);
+}
+
+titleEl.addEventListener('focus', () => {
+  titleOriginal = titleEl.textContent.trim();
+});
+titleEl.addEventListener('blur', commitTitle);
+titleEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    titleEl.blur();
+  } else if (e.key === 'Escape') {
+    e.preventDefault();
+    titleEl.textContent = titleOriginal;
+    titleEl.blur();
+  }
+});
+titleEl.addEventListener('paste', (e) => {
+  e.preventDefault();
+  const text = (e.clipboardData || window.clipboardData).getData('text').replace(/[\\r\\n]+/g, ' ');
+  document.execCommand('insertText', false, text);
+});
 
 // ── Target data editing ──
 const targetModal    = document.getElementById('targetModal');
@@ -925,6 +978,10 @@ body{font-family:var(--vscode-font-family,system-ui,sans-serif);font-size:13px;c
 .hdr{padding:20px 0 16px;border-bottom:1px solid var(--border);margin-bottom:20px}
 .hdr-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .hdr h1{font-size:1.35em;font-weight:600}
+.doc-title{outline:none;padding:2px 8px;border-radius:4px;border:1px solid transparent;cursor:text;transition:background .12s,border-color .12s,box-shadow .25s;max-width:100%;white-space:pre-wrap;word-break:break-word}
+.doc-title:hover{background:var(--hover);border-color:var(--border)}
+.doc-title:focus{background:var(--inp-bg);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.doc-title-saved{box-shadow:0 0 0 2px var(--green)!important;transition:box-shadow .25s}
 .target-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .muted{color:var(--gray);font-style:italic}
 
