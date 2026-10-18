@@ -66,6 +66,7 @@ STIG Workbench helps you open and edit `.cklb` checklists; import benchmarks fro
 - **SARIF import with CWE-to-STIG mapping** — import SARIF output from any SAST tool (CodeQL, Semgrep, ESLint security, Bandit, SpotBugs) and auto-map findings to ASD STIG rules via a built-in CWE mapping table covering 50+ CWEs across OWASP Top 10, buffer overflows (V-70277), race conditions (V-70185), and error handling (V-70391). Findings include file paths, line numbers, and CWE descriptions
 - **Dependency audit import** — import `npm audit --json`, `pip-audit --format json`, or `bundler-audit` output to auto-populate dependency/third-party component STIG rules. Auto-detects the audit format
 - **Repo scanner** — built-in regex-based scanner with 15+ configurable patterns for hardcoded secrets, SQL injection, XSS, command injection, insecure crypto, debug mode, and more. Bring your own `scan-patterns.json` to customize
+- **Merges with your work** — SARIF, dependency audit, and repo scan results merge into the open checklist (unsaved edits included) instead of overwriting it. Rules you've already assessed keep their status, and tool evidence is added below your notes under a `--- Repo Scan ---` / `--- SARIF Import ---` / `--- Audit Import ---` divider. Re-running a tool replaces its own previous evidence, and one tool's clean result never clears another tool's Open finding. Each import is a single undoable edit
 
 ### NIST 800-53 Control Crosswalk
 
@@ -308,7 +309,7 @@ Useful when a reviewer or stakeholder wants to triage findings in Excel/Google S
 - Only `Status`, `Finding Details`, and `Comments` are applied. `Severity`, CCIs, and STIG metadata are never overwritten — they're STIG-defined.
 - `Status` accepts the export labels (`Open`, `Not a Finding`, `Not Applicable`, `Not Reviewed`) and the raw internal values (`open`, `not_a_finding`, `not_applicable`, `not_reviewed`). Anything else is counted as "unrecognized" in the summary and skipped, not silently applied.
 - If the CSV contains multiple rows for the same Vuln ID, the last row wins.
-- The importer writes the file directly (same pattern as the other importers); reopen / re-render is automatic. Cmd+Z in the editor will not undo the import — keep the source CSV if you need to revert.
+- The import reads the open checklist (including unsaved edits) and applies changes as a single edit, so Cmd+Z / Ctrl+Z in the editor undoes the whole import.
 
 ### Generating deliverables
 
@@ -375,6 +376,8 @@ src/
   diffPanel.ts            # Checklist diff comparison webview
   xccdfImporter.ts        # Standalone XCCDF + SCAP data-stream benchmark → .cklb import
   importCkl.ts            # Legacy .ckl → .cklb import
+  writeCklb.ts            # Shared .cklb writer (falls back to Save dialog if source folder is read-only)
+  checklistMerge.ts       # Load/save the open checklist + merge tool results without clobbering user edits
   importScapResults.ts    # SCAP XCCDF results → .cklb import
   hdfImporter.ts          # Pure InSpec / MITRE SAF HDF JSON parser + Mode A/B logic
   hdfImportPanel.ts       # HDF import WebviewPanel (preview, apply, summary, report)

@@ -4,6 +4,7 @@ import * as path from 'path';
 import { parseStringPromise, processors } from 'xml2js';
 import { v4 as uuidv4 } from 'uuid';
 import { CklbDocument, CklbRule, CklbStig, CklbTargetData } from './types';
+import { writeCklb } from './writeCklb';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -269,20 +270,19 @@ export async function importXccdf(uri: vscode.Uri): Promise<void> {
     cklb_version: '1',
   };
 
-  // ── Write .cklb alongside the source XML ──
+  // ── Write .cklb alongside the source XML, or prompt if that folder is not writable ──
 
   const outName = path.basename(xmlPath)
     .replace(/-xccdf\.xml$/i, '.cklb')
     .replace(/\.xml$/i, '.cklb');
-  const outPath = path.join(path.dirname(xmlPath), outName);
-  fs.writeFileSync(outPath, JSON.stringify(doc, null, 2));
+  const outUri = await writeCklb(path.join(path.dirname(xmlPath), outName), JSON.stringify(doc, null, 2));
+  if (!outUri) { return; }
 
   // ── Open in the STIG Viewer webview ──
 
-  const outUri = vscode.Uri.file(outPath);
   await vscode.commands.executeCommand('vscode.openWith', outUri, 'stigViewer.cklbEditor');
 
   vscode.window.showInformationMessage(
-    `Imported ${rules.length} rules from XCCDF \u2192 ${outName}`
+    `Imported ${rules.length} rules from XCCDF \u2192 ${path.basename(outUri.fsPath)}`
   );
 }

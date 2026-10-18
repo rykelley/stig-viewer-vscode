@@ -1,7 +1,8 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-import { CklbDocument, CklbRule } from './types';
+import { CklbRule } from './types';
+import { applyToolResult, loadChecklist, REPO_SCAN, saveChecklist } from './checklistMerge';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -215,9 +216,9 @@ export async function scanRepo(activeCklbUri?: vscode.Uri): Promise<void> {
     configPath = cfgUris[0].fsPath;
   }
 
-  // Load config and checklist
+  // Load config and checklist (from the open document so unsaved editor changes are included)
   const config = loadScanConfig(configPath);
-  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUri.fsPath, 'utf-8'));
+  const { document, doc } = await loadChecklist(cklbUri);
   const repoDir = repoUris[0].fsPath;
 
   await vscode.window.withProgress(
@@ -238,6 +239,7 @@ export async function scanRepo(activeCklbUri?: vscode.Uri): Promise<void> {
       let rulesUpdated = 0;
       let openCount = 0;
       let nafCount = 0;
+      let preservedCount = 0;
 
       const totalRules = doc.stigs.reduce((n, s) => n + s.rules.length, 0);
 
@@ -349,21 +351,24 @@ export async function scanRepo(activeCklbUri?: vscode.Uri): Promise<void> {
             }
           }
 
-          rule.status = newStatus;
-          rule.finding_details = findingDetails;
+          if (applyToolResult(rule, newStatus, findingDetails, REPO_SCAN)) {
+            preservedCount++;
+          }
           rule.updatedAt = now;
           rulesUpdated++;
         }
       }
 
-      // Save results
-      fs.writeFileSync(cklbUri.fsPath, JSON.stringify(doc, null, 2));
+      await saveChecklist(document, doc);
 
       await vscode.commands.executeCommand('vscode.openWith', cklbUri, 'stigViewer.cklbEditor');
 
       const skipped = totalRules - rulesUpdated;
+      const preservedNote = preservedCount > 0
+        ? `; ${preservedCount} rules kept their existing status (scan evidence appended)`
+        : '';
       vscode.window.showInformationMessage(
-        `Scan complete: ${rulesUpdated} rules evaluated (${openCount} open, ${nafCount} not a finding, ${skipped} unmatched — review manually)`
+        `Scan complete: ${rulesUpdated} rules evaluated (${openCount} open, ${nafCount} not a finding, ${skipped} unmatched — review manually)${preservedNote}`
       );
     }
   );

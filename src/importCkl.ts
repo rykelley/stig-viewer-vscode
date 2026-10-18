@@ -4,6 +4,7 @@ import * as path from 'path';
 import { parseStringPromise, processors } from 'xml2js';
 import { v4 as uuidv4 } from 'uuid';
 import { CklbDocument, CklbRule, CklbStig, CklbTargetData } from './types';
+import { writeCklb } from './writeCklb';
 
 function toArray<T>(val: T | T[] | undefined | null): T[] {
   if (val == null) return [];
@@ -182,14 +183,13 @@ export async function importCkl(uri: vscode.Uri): Promise<void> {
   };
 
   const outName = path.basename(xmlPath, '.ckl') + '.cklb';
-  const outPath = path.join(path.dirname(xmlPath), outName);
-  fs.writeFileSync(outPath, JSON.stringify(doc, null, 2));
+  const outUri = await writeCklb(path.join(path.dirname(xmlPath), outName), JSON.stringify(doc, null, 2));
+  if (!outUri) { return; }
 
-  const outUri = vscode.Uri.file(outPath);
   await vscode.commands.executeCommand('vscode.openWith', outUri, 'stigViewer.cklbEditor');
 
   const totalRules = stigs.reduce((n, s) => n + s.rules.length, 0);
   vscode.window.showInformationMessage(
-    `Imported ${totalRules} rules from CKL \u2192 ${outName}`
+    `Imported ${totalRules} rules from CKL \u2192 ${path.basename(outUri.fsPath)}`
   );
 }

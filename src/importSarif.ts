@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
-import { CklbDocument, CklbRule } from './types';
+import { CklbRule } from './types';
+import { applyToolResult, loadChecklist, saveChecklist, SARIF_IMPORT } from './checklistMerge';
 import { CWE_STIG_MAP } from './cweStigMap';
 
 // ─── SARIF types (subset) ───────────────────────────────────────────────────
@@ -101,7 +102,7 @@ export async function importSarif(activeCklbUri?: vscode.Uri): Promise<void> {
   });
   if (!sarifUris?.length) return;
 
-  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUri.fsPath, 'utf-8'));
+  const { document, doc } = await loadChecklist(cklbUri);
   const now = new Date().toISOString();
 
   // Flatten all rules for matching
@@ -179,12 +180,10 @@ export async function importSarif(activeCklbUri?: vscode.Uri): Promise<void> {
 
   // Apply findings to rules
   let openCount = 0;
+  let preservedCount = 0;
   for (const [uuid, findings] of ruleFindings) {
     const rule = allRules.find(r => r.uuid === uuid);
     if (!rule) continue;
-
-    rule.status = 'open';
-    openCount++;
 
     const grouped = new Map<string, typeof findings>();
     for (const f of findings) {
@@ -206,15 +205,21 @@ export async function importSarif(activeCklbUri?: vscode.Uri): Promise<void> {
       }
     }
 
-    rule.finding_details = sections.join('\n');
+    if (applyToolResult(rule, 'open', sections.join('\n'), SARIF_IMPORT)) {
+      preservedCount++;
+    } else {
+      openCount++;
+    }
     rule.updatedAt = now;
   }
 
-  // Save
-  fs.writeFileSync(cklbUri.fsPath, JSON.stringify(doc, null, 2));
+  await saveChecklist(document, doc);
   await vscode.commands.executeCommand('vscode.openWith', cklbUri, 'stigViewer.cklbEditor');
 
-  let msg = `SARIF import: ${totalResults} findings processed, ${mappedResults} mapped to ${openCount} rules`;
+  let msg = `SARIF import: ${totalResults} findings processed, ${mappedResults} mapped to ${openCount + preservedCount} rules (${openCount} marked open)`;
+  if (preservedCount > 0) {
+    msg += `; ${preservedCount} rules kept their existing status (evidence appended)`;
+  }
   if (unmappedCwes.size > 0) {
     msg += ` (${unmappedCwes.size} unmapped CWEs: ${[...unmappedCwes].slice(0, 5).map(c => `CWE-${c}`).join(', ')}${unmappedCwes.size > 5 ? '...' : ''})`;
   }

@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
-import { CklbDocument, CklbRule } from './types';
+import { CklbRule } from './types';
+import { applyToolResult, AUDIT_IMPORT, loadChecklist, saveChecklist } from './checklistMerge';
 
 // ─── Audit format types ─────────────────────────────────────────────────────
 
@@ -132,7 +133,7 @@ export async function importAudit(activeCklbUri?: vscode.Uri): Promise<void> {
   });
   if (!auditUris?.[0]) return;
 
-  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUri.fsPath, 'utf-8'));
+  const { document, doc } = await loadChecklist(cklbUri);
   const auditData = JSON.parse(fs.readFileSync(auditUris[0].fsPath, 'utf-8'));
 
   const { entries, source } = detectAndParse(auditData);
@@ -151,6 +152,7 @@ export async function importAudit(activeCklbUri?: vscode.Uri): Promise<void> {
 
   const now = new Date().toISOString();
   let matched = 0;
+  let preservedCount = 0;
 
   for (const stig of doc.stigs) {
     for (const rule of stig.rules) {
@@ -159,7 +161,6 @@ export async function importAudit(activeCklbUri?: vscode.Uri): Promise<void> {
       if (!isDepRule) continue;
 
       matched++;
-      rule.status = 'open';
       rule.updatedAt = now;
 
       const sevCounts: Record<string, number> = {};
@@ -188,16 +189,21 @@ export async function importAudit(activeCklbUri?: vscode.Uri): Promise<void> {
         lines.push(`  ... and ${entries.length - 25} more`);
       }
 
-      rule.finding_details = lines.join('\n');
+      if (applyToolResult(rule, 'open', lines.join('\n'), AUDIT_IMPORT)) {
+        preservedCount++;
+      }
     }
   }
 
-  fs.writeFileSync(cklbUri.fsPath, JSON.stringify(doc, null, 2));
+  await saveChecklist(document, doc);
   await vscode.commands.executeCommand('vscode.openWith', cklbUri, 'stigViewer.cklbEditor');
 
   if (matched > 0) {
+    const preservedNote = preservedCount > 0
+      ? `; ${preservedCount} rule(s) kept their existing status (evidence appended)`
+      : '';
     vscode.window.showInformationMessage(
-      `Imported ${entries.length} vulnerabilities from ${source} → ${matched} STIG rule(s) marked open`
+      `Imported ${entries.length} vulnerabilities from ${source} → ${matched - preservedCount} STIG rule(s) marked open${preservedNote}`
     );
   } else {
     vscode.window.showWarningMessage(

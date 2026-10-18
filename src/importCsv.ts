@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
-import { CklbDocument, CklbRule } from './types';
+import { CklbRule } from './types';
+import { loadChecklist, saveChecklist } from './checklistMerge';
 
 // Reverse of the export label maps in exportCsv.ts. Also accept the raw
 // internal values so a CSV produced from another tool (or hand-edited) works.
@@ -175,7 +176,7 @@ export async function importCsv(activeCklbUri?: vscode.Uri): Promise<void> {
     });
   }
 
-  const doc: CklbDocument = JSON.parse(fs.readFileSync(cklbUri.fsPath, 'utf-8'));
+  const { document, doc } = await loadChecklist(cklbUri);
 
   // Index rules by both keys so we can match either
   const byVuln = new Map<string, CklbRule>();
@@ -245,7 +246,7 @@ export async function importCsv(activeCklbUri?: vscode.Uri): Promise<void> {
     }
   }
 
-  fs.writeFileSync(cklbUri.fsPath, JSON.stringify(doc, null, 2));
+  await saveChecklist(document, doc);
   await vscode.commands.executeCommand('vscode.openWith', cklbUri, 'stigViewer.cklbEditor');
 
   let msg = `CSV import: ${updated} rule(s) updated, ${unmatched} unmatched`;
